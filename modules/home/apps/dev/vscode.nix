@@ -5,37 +5,38 @@
     enable = true;
 
     userSettings = {
-      "files.autosave" = "off";
-      
-      # editor stuff
-      "editor.cursorBlinking" = "solid";
-      "editor.inlineSuggest.enabled" = true;
-      "editor.cursorStyle" = "block";
-      "editor.formatOnPaste" = true;
-      "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      "editor.formatOnSave" = true;
-      "editor.unicodeHighlight.ambiguousCharacters" = true;
-      "editor.fontFamily" = "'JetBrainsMono Nerd Font', monospace";
-      "editor.fontVariations" = false;
+      files.autosave = "off";
+          
+      editor = {
+        cursorBlinking = "solid";
+        inlineSuggest.enabled = true;
+        cursorStyle = "block";
+        formatOnPaste = true;
+        defaultFormatter = "esbenp.prettier-vscode";
+        formatOnSave = true;
+        unicodeHighlight.ambiguousCharacters = true;
+        fontFamily = "'JetBrainsMono Nerd Font', monospace";
+        fontVariations = false;
+      };
 
-      # explorer
-      "explorer.confirmDelete" = true;
-      "explorer.confirmDragAndDrop" = false;
+      explorer = {
+        confirmDelete = true;
+        confirmDragAndDrop = false;
+      };
 
-      "workbench.sideBar.location" = "right";
-      "workbench.iconTheme" = "catppuccin-vsc-icons";
+      workbench = {
+        sideBar.location = "right";
+        iconTheme = "catppuccin-vsc-icons";
+      };
 
-      # prettier stuff
-      "prettier.bracketSameLine" = true;
-      "prettier.trailingComma" = "all";
+      prettier = {
+        bracketSameLine = true;
+        trailingComma = "all";
+      };
 
-      # lang specific
-      "[rust]"."editor.defaultFormatter" = "rust-lang.rust-analyzer";
-      
-      "[python]"."editor.defaultFormatter" = "ms-python.python";
-
-      "[nix]"."editor.tabSize" = 4;
-
+      "[rust]".editor.defaultFormatter = "rust-lang.rust-analyzer";
+      "[python]".editor.defaultFormatter = "ms-python.python";
+      "[nix]".editor.tabSize = 4;
     };
     
     keybindings = [
