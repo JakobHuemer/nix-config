@@ -226,6 +226,14 @@
 
 
   };
+  
+  programs.gh = {
+    enable = true;
+    
+    extensions = [
+      pkgs.gh-copilot
+    ];
+  };
 
   home.packages = with pkgs; [
     thefuck
@@ -236,7 +244,6 @@
     zoxide
     lsd
     nnn
-    gh-copilot
     eza
   ];
 }
