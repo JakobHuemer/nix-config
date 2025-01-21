@@ -1,34 +1,35 @@
-{ lib, config, pkgs, nixpkgs, inputs, vars, ... }:
+{ lib, config, pkgs, nixpkgs, home-manager, inputs, vars, ... }:
 
 let
   terminal = pkgs.${vars.terminal};
 in 
 {
   imports = [
-    ../modules/shell/zsh.nix
+    ../modules/shell/git.nix
   ];
 
-  boot = {
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
-
-      grub = {
-        efiSupport = true;
-        device = "nodev";
-      };
-    };
-  };
-
-
+  # boot = {
+  #   loader = {
+  #     efi = {
+  #       canTouchEfiVariables = true;
+  #       efiSysMountPoint = "/boot/efi";
+  #     };
+  # 
+  #     grub = {
+  #       efiSupport = true;
+  #       device = "nodev";
+  #     };
+  #   };
+  # };
+  programs.zsh.enable = true;
+  
   users.users.${vars.user} = {
     isNormalUser = true;
-    groups = [ "wheel" "networkmanager" ];
+    shell = pkgs.zsh;
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
-  tune.timeZone = "Europe/Vienna";
+  time.timeZone = "Europe/Vienna";
   i18n = {
     defaultLocale = "en_GB.UTF-8";
     extraLocaleSettings = {
@@ -65,6 +66,7 @@ in
       nodejs
       nix-tree  # browse nix store
       wget
+      neovim
 
       # Audio / Video
       alsa-utils
@@ -91,18 +93,40 @@ in
   services = {
     pipewire = {
       enable = true;
-      alas = {
+      alsa = {
         enable = true;
         support32Bit = true;
       };
     };
   };
 
-  system = {
-    stateVersuin = "24.11"
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "delete-older-than 2d";
+    };
+    registry.nixpkgs.flake = inputs.nixpkgs;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      keep-outputs          = true
+      keep-derivations      = true
+    '';
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   home-manager.users.${vars.user} = {
+    imports = [
+      ../modules/home/shell/git.nix
+      ../modules/home/shell/zsh.nix
+      ../modules/home/shell/neovim.nix
+      # home-manager modules import
+    ];
+
     home = {
       stateVersion = "24.11";
     };
@@ -113,8 +137,10 @@ in
 
     # other homemanager stuff for NixOs
 
-
   };
 
+  system = {
+    stateVersion = "24.11";
+  };
 
 }

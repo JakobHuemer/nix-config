@@ -1,10 +1,10 @@
-{ inputs, nixojgs, home-manager, nixvim, hyprland, vars, ... }:
+{ inputs, nixpkgs, home-manager, nixvim, hyprland, vars, ... }:
 
 let
   system = "x86_64-linux";
 
   pkgs = import nixpkgs {
-    inherit sstem;
+    inherit system;
     config.allowUnfree = true;
   };
 
@@ -13,7 +13,7 @@ let
 in 
 {
   # NixOs Laptop Desktop
-  nixtop = lib.nixosSystem {
+  nitro = lib.nixosSystem {
     inherit system;
     specialArgs = {
       inherit inputs system nixpkgs hyprland vars;
@@ -26,6 +26,12 @@ in
     modules = [
       ./nitro
       ./configuration.nix
+
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+	home-manager.useUserPackages = true;
+      }
     ];
 
     
