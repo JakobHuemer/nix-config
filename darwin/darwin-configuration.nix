@@ -21,7 +21,7 @@
       pkgs.nodejs_22
       pkgs.macchina
       pkgs.pfetch-rs
-      pkgs.pfetch
+      pkgs.nh
      
       # rust
       pkgs.cargo

@@ -38,6 +38,7 @@
           "$HOME/.cargo/bin"
           "$PATH"
         ];
+
       };
 
 

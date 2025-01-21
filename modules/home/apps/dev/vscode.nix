@@ -26,7 +26,7 @@
 
       workbench = {
         sideBar.location = "right";
-        iconTheme = "catppuccin-vsc-icons";
+        iconTheme = "catppuccin-mocha";
       };
 
       prettier = {
