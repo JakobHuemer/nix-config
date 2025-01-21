@@ -1,0 +1,87 @@
+{ inputs, config, lib, pkgs, vars, ... }:
+
+{
+  programs.vscode = {
+    enable = true;
+
+    userSettings = {
+      "files.autosave" = "off";
+      
+      # editor stuff
+      "editor.cursorBlinking" = "solid";
+      "editor.inlineSuggest.enabled" = true;
+      "editor.cursorStyle" = "block";
+      "editor.formatOnPaste" = true;
+      "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      "editor.formatOnSave" = true;
+      "editor.unicodeHighlight.ambiguousCharacters" = true;
+      "editor.fontFamily" = "'JetBrainsMono Nerd Font', monospace";
+      "editor.fontVariations" = false;
+
+      # explorer
+      "explorer.confirmDelete" = true;
+      "explorer.confirmDragAndDrop" = false;
+
+      "workbench.sideBar.location" = "right";
+      "workbench.iconTheme" = "catppuccin-vsc-icons";
+
+      # prettier stuff
+      "prettier.bracketSameLine" = true;
+      "prettier.trailingComma" = "all";
+
+      # lang specific
+      "[rust]"."editor.defaultFormatter" = "rust-lang.rust-analyzer";
+      
+      "[python]"."editor.defaultFormatter" = "ms-python.python";
+
+      "[nix]"."editor.tabSize" = 4;
+
+    };
+    
+    keybindings = [
+      {
+        key = "cmd+[Backslash]";
+        command = "editor.action.commentLine";
+        when = "editorTextFocus && !editorReadonly";
+      }
+      {
+        key = "shift+cmd+[Backslash]";
+        command = "editor.action.blockComment";
+        when = "editorTextFocus && editorReadonly";
+      }
+      {
+        key = "ctrl+shift+cm+o";
+        command = "github.copilot.toggleCopilot";
+      }
+    ];
+
+    extensions = with pkgs; [
+      vscode-extensions.rust-lang.rust-analyzer
+      vscode-extensions.enkia.tokyo-night
+      vscode-extensions.github.copilot
+      vscode-extensions.vincaslt.highlight-matching-tag
+      vscode-extensions.formulahendry.auto-rename-tag
+      vscode-extensions.oderwat.indent-rainbow
+      vscode-extensions.mechatroner.rainbow-csv
+      vscode-extensions.k--kato.intellij-idea-keybindings
+      vscode-extensions.christian-kohler.path-intellisense
+      vscode-extensions.esbenp.prettier-vscode
+      vscode-extensions.vue.vscode-typescript-vue-plugin
+      vscode-extensions.vue.volar
+      vscode-extensions.asciidoctor.asciidoctor-vscode
+      vscode-extensions.ziglang.vscode-zig
+      vscode-extensions.yoavbls.pretty-ts-errors
+      vscode-extensions.waderyan.gitblame
+      vscode-extensions.vscodevim.vim 
+      vscode-extensions.vscjava.vscode-maven
+      vscode-extensions.vscjava.vscode-gradle
+      vscode-extensions.denoland.vscode-deno
+      vscode-extensions.tamasfe.even-better-toml
+      # vscode-extensions.equinusocio.vsc-material-theme-icons
+      vscode-extensions.catppuccin.catppuccin-vsc-icons
+      vscode-extensions.ms-python.python
+
+    ];
+
+  };
+}

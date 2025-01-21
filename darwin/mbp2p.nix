@@ -10,6 +10,7 @@
 
   home-manager.users.${vars.user} = {
     imports = [
+      ../modules/home/apps/dev/vscode.nix
       ../modules/home/apps/nixcord.nix
       inputs.nixcord.homeManagerModules.nixcord
     ];
@@ -21,7 +22,7 @@
       pkgs.alacritty
       pkgs.neovim
       pkgs.colima
-
+      pkgs.nyancat
       # pkgs.youtube-music
     ];
   };

@@ -206,6 +206,7 @@
         sudes = "sudo -E -s";
 
         c = "z";
+        ls = "eza"; 
 
         nixvim = "cd ~/nix/ && nvim";
         
@@ -231,5 +232,6 @@
     lsd
     nnn
     github-copilot-cli
+    eza
   ];
 }
