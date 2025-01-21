@@ -16,6 +16,8 @@
     };
     systemPackages = [
       pkgs.git
+      pkgs.gh 
+
       pkgs.docker
       pkgs.thefuck
       pkgs.nodejs_22

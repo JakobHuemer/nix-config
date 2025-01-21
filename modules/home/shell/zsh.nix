@@ -179,6 +179,10 @@
 
         # transient prompt - - - -
 
+        # evals
+
+        _evalcache gh copilot alias -- zsh
+
         # fetches 
 
         pfetch
@@ -187,9 +191,9 @@
       '';
 
       shellAliases = {
-        "??" = "qq ";
-        "git?" = "git-q ";
-        "gh?" = "gh-q";
+        "??" = "ghcs";
+        "e?" = "ghce";
+        
         ip = "ip --color";
         ".." = "cd ..";
         "..." = "cd ../..";
@@ -232,7 +236,7 @@
     zoxide
     lsd
     nnn
-    github-copilot-cli
+    gh-copilot
     eza
   ];
 }
