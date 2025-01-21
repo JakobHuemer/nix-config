@@ -57,6 +57,7 @@
       
       "google-drive"
 
+      "geogebra"
       "signal@beta"
       "steam"
    ];

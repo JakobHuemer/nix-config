@@ -67,7 +67,7 @@
       };
 
       docker_context = {
-        format = "[$symbol$context]($style)";
+        format = "[$symbol$context ]($style)";
         only_with_files = true;
         detect_files = [
           "docker-compose.yaml"

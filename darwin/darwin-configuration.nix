@@ -22,7 +22,8 @@
       pkgs.macchina
       pkgs.pfetch-rs
       pkgs.nh
-     
+      pkgs.nyancat
+
       # rust
       pkgs.cargo
       pkgs.rustup
