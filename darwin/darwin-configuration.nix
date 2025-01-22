@@ -73,17 +73,21 @@
 
     home.stateVersion = "24.11";
   };
-
+  
   nix = {
-    package = pkgs.nix;
-    gc.automatic = true;
-    optimise.automatic = true;
-    settings = {
-      # auto-optimise-store = true;
-      experimental-features = [
-        "nix-command" "flakes"
-      ];
+    package = pkgs.nix; 
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "delete-older-than 10d";
     };
+    optimise.automatic = true;
+    registry.nixpkgs.flake = inputs.nixpkgs;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      keep-outputs          = true
+      keep-derivations      = true
+    '';
   };
 
   security.pam.enableSudoTouchIdAuth = true;
