@@ -66,7 +66,6 @@ in
       nodejs
       nix-tree  # browse nix store
       wget
-      neovim
 
       # Audio / Video
       alsa-utils

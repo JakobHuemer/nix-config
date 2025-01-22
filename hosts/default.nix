@@ -36,4 +36,28 @@ in
 
     
   };
+
+  pi4 = lib.nixosSystem {
+    inherit system;
+    specialArgs = {
+      inherit inputs system nixpkgs vars;
+      host = {
+        hostName = "pi4";
+        # config about monitors...
+      };
+    };
+
+    modules = [
+      ./pi4
+      ./configuration.nix
+
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+	home-manager.useUserPackages = true;
+      }
+    ];
+
+    
+  };
 }

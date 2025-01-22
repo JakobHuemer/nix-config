@@ -9,6 +9,7 @@
       nvim-treesitter
       elixir-tools-nvim
       nvchad-ui
+      nvchad
       catppuccin-nvim
     ];
   };
