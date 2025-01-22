@@ -23,6 +23,9 @@
       pkgs.neovim
       pkgs.colima
       pkgs.nyancat
+      pkgs.cloudflared
+
+      # pkgs.ladybird
       # pkgs.youtube-music
     ];
   };
