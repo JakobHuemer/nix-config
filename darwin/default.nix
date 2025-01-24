@@ -1,4 +1,12 @@
-{ inputs, nixpkgs, darwin, home-manager, nixvim, vars, ... }:
+{
+  inputs,
+  nixpkgs,
+  darwin,
+  home-manager,
+  nixvim,
+  vars,
+  ...
+}:
 
 let
   systemConfig = system: {
@@ -10,15 +18,22 @@ let
   };
 in
 {
-  mbp2p = 
+  mbp2p =
     let
       inherit (systemConfig "aarch64-darwin") system pkgs;
-    in 
+    in
     darwin.lib.darwinSystem {
       inherit system;
-      specialArgs = { inherit inputs system pkgs vars; };
+      specialArgs = {
+        inherit
+          inputs
+          system
+          pkgs
+          vars
+          ;
+      };
       modules = [
-        ./darwin-configuration.nix 
+        ./darwin-configuration.nix
         ./mbp2p.nix
         # ....
         nixvim.nixDarwinModules.nixvim

@@ -1,8 +1,13 @@
 #
 # System config for MacBook Pro M2 Pro
-# 
+#
 
-{ inputs, pkgs, vars, ... }: 
+{
+  inputs,
+  pkgs,
+  vars,
+  ...
+}:
 
 {
   imports = [
@@ -16,11 +21,10 @@
     ];
   };
 
-
   environment = {
     systemPackages = [
       pkgs.alacritty
-      pkgs.neovim
+      # pkgs.neovim
       pkgs.colima
       pkgs.nyancat
       pkgs.cloudflared
@@ -29,7 +33,6 @@
       # pkgs.youtube-music
     ];
   };
-
 
   homebrew = {
 
@@ -57,15 +60,15 @@
       "keyboard-cleaner"
       "virtualbox"
       "postman"
-      
+
       "google-drive"
 
       "geogebra"
       "signal@beta"
       "steam"
-   ];
-   masApps = {
-   };
+    ];
+    masApps = {
+    };
   };
 
   system = {

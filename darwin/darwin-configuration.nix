@@ -1,4 +1,10 @@
-{ pkgs, inputs, vars, nixpkgs, ... }:
+{
+  pkgs,
+  inputs,
+  vars,
+  nixpkgs,
+  ...
+}:
 
 {
   imports = [
@@ -16,7 +22,9 @@
     };
     systemPackages = [
       pkgs.git
-      pkgs.gh 
+      pkgs.gh
+      pkgs.nixfmt-rfc-style
+      pkgs.nixd
 
       pkgs.docker
       pkgs.thefuck
@@ -36,15 +44,14 @@
     ];
   };
 
-
   homebrew = {
     enable = true;
     onActivation = {
       upgrade = false;
       cleanup = "zap";
     };
-  
-    brews = [];
+
+    brews = [ ];
 
     casks = [
       "alfred"
@@ -66,16 +73,23 @@
 
   home-manager.users.${vars.user} = {
     imports = [
-      ../modules/home/shell/zsh.nix
+		  inputs.nvf.homeManagerModules.nvf
+      inputs.nixvim.homeManagerModules.nixvim
+      
+			#../modules/home/shell/nixvim.nix
+      ../modules/home/shell/nvf.nix
+
+			../modules/home/shell/zsh.nix
       ../modules/home/terminal/ghostty.nix
       ../modules/home/shell/starship.nix
     ];
 
     home.stateVersion = "24.11";
   };
-  
+
   nix = {
-    package = pkgs.nix; 
+    package = pkgs.nix;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     gc = {
       automatic = true;
       options = "delete-older-than 10d";

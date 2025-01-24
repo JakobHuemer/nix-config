@@ -22,7 +22,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland = {
@@ -34,6 +34,10 @@
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvf = {
+      url = "github:notashelf/nvf";
+		};
 
     ghostty = {
       url = "github:ghostty-org/ghostty";
@@ -53,7 +57,7 @@
   };
 
 
-  outputs = inputs @ {self, nixpkgs, nixos-hardware, home-manager, darwin, nixgl, nixvim, hyprland, nixcord, sops-nix, ghostty, ... }:
+  outputs = inputs @ {self, nixpkgs, nixos-hardware, home-manager, darwin, nixgl, nixvim, hyprland, nixcord, nvf, sops-nix, ghostty, ... }:
     let
       vars = {
         user = "jakki";
