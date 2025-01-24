@@ -1,4 +1,13 @@
-{ inputs, nixpkgs, home-manager, nixvim, hyprland, sops-nix, vars, ... }:
+{
+  inputs,
+  nixpkgs,
+  home-manager,
+  nixvim,
+  hyprland,
+  sops-nix,
+  vars,
+  ...
+}:
 
 let
   system = "x86_64-linux";
@@ -8,15 +17,20 @@ let
     config.allowUnfree = true;
   };
 
-
   lib = nixpkgs.lib;
-in 
+in
 {
   # NixOs Laptop Desktop
   nitro = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs system nixpkgs hyprland vars;
+      inherit
+        inputs
+        system
+        nixpkgs
+        hyprland
+        vars
+        ;
       host = {
         hostName = "NixTop";
         # config about monitors...
@@ -30,17 +44,21 @@ in
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
-	home-manager.useUserPackages = true;
+        home-manager.useUserPackages = true;
       }
     ];
 
-    
   };
 
   pi4 = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs system nixpkgs vars;
+      inherit
+        inputs
+        system
+        nixpkgs
+        vars
+        ;
       host = {
         hostName = "pi4";
         # config about monitors...
@@ -50,16 +68,15 @@ in
     modules = [
       ./pi4
       ./configuration.nix
-      
+
       sops-nix.nixosModules.sops
 
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
-	home-manager.useUserPackages = true;
+        home-manager.useUserPackages = true;
       }
     ];
 
-    
   };
 }

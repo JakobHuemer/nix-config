@@ -1,4 +1,10 @@
-{ inputs, pkgs, nixgl, vars, ... }:
+{
+  inputs,
+  pkgs,
+  nixgl,
+  vars,
+  ...
+}:
 
 {
   nixGL = {
@@ -20,7 +26,6 @@
       pkgs.kitty
       pkgs.alacritty
 
-
       # nvidia
       # pkgs.nvidia-docker
       # pkgs.nvidia-settings
@@ -38,11 +43,13 @@
       WLR_NO_HARDWARE_CURSORS = "1";
     };
 
-
     activation = {
       linkDesktopApplications = {
-        after = [ "writeBoundary" "createXdgUserDirectories" ];
-        before = [];
+        after = [
+          "writeBoundary"
+          "createXdgUserDirectories"
+        ];
+        before = [ ];
         data = "/usr/bin/update-desktop-database";
       };
     };

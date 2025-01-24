@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
-  
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,18 +37,18 @@
 
     nvf = {
       url = "github:notashelf/nvf";
-		};
+    };
 
     ghostty = {
       url = "github:ghostty-org/ghostty";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     secrets = {
       url = "path:/etc/nixos/nix-config/secrets";
       flake = false;
@@ -56,8 +56,22 @@
 
   };
 
-
-  outputs = inputs @ {self, nixpkgs, nixos-hardware, home-manager, darwin, nixgl, nixvim, hyprland, nixcord, nvf, sops-nix, ghostty, ... }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nixos-hardware,
+      home-manager,
+      darwin,
+      nixgl,
+      nixvim,
+      hyprland,
+      nixcord,
+      nvf,
+      sops-nix,
+      ghostty,
+      ...
+    }:
     let
       vars = {
         user = "jakki";
@@ -70,21 +84,43 @@
       nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs nixos-hardware home-manager nixvim hyprland sops-nix vars;
+          inherit
+            inputs
+            nixpkgs
+            nixos-hardware
+            home-manager
+            nixvim
+            hyprland
+            sops-nix
+            vars
+            ;
         }
       );
 
       darwinConfigurations = (
         import ./darwin {
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs home-manager darwin nixvim vars;
+          inherit
+            inputs
+            nixpkgs
+            home-manager
+            darwin
+            nixvim
+            vars
+            ;
         }
       );
 
       homeConfigurations = (
         import ./nix {
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs home-manager nixgl vars;
+          inherit
+            inputs
+            nixpkgs
+            home-manager
+            nixgl
+            vars
+            ;
         }
       );
     };

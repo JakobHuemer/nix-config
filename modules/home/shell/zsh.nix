@@ -12,7 +12,6 @@
         enable = true;
         strategy = [ "history" ];
       };
-      
 
       sessionVariables = {
         EDITOR = "nvim";
@@ -40,7 +39,6 @@
         ];
 
       };
-
 
       history = {
         append = true;
@@ -96,15 +94,15 @@
         DISABLE_AUTO_TITLE="true"
         ZSH_AUTOSUGGEST_USE_ASYNC="true"
         CASE_SENSITIVE="false"
-        
+
         HISTSIZE=10000
         SAVEHIST=10000
-        
+
         GITHUB_COPILOT_CLI_INITIALIZED=false
-        
+
         zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
         zstyle ':completion:*' menu select
-        
+
         ZSH_AUTOSUGGEST_STRATEGY=(history completion)
         ZSH_AUTOSUGGEST_USE_ASYNC=true
       '';
@@ -193,13 +191,13 @@
       shellAliases = {
         "??" = "ghcs";
         "e?" = "ghce";
-        
+
         ip = "ip --color";
         ".." = "cd ..";
         "..." = "cd ../..";
         "...." = "cd ../../..";
         "....." = "cd ../../../..";
-        
+
         cdd = "cd ~/D";
         fk = "fuck";
 
@@ -211,10 +209,10 @@
         sudes = "sudo -E -s";
 
         c = "z";
-        ls = "eza"; 
+        ls = "eza";
 
         nixvim = "cd ~/nix/ && nvim";
-        
+
       };
 
     };
@@ -224,12 +222,11 @@
     fzf.enable = true;
     dircolors.enable = true;
 
-
   };
-  
+
   programs.gh = {
     enable = true;
-    
+
     extensions = [
       pkgs.gh-copilot
     ];

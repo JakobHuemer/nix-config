@@ -1,4 +1,11 @@
-{ config, nixpkgs, pkgs, lib, vars, ... }:
+{
+  config,
+  nixpkgs,
+  pkgs,
+  lib,
+  vars,
+  ...
+}:
 
 {
   programs.nixcord = {
@@ -30,7 +37,6 @@
         memberListDecoratorsAPI.enable = true;
         messageAccessoriesAPI.enable = true;
 
-
         accountPanelServerProfile = {
           enable = true;
           prioritizeServerProfile = true;
@@ -61,14 +67,14 @@
         nsfwGateBypass.enable = true;
 
         onePingPerDM.enable = true;
-        
+
         oneko.enable = true;
 
         permissionsViewer = {
           enable = true;
           defaultPermissionsDropdownState = false;
         };
-        
+
         roleColorEverywhere.enable = true;
 
         sendTimestamps.enable = true;
@@ -82,7 +88,6 @@
         };
 
         silentMessageToggle.enable = true;
-
 
         translate = {
           enable = true;
@@ -103,7 +108,7 @@
         userVoiceShow.enable = true;
 
         validUser.enable = true;
-        
+
         voiceChatDoubleClick.enable = true;
 
         volumeBooster.enable = true;
@@ -174,9 +179,9 @@
 
         newGuildSettings = {
           enable = true;
-            
+
           # 0 serverDefault
-          # 1 all 
+          # 1 all
           # 2 only@Mentions
           # 3 nothing
           messages = "only@Mentions";
@@ -194,7 +199,7 @@
           enable = true;
           pinOrder = "custom";
         };
-        
+
         platformIndicators.enable = true;
 
         replaceGoogleSearch = {
@@ -208,7 +213,7 @@
           enable = true;
           theme = "https://raw.githubusercontent.com/withastro/houston-vscode/d297233be95e3f8fdecc22e4ffa92bb0e7265592/themes/houston.json";
           tryHljs = "SECONDARY";
-          
+
         };
 
         showHiddenThings.enable = true;
@@ -221,47 +226,46 @@
     };
   };
 
-
   home.activation = {
-    createNixcordApp = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      $DRY_RUN_CMD mkdir -p $HOME/Applications
-      
-      # Create the NixCord.app bundle
-      $DRY_RUN_CMD mkdir -p "$HOME/Applications/NixCord.app/Contents/MacOS"
-      
-      # Create Info.plist
-      $DRY_RUN_CMD cat > "$HOME/Applications/NixCord.app/Contents/Info.plist" << 'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>CFBundleExecutable</key>
-    <string>discord</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.discord.Discord</string>
-    <key>CFBundleName</key>
-    <string>Discord</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-    <key>LSApplicationCategoryType</key>
-    <string>public.app-category.social-networking</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>10.10.0</string>
-</dict>
-</plist>
-EOF
+    createNixcordApp = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            $DRY_RUN_CMD mkdir -p $HOME/Applications
+            
+            # Create the NixCord.app bundle
+            $DRY_RUN_CMD mkdir -p "$HOME/Applications/NixCord.app/Contents/MacOS"
+            
+            # Create Info.plist
+            $DRY_RUN_CMD cat > "$HOME/Applications/NixCord.app/Contents/Info.plist" << 'EOF'
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+      <dict>
+          <key>CFBundleExecutable</key>
+          <string>discord</string>
+          <key>CFBundleIdentifier</key>
+          <string>com.discord.Discord</string>
+          <key>CFBundleName</key>
+          <string>Discord</string>
+          <key>CFBundlePackageType</key>
+          <string>APPL</string>
+          <key>CFBundleShortVersionString</key>
+          <string>1.0</string>
+          <key>LSApplicationCategoryType</key>
+          <string>public.app-category.social-networking</string>
+          <key>LSMinimumSystemVersion</key>
+          <string>10.10.0</string>
+      </dict>
+      </plist>
+      EOF
 
-      # Create the executable script
-      $DRY_RUN_CMD cat > "$HOME/Applications/NixCord.app/Contents/MacOS/discord" << 'EOF'
-#!/bin/sh
-PATH="${config.home.profileDirectory}/bin:$PATH"
-exec discord "$@"
-EOF
-      
-      # Make the script executable
-      $DRY_RUN_CMD chmod +x "$HOME/Applications/NixCord.app/Contents/MacOS/discord"
+            # Create the executable script
+            $DRY_RUN_CMD cat > "$HOME/Applications/NixCord.app/Contents/MacOS/discord" << 'EOF'
+      #!/bin/sh
+      PATH="${config.home.profileDirectory}/bin:$PATH"
+      exec discord "$@"
+      EOF
+            
+            # Make the script executable
+            $DRY_RUN_CMD chmod +x "$HOME/Applications/NixCord.app/Contents/MacOS/discord"
     '';
   };
 }

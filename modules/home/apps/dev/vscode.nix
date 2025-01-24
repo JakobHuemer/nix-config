@@ -1,4 +1,11 @@
-{ inputs, config, lib, pkgs, vars, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  vars,
+  ...
+}:
 
 {
   programs.vscode = {
@@ -6,7 +13,7 @@
 
     userSettings = {
       files.autosave = "off";
-          
+
       editor = {
         cursorBlinking = "solid";
         inlineSuggest.enabled = true;
@@ -38,7 +45,7 @@
       "[python]".editor.defaultFormatter = "ms-python.python";
       "[nix]".editor.tabSize = 4;
     };
-    
+
     keybindings = [
       {
         key = "cmd+[Backslash]";
@@ -73,7 +80,7 @@
       vscode-extensions.ziglang.vscode-zig
       vscode-extensions.yoavbls.pretty-ts-errors
       vscode-extensions.waderyan.gitblame
-      vscode-extensions.vscodevim.vim 
+      vscode-extensions.vscodevim.vim
       vscode-extensions.vscjava.vscode-maven
       vscode-extensions.vscjava.vscode-gradle
       vscode-extensions.denoland.vscode-deno

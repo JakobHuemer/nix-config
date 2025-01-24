@@ -50,8 +50,15 @@
         style = "yellow bold";
         pyenv_version_name = false;
         pyenv_prefix = "pyenv";
-        python_binary = ["python" "python3" "python2"];
-        detect_extensions = ["py" "ipynb"];
+        python_binary = [
+          "python"
+          "python3"
+          "python2"
+        ];
+        detect_extensions = [
+          "py"
+          "ipynb"
+        ];
         detect_files = [
           ".python-version"
           "Pipfile"
@@ -62,7 +69,7 @@
           "tox.ini"
           "pixi.toml"
         ];
-        detect_folders = [".venv"];
+        detect_folders = [ ".venv" ];
         disabled = false;
       };
 

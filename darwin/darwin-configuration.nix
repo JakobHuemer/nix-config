@@ -21,6 +21,7 @@
       VISUAL = "${vars.editor}";
     };
     systemPackages = [
+      pkgs.treefmt2
       pkgs.git
       pkgs.gh
       pkgs.nixfmt-rfc-style
@@ -73,13 +74,13 @@
 
   home-manager.users.${vars.user} = {
     imports = [
-		  inputs.nvf.homeManagerModules.nvf
+      inputs.nvf.homeManagerModules.nvf
       inputs.nixvim.homeManagerModules.nixvim
-      
-			#../modules/home/shell/nixvim.nix
+
+      #../modules/home/shell/nixvim.nix
       ../modules/home/shell/nvf.nix
 
-			../modules/home/shell/zsh.nix
+      ../modules/home/shell/zsh.nix
       ../modules/home/terminal/ghostty.nix
       ../modules/home/shell/starship.nix
     ];

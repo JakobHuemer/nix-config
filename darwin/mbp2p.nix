@@ -28,7 +28,7 @@
       pkgs.colima
       pkgs.nyancat
       pkgs.cloudflared
-
+      pkgs.nodePackages.prettier
       # pkgs.ladybird
       # pkgs.youtube-music
     ];

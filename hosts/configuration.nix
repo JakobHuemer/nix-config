@@ -1,32 +1,28 @@
-{ lib, config, pkgs, nixpkgs, home-manager, inputs, vars, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  nixpkgs,
+  home-manager,
+  inputs,
+  vars,
+  ...
+}:
 
-let
-  terminal = pkgs.${vars.terminal};
-in 
 {
   imports = [
     ../modules/shell/git.nix
   ];
 
-  # boot = {
-  #   loader = {
-  #     efi = {
-  #       canTouchEfiVariables = true;
-  #       efiSysMountPoint = "/boot/efi";
-  #     };
-  # 
-  #     grub = {
-  #       efiSupport = true;
-  #       device = "nodev";
-  #     };
-  #   };
-  # };
   programs.zsh.enable = true;
-  
+
   users.users.${vars.user} = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
   };
 
   time.timeZone = "Europe/Vienna";
@@ -37,9 +33,8 @@ in
     };
   };
 
-
   console = {
-    
+
     font = "Lat2-Terminus16";
     keyMap = "de-latin1";
   };
@@ -50,7 +45,7 @@ in
     noto-fonts
     noto-fonts-emoji
 
-    corefonts # MS 
+    corefonts # MS
   ];
 
   environment = {
@@ -65,7 +60,7 @@ in
       zsh
       git
       nodejs
-      nix-tree  # browse nix store
+      nix-tree # browse nix store
       tmux
       wget
 
@@ -82,12 +77,13 @@ in
       firefox
 
       # Filemanagement
-      nemo 
+      nemo
       unrar
       rsync
       zip
       unrar
 
+      treefmt2
       sops
     ];
   };
