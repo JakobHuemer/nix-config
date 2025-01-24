@@ -39,11 +39,21 @@
       url = "github:ghostty-org/ghostty";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    secrets = {
+      url = "path:/etc/nixos/nix-config/secrets";
+      flake = false;
+    };
 
   };
 
 
-  outputs = inputs @ {self, nixpkgs, nixos-hardware, home-manager, darwin, nixgl, nixvim, hyprland, nixcord, ghostty, ... }:
+  outputs = inputs @ {self, nixpkgs, nixos-hardware, home-manager, darwin, nixgl, nixvim, hyprland, nixcord, sops-nix, ghostty, ... }:
     let
       vars = {
         user = "jakki";
@@ -56,7 +66,7 @@
       nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs nixos-hardware home-manager nixvim hyprland vars;
+          inherit inputs nixpkgs nixos-hardware home-manager nixvim hyprland sops-nix vars;
         }
       );
 
