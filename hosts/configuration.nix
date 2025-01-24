@@ -39,6 +39,7 @@ in
 
 
   console = {
+    
     font = "Lat2-Terminus16";
     keyMap = "de-latin1";
   };
@@ -65,6 +66,7 @@ in
       git
       nodejs
       nix-tree  # browse nix store
+      tmux
       wget
 
       # Audio / Video
@@ -85,6 +87,8 @@ in
       rsync
       zip
       unrar
+
+      sops
     ];
   };
 

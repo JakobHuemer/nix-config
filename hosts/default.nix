@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, home-manager, nixvim, hyprland, vars, ... }:
+{ inputs, nixpkgs, home-manager, nixvim, hyprland, sops-nix, vars, ... }:
 
 let
   system = "x86_64-linux";
@@ -50,6 +50,8 @@ in
     modules = [
       ./pi4
       ./configuration.nix
+      
+      sops-nix.nixosModules.sops
 
       home-manager.nixosModules.home-manager
       {
