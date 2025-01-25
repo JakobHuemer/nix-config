@@ -1,9 +1,10 @@
-{ pkgs, vars, ... }:
+{ pkgs, ... }:
 
 {
   programs.nixvim = {
     enable = true;
 
+    globals.mapleader = " ";
     opts = {
       relativenumber = true;
       tabstop = 2;
@@ -326,8 +327,8 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>E";
-        action = ":NvimTreeOpen";
+        key = "<leader>e";
+        action = ":NvimTreeOpen<CR>";
         options = {
           silent = true;
           desc = "Open NvimTree file explorer";
