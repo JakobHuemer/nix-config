@@ -6,6 +6,7 @@
   inputs,
   pkgs,
   vars,
+  profileVars,
   ...
 }:
 
@@ -19,6 +20,7 @@
       ../modules/home/apps/nixcord.nix
       inputs.nixcord.homeManagerModules.nixcord
     ];
+    
   };
 
   environment = {

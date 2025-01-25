@@ -21,6 +21,9 @@ in
   mbp2p =
     let
       inherit (systemConfig "aarch64-darwin") system pkgs;
+      profileVars = {
+        profile = "mbp2p";
+      };
     in
     darwin.lib.darwinSystem {
       inherit system;
@@ -30,6 +33,7 @@ in
           system
           pkgs
           vars
+          profileVars
           ;
       };
       modules = [

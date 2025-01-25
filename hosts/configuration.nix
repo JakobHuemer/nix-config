@@ -6,6 +6,7 @@
   home-manager,
   inputs,
   vars,
+  profileVars,
   ...
 }:
 

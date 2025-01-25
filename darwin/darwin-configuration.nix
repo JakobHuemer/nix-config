@@ -3,6 +3,8 @@
   inputs,
   vars,
   nixpkgs,
+  profileVars,
+  config,
   ...
 }:
 
@@ -40,7 +42,6 @@
       pkgs.cargo
       pkgs.rustup
       pkgs.rust-analyzer
-
       # not ready for aarch64-darwin
       # inputs.ghostty.packages.${pkgs.system}.default
     ];
@@ -78,7 +79,15 @@
       inputs.nvf.homeManagerModules.nvf
       inputs.nixvim.homeManagerModules.nixvim
 
-      ../modules/home/shell/nixvim.nix
+      (import ../modules/home/shell/nixvim.nix {
+        inherit
+          profileVars
+          vars
+          nixpkgs
+          pkgs
+          config
+          ;
+      })
       # ../modules/home/shell/nvf.nix
 
       ../modules/home/shell/zsh.nix
