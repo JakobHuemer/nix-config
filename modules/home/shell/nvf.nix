@@ -1,4 +1,4 @@
-{ pkgs, vars, ... }:
+{ pkgs, ... }:
 
 {
   programs.nvf = {
@@ -77,7 +77,7 @@
         };
 
         options = {
-          # autoindent = true;
+          autoindent = true;
           tabstop = 2;
           shiftwidth = 2;
         };
@@ -103,9 +103,30 @@
               #   "{highlight}"
               #   "{smart_indent_cap}"
               # ];
-              scope.enabled = true;
-              scope.show_start = true;
-              scope.show_end = true;
+
+              scope = {
+                enabled = true;
+                show_start = true;
+                show_end = true;
+              };
+            };
+          };
+        };
+
+        ui = {
+          colorizer.enable = true;
+          illuminate.enable = true;
+
+          noice = {
+            enable = true;
+          };
+
+          smartcolumn = {
+            enable = true;
+            setupOpts = {
+              colorcolumn = [
+                "120"
+              ];
             };
           };
         };
@@ -131,9 +152,14 @@
           python.enable = true;
           clang.enable = true;
 
-          nix.enable = true;
-          nix.format.package = pkgs.nixfmt-rfc-style;
-          nix.format.type = "nixfmt";
+          nix = {
+            enable = true;
+            format.package = pkgs.nixfmt-rfc-style;
+            format.type = "nixfmt";
+            lsp.enable = true;
+            lsp.package = pkgs.nixd;
+            extraDiagnostics.enable = true;
+          };
 
           rust.enable = true;
           ts.enable = true;

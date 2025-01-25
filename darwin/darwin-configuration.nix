@@ -26,6 +26,7 @@
       pkgs.gh
       pkgs.nixfmt-rfc-style
       pkgs.nixd
+      pkgs.prettierd
 
       pkgs.docker
       pkgs.thefuck
@@ -77,8 +78,8 @@
       inputs.nvf.homeManagerModules.nvf
       inputs.nixvim.homeManagerModules.nixvim
 
-      #../modules/home/shell/nixvim.nix
-      ../modules/home/shell/nvf.nix
+      ../modules/home/shell/nixvim.nix
+      # ../modules/home/shell/nvf.nix
 
       ../modules/home/shell/zsh.nix
       ../modules/home/terminal/ghostty.nix
