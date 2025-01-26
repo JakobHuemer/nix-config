@@ -212,7 +212,7 @@
         sudes = "sudo -E -s";
 
         c = "z";
-        ls = "eza";
+        ls = "eza --icons";
 
         nixvim = "cd ~/nix/ && nvim";
 
