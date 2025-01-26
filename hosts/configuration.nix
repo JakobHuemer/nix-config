@@ -61,18 +61,6 @@
       tmux
       wget
 
-      # Audio / Video
-      alsa-utils
-      pipewire
-      pulseaudio
-      vlc
-      mpv
-      linux-firmware
-      pavucontrol
-
-      # Apps
-      firefox
-
       # Filemanagement
       nemo
       unrar
