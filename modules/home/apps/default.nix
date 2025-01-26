@@ -1,0 +1,4 @@
+[
+  ./nixcord.nix
+  ./vscode.nix
+]

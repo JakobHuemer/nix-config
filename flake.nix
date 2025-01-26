@@ -57,21 +57,15 @@
   };
 
   outputs =
-    inputs@{
+    {
       self,
       nixpkgs,
       nixos-hardware,
       home-manager,
       darwin,
       nixgl,
-      nixvim,
-      hyprland,
-      nixcord,
-      nvf,
-      sops-nix,
-      ghostty,
       ...
-    }:
+    }@inputs:
     let
       vars = {
         user = "jakki";
@@ -88,10 +82,6 @@
             inputs
             nixpkgs
             nixos-hardware
-            home-manager
-            nixvim
-            hyprland
-            sops-nix
             vars
             ;
         }
@@ -105,7 +95,6 @@
             nixpkgs
             home-manager
             darwin
-            nixvim
             vars
             ;
         }

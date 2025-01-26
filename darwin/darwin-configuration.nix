@@ -2,9 +2,7 @@
   pkgs,
   inputs,
   vars,
-  nixpkgs,
-  profileVars,
-  config,
+  host,
   ...
 }:
 
@@ -38,12 +36,17 @@
       pkgs.nh
       pkgs.nyancat
 
+      pkgs.sops
+
       # rust
       pkgs.cargo
       pkgs.rustup
       pkgs.rust-analyzer
       # not ready for aarch64-darwin
       # inputs.ghostty.packages.${pkgs.system}.default
+
+      pkgs.podman
+      pkgs.podman-tui
     ];
   };
 
@@ -68,32 +71,28 @@
     ];
 
     masApps = {
-      # "wireguard" = 1451685025;
     };
   };
 
-  home-manager.backupFileExtension = "nix-backup";
+  home-manager = {
+    extraSpecialArgs = {
+      inherit
+        inputs
+        pkgs
+        vars
+        host
+        ;
+    };
+    backupFileExtension = "nix-backup";
+  };
 
   home-manager.users.${vars.user} = {
-    imports = [
-      inputs.nvf.homeManagerModules.nvf
-      inputs.nixvim.homeManagerModules.nixvim
+    imports = import ../modules/home;
 
-      (import ../modules/home/shell/nixvim.nix {
-        inherit
-          profileVars
-          vars
-          nixpkgs
-          pkgs
-          config
-          ;
-      })
-      # ../modules/home/shell/nvf.nix
-
-      ../modules/home/shell/zsh.nix
-      ../modules/home/terminal/ghostty.nix
-      ../modules/home/shell/starship.nix
-    ];
+    nixvim.enable = true;
+    nixcord.enable = true;
+    vscode.enable = true;
+    ghostty.enable = true;
 
     home.stateVersion = "24.11";
   };

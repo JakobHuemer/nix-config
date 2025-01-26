@@ -16,12 +16,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # remove when putting on raspberry
-  virtualisation.vmware.guest.enable = true;
-  virtualisation.docker.enable = true;
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers = {
-      # foot = { bar };
+  virtualisation = {
+    vmware.guest.enable = true;
+    docker.enable = true;
+    oci-containers = {
+      backend = "docker";
+      containers = {
+        # foot = { bar };
+      };
     };
   };
 
@@ -75,10 +77,7 @@
   services.cloudflared = {
     enable = true;
     tunnels = {
-      # TODO: use sops
-      # "8a065e66-15a0-4bac-81d9-6740553e9b47" = {
       "raspi-nix-vm" = {
-        # credentialsFile = config.sops.secrets."cloudflared/raspi-nix-vm".path;
         credentialsFile = config.sops.secrets."cloudflared/raspi-nix-vm".path;
         default = "http://localhost:8080";
         ingress = {
@@ -87,7 +86,5 @@
       };
     };
   };
-
-  # configuration for my raspberry pi 4 home server
 
 }

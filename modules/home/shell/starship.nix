@@ -1,6 +1,10 @@
-{ pkgs, vars, ... }:
+{
+  vars,
+  ...
+}:
 
 {
+
   programs.starship = {
     enable = true;
     settings = {
@@ -86,4 +90,5 @@
       };
     };
   };
+
 }

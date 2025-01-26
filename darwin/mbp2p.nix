@@ -6,21 +6,14 @@
   inputs,
   pkgs,
   vars,
-  profileVars,
+  host,
   ...
 }:
 
 {
-  imports = [
-  ];
 
   home-manager.users.${vars.user} = {
-    imports = [
-      ../modules/home/apps/dev/vscode.nix
-      ../modules/home/apps/nixcord.nix
-      inputs.nixcord.homeManagerModules.nixcord
-    ];
-    
+
   };
 
   environment = {

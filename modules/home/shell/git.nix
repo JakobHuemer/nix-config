@@ -1,6 +1,10 @@
-{ pkgs, vars, ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
+
   programs.git = {
     enable = true;
     userName = "JakobHuemer";
@@ -11,10 +15,6 @@
         ghPath = "${pkgs.gh}/bin/gh";
       in
       {
-        # credential = {
-        #   "https://github.com".helper = "!${ghPath} auth git-credential";
-        #   "https://gist.github.com".helper = "!${ghPath} auth git-credential";
-        # };
 
         filter = {
           lfs.clean = "git-lfs clean -- %f";
@@ -25,14 +25,6 @@
 
         init.defaultBranch = "main";
 
-        # "credential.'https://github.com.helper'" = "!${ghPath} auth git-credential";
-        # "credential.'https://gist.github.com.helper'" = "!${ghPath} auth git-credential";
-        # "filter.lfs.clean" = "git-lfs clean -- %f";
-        # "filter.lfs.smudge" = "git-lfs smudge -- %f";
-        # "filter.lfs.process" = "git-lfs filter-process";
-        # "filter.lfs.required" = "true";
-
-        # "init.defaultBranch" = "main";
       };
   };
 }

@@ -2,27 +2,26 @@
   inputs,
   nixpkgs,
   darwin,
-  home-manager,
-  nixvim,
   vars,
   ...
 }:
 
 let
   systemConfig = system: {
-    system = system;
+    inherit system;
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
     };
   };
+  inherit inputs;
 in
 {
   mbp2p =
     let
       inherit (systemConfig "aarch64-darwin") system pkgs;
-      profileVars = {
-        profile = "mbp2p";
+      host = {
+        hostName = "mbp2p";
       };
     in
     darwin.lib.darwinSystem {
@@ -30,24 +29,21 @@ in
       specialArgs = {
         inherit
           inputs
-          system
           pkgs
           vars
-          profileVars
+          host
           ;
       };
       modules = [
         ./darwin-configuration.nix
         ./mbp2p.nix
         # ....
-        nixvim.nixDarwinModules.nixvim
-        home-manager.darwinModules.home-manager
+        inputs.home-manager.darwinModules.home-manager
         # ghostty.packages.aarch64-darwin.default
         # nixcord.homeManagerModules.nixcord
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-
         }
       ];
     };

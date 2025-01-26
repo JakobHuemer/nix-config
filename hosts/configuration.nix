@@ -1,19 +1,15 @@
 {
-  lib,
-  config,
   pkgs,
-  nixpkgs,
-  home-manager,
   inputs,
   vars,
-  profileVars,
+  system,
+  nixpkgs,
+  host,
   ...
 }:
 
 {
-  imports = [
-    ../modules/shell/git.nix
-  ];
+  # imports = import ../modules/nixos;
 
   programs.zsh.enable = true;
 
@@ -119,13 +115,20 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  home-manager.extraSpecialArgs = {
+    inherit
+      inputs
+      system
+      nixpkgs
+      vars
+      host
+      ;
+  };
+
   home-manager.users.${vars.user} = {
-    imports = [
-      ../modules/home/shell/git.nix
-      ../modules/home/shell/zsh.nix
-      ../modules/home/shell/neovim.nix
-      # home-manager modules import
-    ];
+    imports = import ../modules/home;
+
+    nixvim.enable = true;
 
     home = {
       stateVersion = "24.11";

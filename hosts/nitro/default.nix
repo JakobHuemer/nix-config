@@ -1,9 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    # ../../modules/desktop/hyprland.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -11,4 +10,9 @@
 
   # configuration to make for acer nitro 5 NixStation NixOs
 
+  home-manager.users.${vars.user} = {
+    nixcord.enable = true;
+    vscode.enable = true;
+    ghostty.enable = true;
+  };
 }
