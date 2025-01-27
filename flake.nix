@@ -48,12 +48,6 @@
       url = "github:Mic92/sops-nix";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    secrets = {
-      url = "path:/etc/nixos/nix-config/secrets";
-      flake = false;
-    };
-
   };
 
   outputs =
