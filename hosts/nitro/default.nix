@@ -48,13 +48,14 @@
 
     wayland.windowManager.hyprland.settings = {
       "$mod" = "ALT";
-      "$terminal" = "alacritty";
+      "$terminal" = "ghostty";
       bind =
         [
           "$mod, A, exec, $terminal"
           "$mod, M, exit,"
           "$mod, Q, killactive,"
           "$mod, W, togglefloating,"
+          "$mod, F, exec, firefox"
         ]
         ++ (builtins.concatLists (
           builtins.genList (
