@@ -69,6 +69,9 @@
       unrar
 
       treefmt2
+      nixd
+      nixfmt-rfc-style
+      prettierd
       sops
     ];
   };
