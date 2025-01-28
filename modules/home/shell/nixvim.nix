@@ -319,6 +319,32 @@
           };
         };
 
+        # guess-indent = {
+        #   enable = true;
+        #
+        #   settings = {
+        #     auto_cmd = true;
+        #     filetype_exclude = [
+        #       "markdown"
+        #     ];
+        #     override_editorconfig = true;
+        #   };
+        # };
+
+        indent-o-matic = {
+          enable = true;
+
+          settings = {
+            max_lines = 2048;
+            skip_multiline = false;
+            standard_widths = [
+              2
+              4
+              8
+            ];
+          };
+        };
+
         conform-nvim = {
           enable = true;
 
