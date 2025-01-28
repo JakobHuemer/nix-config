@@ -26,6 +26,7 @@ in
           ;
         host = {
           hostName = "nitro";
+          flakePath = "/nixos/etc/nix-config";
         };
       };
 
@@ -60,6 +61,7 @@ in
           ;
         host = {
           hostName = "pi4";
+          flakePath = "/nixos/etc/nix-config";
         };
       };
       modules = [

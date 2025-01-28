@@ -61,6 +61,8 @@
       "geogebra"
       "signal@beta"
       "steam"
+
+      "libreoffice"
     ];
     masApps = {
     };

@@ -22,6 +22,7 @@ in
       inherit (systemConfig "aarch64-darwin") system pkgs;
       host = {
         hostName = "mbp2p";
+        flakePath = "/Users/${vars.user}/nix";
       };
     in
     darwin.lib.darwinSystem {

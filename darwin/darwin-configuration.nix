@@ -57,8 +57,6 @@
       cleanup = "zap";
     };
 
-    brews = [ ];
-
     casks = [
       "alfred"
       "firefox"

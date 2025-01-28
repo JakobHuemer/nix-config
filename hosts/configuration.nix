@@ -91,6 +91,9 @@
     settings = {
       auto-optimise-store = true;
     };
+
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
     gc = {
       automatic = true;
       dates = "weekly";

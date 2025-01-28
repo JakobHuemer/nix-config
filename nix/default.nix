@@ -14,10 +14,15 @@ in
 {
   nitro = home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
-    extraSpecialArgs = { inherit inputs nixgl vars; };
+    extraSpecialArgs = {
+      inherit inputs nixgl vars;
+      host = {
+        hostName = "nitro";
+        flakePath = "/nixos/etc/nix-config";
+      };
+    };
     modules = [
       ./nitro.nix
-      ../modules/shell/zsh.nix
       {
         home = {
           username = "${vars.user}";
