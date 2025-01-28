@@ -29,7 +29,6 @@
         register = "unnamedplus";
       };
 
-
       opts = {
         relativenumber = true;
         number = true;
@@ -53,14 +52,11 @@
         colorcolumn = "80";
       };
 
-
       colorschemes.catppuccin.enable = true;
 
       clipboard.providers.wl-copy.enable = true;
 
       plugins = {
-
-        
 
         cmp = {
           enable = true;
@@ -214,6 +210,155 @@
           };
         };
 
+        treesitter = {
+          enable = true;
+
+          grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+            bash
+            json
+            lua
+            html
+            nix
+            make
+            markdown
+            toml
+            vim
+            vimdoc
+            yaml
+            xml
+            regex
+            java
+            python
+            rust
+            gleam
+            zig
+          ];
+
+          settings = {
+            indent.enable = true;
+            auto_install = true;
+            ensure_installed = [
+              "git_config"
+              "gitattributes"
+              "gitcommit"
+              "gitignore"
+            ];
+
+            highlight = {
+              enable = true;
+            };
+          };
+        };
+
+        autosource = {
+          enable = true;
+        };
+
+        autoclose = {
+          enable = true;
+
+          keys = {
+            "(" = {
+              escape = false;
+              close = true;
+              pair = "()";
+            };
+            "[" = {
+              escape = false;
+              close = true;
+              pair = "[]";
+            };
+            "{" = {
+              escape = false;
+              close = true;
+              pair = "{}";
+            };
+
+            ">" = {
+              escape = true;
+              close = false;
+              pair = "<>";
+            };
+            ")" = {
+              escape = true;
+              close = false;
+              pair = "()";
+            };
+            "]" = {
+              escape = true;
+              close = false;
+              pair = "[]";
+            };
+            "}" = {
+              escape = true;
+              close = false;
+              pair = "{}";
+            };
+
+            "\"" = {
+              escape = true;
+              close = true;
+              pair = "\"\"";
+            };
+            "'" = {
+              escape = true;
+              close = true;
+              pair = "''";
+            };
+            "`" = {
+              escape = true;
+              close = true;
+              pair = "``";
+            };
+          };
+
+          options = {
+            pairSpaces = true;
+            autoIndent = true;
+            touchRegex = "[%w(%[{]";
+          };
+        };
+
+        conform-nvim = {
+          enable = true;
+
+          settings = {
+
+            notify_on_error = true;
+
+            formatters_by_ft = {
+              bash = [
+                "shfmt"
+              ];
+              "_" = [
+                "prettierd"
+              ];
+            };
+
+            format_on_save = # Lua
+              ''
+                function(bufnr)
+                  local ignore_filetypes = {  }
+                  
+                  if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+                    return
+                  end
+
+                  if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                    return
+                  end
+                  
+                  local bufname = vim.api.nvim_buf_get_name(bufnr)
+                  if bufname:match("/node_modules/") then
+                    return
+                  end
+                  
+                  return { timeout_ms = 500, lsp_format = "fallback" }
+                end
+              '';
+          };
+        };
+
         mini = {
           enable = true;
           modules = {
@@ -269,76 +414,6 @@
             #   };
             # };
 
-          };
-        };
-
-        treesitter = {
-          enable = true;
-
-          grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-            bash
-            json
-            lua
-            html
-            nix
-            make
-            markdown
-            toml
-            vim
-            vimdoc
-            yaml
-            xml
-            regex
-            java
-            python
-            rust
-            gleam
-            zig
-          ];
-
-          settings = {
-            indent.enable = true;
-            auto_install = true;
-            ensure_installed = [
-              "git_config"
-              "gitattributes"
-              "gitcommit"
-              "gitignore"
-            ];
-
-            highlight = {
-              enable = true;
-            };
-          };
-        };
-
-        autosource = {
-          enable = true;
-        };
-
-        
-        autoclose = {
-          enable = true;
-
-          keys = {
-            "(" = { escape = false; close = true; pair = "()"; };
-            "[" = { escape = false; close = true; pair = "[]"; };
-            "{" = { escape = false; close = true; pair = "{}"; };
-
-            ">" = { escape = true; close = false; pair = "<>"; };
-            ")" = { escape = true; close = false; pair = "()"; };
-            "]" = { escape = true; close = false; pair = "[]"; };
-            "}" = { escape = true; close = false; pair = "{}"; };
-
-            "\"" = { escape = true; close = true; pair = "\"\""; };
-            "'" = { escape = true; close = true; pair = "''"; };
-            "`" = { escape = true; close = true; pair = "``"; };
-          };
-
-          options = {
-            pairSpaces = true;
-            autoIndent = true;
-            touchRegex = "[%w(%[{]";
           };
         };
 

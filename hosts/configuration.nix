@@ -52,28 +52,28 @@
       VISUAL = "${vars.editor}";
     };
 
-    systemPackages = with pkgs; [
-      ghostty
-      zsh
-      git
-      nodejs
-      nix-tree # browse nix store
-      tmux
-      wget
+    systemPackages =
+      (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; })
+      ++ (with pkgs; [
+        zsh
+        git
+        nodejs
+        nix-tree # browse nix store
+        tmux
+        wget
 
-      # Filemanagement
-      nemo
-      unrar
-      rsync
-      zip
-      unrar
+        # Filemanagement
+        nemo
+        unrar
+        rsync
+        zip
+        unrar
 
-      treefmt2
-      nixd
-      nixfmt-rfc-style
-      prettierd
-      sops
-    ];
+        treefmt2
+        nixd
+        nixfmt-rfc-style
+        sops
+      ]);
   };
 
   hardware.pulseaudio.enable = false;

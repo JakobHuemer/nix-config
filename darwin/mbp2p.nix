@@ -3,10 +3,8 @@
 #
 
 {
-  inputs,
   pkgs,
   vars,
-  host,
   ...
 }:
 

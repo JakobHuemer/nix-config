@@ -20,13 +20,9 @@
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
     };
-    systemPackages = [
-      pkgs.treefmt2
+    systemPackages = (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; }) ++ [
       pkgs.git
       pkgs.gh
-      pkgs.nixfmt-rfc-style
-      pkgs.nixd
-      pkgs.prettierd
 
       pkgs.docker
       pkgs.thefuck
@@ -41,7 +37,6 @@
       # rust
       pkgs.cargo
       pkgs.rustup
-      pkgs.rust-analyzer
       # not ready for aarch64-darwin
       # inputs.ghostty.packages.${pkgs.system}.default
 

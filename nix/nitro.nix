@@ -68,6 +68,8 @@
       auto-optimise-store = true;
     };
 
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
     package = pkgs.nixVersions.stable;
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
