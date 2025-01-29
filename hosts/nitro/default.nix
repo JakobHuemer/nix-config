@@ -15,6 +15,7 @@
 
   environment.systemPackages = [
     pkgs.firefox
+    pkgs.nemo
 
     # Audio / Video
     pkgs.alsa-utils

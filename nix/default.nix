@@ -22,6 +22,7 @@ in
       };
     };
     modules = [
+      ./home-configuration.nix
       ./nitro.nix
       {
         home = {

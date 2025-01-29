@@ -24,6 +24,7 @@
       pkgs.nodePackages.prettier
       # pkgs.ladybird
       # pkgs.youtube-music
+
     ];
   };
 
@@ -61,6 +62,7 @@
       "steam"
 
       "libreoffice"
+      "obsidian"
     ];
     masApps = {
     };

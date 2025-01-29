@@ -20,29 +20,27 @@
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
     };
-    systemPackages = (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; }) ++ [
-      pkgs.git
-      pkgs.gh
+    systemPackages =
+      (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; })
+      ++ (import ../nixconf/pckgs-all.nix { inherit pkgs; })
+      ++ [
+        pkgs.git
+        pkgs.gh
 
-      pkgs.docker
-      pkgs.thefuck
-      pkgs.nodejs_22
-      pkgs.macchina
-      pkgs.pfetch-rs
-      pkgs.nh
-      pkgs.nyancat
+        pkgs.docker
+        pkgs.nodejs_22
+        pkgs.nh
+        pkgs.nyancat
 
-      pkgs.sops
+        # rust
+        pkgs.cargo
+        pkgs.rustup
+        # not ready for aarch64-darwin
+        # inputs.ghostty.packages.${pkgs.system}.default
 
-      # rust
-      pkgs.cargo
-      pkgs.rustup
-      # not ready for aarch64-darwin
-      # inputs.ghostty.packages.${pkgs.system}.default
-
-      pkgs.podman
-      pkgs.podman-tui
-    ];
+        pkgs.podman
+        pkgs.podman-tui
+      ];
   };
 
   homebrew = {

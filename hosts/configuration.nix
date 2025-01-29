@@ -54,25 +54,10 @@
 
     systemPackages =
       (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; })
+      ++ (import ../nixconf/pckgs-all.nix { inherit pkgs; })
       ++ (with pkgs; [
-        zsh
-        git
         nodejs
-        nix-tree # browse nix store
-        tmux
-        wget
 
-        # Filemanagement
-        nemo
-        unrar
-        rsync
-        zip
-        unrar
-
-        treefmt2
-        nixd
-        nixfmt-rfc-style
-        sops
       ]);
   };
 
