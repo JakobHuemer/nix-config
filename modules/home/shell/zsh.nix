@@ -11,6 +11,8 @@
       enableCompletion = true;
       syntaxHighlighting.enable = true;
 
+      autocd = true;
+
       autosuggestion = {
         enable = true;
         strategy = [ "history" ];
@@ -26,17 +28,11 @@
         LANG = "en_GB.UTF-8";
         LANGUAGE = "en_GB.UTF-8";
 
-        # homebrew
-        HOMEBREW_INSTALL_BADGE_TIME = "1";
-        HOMEBREW_NO_AUTO_UPDATE = "1";
-        HOMEBREW_NO_ENV_HINTS = "1";
+        GITIGNORE_TEMPLATE_FILE = toString ../../../conf/gitignore-template;
 
         PATH = builtins.concatStringsSep ":" [
           "$HOME/go/bin"
           "$HOME/.local/bin"
-          "/opt/homebrew/opt/python@3.12/libexec/bin"
-          "/opt/homebrew/opt/swift/bin"
-          "/opt/homebrew/opt/rustup/bin"
           "$HOME/.cargo/bin"
           "$PATH"
         ];
@@ -213,8 +209,12 @@
 
         c = "z";
         ls = "eza --icons";
+        cat = "bat";
 
         nixvim = "cd ~/nix/ && nvim";
+
+        makegitignore = "cp $GITIGNORE_TEMPLATE_FILE .gitignore";
+        mkgitignore = "makegitignore";
 
       };
 
@@ -238,12 +238,12 @@
   home.packages = with pkgs; [
     thefuck
     pfetch-rs
+    macchina
     starship
     bat
     fzf
     zoxide
     lsd
-    nnn
     eza
   ];
 

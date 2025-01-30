@@ -15,6 +15,21 @@
     shell = pkgs.zsh;
   };
 
+  system.activationScripts.extraActivation.text =
+    let
+      nixbin = "/Users/${vars.user}/.nixbin";
+    in
+    ''
+      echo "settings up nodejs symlinkgs..."
+      mkdir -p ${nixbin}
+      mkdir -p ${nixbin}/lib
+      ln -sf ${pkgs.nodejs}/bin/node ${nixbin}/node
+      ln -sf ${pkgs.nodejs}/bin/npm ${nixbin}/npm
+      ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/dot
+      ln -sf ${pkgs.temurin-bin-23}/bin/java ${nixbin}/java
+      ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
+    '';
+
   environment = {
     variables = {
       EDITOR = "${vars.editor}";
@@ -23,6 +38,7 @@
     systemPackages =
       (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; })
       ++ (import ../nixconf/pckgs-all.nix { inherit pkgs; })
+      ++ (import ../nixconf/apps/obsidian-pkgs.nix {inherit pkgs;})
       ++ [
         pkgs.git
         pkgs.gh
@@ -59,6 +75,7 @@
       "kitty"
       "scroll-reverser"
       "maccy"
+      "teamviewer"
     ];
 
     masApps = {
