@@ -38,7 +38,7 @@
     systemPackages =
       (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; })
       ++ (import ../nixconf/pckgs-all.nix { inherit pkgs; })
-      ++ (import ../nixconf/apps/obsidian-pkgs.nix {inherit pkgs;})
+      ++ (import ../nixconf/apps/obsidian-pkgs.nix { inherit pkgs; })
       ++ [
         pkgs.git
         pkgs.gh
@@ -56,6 +56,8 @@
 
         pkgs.podman
         pkgs.podman-tui
+
+        pkgs.tor
       ];
   };
 
@@ -76,6 +78,7 @@
       "scroll-reverser"
       "maccy"
       "teamviewer"
+      "tor-browser"
     ];
 
     masApps = {

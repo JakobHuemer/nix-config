@@ -1,12 +1,15 @@
 { pkgs }:
 
-[
-  pkgs.treefmt2
-  pkgs.shfmt
-  pkgs.rust-analyzer
-  pkgs.nixd
-  pkgs.prettierd
-  pkgs.yapf
-  pkgs.nixfmt-rfc-style
-  pkgs.rustfmt
-]
+(with pkgs; [
+  treefmt2
+  shfmt
+  rust-analyzer
+  nixd
+  prettierd
+  yapf
+  nixfmt-rfc-style
+  rustfmt
+
+  vscode-langservers-extracted
+  vimPlugins.nvim-ts-autotag
+])

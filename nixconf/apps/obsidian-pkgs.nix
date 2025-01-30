@@ -1,7 +1,7 @@
 { pkgs }:
 
 (with pkgs; [
-
+  hugo
   plantuml
   graphviz
   temurin-bin-23

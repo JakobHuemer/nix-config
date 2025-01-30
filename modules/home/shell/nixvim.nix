@@ -94,6 +94,10 @@
               enable = true;
             };
 
+            html = {
+              enable = true;
+            };
+
             nixd = {
               enable = true;
 
@@ -206,6 +210,58 @@
             scope = {
               show_end = true;
               show_start = true;
+            };
+          };
+        };
+
+        emmet = {
+          leader = "<C-Z>";
+          mode = "inv";
+          settings = {
+            html = {
+              default_attributes = {
+                option = {
+                  value = null;
+                };
+                textarea = {
+                  cols = 10;
+                  id = null;
+                  name = null;
+                  rows = 10;
+                };
+              };
+              snippets = {
+                "html:5" = ''
+                  <!DOCTYPE html>
+                  <html lang=\"$\{lang}\">
+                  <head>
+                  \t<meta charset=\"$\{charset}\">
+                  \t<title></title>
+                  \t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+                  </head>
+                  <body>\n\t$\{child}|\n</body>
+                  </html>
+                '';
+              };
+            };
+            variables = {
+              lang = "ja";
+            };
+          };
+        };
+
+        ts-autotag = {
+          enable = true;
+          settings = {
+            opts = {
+              enable_close = true;
+              enable_close_on_slash = true;
+              enable_rename = true;
+            };
+            per_filetype = {
+              html = {
+                enable_close = true;
+              };
             };
           };
         };

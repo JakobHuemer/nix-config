@@ -16,4 +16,7 @@
   sops
   nvchecker
 
+  # languages
+  go
+
 ])
