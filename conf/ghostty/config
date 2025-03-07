@@ -53,3 +53,6 @@ foreground = cdd6f4
 cursor-color = f5e0dc
 selection-background = 353749
 selection-foreground = cdd6f4
+
+
+# custom-shader = ~/.tweaks/ghostty-shaders/glow-rgbsplit-twitchy.glsl

@@ -34,6 +34,10 @@
         # "filter.lfs.required" = "true";
 
         # "init.defaultBranch" = "main";
+        signing = {
+          key = "A32894C5";
+          signByDefault = true;
+        };
       };
   };
 }

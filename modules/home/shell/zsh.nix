@@ -179,6 +179,7 @@
         # evals
 
         _evalcache gh copilot alias -- zsh
+        _evalcache thefuck --alias -- fk
 
         # fetches 
 
@@ -208,14 +209,14 @@
         sudes = "sudo -E -s";
 
         c = "z";
-        ls = "eza --icons";
         cat = "bat";
+        ls = "eza $1 --color=auto --icons=auto";
 
         nixvim = "cd ~/nix/ && nvim";
 
         makegitignore = "cp $GITIGNORE_TEMPLATE_FILE .gitignore";
         mkgitignore = "makegitignore";
-
+        icat = "kitten icat";
       };
 
     };

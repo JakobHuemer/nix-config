@@ -16,7 +16,6 @@
 
   environment = {
     systemPackages = [
-      pkgs.alacritty
       # pkgs.neovim
       pkgs.colima
       pkgs.nyancat
@@ -24,7 +23,16 @@
       pkgs.nodePackages.prettier
       # pkgs.ladybird
       # pkgs.youtube-music
+      pkgs.quarkus
+      pkgs.maven
+      pkgs.kubectl
 
+      pkgs.asciidoctor-with-extensions
+      pkgs.testdisk
+
+      pkgs.texlivePackages.xelatex-dev
+      pkgs.pandoc
+      pkgs.librsvg
     ];
   };
 
@@ -35,6 +43,8 @@
     ];
 
     casks = [
+      "heroic"
+      "figma"
       "free-download-manager"
       "zen-browser"
       "jetbrains-toolbox"
@@ -42,6 +52,7 @@
       "surfshark"
       "vmware-fusion"
       "brave-browser"
+      "vivaldi"
       # ms apps
       "microsoft-powerpoint"
       "microsoft-word"
@@ -63,6 +74,16 @@
 
       "libreoffice"
       "obsidian"
+      "discord@canary"
+      "discord@ptb"
+
+      "dbeaver-community"
+      "gitkraken"
+      "chromium"
+
+      "android-platform-tools"
+
+      "adobe-creative-cloud"
     ];
     masApps = {
     };

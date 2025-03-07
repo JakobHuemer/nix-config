@@ -23,17 +23,23 @@
       echo "settings up nodejs symlinkgs..."
       mkdir -p ${nixbin}
       mkdir -p ${nixbin}/lib
+      mkdir -p ${nixbin}/bin
       ln -sf ${pkgs.nodejs}/bin/node ${nixbin}/node
       ln -sf ${pkgs.nodejs}/bin/npm ${nixbin}/npm
       ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/dot
+      ln -sf ${pkgs.graphviz}/bin/dot /opt/local/bin/dot
+      ln -sf ${pkgs.python313}/bin/python3 ${nixbin}/python3
       ln -sf ${pkgs.temurin-bin-23}/bin/java ${nixbin}/java
       ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
+      ln -sf ${pkgs.postgresql_jdbc}/share/java/postgresql-jdbc.jar ${nixbin}/lib/postgresql-jdbc.jar
+      ln -sf ${pkgs.pandoc}/bin/pandoc ${nixbin}/bin/pandoc
     '';
 
   environment = {
     variables = {
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
+      CMAKE_MAKE_PROGRAM = "ninja";
     };
     systemPackages =
       (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; })
@@ -42,11 +48,17 @@
       ++ [
         pkgs.git
         pkgs.gh
+        pkgs.lazygit
+        # pkgs.ghostty
+        pkgs.nnn
 
         pkgs.docker
         pkgs.nodejs_22
         pkgs.nh
         pkgs.nyancat
+        pkgs.yarn
+        pkgs.act
+        pkgs.ninja
 
         # rust
         pkgs.cargo
@@ -57,7 +69,13 @@
         pkgs.podman
         pkgs.podman-tui
 
+        pkgs.postgresql_jdbc
         pkgs.tor
+        pkgs.cmake
+        pkgs.ecm
+        pkgs.pandoc
+
+        pkgs.imagemagick
       ];
   };
 
@@ -68,7 +86,12 @@
       cleanup = "zap";
     };
 
+    taps = [
+      "pablopunk/brew"
+    ];
+
     casks = [
+      "github"
       "alfred"
       "firefox"
       "alt-tab"
@@ -79,6 +102,8 @@
       "maccy"
       "teamviewer"
       "tor-browser"
+      "swift-shift"
+      "vlc"
     ];
 
     masApps = {
@@ -124,7 +149,8 @@
     '';
   };
 
-  security.pam.enableSudoTouchIdAuth = true;
+  # no longer has any effect
+  # security.pam.enableSudoTouchIdAuth = true;
 
   system = {
     #MacOS settings1

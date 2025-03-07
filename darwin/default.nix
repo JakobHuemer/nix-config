@@ -15,6 +15,7 @@ let
     };
   };
   inherit inputs;
+
 in
 {
   mbp2p =
@@ -48,4 +49,5 @@ in
         }
       ];
     };
+
 }

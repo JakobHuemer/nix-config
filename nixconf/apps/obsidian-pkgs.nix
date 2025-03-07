@@ -1,9 +1,13 @@
 { pkgs }:
 
 (with pkgs; [
+  clang
   hugo
   plantuml
   graphviz
   temurin-bin-23
-  python313Packages.pyodbc
+
+  texliveGUST
+  texlivePackages.dvisvgm
+  haskellPackages.hsc2hs
 ])

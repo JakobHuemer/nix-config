@@ -24,11 +24,13 @@
       config = {
         useQuickCss = true;
         themeLinks = [
+          # TODO: reenable: disabled for now because of discords new ui change
+          # "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/system24.theme.css"
+
           # "https://raw.githubusercontent.com/moistp1ckle/GitHub_Dark/refs/heads/main/source.css"
           # "https://raw.githubusercontent.com/TheoEwzZer/RoundmoledV2/refs/heads/main/roundmoledV2.theme.css"
           # "https://raw.githubusercontent.com/refact0r/midnight-discord/refs/heads/master/flavors/midnight-catppuccin-mocha.theme.css"
           # "https://raw.githubusercontent.com/booglesmcgee/booglesmcgee.github.io/refs/heads/main/Materialistic-Discord/Materialistic.theme.css"
-          "https://raw.githubusercontent.com/refact0r/system24/refs/heads/main/theme/system24.theme.css"
           # "https://raw.githubusercontent.com/PL7963/Discord-Mica/refs/heads/main/discord-mica.theme.css"
           # "https://raw.githubusercontent.com/TheCommieAxolotl/BetterDiscord-Stuff/refs/heads/main/Ultra/Ultra.theme.css"
           # "https://raw.githubusercontent.com/LuckFire/amoled-cord/refs/heads/main/clients/amoled-cord.theme.css"
@@ -102,6 +104,8 @@
           translate = {
             enable = true;
             autoTranslate = false;
+
+            showChatBarButton = true;
           };
 
           typingIndicator = {
@@ -219,12 +223,12 @@
             customEngineURL = "https://duckduckgo.com/";
           };
 
-          shikiCodeblocks = {
-            enable = true;
-            theme = "https://raw.githubusercontent.com/withastro/houston-vscode/d297233be95e3f8fdecc22e4ffa92bb0e7265592/themes/houston.json";
-            tryHljs = "SECONDARY";
-
-          };
+          # shikiCodeblocks = {
+          #   enable = true;
+          #   theme = "https://raw.githubusercontent.com/withastro/houston-vscode/d297233be95e3f8fdecc22e4ffa92bb0e7265592/themes/houston.json";
+          #   tryHljs = "SECONDARY";
+          #
+          # };
 
           showHiddenThings.enable = true;
 
@@ -234,49 +238,6 @@
 
         };
       };
-    };
-
-    home.activation = {
-      createNixcordApp = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-              $DRY_RUN_CMD mkdir -p $HOME/Applications
-              
-              # Create the NixCord.app bundle
-              $DRY_RUN_CMD mkdir -p "$HOME/Applications/NixCord.app/Contents/MacOS"
-              
-              # Create Info.plist
-              $DRY_RUN_CMD cat > "$HOME/Applications/NixCord.app/Contents/Info.plist" << 'EOF'
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>CFBundleExecutable</key>
-            <string>discord</string>
-            <key>CFBundleIdentifier</key>
-            <string>com.discord.Discord</string>
-            <key>CFBundleName</key>
-            <string>Discord</string>
-            <key>CFBundlePackageType</key>
-            <string>APPL</string>
-            <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
-            <key>LSApplicationCategoryType</key>
-            <string>public.app-category.social-networking</string>
-            <key>LSMinimumSystemVersion</key>
-            <string>10.10.0</string>
-        </dict>
-        </plist>
-        EOF
-
-              # Create the executable script
-              $DRY_RUN_CMD cat > "$HOME/Applications/NixCord.app/Contents/MacOS/discord" << 'EOF'
-        #!/bin/sh
-        PATH="${config.home.profileDirectory}/bin:$PATH"
-        exec discord "$@"
-        EOF
-              
-              # Make the script executable
-              $DRY_RUN_CMD chmod +x "$HOME/Applications/NixCord.app/Contents/MacOS/discord"
-      '';
     };
   };
 }

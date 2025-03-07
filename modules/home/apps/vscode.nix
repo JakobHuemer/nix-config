@@ -48,6 +48,8 @@
         "[rust]".editor.defaultFormatter = "rust-lang.rust-analyzer";
         "[python]".editor.defaultFormatter = "ms-python.python";
         "[nix]".editor.tabSize = 4;
+        "[markdown]".editor.formatOnSave = false;
+        "[asciidoctor]".editor.formatOnSave = false;
       };
 
       keybindings = [
@@ -93,6 +95,8 @@
         vscode-extensions.catppuccin.catppuccin-vsc-icons
         vscode-extensions.ms-python.python
 
+        vscode-extensions.github.copilot
+        vscode-extensions.github.copilot-chat
       ];
 
     };
