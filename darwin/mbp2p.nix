@@ -16,23 +16,15 @@
 
   environment = {
     systemPackages = [
-      # pkgs.neovim
       pkgs.colima
-      pkgs.nyancat
+
       pkgs.cloudflared
-      pkgs.nodePackages.prettier
-      # pkgs.ladybird
-      # pkgs.youtube-music
+      
       pkgs.quarkus
       pkgs.maven
       pkgs.kubectl
 
-      pkgs.asciidoctor-with-extensions
       pkgs.testdisk
-
-      pkgs.texlivePackages.xelatex-dev
-      pkgs.pandoc
-      pkgs.librsvg
     ];
   };
 
@@ -50,14 +42,15 @@
       "jetbrains-toolbox"
       "youtube-music"
       "surfshark"
-      "vmware-fusion"
+      # "vmware-fusion"
       "brave-browser"
       "vivaldi"
+
       # ms apps
-      "microsoft-powerpoint"
-      "microsoft-word"
-      "microsoft-excel"
-      "microsoft-teams"
+      # "microsoft-powerpoint"
+      # "microsoft-word"
+      # "microsoft-excel"
+      # "microsoft-teams"
 
       "whatsapp"
       "thunderbird"
@@ -68,20 +61,21 @@
 
       "google-drive"
 
-      "geogebra"
+      # "geogebra"
       "signal@beta"
       "steam"
 
       "libreoffice"
       "obsidian"
+
       "discord@canary"
       "discord@ptb"
 
-      "dbeaver-community"
+      # "dbeaver-community"
       "gitkraken"
       "chromium"
 
-      "android-platform-tools"
+      # "android-platform-tools"
 
       "adobe-creative-cloud"
     ];

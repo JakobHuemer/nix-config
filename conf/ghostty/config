@@ -26,7 +26,7 @@ quick-terminal-animation-duration = 0
 shell-integration = zsh
 shell-integration-features = sudo
 
-macos-titlebar-style = hidden
+# macos-titlebar-style = hidden
 
 auto-update = download
 

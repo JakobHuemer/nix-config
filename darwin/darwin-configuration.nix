@@ -1,3 +1,4 @@
+
 {
   pkgs,
   inputs,
@@ -15,69 +16,78 @@
     shell = pkgs.zsh;
   };
 
-  system.activationScripts.extraActivation.text =
-    let
-      nixbin = "/Users/${vars.user}/.nixbin";
-    in
-    ''
-      echo "settings up nodejs symlinkgs..."
-      mkdir -p ${nixbin}
-      mkdir -p ${nixbin}/lib
-      mkdir -p ${nixbin}/bin
-      ln -sf ${pkgs.nodejs}/bin/node ${nixbin}/node
-      ln -sf ${pkgs.nodejs}/bin/npm ${nixbin}/npm
-      ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/dot
-      ln -sf ${pkgs.graphviz}/bin/dot /opt/local/bin/dot
-      ln -sf ${pkgs.python313}/bin/python3 ${nixbin}/python3
-      ln -sf ${pkgs.temurin-bin-23}/bin/java ${nixbin}/java
-      ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
-      ln -sf ${pkgs.postgresql_jdbc}/share/java/postgresql-jdbc.jar ${nixbin}/lib/postgresql-jdbc.jar
-      ln -sf ${pkgs.pandoc}/bin/pandoc ${nixbin}/bin/pandoc
-    '';
+  networking = {
+    hostName = "${host.hostName}";
+    computerName = "${host.hostName}";
+  };
+
+  # system.activationScripts.extraActivation.text =
+  #   let
+  #     nixbin = "/Users/${vars.user}/.nixbin";
+  #   in
+  #   ''
+  #     echo "settings up nodejs symlinkgs..."
+  #     mkdir -p ${nixbin}
+  #     mkdir -p ${nixbin}/lib
+  #     mkdir -p ${nixbin}/bin
+  #     ln -sf ${pkgs.nodejs}/bin/node ${nixbin}/node
+  #     ln -sf ${pkgs.nodejs}/bin/npm ${nixbin}/npm
+  #     ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/dot
+  #     ln -sf ${pkgs.graphviz}/bin/dot /opt/local/bin/dot
+  #     ln -sf ${pkgs.python313}/bin/python3 ${nixbin}/python3
+  #     ln -sf ${pkgs.temurin-bin-23}/bin/java ${nixbin}/java
+  #     ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
+  #     ln -sf ${pkgs.postgresql_jdbc}/share/java/postgresql-jdbc.jar ${nixbin}/lib/postgresql-jdbc.jar
+  #     ln -sf ${pkgs.pandoc}/bin/pandoc ${nixbin}/bin/pandoc
+  #   '';
 
   environment = {
     variables = {
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
-      CMAKE_MAKE_PROGRAM = "ninja";
     };
-    systemPackages =
-      (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; })
-      ++ (import ../nixconf/pckgs-all.nix { inherit pkgs; })
-      ++ (import ../nixconf/apps/obsidian-pkgs.nix { inherit pkgs; })
-      ++ [
-        pkgs.git
-        pkgs.gh
-        pkgs.lazygit
-        # pkgs.ghostty
-        pkgs.nnn
 
-        pkgs.docker
-        pkgs.nodejs_22
-        pkgs.nh
-        pkgs.nyancat
-        pkgs.yarn
-        pkgs.act
-        pkgs.ninja
+    systemPackages = with pkgs; [
+        
+      # util
+      gnupg
+      git
+      gh
+      lazygit
+      nnn
 
-        # rust
-        pkgs.cargo
-        pkgs.rustup
-        # not ready for aarch64-darwin
-        # inputs.ghostty.packages.${pkgs.system}.default
+      # pkgs.nh
+      # pkgs.nyancat
 
-        pkgs.podman
-        pkgs.podman-tui
+      # programming
+      docker
+      # pkgs.nodejs_22
+      podman
+      podman-tui
+     
+      # cmake
 
-        pkgs.postgresql_jdbc
-        pkgs.tor
-        pkgs.cmake
-        pkgs.ecm
-        pkgs.pandoc
-
-        pkgs.imagemagick
-      ];
+      # rust
+      # pkgs.cargo
+      # pkgs.rustup
+      # pkgs.rustc
+      imagemagick
+    ];
   };
+
+  fonts.packages = with pkgs; [
+    atkinson-hyperlegible
+    atkinson-monolegible
+
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    noto-fonts-extra
+
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+
+  ];
 
   homebrew = {
     enable = true;
@@ -87,7 +97,7 @@
     };
 
     taps = [
-      "pablopunk/brew"
+      # "pablopunk/brew"
     ];
 
     casks = [
@@ -100,15 +110,16 @@
       "kitty"
       "scroll-reverser"
       "maccy"
-      "teamviewer"
-      "tor-browser"
-      "swift-shift"
+      # "teamviewer"
+      # "tor-browser"
+      # "swift-shift"
       "vlc"
     ];
 
     masApps = {
-    };
+   };
   };
+  
 
   home-manager = {
     extraSpecialArgs = {
@@ -127,7 +138,7 @@
 
     nixvim.enable = true;
     nixcord.enable = true;
-    vscode.enable = true;
+    # vscode.enable = true;
     ghostty.enable = true;
 
     home.stateVersion = "24.11";
@@ -152,8 +163,102 @@
   # no longer has any effect
   # security.pam.enableSudoTouchIdAuth = true;
 
+  security.pam.services.sudo_local.touchIdAuth = true;
+
+  time.timeZone = "Europe/Vienna";
   system = {
     #MacOS settings1
     stateVersion = 5;
+
+
+    startup.chime = false;
+
+    keyboard = {
+      enableKeyMapping = true;
+      swapLeftCtrlAndFn = true;
+      nonUS.remapTilde = true;
+      remapCapsLockToEscape = true;
+    };
+
+
+    defaults = {
+
+      loginwindow = {
+        LoginwindowText = "Welcome Jakki!"; # default \\U03bb (λ)
+        SHOWFULLNAME = true;
+      };
+
+      NSGlobalDomain = {
+        AppleInterfaceStyle = "Dark";
+        KeyRepeat = 2;
+        # KeyRepeatDelay = 0.25;
+        InitialKeyRepeat = 15;
+        # KeyRepeatEnabled = 1;
+        # KeyRepeatInterval = 0.03333333299999999; 
+       
+        NSAutomaticSpellingCorrectionEnabled = false;
+        NSAutomaticPeriodSubstitutionEnabled = false;
+
+        "com.apple.keyboard.fnState" = true;
+        "com.apple.sound.beep.feedback" = 1;
+      };
+
+      ".GlobalPreferences" = {
+        "com.apple.mouse.scaling" = -1.0;
+        "com.apple.sound.beep.sound" = ../assets/sounds/Pop.aiff;
+      };
+
+      trackpad = {
+        Clicking = true;
+        FirstClickThreshold = 0;
+        SecondClickThreshold = 0;
+      };
+
+      dock = {
+        autohide = true;
+        autohide-delay = 0.0;
+        autohide-time-modifier = 0.0;
+        largesize = 16;
+        tilesize = 16;
+        show-recents = false;
+        persistent-apps = [];
+        persistent-others = [];
+
+        # hot corner
+        wvous-bl-corner = 1; 
+        wvous-br-corner = 2;
+        wvous-tr-corner = 1;
+        wvous-tl-corner = 1;
+
+      };
+
+      menuExtraClock = {
+        ShowSeconds = true;
+        ShowAMPM = true;
+        Show24Hour = false;
+        ShowDate = 0;
+        ShowDayOfWeek = false;
+       
+      };
+
+      screencapture = {
+        location = "/Users/${vars.user}/Desktop/Screencapture";
+      };
+
+
+      finder = {
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        ShowPathbar = true;
+        ShowStatusBar = true;
+        QuitMenuItem = true;
+        NewWindowTarget = "Home";
+
+        FXPreferredViewStyle = "clmv";
+        FXEnableExtensionChangeWarning = false;
+
+
+      };
+    };
   };
 }
