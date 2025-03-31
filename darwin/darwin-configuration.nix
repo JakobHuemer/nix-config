@@ -247,7 +247,7 @@
       };
 
       screencapture = {
-        location = "/Users/${vars.user}/Desktop/Screencapture";
+        location = "/Users/${vars.user}/Desktop/Screenshots/";
       };
 
 
