@@ -183,6 +183,11 @@
 
     defaults = {
 
+      controlcenter = {
+        BatteryShowPercentage = true;
+        AirDrop = false;
+      };
+
       loginwindow = {
         LoginwindowText = "Welcome Jakki!"; # default \\U03bb (λ)
         SHOWFULLNAME = true;
