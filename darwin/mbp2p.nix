@@ -41,9 +41,9 @@
 
       # ms apps
       # "microsoft-powerpoint"
-      # "microsoft-word"
+      "microsoft-word"
       # "microsoft-excel"
-      # "microsoft-teams"
+      "microsoft-teams"
 
       "whatsapp"
       "thunderbird"

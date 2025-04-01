@@ -13,25 +13,28 @@
     computerName = "${host.hostName}";
   };
 
-  # system.activationScripts.extraActivation.text =
-  #   let
-  #     nixbin = "/Users/${vars.user}/.nixbin";
-  #   in
-  #   ''
-  #     echo "settings up nodejs symlinkgs..."
-  #     mkdir -p ${nixbin}
-  #     mkdir -p ${nixbin}/lib
-  #     mkdir -p ${nixbin}/bin
-  #     ln -sf ${pkgs.nodejs}/bin/node ${nixbin}/node
-  #     ln -sf ${pkgs.nodejs}/bin/npm ${nixbin}/npm
-  #     ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/dot
-  #     ln -sf ${pkgs.graphviz}/bin/dot /opt/local/bin/dot
-  #     ln -sf ${pkgs.python313}/bin/python3 ${nixbin}/python3
-  #     ln -sf ${pkgs.temurin-bin-23}/bin/java ${nixbin}/java
-  #     ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
-  #     ln -sf ${pkgs.postgresql_jdbc}/share/java/postgresql-jdbc.jar ${nixbin}/lib/postgresql-jdbc.jar
-  #     ln -sf ${pkgs.pandoc}/bin/pandoc ${nixbin}/bin/pandoc
-  #   '';
+  system.activationScripts.extraActivation.text =
+    let
+      nixbin = "/Users/${vars.user}/.nixbin";
+    in
+    ''
+      # defaults write -g com.apple.mouse.linear -bool true
+      # defaults write -g com.apple.mouse.scaling 0.5
+
+      # echo "settings up nodejs symlinkgs..."
+      # mkdir -p ${nixbin}
+      # mkdir -p ${nixbin}/lib
+      # mkdir -p ${nixbin}/bin
+      # ln -sf ${pkgs.nodejs}/bin/node ${nixbin}/node
+      # ln -sf ${pkgs.nodejs}/bin/npm ${nixbin}/npm
+      # ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/dot
+      # ln -sf ${pkgs.graphviz}/bin/dot /opt/local/bin/dot
+      # ln -sf ${pkgs.python313}/bin/python3 ${nixbin}/python3
+      # ln -sf ${pkgs.temurin-bin-23}/bin/java ${nixbin}/java
+      # ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
+      # ln -sf ${pkgs.postgresql_jdbc}/share/java/postgresql-jdbc.jar ${nixbin}/lib/postgresql-jdbc.jar
+      # ln -sf ${pkgs.pandoc}/bin/pandoc ${nixbin}/bin/pandoc
+    '';
 
   environment = {
     variables = {
@@ -190,7 +193,7 @@
       };
 
       ".GlobalPreferences" = {
-        "com.apple.mouse.scaling" = -1.0;
+        "com.apple.mouse.scaling" = 0.5;
         "com.apple.sound.beep.sound" = ../assets/sounds/Pop.aiff;
       };
 
@@ -212,7 +215,7 @@
 
         # hot corner
         wvous-bl-corner = 1;
-        wvous-br-corner = 2;
+        wvous-br-corner = 4;
         wvous-tr-corner = 1;
         wvous-tl-corner = 1;
 
@@ -243,6 +246,37 @@
         FXEnableExtensionChangeWarning = false;
 
       };
+
+      # CustomSystemPreferences = {
+        # "com.apple.mouse" = {
+        #   # "doubleClickThreshold" = 0.5;
+        #   "linear" = 1;
+        #   # "com.apple.mouse.doubleClickThreshold" = 0.5;
+        #   "com.apple.mouse.linear" = 1;
+        #   # "com.apple.mouse.scaling" = 4;
+        # };
+        #
+        # ".GlobalPreferences" = {
+        #   "com.apple.mouse" = {
+        #     "doubleClickThreshold" = 0.5;
+        #     "linear" = 1;
+        #     "com.apple.mouse.doubleClickThreshold" = 0.5;
+        #     "com.apple.mouse.linear" = 1;
+        #   };
+        # };
+        #
+        # NSGlobalDomain = {
+        #   # "com.apple.mouse.doubleClickThreshold" = 0.5;
+        #   "com.apple.mouse.linear" = true;
+        # };
+        #
+      # };
+
+
+      CustomUserPreferences.NSGlobalDomain = {
+        "com.apple.mouse.linear" = true;
+      };
+
     };
   };
 }

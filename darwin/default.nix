@@ -30,6 +30,7 @@ in {
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+        nix.enable = true;
       }
     ];
   };
