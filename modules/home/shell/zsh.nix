@@ -208,6 +208,7 @@
         c = "z";
         cat = "bat";
         ls = "eza $1 --color=auto --icons=auto";
+        l = "ls -lah";
 
         nixvim = "cd ~/nix/ && nvim";
 
