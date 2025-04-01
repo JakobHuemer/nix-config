@@ -275,6 +275,7 @@
 
       CustomUserPreferences.NSGlobalDomain = {
         "com.apple.mouse.linear" = true;
+        "CGDisableCursorLocationMagnification" = true;
       };
 
     };
