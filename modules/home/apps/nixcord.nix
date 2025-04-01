@@ -1,20 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
+{ config, lib, pkgs, inputs, ... }:
 
 {
 
-  imports = [
-    inputs.nixcord.homeManagerModules.nixcord
-  ];
+  imports = [ inputs.nixcord.homeManagerModules.nixcord ];
 
-  options = {
-    nixcord.enable = lib.mkEnableOption "enable nixcord";
-  };
+  options = { nixcord.enable = lib.mkEnableOption "enable nixcord"; };
 
   config = lib.mkIf config.nixcord.enable {
 

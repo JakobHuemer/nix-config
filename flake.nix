@@ -1,5 +1,6 @@
 {
-  description = "Nix, NixOs and Nix Darwin System Flake Configuration with HomeManager";
+  description =
+    "Nix, NixOs and Nix Darwin System Flake Configuration with HomeManager";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -35,9 +36,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvf = {
-      url = "github:notashelf/nvf";
-    };
+    nvf = { url = "github:notashelf/nvf"; };
 
     ghostty = {
       url = "github:ghostty-org/ghostty";
@@ -51,15 +50,7 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixos-hardware,
-      home-manager,
-      darwin,
-      nixgl,
-      ...
-    }@inputs:
+    { self, nixpkgs, nixos-hardware, home-manager, darwin, nixgl, ... }@inputs:
     let
       vars = {
         user = "jakki";
@@ -67,45 +58,21 @@
         terminal = "ghostty";
         editor = "nvim";
       };
-    in
-    {
-      nixosConfigurations = (
-        import ./hosts {
-          inherit (nixpkgs) lib;
-          inherit
-            inputs
-            nixpkgs
-            nixos-hardware
-            vars
-            ;
-        }
-      );
+    in {
+      nixosConfigurations = (import ./hosts {
+        inherit (nixpkgs) lib;
+        inherit inputs nixpkgs nixos-hardware vars;
+      });
 
-      darwinConfigurations = (
-        import ./darwin {
-          inherit (nixpkgs) lib;
-          inherit
-            inputs
-            nixpkgs
-            home-manager
-            darwin
-            vars
-            ;
-        }
-      );
+      darwinConfigurations = (import ./darwin {
+        inherit (nixpkgs) lib;
+        inherit inputs nixpkgs home-manager darwin vars;
+      });
 
-      homeConfigurations = (
-        import ./nix {
-          inherit (nixpkgs) lib;
-          inherit
-            inputs
-            nixpkgs
-            home-manager
-            nixgl
-            vars
-            ;
-        }
-      );
+      homeConfigurations = (import ./nix {
+        inherit (nixpkgs) lib;
+        inherit inputs nixpkgs home-manager nixgl vars;
+      });
     };
 
 }

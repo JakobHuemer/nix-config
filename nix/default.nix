@@ -1,17 +1,9 @@
-{
-  inputs,
-  nixpkgs,
-  home-manager,
-  nixgl,
-  vars,
-  ...
-}:
+{ inputs, nixpkgs, home-manager, nixgl, vars, ... }:
 
 let
   system = "x86_64-linux";
   pkgs = nixpkgs.legacyPackages.${system};
-in
-{
+in {
   nitro = home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
     extraSpecialArgs = {

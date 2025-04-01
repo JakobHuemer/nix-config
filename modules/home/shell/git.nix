@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
 
@@ -25,9 +22,7 @@
 
       init.defaultBranch = "main";
 
-      alias = {
-        "one" = "log --oneline";
-      };
+      alias = { "one" = "log --oneline"; };
 
     };
   };

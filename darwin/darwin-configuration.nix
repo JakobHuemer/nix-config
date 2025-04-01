@@ -1,15 +1,7 @@
+{ pkgs, inputs, vars, host, ... }:
 
 {
-  pkgs,
-  inputs,
-  vars,
-  host,
-  ...
-}:
-
-{
-  imports = [
-  ];
+  imports = [ ];
 
   users.users.${vars.user} = {
     home = "/Users/${vars.user}";
@@ -48,7 +40,7 @@
     };
 
     systemPackages = with pkgs; [
-        
+
       # util
       gnupg
       git
@@ -57,14 +49,14 @@
       nnn
 
       # pkgs.nh
-      # pkgs.nyancat
+      nyancat
 
       # programming
       docker
-      # pkgs.nodejs_22
+      nodejs_22
       podman
       podman-tui
-     
+
       # cmake
 
       # rust
@@ -116,20 +108,11 @@
       "vlc"
     ];
 
-    masApps = {
-   };
+    masApps = { };
   };
-  
 
   home-manager = {
-    extraSpecialArgs = {
-      inherit
-        inputs
-        pkgs
-        vars
-        host
-        ;
-    };
+    extraSpecialArgs = { inherit inputs pkgs vars host; };
     backupFileExtension = "nix-backup";
   };
 
@@ -170,7 +153,6 @@
     #MacOS settings1
     stateVersion = 5;
 
-
     startup.chime = false;
 
     keyboard = {
@@ -179,7 +161,6 @@
       nonUS.remapTilde = true;
       remapCapsLockToEscape = true;
     };
-
 
     defaults = {
 
@@ -200,7 +181,7 @@
         InitialKeyRepeat = 15;
         # KeyRepeatEnabled = 1;
         # KeyRepeatInterval = 0.03333333299999999; 
-       
+
         NSAutomaticSpellingCorrectionEnabled = false;
         NSAutomaticPeriodSubstitutionEnabled = false;
 
@@ -226,11 +207,11 @@
         largesize = 16;
         tilesize = 16;
         show-recents = false;
-        persistent-apps = [];
-        persistent-others = [];
+        persistent-apps = [ ];
+        persistent-others = [ ];
 
         # hot corner
-        wvous-bl-corner = 1; 
+        wvous-bl-corner = 1;
         wvous-br-corner = 2;
         wvous-tr-corner = 1;
         wvous-tl-corner = 1;
@@ -243,13 +224,12 @@
         Show24Hour = false;
         ShowDate = 0;
         ShowDayOfWeek = false;
-       
+
       };
 
       screencapture = {
         location = "/Users/${vars.user}/Desktop/Screenshots/";
       };
-
 
       finder = {
         AppleShowAllExtensions = true;
@@ -261,7 +241,6 @@
 
         FXPreferredViewStyle = "clmv";
         FXEnableExtensionChangeWarning = false;
-
 
       };
     };

@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
 
@@ -231,9 +228,7 @@
   programs.gh = {
     enable = true;
 
-    extensions = [
-      pkgs.gh-copilot
-    ];
+    extensions = [ pkgs.gh-copilot ];
   };
 
   home.packages = with pkgs; [

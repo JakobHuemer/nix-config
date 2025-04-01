@@ -1,16 +1,7 @@
-{
-  inputs,
-  config,
-  pkgs,
-  sops,
-  vars,
-  ...
-}:
+{ inputs, config, pkgs, sops, vars, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -54,9 +45,7 @@
     '';
   };
 
-  environment.systemPackages = [
-    pkgs.cloudflared
-  ];
+  environment.systemPackages = [ pkgs.cloudflared ];
 
   users.extraGroups.docker.members = [ "${vars.user}" ];
 
@@ -80,9 +69,7 @@
       "raspi-nix-vm" = {
         credentialsFile = config.sops.secrets."cloudflared/raspi-nix-vm".path;
         default = "http://localhost:8080";
-        ingress = {
-          "localhost.jstxel.de" = "http://localhost:8080";
-        };
+        ingress = { "localhost.jstxel.de" = "http://localhost:8080"; };
       };
     };
   };

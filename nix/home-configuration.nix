@@ -1,9 +1,4 @@
-{
-  inputs,
-  pkgs,
-  vars,
-  nixgl,
-}:
+{ inputs, pkgs, vars, nixgl, }:
 
 {
 

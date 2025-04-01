@@ -1,12 +1,7 @@
-#
 # System config for MacBook Pro M2 Pro
 #
 
-{
-  pkgs,
-  vars,
-  ...
-}:
+{ pkgs, vars, ... }:
 
 {
 
@@ -19,7 +14,7 @@
       pkgs.colima
 
       pkgs.cloudflared
-      
+
       pkgs.quarkus
       pkgs.maven
       pkgs.kubectl
@@ -30,9 +25,7 @@
 
   homebrew = {
 
-    taps = [
-      "th-ch/youtube-music"
-    ];
+    taps = [ "th-ch/youtube-music" ];
 
     casks = [
       "heroic"
@@ -79,8 +72,7 @@
 
       "adobe-creative-cloud"
     ];
-    masApps = {
-    };
+    masApps = { };
   };
 
   system = {

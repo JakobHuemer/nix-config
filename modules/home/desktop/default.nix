@@ -1,3 +1,1 @@
-[
-  ./hyprland.nix
-]
+[ ./hyprland.nix ]

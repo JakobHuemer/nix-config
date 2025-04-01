@@ -1,19 +1,11 @@
-{
-  inputs,
-  pkgs,
-  nixgl,
-  vars,
-  ...
-}:
+{ inputs, pkgs, nixgl, vars, ... }:
 
 {
   nixGL = {
     defaultWrapper = "nvidia";
     installScripts = "nvidia";
 
-    prime = {
-      installScript = "nvidia";
-    };
+    prime = { installScript = "nvidia"; };
 
     vulkan.enable = true;
   };
@@ -45,10 +37,7 @@
 
     activation = {
       linkDesktopApplications = {
-        after = [
-          "writeBoundary"
-          "createXdgUserDirectories"
-        ];
+        after = [ "writeBoundary" "createXdgUserDirectories" ];
         before = [ ];
         data = "/usr/bin/update-desktop-database";
       };
@@ -64,9 +53,7 @@
   }; # add nixpks to XDG_DATA_DIRS
 
   nix = {
-    settings = {
-      auto-optimise-store = true;
-    };
+    settings = { auto-optimise-store = true; };
 
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 

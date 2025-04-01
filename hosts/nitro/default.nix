@@ -1,14 +1,7 @@
-{
-  pkgs,
-  inputs,
-  vars,
-  ...
-}:
+{ pkgs, inputs, vars, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -35,7 +28,8 @@
   programs.hyprland = {
     enable = true;
 
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage =
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
@@ -50,26 +44,18 @@
     wayland.windowManager.hyprland.settings = {
       "$mod" = "ALT";
       "$terminal" = "ghostty";
-      bind =
-        [
-          "$mod, A, exec, $terminal"
-          "$mod, M, exit,"
-          "$mod, Q, killactive,"
-          "$mod, W, togglefloating,"
-          "$mod, F, exec, firefox"
-        ]
-        ++ (builtins.concatLists (
-          builtins.genList (
-            i:
-            let
-              ws = i + 1;
-            in
-            [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          ) 9
-        ));
+      bind = [
+        "$mod, A, exec, $terminal"
+        "$mod, M, exit,"
+        "$mod, Q, killactive,"
+        "$mod, W, togglefloating,"
+        "$mod, F, exec, firefox"
+      ] ++ (builtins.concatLists (builtins.genList (i:
+        let ws = i + 1;
+        in [
+          "$mod, code:1${toString i}, workspace, ${toString ws}"
+          "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+        ]) 9));
     };
   };
 }

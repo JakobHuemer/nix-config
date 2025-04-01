@@ -1,14 +1,12 @@
-{
-  vars,
-  ...
-}:
+{ vars, ... }:
 
 {
 
   programs.starship = {
     enable = true;
     settings = {
-      format = "$username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$fossil_branch$fossil_metrics$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$gleam$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$quarto$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$typst$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$nats$direnv$env_var$crystal$custom$cmd_duration$line_break$jobs$battery$time$status$os$container$shell$sudo$python$docker_context$character";
+      format =
+        "$username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$fossil_branch$fossil_metrics$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$package$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$gleam$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$quarto$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$typst$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$nats$direnv$env_var$crystal$custom$cmd_duration$line_break$jobs$battery$time$status$os$container$shell$sudo$python$docker_context$character";
 
       continuation_prompt = "┆ ";
 
@@ -32,7 +30,8 @@
         style = "cyan";
         truncation_length = 3;
         read_only = " 🔒";
-        repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) ";
+        repo_root_format =
+          "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) ";
         repo_root_style = "red bold";
         before_repo_root_style = "grey";
         substitutions = {
@@ -54,15 +53,8 @@
         style = "yellow bold";
         pyenv_version_name = false;
         pyenv_prefix = "pyenv";
-        python_binary = [
-          "python"
-          "python3"
-          "python2"
-        ];
-        detect_extensions = [
-          "py"
-          "ipynb"
-        ];
+        python_binary = [ "python" "python3" "python2" ];
+        detect_extensions = [ "py" "ipynb" ];
         detect_files = [
           ".python-version"
           "Pipfile"
@@ -80,11 +72,8 @@
       docker_context = {
         format = "[$symbol$context ]($style)";
         only_with_files = true;
-        detect_files = [
-          "docker-compose.yaml"
-          "docker-compose.yml"
-          "Dockerfile"
-        ];
+        detect_files =
+          [ "docker-compose.yaml" "docker-compose.yml" "Dockerfile" ];
         symbol = "🐳 ";
         disabled = false;
       };

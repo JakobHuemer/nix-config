@@ -1,4 +1,1 @@
-[
-  ./nixcord.nix
-  ./vscode.nix
-]
+[ ./nixcord.nix ./vscode.nix ]

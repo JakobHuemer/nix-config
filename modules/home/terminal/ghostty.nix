@@ -1,16 +1,8 @@
-{
-  lib,
-  config,
-  pkgs,
-  vars,
-  ...
-}:
+{ lib, config, pkgs, vars, ... }:
 
 {
 
-  options = {
-    ghostty.enable = lib.mkEnableOption "enable ghostty";
-  };
+  options = { ghostty.enable = lib.mkEnableOption "enable ghostty"; };
 
   config = lib.mkIf config.ghostty.enable {
 

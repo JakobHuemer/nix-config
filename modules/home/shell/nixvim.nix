@@ -1,22 +1,10 @@
-{
-  pkgs,
-  lib,
-  config,
-  vars,
-  host,
-  inputs,
-  ...
-}:
+{ pkgs, lib, config, vars, host, inputs, ... }:
 
 {
 
-  imports = [
-    inputs.nixvim.homeManagerModules.nixvim
-  ];
+  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
-  options = {
-    nixvim.enable = lib.mkEnableOption "enables nixvim";
-  };
+  options = { nixvim.enable = lib.mkEnableOption "enables nixvim"; };
 
   config = lib.mkIf config.nixvim.enable {
 
@@ -25,9 +13,7 @@
       enable = true;
       globals.mapleader = " ";
 
-      clipboard = {
-        register = "unnamedplus";
-      };
+      clipboard = { register = "unnamedplus"; };
 
       opts = {
         relativenumber = true;
@@ -75,13 +61,14 @@
               "<C-e>" = "cmp.mapping.close()";
               "<C-f>" = "cmp.mapping.scroll_docs(4)";
               "<CR>" = "cmp.mapping.confirm({ select = true })";
-              "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-              "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+              "<S-Tab>" =
+                "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+              "<Tab>" =
+                "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
             };
 
-            completion.autocomplete = [
-              "require('cmp.types').cmp.TriggerEvent.TextChanged"
-            ];
+            completion.autocomplete =
+              [ "require('cmp.types').cmp.TriggerEvent.TextChanged" ];
           };
         };
 
@@ -90,40 +77,30 @@
           inlayHints = true;
 
           servers = {
-            lua_ls = {
-              enable = true;
-            };
+            lua_ls = { enable = true; };
 
-            html = {
-              enable = true;
-            };
+            html = { enable = true; };
 
             nixd = {
               enable = true;
 
-              settings =
-                let
-                  # flake = "(builtins.getFlake (\"git+file://\" + toString ./. ))";
-                  flake = "(builtins.getFlake \"${host.flakePath}\")";
-                in
-                {
-                  formatting = {
-                    command = [
-                      "nixfmt"
-                    ];
-                  };
+              settings = let
+                # flake = "(builtins.getFlake (\"git+file://\" + toString ./. ))";
+                flake = ''(builtins.getFlake "${host.flakePath}")'';
+              in {
+                formatting = { command = [ "nixfmt" ]; };
 
-                  nixpkgs = {
-                    expr = "import ${flake}.inputs.nixpkgs";
-                  };
+                nixpkgs = { expr = "import ${flake}.inputs.nixpkgs"; };
 
-                  options = {
-                    "nixos".expr = "${flake}.nixosConfigurations.nitro.options";
-                    "home_manager".expr = "${flake}.homeConfigurations.nitro.options";
-                    "nix_darwin".expr = "${flake}.darwinConfigurations.mbp2p.options";
-                    "darwin".expr = "${flake}.darwinConfigurations.mbp2p.options";
-                  };
+                options = {
+                  "nixos".expr = "${flake}.nixosConfigurations.nitro.options";
+                  "home_manager".expr =
+                    "${flake}.homeConfigurations.nitro.options";
+                  "nix_darwin".expr =
+                    "${flake}.darwinConfigurations.mbp2p.options";
+                  "darwin".expr = "${flake}.darwinConfigurations.mbp2p.options";
                 };
+              };
             };
 
             rust_analyzer = {
@@ -193,9 +170,7 @@
         };
         web-devicons.enable = true;
 
-        todo-comments = {
-          enable = true;
-        };
+        todo-comments = { enable = true; };
 
         rainbow-delimiters.enable = true;
 
@@ -258,120 +233,112 @@
               enable_close_on_slash = true;
               enable_rename = true;
             };
-            per_filetype = {
-              html = {
-                enable_close = true;
-              };
-            };
+            per_filetype = { html = { enable_close = true; }; };
           };
         };
 
         treesitter = {
           enable = true;
 
-          grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-            bash
-            json
-            lua
-            html
-            nix
-            make
-            markdown
-            toml
-            vim
-            vimdoc
-            yaml
-            xml
-            regex
-            java
-            python
-            rust
-            gleam
-            zig
-          ];
+          grammarPackages =
+            with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+              bash
+              json
+              lua
+              html
+              nix
+              make
+              markdown
+              toml
+              vim
+              vimdoc
+              yaml
+              xml
+              regex
+              java
+              python
+              rust
+              gleam
+              zig
+            ];
 
           settings = {
             indent.enable = true;
             auto_install = true;
-            ensure_installed = [
-              "git_config"
-              "gitattributes"
-              "gitcommit"
-              "gitignore"
-            ];
+            ensure_installed =
+              [ "git_config" "gitattributes" "gitcommit" "gitignore" ];
 
-            highlight = {
-              enable = true;
-            };
+            highlight = { enable = true; };
           };
         };
 
-        autosource = {
-          enable = true;
-        };
+        autosource = { enable = true; };
 
         autoclose = {
           enable = true;
 
-          keys = {
-            "(" = {
-              escape = false;
-              close = true;
-              pair = "()";
-            };
-            "[" = {
-              escape = false;
-              close = true;
-              pair = "[]";
-            };
-            "{" = {
-              escape = false;
-              close = true;
-              pair = "{}";
+          settings = {
+
+            keys = {
+              "(" = {
+                escape = false;
+                close = true;
+                pair = "()";
+              };
+              "[" = {
+                escape = false;
+                close = true;
+                pair = "[]";
+              };
+              "{" = {
+                escape = false;
+                close = true;
+                pair = "{}";
+              };
+
+              ">" = {
+                escape = true;
+                close = false;
+                pair = "<>";
+              };
+              ")" = {
+                escape = true;
+                close = false;
+                pair = "()";
+              };
+              "]" = {
+                escape = true;
+                close = false;
+                pair = "[]";
+              };
+              "}" = {
+                escape = true;
+                close = false;
+                pair = "{}";
+              };
+
+              "\"" = {
+                escape = true;
+                close = true;
+                pair = ''""'';
+              };
+              "'" = {
+                escape = true;
+                close = true;
+                pair = "''";
+              };
+              "`" = {
+                escape = true;
+                close = true;
+                pair = "``";
+              };
             };
 
-            ">" = {
-              escape = true;
-              close = false;
-              pair = "<>";
+            options = {
+              pair_spaces = true;
+              auto_indent = true;
+              touch_regex = "[%w(%[{]";
             };
-            ")" = {
-              escape = true;
-              close = false;
-              pair = "()";
-            };
-            "]" = {
-              escape = true;
-              close = false;
-              pair = "[]";
-            };
-            "}" = {
-              escape = true;
-              close = false;
-              pair = "{}";
-            };
-
-            "\"" = {
-              escape = true;
-              close = true;
-              pair = "\"\"";
-            };
-            "'" = {
-              escape = true;
-              close = true;
-              pair = "''";
-            };
-            "`" = {
-              escape = true;
-              close = true;
-              pair = "``";
-            };
-          };
-
-          options = {
-            pairSpaces = true;
-            autoIndent = true;
-            touchRegex = "[%w(%[{]";
           };
         };
 
@@ -381,11 +348,7 @@
           settings = {
             max_lines = 2048;
             skip_multiline = false;
-            standard_widths = [
-              2
-              4
-              8
-            ];
+            standard_widths = [ 2 4 8 ];
           };
         };
 
@@ -397,12 +360,8 @@
             notify_on_error = true;
 
             formatters_by_ft = {
-              bash = [
-                "shfmt"
-              ];
-              "_" = [
-                "prettierd"
-              ];
+              bash = [ "shfmt" ];
+              "_" = [ "prettierd" ];
             };
 
             format_on_save = # Lua
@@ -442,11 +401,7 @@
               };
             };
 
-            diff = {
-              view = {
-                style = "sign";
-              };
-            };
+            diff = { view = { style = "sign"; }; };
 
             surround = {
               mappings = {
@@ -461,20 +416,14 @@
             };
 
             indentscope = {
-              draw = {
-                delay = 50;
-              };
+              draw = { delay = 50; };
 
-              options = {
-                border = "both";
-              };
+              options = { border = "both"; };
 
               symbol = "╎";
             };
 
-            fuzzy = {
-              cutoff = 200;
-            };
+            fuzzy = { cutoff = 200; };
 
           };
         };
@@ -484,17 +433,15 @@
         # plugins end - - - - -
       };
 
-      keymaps = [
-        {
-          mode = "n";
-          key = "<leader>e";
-          action = ":NvimTreeOpen<CR>";
-          options = {
-            silent = true;
-            desc = "Open NvimTree file explorer";
-          };
-        }
-      ];
+      keymaps = [{
+        mode = "n";
+        key = "<leader>e";
+        action = ":NvimTreeOpen<CR>";
+        options = {
+          silent = true;
+          desc = "Open NvimTree file explorer";
+        };
+      }];
     };
   };
 }
