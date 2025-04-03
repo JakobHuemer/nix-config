@@ -12,12 +12,10 @@
   environment = {
     systemPackages = [
       pkgs.colima
-
       pkgs.cloudflared
 
-      pkgs.quarkus
-      pkgs.maven
-      pkgs.kubectl
+      pkgs.php
+      pkgs.php84Packages.composer
 
       pkgs.testdisk
     ];
@@ -28,6 +26,7 @@
     taps = [ "th-ch/youtube-music" ];
 
     casks = [
+      "mysqlworkbench"
       "heroic"
       "figma"
       "free-download-manager"

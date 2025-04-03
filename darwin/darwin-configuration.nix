@@ -59,13 +59,19 @@
       nodejs_22
       podman
       podman-tui
+      docker-compose
 
+
+      quarkus
+      maven
+      kubectl
+      
+      bun
       # cmake
 
-      # rust
-      # pkgs.cargo
-      # pkgs.rustup
-      # pkgs.rustc
+      cargo
+      rustup
+      rustc
       imagemagick
     ];
   };
@@ -152,6 +158,12 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   time.timeZone = "Europe/Vienna";
+
+  power.sleep = {
+    computer = 10;
+    display = 2;
+  };
+
   system = {
     #MacOS settings1
     stateVersion = 5;
@@ -166,6 +178,11 @@
     };
 
     defaults = {
+
+      screensaver = {
+        askForPassword = true;
+        askForPasswordDelay = 0;
+      };
 
       controlcenter = {
         BatteryShowPercentage = true;
@@ -244,6 +261,7 @@
 
         FXPreferredViewStyle = "clmv";
         FXEnableExtensionChangeWarning = false;
+        _FXSortFoldersFirst = true;
 
       };
 
