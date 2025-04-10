@@ -327,6 +327,47 @@
           "CGDisableCursorLocationMagnification" = true;
           ApplePressAndHoldEnabled = false;
         };
+
+
+        "com.apple.symbolichotkeys" = {
+          AppleSymbolicHotKeys = {
+            # Disable Ctrl + Space (Previous input source)
+            "60" = {
+              enabled = false;
+              value = {
+                parameters = [ 32 49 1048576 ];
+                type = "standard";
+              };
+            };
+
+            # Disable Ctrl + Option + Space (Next input source)
+            "61" = {
+              enabled = false;
+              value = {
+                parameters = [ 32 49 1572864 ];
+                type = "standard";
+              };
+            };
+
+            "64" = {
+              enabled = false;
+              value = {
+                parameters = [ 32 49 1048576 ];
+                type = "standard";
+              };
+            };
+
+            # Disable Cmd + Option + Space (Spotlight Finder Search)
+            "65" = {
+              enabled = false;
+              value = {
+                parameters = [ 32 49 1179648 ];
+                type = "standard";
+              };
+            };
+          };
+        };
+
       };
 
     };
