@@ -171,6 +171,27 @@
     display = 40;
   };
 
+  launchd.user.agents.UserKeyMapping.serviceConfig = {
+    ProgramArguments = [
+      "/usr/bin/hidutil"
+      "property"
+      "--match"
+      "{&quot;ProductID&quot;:0x0,&quot;VendorID&quot;:0x0,&quot;Product&quot;:&quot;Apple Internal Keyboard / Trackpad&quot;}"
+      "--set"
+      (
+        let
+          # https://developer.apple.com/library/archive/technotes/tn2450/_index.html
+          leftCtrl = "0x7000000E0"; # USB HID 0xE0
+          fnGlobe = "0xFF00000003"; # USB HID (0x0003 + 0xFF00000000 - 0x700000000)
+          capsLock = "0x700000039"; # USB HID 0x39
+          escape = "0x700000029"; # USB HID 0x29
+        in
+        "{&quot;UserKeyMapping&quot;:[{&quot;HIDKeyboardModifierMappingDst&quot;:${fnGlobe},&quot;HIDKeyboardModifierMappingSrc&quot;:${leftCtrl}},{&quot;HIDKeyboardModifierMappingDst&quot;:${leftCtrl},&quot;HIDKeyboardModifierMappingSrc&quot;:${fnGlobe}},{&quot;HIDKeyboardModifierMappingDst&quot;:${escape},&quot;HIDKeyboardModifierMappingSrc&quot;:${capsLock}}]}"
+      )
+    ];
+    RunAtLoad = true;
+  };
+
   system = {
     #MacOS settings1
     stateVersion = 5;
@@ -178,10 +199,10 @@
     startup.chime = false;
 
     keyboard = {
-      enableKeyMapping = true;
-      swapLeftCtrlAndFn = true;
-      nonUS.remapTilde = true;
-      remapCapsLockToEscape = true;
+      # enableKeyMapping = true;
+      # swapLeftCtrlAndFn = true;
+      # nonUS.remapTilde = true;
+      # remapCapsLockToEscape = true;
     };
 
     defaults = {
