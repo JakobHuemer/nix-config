@@ -18,6 +18,10 @@
       pkgs.php84Packages.composer
 
       pkgs.testdisk
+      
+      pkgs.laravel
+
+
     ];
   };
 
@@ -37,6 +41,7 @@
       # "vmware-fusion"
       "brave-browser"
       "vivaldi"
+      "teamviewer"
 
       # ms apps
       # "microsoft-powerpoint"
@@ -50,6 +55,7 @@
       "keyboard-cleaner"
       "virtualbox"
       "postman"
+      "insomnia"
 
       "google-drive"
 

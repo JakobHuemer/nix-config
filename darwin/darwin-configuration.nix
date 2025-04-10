@@ -60,6 +60,10 @@
       podman
       podman-tui
       docker-compose
+      jbang
+
+      hugo
+      go
 
 
       quarkus
@@ -115,6 +119,9 @@
       # "tor-browser"
       # "swift-shift"
       "vlc"
+      "wireshark"
+
+      "bitwarden"
     ];
 
     masApps = { };
@@ -160,8 +167,8 @@
   time.timeZone = "Europe/Vienna";
 
   power.sleep = {
-    computer = 10;
-    display = 2;
+    computer = 40;
+    display = 40;
   };
 
   system = {
@@ -190,7 +197,7 @@
       };
 
       loginwindow = {
-        LoginwindowText = "Welcome Jakki!"; # default \\U03bb (λ)
+        LoginwindowText = "λ"; # default \\U03bb (λ)
         SHOWFULLNAME = true;
       };
 
@@ -291,9 +298,14 @@
       # };
 
 
-      CustomUserPreferences.NSGlobalDomain = {
-        "com.apple.mouse.linear" = true;
-        "CGDisableCursorLocationMagnification" = true;
+      # https://macos-defaults.com/
+
+      CustomUserPreferences = {
+        NSGlobalDomain = {
+          "com.apple.mouse.linear" = true;
+          "CGDisableCursorLocationMagnification" = true;
+          ApplePressAndHoldEnabled = false;
+        };
       };
 
     };
