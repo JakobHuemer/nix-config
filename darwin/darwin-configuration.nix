@@ -30,15 +30,12 @@ in
       mkdir -p ${nixbin}/lib
       mkdir -p ${nixbin}/bin
       echo "setting up links..."
-      # ln -sf ${pkgs.nodejs}/bin/node ${nixbin}/bin/node
-      # ln -sf ${pkgs.nodejs}/bin/npm ${nixbin}/bin/npm
+
       ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/bin/dot
-      # ln -sf ${pkgs.graphviz}/bin/dot /opt/local/bin/dot
-      ln -sf ${pkgs.python313}/bin/python3 ${nixbin}/python3
-      ln -sf ${pkgs.temurin-bin-23}/bin/java ${nixbin}/java
+
+      mkdir -p /opt/local/bin/
+      ln -sf ${nixbin}/bin/dot /opt/local/bin/dot
       ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
-      ln -sf ${pkgs.postgresql_jdbc}/share/java/postgresql-jdbc.jar ${nixbin}/lib/postgresql-jdbc.jar
-      ln -sf ${pkgs.pandoc}/bin/pandoc ${nixbin}/bin/pandoc
       echo "symlink setup done!"
     '';
 
@@ -49,7 +46,7 @@ in
     };
 
     systemPath = [
-      "${nixbin}"
+      "${nixbin}/bin"
     ];
 
     systemPackages = with pkgs; [

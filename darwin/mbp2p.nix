@@ -1,7 +1,7 @@
 # System config for MacBook Pro M2 Pro
 #
 
-{ pkgs, vars, ... }:
+{ pkgs, pkgs-stable, vars, ... }:
 
 {
 
@@ -14,12 +14,12 @@
       pkgs.colima
       pkgs.cloudflared
 
-      # pkgs.php
-      # pkgs.php84Packages.composer
+      pkgs-stable.php
+      pkgs-stable.php84Packages.composer
+      pkgs-stable.laravel
 
       pkgs.testdisk
       
-      # pkgs.laravel
 
 
     ];

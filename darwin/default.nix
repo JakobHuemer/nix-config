@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, darwin, vars, ... }:
+{ inputs, nixpkgs, nixpkgs-stable, darwin, vars, ... }:
 
 let
   systemConfig = system: {
@@ -7,19 +7,23 @@ let
       inherit system;
       config.allowUnfree = true;
     };
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
   };
   inherit inputs;
 
 in {
   mbp2p = let
-    inherit (systemConfig "aarch64-darwin") system pkgs;
+    inherit (systemConfig "aarch64-darwin") system pkgs pkgs-stable;
     host = {
       hostName = "mbp2p";
       flakePath = "/Users/${vars.user}/nix";
     };
   in darwin.lib.darwinSystem {
     inherit system;
-    specialArgs = { inherit inputs pkgs vars host; };
+    specialArgs = { inherit inputs pkgs pkgs-stable vars host; };
     modules = [
       ./darwin-configuration.nix
       ./mbp2p.nix

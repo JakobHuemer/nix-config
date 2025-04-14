@@ -4,6 +4,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
     home-manager = {
@@ -50,7 +51,7 @@
   };
 
   outputs =
-    { self, nixpkgs, nixos-hardware, home-manager, darwin, nixgl, ... }@inputs:
+    { self, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager, darwin, nixgl, ... }@inputs:
     let
       vars = {
         user = "jakki";
@@ -61,17 +62,17 @@
     in {
       nixosConfigurations = (import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixos-hardware vars;
+        inherit inputs nixpkgs nixpkgs-stable nixos-hardware vars;
       });
 
       darwinConfigurations = (import ./darwin {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs home-manager darwin vars;
+        inherit inputs nixpkgs nixpkgs-stable home-manager darwin vars;
       });
 
       homeConfigurations = (import ./nix {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs home-manager nixgl vars;
+        inherit inputs nixpkgs nixpkgs-stable home-manager nixgl vars;
       });
     };
 
