@@ -1,5 +1,8 @@
 { pkgs, inputs, vars, host, ... }:
 
+let 
+  nixbin = "/Users/${vars.user}/.nixbin";
+in
 {
   imports = [ ];
 
@@ -14,26 +17,29 @@
   };
 
   system.activationScripts.extraActivation.text =
-    let
-      nixbin = "/Users/${vars.user}/.nixbin";
-    in
     ''
-      # defaults write -g com.apple.mouse.linear -bool true
-      # defaults write -g com.apple.mouse.scaling 0.5
+      echo "settings up system symlinks..."
+      echo "cleaning up symlinks first..."
 
-      # echo "settings up nodejs symlinkgs..."
-      # mkdir -p ${nixbin}
-      # mkdir -p ${nixbin}/lib
-      # mkdir -p ${nixbin}/bin
-      # ln -sf ${pkgs.nodejs}/bin/node ${nixbin}/node
-      # ln -sf ${pkgs.nodejs}/bin/npm ${nixbin}/npm
-      # ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/dot
+      rm -fr ${nixbin}
+
+      echo "done cleaning up symlinks!"
+
+      echo "setting up directories..."
+      mkdir -p ${nixbin}
+      mkdir -p ${nixbin}/lib
+      mkdir -p ${nixbin}/bin
+      echo "setting up links..."
+      # ln -sf ${pkgs.nodejs}/bin/node ${nixbin}/bin/node
+      # ln -sf ${pkgs.nodejs}/bin/npm ${nixbin}/bin/npm
+      ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/bin/dot
       # ln -sf ${pkgs.graphviz}/bin/dot /opt/local/bin/dot
-      # ln -sf ${pkgs.python313}/bin/python3 ${nixbin}/python3
-      # ln -sf ${pkgs.temurin-bin-23}/bin/java ${nixbin}/java
-      # ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
-      # ln -sf ${pkgs.postgresql_jdbc}/share/java/postgresql-jdbc.jar ${nixbin}/lib/postgresql-jdbc.jar
-      # ln -sf ${pkgs.pandoc}/bin/pandoc ${nixbin}/bin/pandoc
+      ln -sf ${pkgs.python313}/bin/python3 ${nixbin}/python3
+      ln -sf ${pkgs.temurin-bin-23}/bin/java ${nixbin}/java
+      ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
+      ln -sf ${pkgs.postgresql_jdbc}/share/java/postgresql-jdbc.jar ${nixbin}/lib/postgresql-jdbc.jar
+      ln -sf ${pkgs.pandoc}/bin/pandoc ${nixbin}/bin/pandoc
+      echo "symlink setup done!"
     '';
 
   environment = {
@@ -41,6 +47,10 @@
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
     };
+
+    systemPath = [
+      "${nixbin}"
+    ];
 
     systemPackages = with pkgs; [
 

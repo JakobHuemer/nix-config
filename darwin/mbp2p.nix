@@ -14,12 +14,12 @@
       pkgs.colima
       pkgs.cloudflared
 
-      pkgs.php
-      pkgs.php84Packages.composer
+      # pkgs.php
+      # pkgs.php84Packages.composer
 
       pkgs.testdisk
       
-      pkgs.laravel
+      # pkgs.laravel
 
 
     ];
@@ -76,6 +76,8 @@
       # "android-platform-tools"
 
       "adobe-creative-cloud"
+
+      "itch"
     ];
     masApps = { };
   };
