@@ -21,7 +21,6 @@
       pkgs.testdisk
       
 
-
     ];
   };
 
@@ -30,6 +29,7 @@
     taps = [ "th-ch/youtube-music" ];
 
     casks = [
+      "prismlauncher"
       "mysqlworkbench"
       "heroic"
       "figma"
