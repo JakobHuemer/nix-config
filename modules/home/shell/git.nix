@@ -22,7 +22,10 @@
 
       init.defaultBranch = "main";
 
-      alias = { "one" = "log --oneline"; };
+      alias = { 
+        one = "log --oneline";
+        ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ | tee .gitignore ;}; gi";
+      };
 
     };
   };
