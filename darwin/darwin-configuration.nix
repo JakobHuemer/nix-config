@@ -78,6 +78,7 @@ in
       kubectl
       
       bun
+      nodePackages.rimraf
       # cmake
 
       cargo
