@@ -204,6 +204,7 @@
         
         ga = "git add";
         gap = "git add --patch";
+        gr = "git restore";
         gc = "git commit";
         
         gp = "git push";

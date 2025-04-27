@@ -111,7 +111,7 @@
           upstream = "green";
           plain = "blue";
         };
-      }
+      };
     };
   };
 }
