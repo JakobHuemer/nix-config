@@ -199,9 +199,19 @@
         fk = "fuck";
 
         # git
-        gits = "git status";
-        gitc = "git commit";
-        gitd = "git diff";
+        gs = "git status";
+        gss = "git status --short";
+        
+        ga = "git add";
+        gc = "git commit";
+        
+        gp = "git push";
+        gu = "git pull";
+        
+        gl = "git log";
+        gw = "git checkout";
+        gb = "git branch";
+        gd = "git diff";
 
         sudes = "sudo -E -s";
 
@@ -209,8 +219,6 @@
         cat = "bat";
         ls = "eza $1 --color=auto --icons=auto";
         l = "ls -lah";
-
-        nixvim = "cd ~/nix/ && nvim";
 
         makegitignore = "cp $GITIGNORE_TEMPLATE_FILE .gitignore";
         mkgitignore = "makegitignore";
