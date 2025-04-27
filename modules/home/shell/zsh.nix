@@ -209,6 +209,7 @@
         
         gp = "git push";
         gu = "git pull";
+        gm = "git merge";
         
         gl = "git log --color --graph --pretty=format:'%C(red)%h%Creset %C(bold blue)<%an> %C(green)%cr %C(auto)%d %n%Creset%s%n'";
         gw = "git checkout";
