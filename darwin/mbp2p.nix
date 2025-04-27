@@ -56,6 +56,8 @@
       "virtualbox"
       "postman"
       "insomnia"
+      "yaak"
+      "bruno"
 
       "google-drive"
 
