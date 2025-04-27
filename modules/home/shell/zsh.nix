@@ -34,6 +34,8 @@
           "$PATH"
         ];
 
+        GIT_ADVICE = 0;
+
       };
 
       history = {
@@ -84,8 +86,8 @@
         }
       ];
 
-      # Shell options
-      initExtraFirst = ''
+      initContent = ''
+
         COMPLETION_WAITING_DOTS="true"
         DISABLE_AUTO_TITLE="true"
         ZSH_AUTOSUGGEST_USE_ASYNC="true"
@@ -101,9 +103,7 @@
 
         ZSH_AUTOSUGGEST_STRATEGY=(history completion)
         ZSH_AUTOSUGGEST_USE_ASYNC=true
-      '';
 
-      initExtra = ''
         # Copilot
         qq() {
             initialize_github_copilot_cli
@@ -203,12 +203,13 @@
         gss = "git status --short";
         
         ga = "git add";
+        gap = "git add --patch";
         gc = "git commit";
         
         gp = "git push";
         gu = "git pull";
         
-        gl = "git log";
+        gl = "git log --color --graph --pretty=format:'%C(red)%h%Creset %C(bold blue)<%an> %C(green)%cr %C(auto)%d %n%Creset%s%n'";
         gw = "git checkout";
         gb = "git branch";
         gd = "git diff";
