@@ -83,6 +83,10 @@
         missingCommitsCheck = "warn";
       };
 
+      remote."*" = {
+        prune = true;
+      };
+
       log = {
         abbrevCommit = true;
         graphColors = "blue,yellow,cyan,magenta,green,red";

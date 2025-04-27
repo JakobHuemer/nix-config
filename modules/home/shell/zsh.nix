@@ -212,8 +212,12 @@
         
         gl = "git log --color --graph --pretty=format:'%C(red)%h%Creset %C(bold blue)<%an> %C(green)%cr %C(auto)%d %n%Creset%s%n'";
         gw = "git checkout";
-        gb = "git branch";
+
         gd = "git diff";
+        gds = "git diff --staged";
+
+        gb = "git branch";
+        gbd = "git branch -r -d";
 
         sudes = "sudo -E -s";
 
