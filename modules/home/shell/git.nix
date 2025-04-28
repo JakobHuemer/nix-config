@@ -83,7 +83,7 @@
         missingCommitsCheck = "warn";
       };
 
-      remote."*" = {
+      fetch = {
         prune = true;
       };
 
