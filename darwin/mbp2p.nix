@@ -19,7 +19,7 @@
       pkgs-stable.laravel
 
       pkgs.testdisk
-      
+      pkgs.act 
 
     ];
   };
