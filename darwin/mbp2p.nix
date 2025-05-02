@@ -46,7 +46,7 @@
       # ms apps
       # "microsoft-powerpoint"
       "microsoft-word"
-      # "microsoft-excel"
+      "microsoft-excel"
       "microsoft-teams"
 
       "whatsapp"
