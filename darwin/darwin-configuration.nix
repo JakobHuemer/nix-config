@@ -58,6 +58,8 @@ in
       lazygit
       nnn
       direnv
+      nixd
+      nil
 
       # pkgs.nh
       nyancat
