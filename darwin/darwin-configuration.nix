@@ -129,6 +129,8 @@ in
       "vlc"
       "wireshark"
 
+      "visual-studio-code"
+
       "bitwarden"
     ];
 
