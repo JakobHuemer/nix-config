@@ -57,6 +57,7 @@ in
       gh
       lazygit
       nnn
+      direnv
 
       # pkgs.nh
       nyancat
