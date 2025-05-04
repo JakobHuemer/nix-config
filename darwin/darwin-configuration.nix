@@ -74,7 +74,7 @@ in
 
       hugo
       go
-
+      neovim
 
       quarkus
       maven
@@ -148,7 +148,8 @@ in
   home-manager.users.${vars.user} = {
     imports = import ../modules/home;
 
-    nixvim.enable = true;
+    # disable nixvim for a temporal lua configuration
+    # nixvim.enable = true;
     nixcord.enable = true;
     # vscode.enable = true;
     ghostty.enable = true;
