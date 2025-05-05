@@ -133,6 +133,7 @@ in
       "wireshark"
 
       "visual-studio-code"
+      "cursor"
 
       "bitwarden"
     ];
