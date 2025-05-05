@@ -189,6 +189,9 @@
         "??" = "ghcs";
         "e?" = "ghce";
 
+        # obv
+        nivm = "nvim";
+
         ip = "ip --color";
         ".." = "cd ..";
         "..." = "cd ../..";
