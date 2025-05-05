@@ -5,7 +5,7 @@
   programs = {
     zsh = {
       enable = true;
-      enableCompletion = true;
+      enableCompletion = false;
       syntaxHighlighting.enable = true;
 
       autocd = true;
@@ -64,15 +64,6 @@
             repo = "evalcache";
             rev = "v1.0.2";
             hash = "sha256-qzpnGTrLnq5mNaLlsjSA6VESA88XBdN3Ku/YIgLCb28=";
-          };
-        }
-        {
-          name = "zsh-lazyload";
-          src = pkgs.fetchFromGitHub {
-            owner = "qoomon";
-            repo = "zsh-lazyload";
-            rev = "v1.0.1";
-            hash = "sha256-prV6jUp33HgGayf5PuqyM/17/2hJldxMZZskthtdUxY=";
           };
         }
         {
@@ -182,7 +173,7 @@
 
         pfetch
 
-        autoload -Uz +X compinit && compinit
+        # autoload -Uz +X compinit && compinit
       '';
 
       shellAliases = {
