@@ -71,10 +71,50 @@
           src = pkgs.fetchFromGitHub {
             owner = "zap-zsh";
             repo = "sudo";
-            rev = "b3e86492d6d48c669902b9fb5699a75894cfcebc";
+            rev = "main";
             hash = "sha256-+yMZO4HRF+dS1xOP/19Fneto8JxdVj5GiX3sXOoRdlM=";
           };
         }
+        {
+          name = "zsh-256color";
+          src = pkgs.fetchFromGitHub {
+            owner = "chrissicool";
+            repo = "zsh-256color";
+            rev = "master";
+            hash = "sha256-P/pbpDJmsMSZkNi5GjVTDy7R+OxaIVZhb/bEnYQlaLo=";
+          };
+        }
+
+        # {
+        #   name = "colored-man-pages";
+        #   file = "plugins/colored-man-pages/colored-man-pages.plugin.zsh";
+        #   src = pkgs.fetchgit {
+        #       url = "https://github.com/ohmyzsh/ohmyzsh.git";
+        #       # Optional: You can pin to a commit hash for reproducibility.
+        #       # rev = "<commit-hash>";
+        #       # leave shallow clone since we only need a subdir
+        #       sparseCheckout = [
+        #         "plugins/colored-man-pages/"
+        #       ];
+        #       hash = "sha256-9/Zcc7kVmJOOSILOKHf/+qANAdZo0RuNjXi25cgOeOg=";
+        #   };
+        # }
+        
+        {
+          name = "safe-paste";
+          file = "plugins/safe-paste/safe-paste.plugin.zsh";
+          src = pkgs.fetchgit {
+              url = "https://github.com/ohmyzsh/ohmyzsh.git";
+              # Optional: You can pin to a commit hash for reproducibility.
+              # rev = "<commit-hash>";
+              # leave shallow clone since we only need a subdir
+              sparseCheckout = [
+                "plugins/safe-paste/"
+              ];
+              hash = "sha256-9/Zcc7kVmJOOSILOKHf/+qANAdZo0RuNjXi25cgOeOg=";
+          };
+        }
+        
       ];
 
       initContent = ''

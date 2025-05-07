@@ -43,6 +43,7 @@ in
     variables = {
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
+      SHELL = "${pkgs.zsh}/bin/zsh";
     };
 
     systemPath = [
@@ -60,6 +61,7 @@ in
       direnv
       nixd
       nil
+      mullvad # cli
 
       # pkgs.nh
       nyancat
@@ -126,6 +128,7 @@ in
       "kitty"
       "scroll-reverser"
       "maccy"
+      "mullvadvpn"
       # "teamviewer"
       # "tor-browser"
       # "swift-shift"

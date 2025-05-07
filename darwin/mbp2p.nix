@@ -37,14 +37,13 @@
       "zen-browser"
       "jetbrains-toolbox"
       "youtube-music"
-      "surfshark"
       # "vmware-fusion"
       "brave-browser"
       "vivaldi"
       "teamviewer"
 
       # ms apps
-      # "microsoft-powerpoint"
+      "microsoft-powerpoint"
       "microsoft-word"
       "microsoft-excel"
       "microsoft-teams"
