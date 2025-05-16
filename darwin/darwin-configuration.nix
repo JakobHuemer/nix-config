@@ -1,4 +1,4 @@
-{ pkgs, inputs, vars, host, ... }:
+{ pkgs, pkgs-stable, inputs, vars, host, ... }:
 
 let 
   nixbin = "/Users/${vars.user}/.nixbin";
@@ -50,46 +50,46 @@ in
       "${nixbin}/bin"
     ];
 
-    systemPackages = with pkgs; [
+    systemPackages = [
 
       # util
-      gnupg
-      git
-      gh
-      lazygit
-      nnn
-      direnv
-      nixd
-      nil
-      mullvad # cli
+      pkgs.gnupg
+      pkgs.git
+      pkgs.gh
+      pkgs.lazygit
+      pkgs.nnn
+      pkgs.direnv
+      pkgs.nixd
+      pkgs.nil
+      # pkgs-stable.mullvad
 
       # pkgs.nh
-      nyancat
+      pkgs.nyancat
 
       # programming
-      docker
-      nodejs_22
-      podman
-      podman-tui
-      docker-compose
-      jbang
+      pkgs.docker
+      pkgs.nodejs_22
+      pkgs.podman
+      pkgs.podman-tui
+      pkgs.docker-compose
+      pkgs.jbang
 
-      hugo
-      go
-      neovim
+      pkgs.hugo
+      pkgs.go
+      pkgs.neovim
 
-      quarkus
-      maven
-      kubectl
+      pkgs.quarkus
+      pkgs.maven
+      pkgs.kubectl
       
-      bun
-      nodePackages.rimraf
+      pkgs.bun
+      pkgs.nodePackages.rimraf
       # cmake
 
-      cargo
-      rustup
-      rustc
-      imagemagick
+      pkgs.cargo
+      pkgs.rustup
+      pkgs.rustc
+      pkgs.imagemagick
     ];
   };
 
@@ -129,6 +129,7 @@ in
       "scroll-reverser"
       "maccy"
       "mullvadvpn"
+      "surfshark"
       # "teamviewer"
       # "tor-browser"
       # "swift-shift"
