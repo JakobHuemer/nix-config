@@ -214,6 +214,7 @@ in
   system = {
     #MacOS settings1
     stateVersion = 5;
+    primaryUser = "${vars.user}";
 
     startup.chime = false;
 
