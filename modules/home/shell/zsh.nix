@@ -237,6 +237,7 @@
         gss = "git status --short";
         
         ga = "git add";
+        "ga." = "git add -A";
         gap = "git add --patch";
         gr = "git restore";
         gc = "git commit";
