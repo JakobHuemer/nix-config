@@ -222,6 +222,7 @@
 
         # obv
         nivm = "nvim";
+        vim = "nvim";
 
         ip = "ip --color";
         ".." = "cd ..";
