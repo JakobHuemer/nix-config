@@ -62,8 +62,18 @@ in
       pkgs.nixd
       pkgs.nil
 
-      pkgs.ripgrep
-      pkgs.ripgrep-all
+      # oxide
+      pkgs.ripgrep  # better grep
+      pkgs.ripgrep-all  # ripgrep for all files (pdf, zip, etc.)
+      pkgs.fd     # find alternative
+      pkgs.gitui  # lazygit rust port larifary
+      pkgs.dust   # better du
+      pkgs.dua    # interactive disk usage analyzer
+      pkgs.yazi   # filemanager with previews
+      pkgs.hyperfine  # clever benchmark
+      pkgs.tokei  # count code lines quickly
+      pkgs.mprocs # tui to run multiple commands parallel
+      pkgs.presenterm # terminal slideshow presentation tool
       # pkgs-stable.mullvad
 
       # pkgs.nh
