@@ -61,6 +61,9 @@ in
       pkgs.direnv
       pkgs.nixd
       pkgs.nil
+
+      pkgs.ripgrep
+      pkgs.ripgrep-all
       # pkgs-stable.mullvad
 
       # pkgs.nh
