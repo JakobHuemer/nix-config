@@ -211,7 +211,9 @@
 
         # fetches 
 
-        pfetch
+        if [[ -z "$TMUX" ]]; then
+          pfetch
+        fi
 
         # autoload -Uz +X compinit && compinit
       '';
