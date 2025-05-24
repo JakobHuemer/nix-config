@@ -61,6 +61,8 @@ in
       pkgs.direnv
       pkgs.nixd
       pkgs.nil
+      pkgs.tmux
+
 
       # oxide
       pkgs.ripgrep  # better grep
