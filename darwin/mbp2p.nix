@@ -30,11 +30,12 @@
 
     casks = [
       "prismlauncher"
+      "minecraft"
       "mysqlworkbench"
       "heroic"
       "figma"
       "free-download-manager"
-      "zen-browser"
+      "zen"
       "jetbrains-toolbox"
       "youtube-music"
       # "vmware-fusion"

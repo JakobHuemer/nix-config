@@ -62,6 +62,8 @@ in
       pkgs.nixd
       pkgs.nil
       pkgs.tmux
+      pkgs.fh
+      pkgs.openssl
 
 
       # oxide
@@ -76,7 +78,6 @@ in
       pkgs.tokei  # count code lines quickly
       pkgs.mprocs # tui to run multiple commands parallel
       pkgs.presenterm # terminal slideshow presentation tool
-      pkgs.fh
       # pkgs-stable.mullvad
 
       # pkgs.nh
