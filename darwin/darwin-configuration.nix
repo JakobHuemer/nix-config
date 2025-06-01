@@ -145,7 +145,7 @@ in
       "kitty"
       "scroll-reverser"
       "maccy"
-      "mullvadvpn"
+      "mullvad-vpn"
       "surfshark"
       # "teamviewer"
       # "tor-browser"
