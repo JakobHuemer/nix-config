@@ -66,8 +66,6 @@
 
           noF1.enable = true;
 
-          nsfwGateBypass.enable = true;
-
           onePingPerDM.enable = true;
 
           oneko.enable = true;
