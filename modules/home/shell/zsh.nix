@@ -99,21 +99,21 @@
         #       hash = "sha256-9/Zcc7kVmJOOSILOKHf/+qANAdZo0RuNjXi25cgOeOg=";
         #   };
         # }
-        
-        {
-          name = "safe-paste";
-          file = "plugins/safe-paste/safe-paste.plugin.zsh";
-          src = pkgs.fetchgit {
-              url = "https://github.com/ohmyzsh/ohmyzsh.git";
-              # Optional: You can pin to a commit hash for reproducibility.
-              # rev = "<commit-hash>";
-              # leave shallow clone since we only need a subdir
-              sparseCheckout = [
-                "plugins/safe-paste/"
-              ];
-              hash = "sha256-9/Zcc7kVmJOOSILOKHf/+qANAdZo0RuNjXi25cgOeOg=";
-          };
-        }
+        # 
+        # {
+        #   name = "safe-paste";
+        #   file = "plugins/safe-paste/safe-paste.plugin.zsh";
+        #   src = pkgs.fetchgit {
+        #       url = "https://github.com/ohmyzsh/ohmyzsh.git";
+        #       # Optional: You can pin to a commit hash for reproducibility.
+        #       # rev = "<commit-hash>";
+        #       # leave shallow clone since we only need a subdir
+        #       sparseCheckout = [
+        #         "plugins/safe-paste/"
+        #       ];
+        #       hash = "sha256-9/Zcc7kVmJOOSILOKHf/+qANAdZo0RuNjXi25cgOeOg=";
+        #   };
+        # }
         
       ];
 
