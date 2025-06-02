@@ -138,6 +138,7 @@ in
 
     casks = [
       "github"
+      "soduto"
       "alfred"
       "firefox"
       "alt-tab"
