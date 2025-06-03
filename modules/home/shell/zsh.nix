@@ -207,7 +207,7 @@
         # evals
 
         _evalcache gh copilot alias -- zsh
-        _evalcache thefuck --alias -- fk
+        _evalcache pay-respects zsh --alias --nocnf
 
         # fetches 
 
@@ -286,7 +286,7 @@
   };
 
   home.packages = with pkgs; [
-    thefuck
+    pay-respects
     pfetch-rs
     macchina
     starship

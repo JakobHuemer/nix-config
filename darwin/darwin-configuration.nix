@@ -64,7 +64,7 @@ in
       pkgs.tmux
       pkgs.fh
       pkgs.openssl
-      pkgs.nixfmt
+      pkgs.nixfmt-classic
 
 
       # oxide
