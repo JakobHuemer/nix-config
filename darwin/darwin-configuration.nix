@@ -65,6 +65,7 @@ in
       pkgs.fh
       pkgs.openssl
       pkgs.nixfmt-classic
+      pkgs.plantuml
 
 
       # oxide
