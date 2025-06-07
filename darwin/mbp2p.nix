@@ -29,6 +29,7 @@
     taps = [ "th-ch/youtube-music" ];
 
     casks = [
+      "bluestacks"
       "prismlauncher"
       "minecraft"
       "mysqlworkbench"

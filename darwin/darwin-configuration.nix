@@ -66,7 +66,7 @@ in
       pkgs.openssl
       pkgs.nixfmt-classic
       pkgs.plantuml
-
+      pkgs.tree-sitter
 
       # oxide
       pkgs.ripgrep  # better grep
