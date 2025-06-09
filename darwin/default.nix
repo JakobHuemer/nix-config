@@ -6,6 +6,9 @@ let
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
+      overlays = [
+        inputs.rust-overlay.overlays.default
+      ];
     };
     pkgs-stable = import nixpkgs-stable {
       inherit system;

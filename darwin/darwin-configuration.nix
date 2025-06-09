@@ -44,6 +44,7 @@ in
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
       SHELL = "${pkgs.zsh}/bin/zsh";
+      CARGO_TARGET_DIR = "/Users/${vars.user}/cargo-target/";
     };
 
     systemPath = [
@@ -107,7 +108,10 @@ in
 
       pkgs.cargo
       pkgs.rustup
-      pkgs.rustc
+      (pkgs.rust-bin.stable.latest.default.override {
+        extensions = [ "rust-src" "llvm-tools-preview" ];
+      })
+
       pkgs.imagemagick
     ];
   };
