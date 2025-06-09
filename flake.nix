@@ -55,8 +55,8 @@
     };
   };
 
-  outputs =
-    { self, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager, darwin, nixgl, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager
+    , darwin, nixgl, ... }@inputs:
     let
       vars = {
         user = "jakki";

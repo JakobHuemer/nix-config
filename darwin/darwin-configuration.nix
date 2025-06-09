@@ -109,7 +109,10 @@ in
       pkgs.cargo
       pkgs.rustup
       (pkgs.rust-bin.stable.latest.default.override {
-        extensions = [ "rust-src" "llvm-tools-preview" ];
+        extensions = [ "rust-src" "llvm-tools" ];
+      })
+      (pkgs.rust-bin.nightly.latest.default.override {
+        extensions = [ "rust-src" "llvm-tools" ];
       })
 
       pkgs.imagemagick
