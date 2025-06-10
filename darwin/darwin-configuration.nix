@@ -133,6 +133,7 @@ in
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
 
+    jost # nice font which looks incredible condensed
   ];
 
   homebrew = {
