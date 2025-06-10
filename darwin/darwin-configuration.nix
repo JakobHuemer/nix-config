@@ -69,6 +69,8 @@ in
       pkgs.plantuml
       pkgs.tree-sitter
 
+      pkgs.jdk21_headless
+
       # oxide
       pkgs.ripgrep  # better grep
       pkgs.ripgrep-all  # ripgrep for all files (pdf, zip, etc.)
