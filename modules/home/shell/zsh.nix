@@ -225,6 +225,7 @@
         # obv
         nivm = "nvim";
         vim = "nvim";
+        t = "tmux";
 
         ip = "ip --color";
         ".." = "cd ..";

@@ -54,6 +54,7 @@ in
     systemPackages = [
 
       # util
+      pkgs.ffmpeg
       pkgs.gnupg
       pkgs.git
       pkgs.gh
@@ -145,6 +146,10 @@ in
 
     taps = [
       # "pablopunk/brew"
+    ];
+
+    brews = [
+      "trash"
     ];
 
     casks = [
