@@ -6,4 +6,5 @@
   ./starship.nix
   ./zsh.nix
   ./clock-rs.nix
+  ./tmux.nix
 ]
