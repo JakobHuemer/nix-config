@@ -1,13 +1,11 @@
 # System config for MacBook Pro M2 Pro
 #
 
-{ pkgs, pkgs-stable, vars, ... }:
+{ pkgs, pkgs-stable, vars, inputs, system, ... }:
 
 {
 
-  home-manager.users.${vars.user} = {
-
-  };
+  home-manager.users.${vars.user} = { };
 
   environment = {
     systemPackages = [
@@ -21,6 +19,7 @@
       pkgs.testdisk
       pkgs.act
 
+      inputs.rustowl-flake.packages.${system}.rustowl
     ];
   };
 
@@ -29,6 +28,8 @@
     taps = [ "th-ch/youtube-music" ];
 
     casks = [
+      "anydesk"
+      "easy-move-plus-resize"
       "bluestacks"
       "prismlauncher"
       "minecraft"

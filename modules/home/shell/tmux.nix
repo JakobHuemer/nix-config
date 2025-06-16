@@ -1,10 +1,15 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 
 {
-  programs.tmux = {
-    enable = true;
 
-    tmuxp.enable = true;
+  options = { tmux.enable = lib.mkEnableOption "enables tmux"; };
+
+  config = lib.mkIf config.tmux.enable {
+
+    programs.tmux = {
+      enable = true;
+
+      tmuxp.enable = true;
+    };
   };
-
 }

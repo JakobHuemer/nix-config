@@ -53,6 +53,9 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rustowl-flake.url = "github:nix-community/rustowl-flake";
+
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager

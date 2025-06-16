@@ -1,9 +1,7 @@
 { pkgs, pkgs-stable, inputs, vars, host, ... }:
 
-let 
-  nixbin = "/Users/${vars.user}/.nixbin";
-in
-{
+let nixbin = "/Users/${vars.user}/.nixbin";
+in {
   imports = [ ];
 
   users.users.${vars.user} = {
@@ -16,28 +14,27 @@ in
     computerName = "${host.hostName}";
   };
 
-  system.activationScripts.extraActivation.text =
-    ''
-      echo "settings up system symlinks..."
-      echo "cleaning up symlinks first..."
+  system.activationScripts.extraActivation.text = ''
+    echo "settings up system symlinks..."
+    echo "cleaning up symlinks first..."
 
-      rm -fr ${nixbin}
+    rm -fr ${nixbin}
 
-      echo "done cleaning up symlinks!"
+    echo "done cleaning up symlinks!"
 
-      echo "setting up directories..."
-      mkdir -p ${nixbin}
-      mkdir -p ${nixbin}/lib
-      mkdir -p ${nixbin}/bin
-      echo "setting up links..."
+    echo "setting up directories..."
+    mkdir -p ${nixbin}
+    mkdir -p ${nixbin}/lib
+    mkdir -p ${nixbin}/bin
+    echo "setting up links..."
 
-      ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/bin/dot
+    ln -sf ${pkgs.graphviz}/bin/dot ${nixbin}/bin/dot
 
-      mkdir -p /opt/local/bin/
-      ln -sf ${nixbin}/bin/dot /opt/local/bin/dot
-      ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
-      echo "symlink setup done!"
-    '';
+    mkdir -p /opt/local/bin/
+    ln -sf ${nixbin}/bin/dot /opt/local/bin/dot
+    ln -sf ${pkgs.plantuml}/lib/plantuml.jar ${nixbin}/lib/plantuml.jar
+    echo "symlink setup done!"
+  '';
 
   environment = {
     variables = {
@@ -47,9 +44,7 @@ in
       CARGO_TARGET_DIR = "/Users/${vars.user}/cargo-target/";
     };
 
-    systemPath = [
-      "${nixbin}/bin"
-    ];
+    systemPath = [ "${nixbin}/bin" ];
 
     systemPackages = [
 
@@ -73,15 +68,15 @@ in
       pkgs.jdk21_headless
 
       # oxide
-      pkgs.ripgrep  # better grep
-      pkgs.ripgrep-all  # ripgrep for all files (pdf, zip, etc.)
-      pkgs.fd     # find alternative
-      pkgs.gitui  # lazygit rust port larifary
-      pkgs.dust   # better du
-      pkgs.dua    # interactive disk usage analyzer
-      pkgs.yazi   # filemanager with previews
-      pkgs.hyperfine  # clever benchmark
-      pkgs.tokei  # count code lines quickly
+      pkgs.ripgrep # better grep
+      pkgs.ripgrep-all # ripgrep for all files (pdf, zip, etc.)
+      pkgs.fd # find alternative
+      pkgs.gitui # lazygit rust port larifary
+      pkgs.dust # better du
+      pkgs.dua # interactive disk usage analyzer
+      pkgs.yazi # filemanager with previews
+      pkgs.hyperfine # clever benchmark
+      pkgs.tokei # count code lines quickly
       pkgs.mprocs # tui to run multiple commands parallel
       pkgs.presenterm # terminal slideshow presentation tool
       # pkgs-stable.mullvad
@@ -104,7 +99,7 @@ in
       pkgs.quarkus
       pkgs.maven
       pkgs.kubectl
-      
+
       pkgs.bun
       pkgs.nodePackages.rimraf
       # cmake
@@ -148,9 +143,7 @@ in
       # "pablopunk/brew"
     ];
 
-    brews = [
-      "trash"
-    ];
+    brews = [ "trash" ];
 
     casks = [
       "github"
@@ -193,6 +186,7 @@ in
     nixcord.enable = true;
     # vscode.enable = true;
     ghostty.enable = true;
+    tmux.enable = false;
 
     home.stateVersion = "24.11";
   };
@@ -216,7 +210,12 @@ in
   # no longer has any effect
   # security.pam.enableSudoTouchIdAuth = true;
 
-  security.pam.services.sudo_local.touchIdAuth = true;
+
+  security.pam.services.sudo_local = {
+    enable = true;
+    touchIdAuth = true;
+    reattach = true;
+  };
 
   time.timeZone = "Europe/Vienna";
 
@@ -232,16 +231,14 @@ in
       "--match"
       "{&quot;ProductID&quot;:0x0,&quot;VendorID&quot;:0x0,&quot;Product&quot;:&quot;Apple Internal Keyboard / Trackpad&quot;}"
       "--set"
-      (
-        let
-          # https://developer.apple.com/library/archive/technotes/tn2450/_index.html
-          leftCtrl = "0x7000000E0"; # USB HID 0xE0
-          fnGlobe = "0xFF00000003"; # USB HID (0x0003 + 0xFF00000000 - 0x700000000)
-          capsLock = "0x700000039"; # USB HID 0x39
-          escape = "0x700000029"; # USB HID 0x29
-        in
-        "{&quot;UserKeyMapping&quot;:[{&quot;HIDKeyboardModifierMappingDst&quot;:${fnGlobe},&quot;HIDKeyboardModifierMappingSrc&quot;:${leftCtrl}},{&quot;HIDKeyboardModifierMappingDst&quot;:${leftCtrl},&quot;HIDKeyboardModifierMappingSrc&quot;:${fnGlobe}},{&quot;HIDKeyboardModifierMappingDst&quot;:${escape},&quot;HIDKeyboardModifierMappingSrc&quot;:${capsLock}}]}"
-      )
+      (let
+        # https://developer.apple.com/library/archive/technotes/tn2450/_index.html
+        leftCtrl = "0x7000000E0"; # USB HID 0xE0
+        fnGlobe =
+          "0xFF00000003"; # USB HID (0x0003 + 0xFF00000000 - 0x700000000)
+        capsLock = "0x700000039"; # USB HID 0x39
+        escape = "0x700000029"; # USB HID 0x29
+      in "{&quot;UserKeyMapping&quot;:[{&quot;HIDKeyboardModifierMappingDst&quot;:${fnGlobe},&quot;HIDKeyboardModifierMappingSrc&quot;:${leftCtrl}},{&quot;HIDKeyboardModifierMappingDst&quot;:${leftCtrl},&quot;HIDKeyboardModifierMappingSrc&quot;:${fnGlobe}},{&quot;HIDKeyboardModifierMappingDst&quot;:${escape},&quot;HIDKeyboardModifierMappingSrc&quot;:${capsLock}}]}")
     ];
     RunAtLoad = true;
   };
@@ -349,30 +346,29 @@ in
       };
 
       # CustomSystemPreferences = {
-        # "com.apple.mouse" = {
-        #   # "doubleClickThreshold" = 0.5;
-        #   "linear" = 1;
-        #   # "com.apple.mouse.doubleClickThreshold" = 0.5;
-        #   "com.apple.mouse.linear" = 1;
-        #   # "com.apple.mouse.scaling" = 4;
-        # };
-        #
-        # ".GlobalPreferences" = {
-        #   "com.apple.mouse" = {
-        #     "doubleClickThreshold" = 0.5;
-        #     "linear" = 1;
-        #     "com.apple.mouse.doubleClickThreshold" = 0.5;
-        #     "com.apple.mouse.linear" = 1;
-        #   };
-        # };
-        #
-        # NSGlobalDomain = {
-        #   # "com.apple.mouse.doubleClickThreshold" = 0.5;
-        #   "com.apple.mouse.linear" = true;
-        # };
-        #
+      # "com.apple.mouse" = {
+      #   # "doubleClickThreshold" = 0.5;
+      #   "linear" = 1;
+      #   # "com.apple.mouse.doubleClickThreshold" = 0.5;
+      #   "com.apple.mouse.linear" = 1;
+      #   # "com.apple.mouse.scaling" = 4;
       # };
-
+      #
+      # ".GlobalPreferences" = {
+      #   "com.apple.mouse" = {
+      #     "doubleClickThreshold" = 0.5;
+      #     "linear" = 1;
+      #     "com.apple.mouse.doubleClickThreshold" = 0.5;
+      #     "com.apple.mouse.linear" = 1;
+      #   };
+      # };
+      #
+      # NSGlobalDomain = {
+      #   # "com.apple.mouse.doubleClickThreshold" = 0.5;
+      #   "com.apple.mouse.linear" = true;
+      # };
+      #
+      # };
 
       # https://macos-defaults.com/
 
@@ -382,7 +378,6 @@ in
           "CGDisableCursorLocationMagnification" = true;
           ApplePressAndHoldEnabled = false;
         };
-
 
         "com.apple.symbolichotkeys" = {
           AppleSymbolicHotKeys = {
