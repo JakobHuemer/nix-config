@@ -25,7 +25,6 @@
         LANG = "en_GB.UTF-8";
         LANGUAGE = "en_GB.UTF-8";
 
-        GITIGNORE_TEMPLATE_FILE = toString ../../../conf/gitignore-template;
 
         PATH = builtins.concatStringsSep ":" [
           "$HOME/go/bin"
@@ -266,9 +265,9 @@
         ls = "eza $1 --color=auto --icons=auto";
         l = "ls -lah";
 
-        makegitignore = "cp $GITIGNORE_TEMPLATE_FILE .gitignore";
-        mkgitignore = "makegitignore";
         icat = "kitten icat";
+
+        nurse = "sudo darwin-rebuild switch --flake ~/nix#mbp2p";
       };
 
     };

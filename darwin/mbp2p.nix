@@ -28,6 +28,7 @@
     taps = [ "th-ch/youtube-music" ];
 
     casks = [
+      "yed"
       "anydesk"
       "easy-move-plus-resize"
       "bluestacks"

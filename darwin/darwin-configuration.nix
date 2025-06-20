@@ -1,8 +1,14 @@
-{ pkgs, pkgs-stable, inputs, vars, host, ... }:
-
-let nixbin = "/Users/${vars.user}/.nixbin";
+{
+  pkgs,
+  pkgs-stable,
+  inputs,
+  vars,
+  host,
+  ...
+}: let
+  nixbin = "/Users/${vars.user}/.nixbin";
 in {
-  imports = [ ];
+  imports = [];
 
   users.users.${vars.user} = {
     home = "/Users/${vars.user}";
@@ -42,12 +48,17 @@ in {
       VISUAL = "${vars.editor}";
       SHELL = "${pkgs.zsh}/bin/zsh";
       CARGO_TARGET_DIR = "/Users/${vars.user}/cargo-target/";
+
+      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+      OPENSSL_DIR = "${pkgs.openssl.dev}";
+      # Optional, might help some builds
+      OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
+      OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
     };
 
-    systemPath = [ "${nixbin}/bin" ];
+    systemPath = ["${nixbin}/bin"];
 
     systemPackages = [
-
       # util
       pkgs.ffmpeg
       pkgs.gnupg
@@ -64,6 +75,8 @@ in {
       pkgs.nixfmt-classic
       pkgs.plantuml
       pkgs.tree-sitter
+      pkgs.yarn
+      pkgs.yarn2nix
 
       pkgs.jdk21_headless
 
@@ -79,6 +92,7 @@ in {
       pkgs.tokei # count code lines quickly
       pkgs.mprocs # tui to run multiple commands parallel
       pkgs.presenterm # terminal slideshow presentation tool
+      pkgs.cargo-aoc
       # pkgs-stable.mullvad
 
       # pkgs.nh
@@ -107,11 +121,15 @@ in {
       pkgs.cargo
       pkgs.rustup
       (pkgs.rust-bin.stable.latest.default.override {
-        extensions = [ "rust-src" "llvm-tools" ];
+        extensions = ["rust-src" "llvm-tools"];
       })
       (pkgs.rust-bin.nightly.latest.default.override {
-        extensions = [ "rust-src" "llvm-tools" ];
+        extensions = ["rust-src" "llvm-tools"];
       })
+
+      pkgs.openssl
+      pkgs.openssl.dev
+      pkgs.pkg-config
 
       pkgs.imagemagick
     ];
@@ -143,7 +161,7 @@ in {
       # "pablopunk/brew"
     ];
 
-    brews = [ "trash" ];
+    brews = ["trash"];
 
     casks = [
       "github"
@@ -170,11 +188,11 @@ in {
       "bitwarden"
     ];
 
-    masApps = { };
+    masApps = {};
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs pkgs vars host; };
+    extraSpecialArgs = {inherit inputs pkgs vars host;};
     backupFileExtension = "nix-backup";
   };
 
@@ -193,7 +211,7 @@ in {
 
   nix = {
     package = pkgs.nix;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     gc = {
       automatic = true;
       options = "delete-older-than 10d";
@@ -209,7 +227,6 @@ in {
 
   # no longer has any effect
   # security.pam.enableSudoTouchIdAuth = true;
-
 
   security.pam.services.sudo_local = {
     enable = true;
@@ -234,8 +251,7 @@ in {
       (let
         # https://developer.apple.com/library/archive/technotes/tn2450/_index.html
         leftCtrl = "0x7000000E0"; # USB HID 0xE0
-        fnGlobe =
-          "0xFF00000003"; # USB HID (0x0003 + 0xFF00000000 - 0x700000000)
+        fnGlobe = "0xFF00000003"; # USB HID (0x0003 + 0xFF00000000 - 0x700000000)
         capsLock = "0x700000039"; # USB HID 0x39
         escape = "0x700000029"; # USB HID 0x29
       in "{&quot;UserKeyMapping&quot;:[{&quot;HIDKeyboardModifierMappingDst&quot;:${fnGlobe},&quot;HIDKeyboardModifierMappingSrc&quot;:${leftCtrl}},{&quot;HIDKeyboardModifierMappingDst&quot;:${leftCtrl},&quot;HIDKeyboardModifierMappingSrc&quot;:${fnGlobe}},{&quot;HIDKeyboardModifierMappingDst&quot;:${escape},&quot;HIDKeyboardModifierMappingSrc&quot;:${capsLock}}]}")
@@ -258,7 +274,6 @@ in {
     };
 
     defaults = {
-
       screensaver = {
         askForPassword = true;
         askForPasswordDelay = 0;
@@ -280,7 +295,7 @@ in {
         # KeyRepeatDelay = 0.25;
         InitialKeyRepeat = 15;
         # KeyRepeatEnabled = 1;
-        # KeyRepeatInterval = 0.03333333299999999; 
+        # KeyRepeatInterval = 0.03333333299999999;
 
         NSAutomaticSpellingCorrectionEnabled = false;
         NSAutomaticPeriodSubstitutionEnabled = false;
@@ -307,15 +322,14 @@ in {
         largesize = 16;
         tilesize = 16;
         show-recents = false;
-        persistent-apps = [ ];
-        persistent-others = [ ];
+        persistent-apps = [];
+        persistent-others = [];
 
         # hot corner
         wvous-bl-corner = 1;
         wvous-br-corner = 4;
         wvous-tr-corner = 1;
         wvous-tl-corner = 1;
-
       };
 
       menuExtraClock = {
@@ -324,7 +338,6 @@ in {
         Show24Hour = false;
         ShowDate = 0;
         ShowDayOfWeek = false;
-
       };
 
       screencapture = {
@@ -342,7 +355,6 @@ in {
         FXPreferredViewStyle = "clmv";
         FXEnableExtensionChangeWarning = false;
         _FXSortFoldersFirst = true;
-
       };
 
       # CustomSystemPreferences = {
@@ -385,7 +397,7 @@ in {
             "60" = {
               enabled = false;
               value = {
-                parameters = [ 32 49 1048576 ];
+                parameters = [32 49 1048576];
                 type = "standard";
               };
             };
@@ -394,7 +406,7 @@ in {
             "61" = {
               enabled = false;
               value = {
-                parameters = [ 32 49 1572864 ];
+                parameters = [32 49 1572864];
                 type = "standard";
               };
             };
@@ -402,7 +414,7 @@ in {
             "64" = {
               enabled = false;
               value = {
-                parameters = [ 32 49 1048576 ];
+                parameters = [32 49 1048576];
                 type = "standard";
               };
             };
@@ -411,15 +423,13 @@ in {
             "65" = {
               enabled = false;
               value = {
-                parameters = [ 32 49 1179648 ];
+                parameters = [32 49 1179648];
                 type = "standard";
               };
             };
           };
         };
-
       };
-
     };
   };
 }
