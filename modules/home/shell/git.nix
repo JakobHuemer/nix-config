@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-
-{
-
+{pkgs, ...}: {
   home.packages = with pkgs; [
     diff-so-fancy
   ];
@@ -10,12 +7,16 @@
     enable = true;
     userName = "JakobHuemer";
     userEmail = "j.huemer-fistelberger@htblaleonding.onmicrosoft.com";
+
     signing = {
       key = "D617865DCD802230ED4AFC3B02A04F8328440D81";
       signByDefault = true;
     };
 
     extraConfig = {
+      help.autocorrect = 1;
+      rerere.enabled = true;
+      commit.verbose = true;
 
       filter = {
         lfs.clean = "git-lfs clean -- %f";
@@ -26,16 +27,19 @@
 
       init.defaultBranch = "main";
 
-      alias = { 
+      alias = {
         one = "log --oneline";
         ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ | tee .gitignore ;}; gi";
+
+        pushf = "push --force-with-lease";
+        pfwl = "push --force-with-lease";
       };
 
       url = {
         "git@github.com".insteadOf = "gh";
         "https://github.com/".insteadOf = "ghttp";
       };
-    
+
       core = {
         compressions = 9;
         whitespace = "error";
@@ -66,7 +70,6 @@
         diffFilter = "diff-so-fancy --patch";
       };
 
-
       push = {
         autoSetupRemote = true;
         default = "current";
@@ -77,7 +80,7 @@
         default = "current";
         rebase = true;
       };
-      
+
       rebase = {
         autoStash = true;
         missingCommitsCheck = "warn";
@@ -95,7 +98,7 @@
       branch = {
         sort = "-committerdate";
       };
-      
+
       tag = {
         sort = "-taggerdate";
       };
@@ -115,6 +118,11 @@
           upstream = "green";
           plain = "blue";
         };
+      };
+
+      maintenance = {
+        auto = false;
+        strategy = "incremental";
       };
     };
   };
