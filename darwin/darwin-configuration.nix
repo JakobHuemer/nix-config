@@ -56,7 +56,11 @@ in {
       OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
     };
 
-    systemPath = ["${nixbin}/bin"];
+    systemPath = [
+      "${nixbin}/bin"
+      # add bun .bin/bin
+      "/Users/${vars.user}/.bun/bin"
+    ];
 
     systemPackages = [
       # util
@@ -77,6 +81,7 @@ in {
       pkgs.tree-sitter
       pkgs.yarn
       pkgs.yarn2nix
+      pkgs.meson
 
       pkgs.jdk21_headless
 
