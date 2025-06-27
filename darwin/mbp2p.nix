@@ -30,7 +30,7 @@
     casks = [
       "yed"
       "anydesk"
-      "easy-move-plus-resize"
+      "easy-move+resize"
       "bluestacks"
       "prismlauncher"
       "minecraft"
