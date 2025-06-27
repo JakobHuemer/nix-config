@@ -1,14 +1,31 @@
 { pkgs, inputs, vars, system, nixpkgs, host, ... }:
 
 {
-  # imports = import ../modules/nixos;
+
+  # system
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
+  security.polkit.enable = true;
+
+  networking.networkmanager.enable = true;
+  networking.hostName = "macnix";
 
   programs.zsh.enable = true;
+
+  programs.light.enable = true;
 
   users.users.${vars.user} = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "video" ];
   };
 
   time.timeZone = "Europe/Vienna";
@@ -46,9 +63,20 @@
     #
     #     ]);
     systemPackages = [
-      zsh
+      pkgs.firefox
+      pkgs.grim # screenshots
+      pkgs.slurp # screenshots
+      pkgs.wl-clipboard # obv
+      pkgs.mako # notification system
+
+      pkgs.neovim
+
+      pkgs.gnupg
+
     ];
   };
+
+
 
   hardware.pulseaudio.enable = false;
   services = {
@@ -59,6 +87,12 @@
         support32Bit = true;
       };
     };
+
+    openssh = {
+      enable = true; 
+    };
+
+    gnome.gnome-keyring.enable = true;
   };
 
   nix = {
@@ -84,7 +118,12 @@
   home-manager.extraSpecialArgs = { inherit inputs system nixpkgs vars host; };
 
   home-manager.users.${vars.user} = {
-    imports = import ../modules/home;
+    imports = import ../../modules/home;
+
+    sway.enable = true;
+    ghostty.enable = true;
+    tmux.enable = true;
+
 
     # nixvim.enable = true;
 
@@ -96,6 +135,6 @@
 
   };
 
-  system = { stateVersion = "24.11"; };
+  system = { stateVersion = "25.05"; };
 
 }

@@ -17,7 +17,7 @@ in {
 
     modules = [
       ./nitro
-      ./configuration.nix
+      # ./configuration.nix
 
       inputs.sops-nix.nixosModules.sops
 
@@ -44,7 +44,7 @@ in {
     };
     modules = [
       ./pi4
-      ./configuration.nix
+      # ./configuration.nix
 
       inputs.sops-nix.nixosModules.sops
 
@@ -56,4 +56,31 @@ in {
     ];
 
   };
+
+
+  macnix = let system = "aarch64-linux";
+  in lib.nixosSystem {
+    inherit system;
+    specialArgs = {
+      inherit inputs system nixpkgs vars;
+      host = {
+        hostName = "macnix";
+        flakePath = "/nixos/etc/nix-config";
+      };
+    };
+
+    modules = [
+      ./macnix
+      # ./configuration.nix
+
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+      }
+    ];
+
+  };
+
+
 }
