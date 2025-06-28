@@ -185,7 +185,6 @@ in {
       # "tor-browser"
       # "swift-shift"
       "vlc"
-      "wireshark"
 
       "visual-studio-code"
       "cursor"

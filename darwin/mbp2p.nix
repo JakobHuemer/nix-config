@@ -8,7 +8,14 @@
   system,
   ...
 }: {
-  home-manager.users.${vars.user} = {};
+
+  home-manager.users.${vars.user} = {
+
+    git.gpgKey = "D617865DCD802230ED4AFC3B02A04F8328440D81";
+
+  };
+
+
 
   environment = {
     systemPackages = [
@@ -47,6 +54,7 @@
       "brave-browser"
       "vivaldi"
       "teamviewer"
+      "wireshark-app"
 
       # ms apps
       "microsoft-powerpoint"
