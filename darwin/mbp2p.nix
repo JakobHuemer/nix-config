@@ -1,11 +1,14 @@
 # System config for MacBook Pro M2 Pro
 #
-
-{ pkgs, pkgs-stable, vars, inputs, system, ... }:
-
 {
-
-  home-manager.users.${vars.user} = { };
+  pkgs,
+  pkgs-stable,
+  vars,
+  inputs,
+  system,
+  ...
+}: {
+  home-manager.users.${vars.user} = {};
 
   environment = {
     systemPackages = [
@@ -24,8 +27,7 @@
   };
 
   homebrew = {
-
-    taps = [ "th-ch/youtube-music" ];
+    taps = ["th-ch/youtube-music"];
 
     casks = [
       "yed"
@@ -84,7 +86,7 @@
 
       "itch"
     ];
-    masApps = { };
+    masApps = {};
   };
 
   system = {

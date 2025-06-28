@@ -1,13 +1,15 @@
-{ config, lib, pkgs, inputs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [inputs.nixcord.homeModules.nixcord];
 
-  imports = [ inputs.nixcord.homeModules.nixcord ];
-
-  options = { nixcord.enable = lib.mkEnableOption "enable nixcord"; };
+  options = {nixcord.enable = lib.mkEnableOption "enable nixcord";};
 
   config = lib.mkIf config.nixcord.enable {
-
     programs.nixcord = {
       enable = true;
       quickCss = "";
@@ -100,7 +102,6 @@
             enable = true;
             includeCurrentChannel = true;
             includeMutedChannels = false;
-
           };
 
           typingTweaks.enable = true;
@@ -139,7 +140,6 @@
 
           fakeNitro = {
             enable = true;
-
           };
 
           fixImagesQuality.enable = true;
@@ -223,7 +223,6 @@
           vencordToolbox.enable = true;
 
           voiceMessages.enable = true;
-
         };
       };
     };

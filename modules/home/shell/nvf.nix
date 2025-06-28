@@ -1,10 +1,13 @@
-{ lib, config, pkgs, inputs, ... }:
-
 {
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [inputs.nvf.homeManagerModules.nvf];
 
-  imports = [ inputs.nvf.homeManagerModules.nvf ];
-
-  options = { nvf.enable = lib.mkEnableOption "enable nvf"; };
+  options = {nvf.enable = lib.mkEnableOption "enable nvf";};
 
   config = lib.mkIf config.nvf.enable {
     programs.nvf = {
@@ -50,7 +53,7 @@
               renderer = {
                 root_folder_label = false;
                 highlight_git = true;
-                indent_markers = { enable = true; };
+                indent_markers = {enable = true;};
                 icons = {
                   glyphs = {
                     default = "󰈚";
@@ -61,7 +64,7 @@
                       open = "";
                       symlink = "";
                     };
-                    git = { unmerged = ""; };
+                    git = {unmerged = "";};
                   };
                 };
               };
@@ -90,7 +93,7 @@
             toggleCurrentLine = "<leader>/";
           };
 
-          notes.todo-comments = { enable = true; };
+          notes.todo-comments = {enable = true;};
 
           visuals = {
             rainbow-delimiters.enable = true;
@@ -117,11 +120,11 @@
             colorizer.enable = true;
             illuminate.enable = true;
 
-            noice = { enable = true; };
+            noice = {enable = true;};
 
             smartcolumn = {
               enable = true;
-              setupOpts = { colorcolumn = [ "120" ]; };
+              setupOpts = {colorcolumn = ["120"];};
             };
           };
 
@@ -158,7 +161,6 @@
             rust.enable = true;
             ts.enable = true;
           };
-
         };
       };
     };

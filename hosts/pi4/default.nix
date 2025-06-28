@@ -1,7 +1,12 @@
-{ inputs, config, pkgs, sops, vars, ... }:
-
 {
-  imports = [ ./hardware-configuration.nix ];
+  inputs,
+  config,
+  pkgs,
+  sops,
+  vars,
+  ...
+}: {
+  imports = [./hardware-configuration.nix];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -28,7 +33,7 @@
 
   services.openssh = {
     enable = true;
-    ports = [ 4204 ];
+    ports = [4204];
     allowSFTP = true;
 
     settings = {
@@ -37,7 +42,7 @@
       PermitRootLogin = "prohibit-password";
     };
 
-    authorizedKeysFiles = [ "/ssh/authorized_keys" ];
+    authorizedKeysFiles = ["/ssh/authorized_keys"];
 
     extraConfig = ''
       Match User jakki,root
@@ -45,9 +50,9 @@
     '';
   };
 
-  environment.systemPackages = [ pkgs.cloudflared ];
+  environment.systemPackages = [pkgs.cloudflared];
 
-  users.extraGroups.docker.members = [ "${vars.user}" ];
+  users.extraGroups.docker.members = ["${vars.user}"];
 
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
 
@@ -69,9 +74,8 @@
       "raspi-nix-vm" = {
         credentialsFile = config.sops.secrets."cloudflared/raspi-nix-vm".path;
         default = "http://localhost:8080";
-        ingress = { "localhost.jstxel.de" = "http://localhost:8080"; };
+        ingress = {"localhost.jstxel.de" = "http://localhost:8080";};
       };
     };
   };
-
 }

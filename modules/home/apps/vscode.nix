@@ -1,8 +1,10 @@
-{ lib, config, pkgs, ... }:
-
 {
-
-  options = { vscode.enable = lib.mkEnableOption "enable vscode"; };
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  options = {vscode.enable = lib.mkEnableOption "enable vscode";};
 
   config = lib.mkIf config.vscode.enable {
     programs.vscode = {
@@ -91,7 +93,6 @@
         vscode-extensions.github.copilot
         vscode-extensions.github.copilot-chat
       ];
-
     };
   };
 }

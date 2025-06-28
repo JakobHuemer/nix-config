@@ -1,7 +1,9 @@
-{ pkgs, ... }:
-
 {
-
+  pkgs,
+  lib,
+  types,
+  ...
+}: {
   programs = {
     zsh = {
       enable = true;
@@ -12,7 +14,7 @@
 
       autosuggestion = {
         enable = true;
-        strategy = [ "history" ];
+        strategy = ["history"];
       };
 
       sessionVariables = {
@@ -25,7 +27,6 @@
         LANG = "en_GB.UTF-8";
         LANGUAGE = "en_GB.UTF-8";
 
-
         PATH = builtins.concatStringsSep ":" [
           "$HOME/go/bin"
           "$HOME/.local/bin"
@@ -34,7 +35,6 @@
         ];
 
         GIT_ADVICE = 0;
-
       };
 
       history = {
@@ -98,7 +98,7 @@
         #       hash = "sha256-9/Zcc7kVmJOOSILOKHf/+qANAdZo0RuNjXi25cgOeOg=";
         #   };
         # }
-        # 
+        #
         # {
         #   name = "safe-paste";
         #   file = "plugins/safe-paste/safe-paste.plugin.zsh";
@@ -113,7 +113,6 @@
         #       hash = "sha256-9/Zcc7kVmJOOSILOKHf/+qANAdZo0RuNjXi25cgOeOg=";
         #   };
         # }
-        
       ];
 
       initContent = ''
@@ -162,7 +161,7 @@
             for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
         }
 
-        # transient prompt - - - - 
+        # transient prompt - - - -
 
         zle-line-init() {
           emulate -L zsh
@@ -208,7 +207,7 @@
         _evalcache gh copilot alias -- zsh
         _evalcache pay-respects zsh --alias --nocnf
 
-        # fetches 
+        # fetches
 
         if [[ -z "$TMUX" ]]; then
           pfetch
@@ -238,17 +237,17 @@
         # git
         gs = "git status";
         gss = "git status --short";
-        
+
         ga = "git add";
         "ga." = "git add -A";
         gap = "git add --patch";
         gr = "git restore";
         gc = "git commit";
-        
+
         gp = "git push";
         gu = "git pull";
         gm = "git merge";
-        
+
         gl = "git log --color --graph --pretty=format:'%C(red)%h%Creset %C(bold blue)<%an> %C(green)%cr %C(auto)%d %n%Creset%s%n'";
         gw = "git checkout";
 
@@ -269,20 +268,18 @@
 
         nurse = "sudo darwin-rebuild switch --flake ~/nix#mbp2p";
       };
-
     };
 
     starship.enable = true;
     zoxide.enable = true;
     fzf.enable = true;
     dircolors.enable = true;
-
   };
 
   programs.gh = {
     enable = true;
 
-    extensions = [ pkgs.gh-copilot ];
+    extensions = [pkgs.gh-copilot];
   };
 
   home.packages = with pkgs; [
@@ -296,5 +293,4 @@
     lsd
     eza
   ];
-
 }

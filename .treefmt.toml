@@ -1,4 +1,4 @@
 [formatter.nix]
-command = "nixfmt"
+command = "alejandra"
 includes = [ "*.nix" ]
 priority = 0

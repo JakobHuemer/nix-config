@@ -1,18 +1,22 @@
-{ inputs, pkgs, nixgl, vars, ... }:
-
 {
+  inputs,
+  pkgs,
+  nixgl,
+  vars,
+  ...
+}: {
   nixGL = {
     defaultWrapper = "nvidia";
     installScripts = "nvidia";
 
-    prime = { installScript = "nvidia"; };
+    prime = {installScript = "nvidia";};
 
     vulkan.enable = true;
   };
 
   home = {
     packages = [
-      (import nixgl { inherit pkgs; }).nixVulkanIntel
+      (import nixgl {inherit pkgs;}).nixVulkanIntel
       pkgs.hello
       pkgs.tmux
       pkgs.kitty
@@ -37,30 +41,29 @@
 
     activation = {
       linkDesktopApplications = {
-        after = [ "writeBoundary" "createXdgUserDirectories" ];
-        before = [ ];
+        after = ["writeBoundary" "createXdgUserDirectories"];
+        before = [];
         data = "/usr/bin/update-desktop-database";
       };
     };
 
     # nvidia
-
   };
 
   xdg = {
     enable = true;
-    systemDirs.data = [ "/home/${vars.user}/.nix-profile/share" ];
+    systemDirs.data = ["/home/${vars.user}/.nix-profile/share"];
   }; # add nixpks to XDG_DATA_DIRS
 
   nix = {
-    settings = { auto-optimise-store = true; };
+    settings = {auto-optimise-store = true;};
 
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
     package = pkgs.nixVersions.stable;
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
-      experimental-features = nix-command flakes 
+      experimental-features = nix-command flakes
       keep-outputs          = true
       keep-derivations      = true
     '';
@@ -70,5 +73,4 @@
     allowUnfree = true;
     nvidia.acceptLicense = true;
   };
-
 }

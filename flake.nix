@@ -1,6 +1,5 @@
 {
-  description =
-    "Nix, NixOs and Nix Darwin System Flake Configuration with HomeManager";
+  description = "Nix, NixOs and Nix Darwin System Flake Configuration with HomeManager";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -37,7 +36,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvf = { url = "github:notashelf/nvf"; };
+    nvf = {url = "github:notashelf/nvf";};
 
     ghostty = {
       url = "github:ghostty-org/ghostty";
@@ -55,33 +54,38 @@
     };
 
     rustowl-flake.url = "github:nix-community/rustowl-flake";
-
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager
-    , darwin, nixgl, ... }@inputs:
-    let
-      vars = {
-        user = "jakki";
-        locations = "$HOME/.setup";
-        terminal = "ghostty";
-        editor = "nvim";
-      };
-    in {
-      nixosConfigurations = (import ./hosts {
-        inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-stable nixos-hardware vars;
-      });
-
-      darwinConfigurations = (import ./darwin {
-        inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-stable home-manager darwin vars;
-      });
-
-      homeConfigurations = (import ./nix {
-        inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-stable home-manager nixgl vars;
-      });
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    nixos-hardware,
+    home-manager,
+    darwin,
+    nixgl,
+    ...
+  } @ inputs: let
+    vars = {
+      user = "jakki";
+      locations = "$HOME/.setup";
+      terminal = "ghostty";
+      editor = "nvim";
+    };
+  in {
+    nixosConfigurations = import ./hosts {
+      inherit (nixpkgs) lib;
+      inherit inputs nixpkgs nixpkgs-stable nixos-hardware vars;
     };
 
+    darwinConfigurations = import ./darwin {
+      inherit (nixpkgs) lib;
+      inherit inputs nixpkgs nixpkgs-stable home-manager darwin vars;
+    };
+
+    homeConfigurations = import ./nix {
+      inherit (nixpkgs) lib;
+      inherit inputs nixpkgs nixpkgs-stable home-manager nixgl vars;
+    };
+  };
 }

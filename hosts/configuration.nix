@@ -1,6 +1,12 @@
-{ pkgs, inputs, vars, system, nixpkgs, host, ... }:
-
 {
+  pkgs,
+  inputs,
+  vars,
+  system,
+  nixpkgs,
+  host,
+  ...
+}: {
   # imports = import ../modules/nixos;
 
   programs.zsh.enable = true;
@@ -8,17 +14,16 @@
   users.users.${vars.user} = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = ["wheel" "networkmanager"];
   };
 
   time.timeZone = "Europe/Vienna";
   i18n = {
     defaultLocale = "en_GB.UTF-8";
-    extraLocaleSettings = { LC_MONETARY = "de_AT.UTF-8"; };
+    extraLocaleSettings = {LC_MONETARY = "de_AT.UTF-8";};
   };
 
   console = {
-
     font = "Lat2-Terminus16";
     keyMap = "de-latin1";
   };
@@ -45,9 +50,7 @@
     #       nodejs
     #
     #     ]);
-    systemPackages = [
-      zsh
-    ];
+    systemPackages = [zsh];
   };
 
   hardware.pulseaudio.enable = false;
@@ -62,9 +65,9 @@
   };
 
   nix = {
-    settings = { auto-optimise-store = true; };
+    settings = {auto-optimise-store = true;};
 
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
     gc = {
       automatic = true;
@@ -81,21 +84,19 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home-manager.extraSpecialArgs = { inherit inputs system nixpkgs vars host; };
+  home-manager.extraSpecialArgs = {inherit inputs system nixpkgs vars host;};
 
   home-manager.users.${vars.user} = {
     imports = import ../modules/home;
 
     # nixvim.enable = true;
 
-    home = { stateVersion = "24.11"; };
+    home = {stateVersion = "24.11";};
 
-    programs = { home-manager.enable = true; };
+    programs = {home-manager.enable = true;};
 
     # other homemanager stuff for NixOs
-
   };
 
-  system = { stateVersion = "24.11"; };
-
+  system = {stateVersion = "24.11";};
 }

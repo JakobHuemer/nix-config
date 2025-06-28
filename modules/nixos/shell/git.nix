@@ -1,10 +1,13 @@
-{ pkgs, vars, ... }:
-
 {
+  pkgs,
+  vars,
+  ...
+}: {
   programs.git = {
     enable = true;
 
-    config = let ghPath = "${pkgs.gh}/bin/gh";
+    config = let
+      ghPath = "${pkgs.gh}/bin/gh";
     in {
       credential = {
         "https://github.com".helper = "!${ghPath} auth git-credential";

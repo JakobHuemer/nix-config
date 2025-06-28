@@ -1,7 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    diff-so-fancy
-  ];
+  home.packages = with pkgs; [diff-so-fancy];
 
   programs.git = {
     enable = true;
@@ -52,9 +50,7 @@
         statusHints = false;
       };
 
-      diff = {
-        renames = "copies";
-      };
+      diff = {renames = "copies";};
 
       pager = {
         diff = "diff-so-fancy | $PAGER";
@@ -62,13 +58,9 @@
         tag = false;
       };
 
-      "diff-so-fancy" = {
-        markEmptyLines = false;
-      };
+      "diff-so-fancy" = {markEmptyLines = false;};
 
-      interactive = {
-        diffFilter = "diff-so-fancy --patch";
-      };
+      interactive = {diffFilter = "diff-so-fancy --patch";};
 
       push = {
         autoSetupRemote = true;
@@ -86,22 +78,16 @@
         missingCommitsCheck = "warn";
       };
 
-      fetch = {
-        prune = true;
-      };
+      fetch = {prune = true;};
 
       log = {
         abbrevCommit = true;
         graphColors = "blue,yellow,cyan,magenta,green,red";
       };
 
-      branch = {
-        sort = "-committerdate";
-      };
+      branch = {sort = "-committerdate";};
 
-      tag = {
-        sort = "-taggerdate";
-      };
+      tag = {sort = "-taggerdate";};
 
       color = {
         decorate = {

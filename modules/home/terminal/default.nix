@@ -1,1 +1,1 @@
-[ ./ghostty.nix ]
+[./ghostty.nix]

@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-
-{
-
+{pkgs, ...}: {
   programs.clock-rs = {
     enable = true;
     package = pkgs.clock-rs;
@@ -26,6 +23,4 @@
       };
     };
   };
-
 }
-

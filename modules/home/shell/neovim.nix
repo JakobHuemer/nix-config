@@ -1,8 +1,11 @@
-{ lib, config, pkgs, vars, ... }:
-
 {
-
-  options = { neovim.enable = lib.mkEnableOption "enable neovim"; };
+  lib,
+  config,
+  pkgs,
+  vars,
+  ...
+}: {
+  options = {neovim.enable = lib.mkEnableOption "enable neovim";};
 
   config = lib.mkIf config.neovim.enable {
     programs.neovim = {
@@ -29,7 +32,6 @@
 
       vscode-langservers-extracted
       vimPlugins.nvim-ts-autotag
-
     ];
   };
 }

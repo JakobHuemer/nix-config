@@ -1,9 +1,9 @@
-{ inputs, config, pkgs, vars, ... }:
-
 {
-  imports = [ 
-    ./hardware-configuration.nix
-    ./configuration.nix
-  ];
-
+  inputs,
+  config,
+  pkgs,
+  vars,
+  ...
+}: {
+  imports = [./hardware-configuration.nix ./configuration.nix];
 }

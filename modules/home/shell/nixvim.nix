@@ -1,19 +1,22 @@
-{ pkgs, lib, config, vars, host, inputs, ... }:
-
 {
+  pkgs,
+  lib,
+  config,
+  vars,
+  host,
+  inputs,
+  ...
+}: {
+  imports = [inputs.nixvim.homeManagerModules.nixvim];
 
-  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
-
-  options = { nixvim.enable = lib.mkEnableOption "enables nixvim"; };
+  options = {nixvim.enable = lib.mkEnableOption "enables nixvim";};
 
   config = lib.mkIf config.nixvim.enable {
-
     programs.nixvim = {
-
       enable = true;
       globals.mapleader = " ";
 
-      clipboard = { register = "unnamedplus"; };
+      clipboard = {register = "unnamedplus";};
 
       opts = {
         relativenumber = true;
@@ -43,16 +46,15 @@
       clipboard.providers.wl-copy.enable = true;
 
       plugins = {
-
         cmp = {
           enable = true;
           autoEnableSources = true;
           settings = {
             sources = [
-              { name = "nvim_lsp"; }
-              { name = "path"; }
-              { name = "buffer"; }
-              { name = "luasnip"; }
+              {name = "nvim_lsp";}
+              {name = "path";}
+              {name = "buffer";}
+              {name = "luasnip";}
             ];
 
             mapping = {
@@ -61,14 +63,11 @@
               "<C-e>" = "cmp.mapping.close()";
               "<C-f>" = "cmp.mapping.scroll_docs(4)";
               "<CR>" = "cmp.mapping.confirm({ select = true })";
-              "<S-Tab>" =
-                "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-              "<Tab>" =
-                "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+              "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+              "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
             };
 
-            completion.autocomplete =
-              [ "require('cmp.types').cmp.TriggerEvent.TextChanged" ];
+            completion.autocomplete = ["require('cmp.types').cmp.TriggerEvent.TextChanged"];
           };
         };
 
@@ -77,9 +76,9 @@
           inlayHints = true;
 
           servers = {
-            lua_ls = { enable = true; };
+            lua_ls = {enable = true;};
 
-            html = { enable = true; };
+            html = {enable = true;};
 
             nixd = {
               enable = true;
@@ -88,16 +87,14 @@
                 # flake = "(builtins.getFlake (\"git+file://\" + toString ./. ))";
                 flake = ''(builtins.getFlake "${host.flakePath}")'';
               in {
-                formatting = { command = [ "nixfmt" ]; };
+                formatting = {command = ["nixfmt"];};
 
-                nixpkgs = { expr = "import ${flake}.inputs.nixpkgs"; };
+                nixpkgs = {expr = "import ${flake}.inputs.nixpkgs";};
 
                 options = {
                   "nixos".expr = "${flake}.nixosConfigurations.nitro.options";
-                  "home_manager".expr =
-                    "${flake}.homeConfigurations.nitro.options";
-                  "nix_darwin".expr =
-                    "${flake}.darwinConfigurations.mbp2p.options";
+                  "home_manager".expr = "${flake}.homeConfigurations.nitro.options";
+                  "nix_darwin".expr = "${flake}.darwinConfigurations.mbp2p.options";
                   "darwin".expr = "${flake}.darwinConfigurations.mbp2p.options";
                 };
               };
@@ -170,7 +167,7 @@
         };
         web-devicons.enable = true;
 
-        todo-comments = { enable = true; };
+        todo-comments = {enable = true;};
 
         rainbow-delimiters.enable = true;
 
@@ -179,7 +176,6 @@
 
           # require("ibl").setup
           settings = {
-
             indent.char = "│";
 
             scope = {
@@ -233,52 +229,49 @@
               enable_close_on_slash = true;
               enable_rename = true;
             };
-            per_filetype = { html = { enable_close = true; }; };
+            per_filetype = {html = {enable_close = true;};};
           };
         };
 
         treesitter = {
           enable = true;
 
-          grammarPackages =
-            with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-              bash
-              json
-              lua
-              html
-              nix
-              make
-              markdown
-              toml
-              vim
-              vimdoc
-              yaml
-              xml
-              regex
-              java
-              python
-              rust
-              gleam
-              zig
-            ];
+          grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+            bash
+            json
+            lua
+            html
+            nix
+            make
+            markdown
+            toml
+            vim
+            vimdoc
+            yaml
+            xml
+            regex
+            java
+            python
+            rust
+            gleam
+            zig
+          ];
 
           settings = {
             indent.enable = true;
             auto_install = true;
-            ensure_installed =
-              [ "git_config" "gitattributes" "gitcommit" "gitignore" ];
+            ensure_installed = ["git_config" "gitattributes" "gitcommit" "gitignore"];
 
-            highlight = { enable = true; };
+            highlight = {enable = true;};
           };
         };
 
-        autosource = { enable = true; };
+        autosource = {enable = true;};
 
         autoclose = {
           enable = true;
 
           settings = {
-
             keys = {
               "(" = {
                 escape = false;
@@ -348,7 +341,7 @@
           settings = {
             max_lines = 2048;
             skip_multiline = false;
-            standard_widths = [ 2 4 8 ];
+            standard_widths = [2 4 8];
           };
         };
 
@@ -356,19 +349,19 @@
           enable = true;
 
           settings = {
-
             notify_on_error = true;
 
             formatters_by_ft = {
-              bash = [ "shfmt" ];
-              "_" = [ "prettierd" ];
+              bash = ["shfmt"];
+              "_" = ["prettierd"];
             };
 
-            format_on_save = # Lua
+            format_on_save =
+              # Lua
               ''
                 function(bufnr)
                   local ignore_filetypes = {  }
-                  
+
                   if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
                     return
                   end
@@ -376,12 +369,12 @@
                   if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
                     return
                   end
-                  
+
                   local bufname = vim.api.nvim_buf_get_name(bufnr)
                   if bufname:match("/node_modules/") then
                     return
                   end
-                  
+
                   return { timeout_ms = 500, lsp_format = "fallback" }
                 end
               '';
@@ -391,7 +384,6 @@
         mini = {
           enable = true;
           modules = {
-
             comment = {
               mappings = {
                 comment = "<leader>/";
@@ -401,7 +393,7 @@
               };
             };
 
-            diff = { view = { style = "sign"; }; };
+            diff = {view = {style = "sign";};};
 
             surround = {
               mappings = {
@@ -416,15 +408,14 @@
             };
 
             indentscope = {
-              draw = { delay = 50; };
+              draw = {delay = 50;};
 
-              options = { border = "both"; };
+              options = {border = "both";};
 
               symbol = "╎";
             };
 
-            fuzzy = { cutoff = 200; };
-
+            fuzzy = {cutoff = 200;};
           };
         };
 
@@ -433,15 +424,17 @@
         # plugins end - - - - -
       };
 
-      keymaps = [{
-        mode = "n";
-        key = "<leader>e";
-        action = ":NvimTreeOpen<CR>";
-        options = {
-          silent = true;
-          desc = "Open NvimTree file explorer";
-        };
-      }];
+      keymaps = [
+        {
+          mode = "n";
+          key = "<leader>e";
+          action = ":NvimTreeOpen<CR>";
+          options = {
+            silent = true;
+            desc = "Open NvimTree file explorer";
+          };
+        }
+      ];
     };
   };
 }
