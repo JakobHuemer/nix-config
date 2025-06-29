@@ -83,6 +83,12 @@ in {
       pkgs.yarn2nix
       pkgs.meson
 
+      # neovim reqs
+      pkgs.luarocks
+      pkgs.lua5_1
+      pkgs.julia_19-bin
+      pkgs.wget
+
       pkgs.jdk21_headless
 
       # oxide
