@@ -206,6 +206,7 @@
 
         _evalcache gh copilot alias -- zsh
         _evalcache pay-respects zsh --alias --nocnf
+        _evalcache tmuxifier init -
 
         # fetches
 
@@ -224,6 +225,7 @@
         nivm = "nvim";
         vim = "nvim";
         t = "tmux";
+        tm = "tmuxifier";
 
         ip = "ip --color";
         ".." = "cd ..";

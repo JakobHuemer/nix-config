@@ -74,6 +74,7 @@ in {
       pkgs.nixd
       pkgs.nil
       pkgs.tmux
+      pkgs.tmuxifier
       pkgs.fh
       pkgs.openssl
       pkgs.nixfmt-classic
