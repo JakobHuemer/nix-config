@@ -17,15 +17,13 @@ in {
         inherit inputs system nixpkgs vars;
         host = {
           hostName = "nitro";
-          flakePath = "/nixos/etc/nix-config";
+          flakePath = "/etc/nixos/nix-config";
         };
       };
 
       modules = [
         ./nitro
         # ./configuration.nix
-
-        inputs.sops-nix.nixosModules.sops
 
         inputs.home-manager.nixosModules.home-manager
         {

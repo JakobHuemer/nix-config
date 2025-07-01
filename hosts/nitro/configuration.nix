@@ -7,22 +7,39 @@
   host,
   ...
 }: {
-  # imports = import ../modules/nixos;
+  # system
 
-  programs.zsh.enable = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # make gnupg work with pinentry
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
+    # pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-gtk2;
     enableSSHSupport = true;
   };
+
+
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
+  security.polkit.enable = true;
+
+  networking.networkmanager.enable = true;
+  networking.hostName = "macnix";
+
+  programs.zsh.enable = true;
+
+  programs.light.enable = true;
 
   users.users.${vars.user} = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = ["wheel" "networkmanager" "video"];
   };
 
   time.timeZone = "Europe/Vienna";
@@ -58,9 +75,17 @@
     #       nodejs
     #
     #     ]);
-    systemPackages = with pkgs; [
-      zsh
-      pinentry-curses
+    systemPackages = [
+      pkgs.firefox
+      pkgs.grim # screenshots
+      pkgs.slurp # screenshots
+      pkgs.wl-clipboard # obv
+      pkgs.mako # notification system
+
+      pkgs.neovim
+
+      pkgs.gnupg
+      pkgs.pinentry-curses
     ];
   };
 
@@ -73,6 +98,10 @@
         support32Bit = true;
       };
     };
+
+    openssh = {enable = true;};
+
+    gnome.gnome-keyring.enable = true;
   };
 
   nix = {
@@ -98,7 +127,13 @@
   home-manager.extraSpecialArgs = {inherit inputs system nixpkgs vars host;};
 
   home-manager.users.${vars.user} = {
-    imports = import ../modules/home;
+    imports = import ../../modules/home;
+
+    sway.enable = true;
+    ghostty.enable = true;
+    tmux.enable = true;
+
+    git.gpgKey = "C68AA68E0D1846F90E1336278D4386EB3398D4A3";
 
     # nixvim.enable = true;
 
