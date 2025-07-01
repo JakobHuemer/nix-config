@@ -217,7 +217,7 @@ in {
     ghostty.enable = true;
     tmux.enable = false;
 
-    home.stateVersion = "24.11";
+    home.stateVersion = "25.05";
   };
 
   nix = {
@@ -272,7 +272,7 @@ in {
 
   system = {
     #MacOS settings1
-    stateVersion = 5;
+    stateVersion = 6;
     primaryUser = "${vars.user}";
 
     startup.chime = false;
