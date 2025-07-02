@@ -158,6 +158,7 @@ in {
 
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
+    nerd-fonts.fantasque-sans-mono
 
     jost # nice font which looks incredible condensed
   ];
@@ -173,9 +174,13 @@ in {
       # "pablopunk/brew"
     ];
 
-    brews = ["trash"];
+    brews = [
+      "trash"
+    ];
+
 
     casks = [
+      "corelocationcli"
       "github"
       "soduto"
       "alfred"
@@ -215,7 +220,7 @@ in {
     nixcord.enable = true;
     # vscode.enable = true;
     ghostty.enable = true;
-    tmux.enable = false;
+    tmux.enable = true;
 
     home.stateVersion = "25.05";
   };

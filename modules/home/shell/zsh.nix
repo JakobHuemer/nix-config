@@ -65,15 +65,15 @@
             hash = "sha256-qzpnGTrLnq5mNaLlsjSA6VESA88XBdN3Ku/YIgLCb28=";
           };
         }
-        # {
-        #   name = "sudo";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "zap-zsh";
-        #     repo = "sudo";
-        #     rev = "main";
-        #     hash = "sha256-+yMZO4HRF+dS1xOP/19Fneto8JxdVj5GiX3sXOoRdlM=";
-        #   };
-        # }
+        {
+          name = "sudo";
+          src = pkgs.fetchFromGitHub {
+            owner = "zap-zsh";
+            repo = "sudo";
+            rev = "main";
+            hash = "sha256-+yMZO4HRF+dS1xOP/19Fneto8JxdVj5GiX3sXOoRdlM=";
+          };
+        }
         {
           name = "zsh-256color";
           src = pkgs.fetchFromGitHub {
