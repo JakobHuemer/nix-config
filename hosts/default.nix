@@ -49,7 +49,7 @@ in {
       };
       modules = [
         ./nixpi4
-        "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
+        "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
         # ./configuration.nix
 
         # inputs.sops-nix.nixosModules.sops

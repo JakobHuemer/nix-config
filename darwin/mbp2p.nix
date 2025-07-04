@@ -8,14 +8,30 @@
   system,
   ...
 }: {
-
   home-manager.users.${vars.user} = {
-
     git.gpgKey = "D617865DCD802230ED4AFC3B02A04F8328440D81";
-
   };
 
+  nix = {
+    linux-builder = {
+      enable = true;
+      supportedFeatures = ["kvm" "benchmark" "big-parallel" "nixos-test"];
+      maxJobs = 4;
+      package = pkgs.darwin.linux-builder;
+      ephemeral = true;
+      config = {
+        nix.settings.sandbox = false;
+      };
+    };
+    settings.trusted-users = ["@admin"];
+  };
 
+  launchd.daemons.linux-builder = {
+    serviceConfig = {
+      StandardOutPath = "/var/log/darwin-builder.log";
+      StandardErrorPath = "/var/log/darwin-builder.log";
+    };
+  };
 
   environment = {
     systemPackages = [
