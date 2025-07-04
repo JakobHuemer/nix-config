@@ -34,7 +34,7 @@ in {
       ];
     };
 
-  pi4 = let
+  nixpi4 = let
     system = "aarch64-linux";
     nixpkgs = nixpkgs-stable;
   in
@@ -43,12 +43,13 @@ in {
       specialArgs = {
         inherit inputs system nixpkgs vars;
         host = {
-          hostName = "pi4";
+          hostName = "nixpi4";
           flakePath = "/etc/nixos/nix-config";
         };
       };
       modules = [
-        ./pi4
+        ./nixpi4
+        "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
         # ./configuration.nix
 
         # inputs.sops-nix.nixosModules.sops

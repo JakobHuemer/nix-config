@@ -23,12 +23,39 @@
   #   };
   # };
 
-  networking.dhcpcd = {
-    persistent = true;
+  networking = {
+    # dhcpcd = {
+    #   persistent = true;
+    #
+    #   # extraConfig = ''
+    #   #   nixpi4
+    #   # '';
+    # };
 
-    extraConfig = ''
-      nixpi4
-    '';
+    interfaces = {
+      eth0 = {
+        ipv4.addresses = [
+          {
+            address = "192.168.8.42";
+            prefixLength = 24;
+          }
+        ];
+      };
+
+      wlan0 = {
+        ipv4.addresses = [
+          {
+            address = "192.168.8.43";
+            prefixLength = 24;
+          }
+        ];
+      };
+
+      # defaultGateway = {
+      #   address = "192.168.8.11";
+      #   interface = "eth0";
+      # };
+    };
   };
 
   services.openssh = {
@@ -42,10 +69,6 @@
       # PermitRootLogin = "prohibit-password";
     };
 
-    users.users.root.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICULebDDxaeO8wiff+ZAUaD2kzChyoKWW/2KDWt5AbJL jakki@mbp2p"
-    ];
-
     # authorizedKeysFiles = ["/ssh/authorized_keys"];
     #
     # extraConfig = ''
@@ -53,6 +76,9 @@
     #     PasswordAuthentication no
     # '';
   };
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICULebDDxaeO8wiff+ZAUaD2kzChyoKWW/2KDWt5AbJL jakki@mbp2p"
+  ];
 
   # environment.systemPackages = [pkgs.cloudflared];
   #
@@ -82,4 +108,8 @@
   #     };
   #   };
   # };
+
+  system = {
+    stateVersion = "25.05";
+  };
 }

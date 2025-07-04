@@ -72,7 +72,7 @@
       terminal = "ghostty";
       editor = "nvim";
     };
-  in {
+  in rec {
     nixosConfigurations = import ./hosts {
       inherit (nixpkgs) lib;
       inherit inputs nixpkgs nixpkgs-stable nixos-hardware vars;
@@ -87,5 +87,9 @@
       inherit (nixpkgs) lib;
       inherit inputs nixpkgs nixpkgs-stable home-manager nixgl vars;
     };
+
+    # images = {
+    #   nixpi4 = nixosConfigurations.nixpi4.config.system.build.sdImage;
+    # };
   };
 }
