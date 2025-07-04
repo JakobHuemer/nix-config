@@ -42,6 +42,10 @@ in {
     echo "symlink setup done!"
   '';
 
+  services.tailscale = {
+    enable = true;
+  };
+
   environment = {
     variables = {
       EDITOR = "${vars.editor}";
@@ -83,6 +87,10 @@ in {
       pkgs.yarn
       pkgs.yarn2nix
       pkgs.meson
+      pkgs.awscli2
+
+      pkgs.tailscale
+      # pkgs.tailscaled
 
       # neovim reqs
       pkgs.luarocks

@@ -1,6 +1,7 @@
 {
   inputs,
   nixpkgs,
+  nixpkgs-stable,
   vars,
   ...
 }: let
@@ -35,7 +36,7 @@ in {
 
   pi4 = let
     system = "aarch64-linux";
-    nixpkgs = nixpkgs.legacyPackages.${system};
+    nixpkgs = nixpkgs-stable;
   in
     lib.nixosSystem {
       inherit system;
@@ -43,14 +44,14 @@ in {
         inherit inputs system nixpkgs vars;
         host = {
           hostName = "pi4";
-          flakePath = "/nixos/etc/nix-config";
+          flakePath = "/etc/nixos/nix-config";
         };
       };
       modules = [
         ./pi4
         # ./configuration.nix
 
-        inputs.sops-nix.nixosModules.sops
+        # inputs.sops-nix.nixosModules.sops
 
         inputs.home-manager.nixosModules.home-manager
         {
