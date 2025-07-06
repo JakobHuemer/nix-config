@@ -20,7 +20,6 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nixvim = {
       url = "github:nix-community/nixvim";
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -72,7 +71,7 @@
       terminal = "ghostty";
       editor = "nvim";
     };
-  in rec {
+  in {
     nixosConfigurations = import ./hosts {
       inherit (nixpkgs) lib;
       inherit inputs nixpkgs nixpkgs-stable nixos-hardware vars;
@@ -87,9 +86,5 @@
       inherit (nixpkgs) lib;
       inherit inputs nixpkgs nixpkgs-stable home-manager nixgl vars;
     };
-
-    # images = {
-    #   nixpi4 = nixosConfigurations.nixpi4.config.system.build.sdImage;
-    # };
   };
 }

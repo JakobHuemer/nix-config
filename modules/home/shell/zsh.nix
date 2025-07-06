@@ -272,7 +272,8 @@
       };
     };
 
-    starship.enable = true;
+    # starship.enable = true;
+    oh-my-posh.enableZshIntegration = true;
     zoxide.enable = true;
     fzf.enable = true;
     dircolors.enable = true;
@@ -288,7 +289,7 @@
     pay-respects
     pfetch-rs
     macchina
-    starship
+    # starship
     bat
     fzf
     zoxide

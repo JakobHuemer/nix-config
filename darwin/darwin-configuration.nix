@@ -88,6 +88,7 @@ in {
       pkgs.yarn2nix
       pkgs.meson
       pkgs.awscli2
+      pkgs.oh-my-posh
 
       pkgs.tailscale
       # pkgs.tailscaled
