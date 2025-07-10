@@ -4,6 +4,7 @@
   ./nixvim.nix
   ./nvf.nix
   ./starship.nix
+  ./oh-my-posh.nix
   ./zsh.nix
   ./clock-rs.nix
   ./tmux.nix
