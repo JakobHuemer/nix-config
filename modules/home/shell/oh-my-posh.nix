@@ -29,31 +29,35 @@
               style = "plain";
               foreground = "#10212E";
               foreground_templates = [
-                "{{ if or (.Working.Changed) (.Staging.Changed) }}#E78C45{{ end }}"
+                "{{ if or (.Working.Changed) (.Staging.Changed) }}#EA9B20{{ end }}"
                 "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#F2D5CF{{ end }}"
                 "{{ if gt .Ahead 0 }}#8AADF4{{ end }}"
                 "{{ if gt .Behind 0 }}#F2D5CF{{ end }}"
-                "lightgreen"
+                "green"
               ];
-              # foreground_templates = [
-              #   "{{ if or (.Working.Changed) (.Staging.Changed) }}#EA9B20{{ end }}"
-              #   "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#E0B2A7{{ end }}"
-              #   "{{ if gt .Ahead 0 }}#AAC8EB{{ end }}"
-              #   "{{ if gt .Behind 0 }}#E0B2A7{{ end }}"
-              # ];
-              template =
-                "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}"
-                + "{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}"
-                + "{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}"
-                + "{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}"
-                + "{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} ";
+              template = ''
+                {{ .HEAD -}}
+                {{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}
+                {{- if or .Working.Changed .Staging.Changed }} [
+                  {{- if gt .Working.Untracked 0 }}?{{ .Working.Untracked }}{{ end }}
+                  {{- if gt .Working.Modified 0 }}~{{ .Working.Modified }}{{ end }}
+                  {{- if gt .Working.Deleted 0 }}-{{ .Working.Deleted }}{{ end }}
+                  {{- if gt .Working.Unmerged 0 }}={{ .Working.Unmerged }}{{ end }}|
+                  {{- if gt .Staging.Added 0 }}+{{ .Staging.Added }}{{ end }}
+                  {{- if gt .Staging.Modified 0 }}~{{ .Staging.Modified }}{{ end }}
+                  {{- if gt .Staging.Deleted 0 }}-{{ .Staging.Deleted }}{{ end }}
+                  {{- if gt .Staging.Unmerged 0 }}={{ .Staging.Unmerged }}{{ end }}]
+                {{- end }}
+                {{- if gt .StashCount 0 }}  {{ .StashCount }}{{ end -}}
+              '';
               properties = {
-                "fetch_stash_count" = true;
-                "fetch_status" = true;
-                "fetch_upstream_icon" = true;
-                "branch_icon" = "";
+                fetch_stash_count = true;
+                fetch_status = true;
+                fetch_upstream_icon = true;
+                branch_icon = "";
+                rebase_icon = " ";
                 # looks nice but is unpractical but leaving it here for now
-                # "mapped_branches" = {
+                # mapped_branches = {
                 #   "dev*" = "🏗️/";
                 #   "feat/*" = "✨/";
                 #   "feature/*" = "✨/";
