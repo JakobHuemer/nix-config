@@ -55,7 +55,11 @@
                 fetch_status = true;
                 fetch_upstream_icon = true;
                 branch_icon = "";
-                rebase_icon = " ";
+                # branch_identical_icon = "";
+                branch_ahead_icon = "";
+                branch_behind_icon = "";
+                # branch_gone_icon = "�";
+
                 # looks nice but is unpractical but leaving it here for now
                 # mapped_branches = {
                 #   "dev*" = "🏗️/";
