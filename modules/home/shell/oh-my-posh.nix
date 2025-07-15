@@ -14,7 +14,7 @@
           newline = true;
           segments = [
             {
-              template = "{{ if not .Writable }}🔒{{ end }}{{ .Path }} ";
+              template = "{{ if not .Writable }}🔒{{ end }}{{ .Path }}";
               type = "path";
               style = "plain";
               foreground = "cyan";
@@ -36,7 +36,7 @@
                 "green"
               ];
               template = ''
-                {{ .HEAD -}}
+                {{ " " }}{{ .HEAD -}}
                 {{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}
                 {{- if or .Working.Changed .Staging.Changed }} [
                   {{- if gt .Working.Untracked 0 }}?{{ .Working.Untracked }}{{ end }}
@@ -72,6 +72,27 @@
                 # };
               };
             }
+            {
+              type = "java";
+              style = "plain";
+              foreground = "#f73539";
+              template = "  {{ .Full }}";
+              properties = {
+                cache_duration = "30m";
+              };
+            }
+            {
+              type = "docker";
+              style = "plain";
+              foreground = "#5883f7";
+              template = "{{ if ne .Context \"colima\"}}  {{ .Context }}{{ end }}";
+            }
+            {
+              type = "nix-shell";
+              style = "plain";
+              foreground = "#84B0EB";
+              template = "{{ if ne .Type \"unknown\"}}  {{ .Type }}{{ end }}";
+            }
           ];
         }
         {
@@ -96,6 +117,12 @@
           alignment = "left";
           segments = [
             {
+              type = "battery";
+              style = "plain";
+              foreground = "red";
+              template = "{{ if lt .Percentage 15 }}[󰂃 {{ .Percentage }}%] {{ end }}";
+            }
+            {
               type = "status";
               style = "plain";
               foreground = "red";
@@ -110,12 +137,6 @@
                   + "{{ else if and (gt .Code 128) (lt .Code 160) }}⚡{{ else }}❌"
                   + "{{ end }}{{ .Code }}{{ end }}";
               };
-            }
-            {
-              type = "nix-shell";
-              style = "plain";
-              foreground = "#84B0EB";
-              template = "{{ if ne .Type \"unknown\"}} {{ .Type }} {{ end }}";
             }
             {
               type = "text";
