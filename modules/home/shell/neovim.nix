@@ -24,7 +24,7 @@
     home.packages = with pkgs; [
       neovim
       
-      treefmt2
+      treefmt
       shfmt
       rust-analyzer
       nixd

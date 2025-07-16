@@ -50,66 +50,80 @@
   };
 
   homebrew = {
-    taps = ["th-ch/youtube-music"];
+    taps = [
+      "th-ch/youtube-music"
+      "pakerwreah/calendr"
+    ];
 
     casks = [
-      "yed"
-      "anydesk"
-      "easy-move+resize"
-      "bluestacks"
-      "prismlauncher"
-      "minecraft"
-      "mysqlworkbench"
-      "heroic"
-      "figma"
-      "free-download-manager"
-      "zen"
-      "jetbrains-toolbox"
-      "youtube-music"
-      # "vmware-fusion"
-      "brave-browser"
-      "vivaldi"
-      "teamviewer"
-      "wireshark-app"
+      # Calendar & productivity
+      "calendr"
+      "numi"
+      "obsidian"
+      "yaak"
 
-      # ms apps
+      # Communication
+      "discord@canary"
+      "discord@ptb"
+      "signal@beta"
+      "whatsapp"
+      "microsoft-teams"
+      "thunderbird"
+
+      # Microsoft apps
       "microsoft-powerpoint"
       "microsoft-word"
       "microsoft-excel"
-      "microsoft-teams"
 
-      "whatsapp"
-      "thunderbird"
-      "numi"
-      "keyboard-cleaner"
-      "virtualbox"
-      "postman"
-      "insomnia"
-      "yaak"
-      "bruno"
-
-      "google-drive"
-
-      # "geogebra"
-      "signal@beta"
-      "steam"
-
-      "libreoffice"
-      "obsidian"
-
-      "discord@canary"
-      "discord@ptb"
-
-      # "dbeaver-community"
-      "gitkraken"
-      "chromium"
-
-      # "android-platform-tools"
-
+      # Design & creative
+      "figma"
       "adobe-creative-cloud"
 
+      # Development tools
+      "jetbrains-toolbox"
+      "postman"
+      "insomnia"
+      "bruno"
+      "gitkraken"
+      "mysqlworkbench"
+
+      # Browsers
+      "brave-browser"
+      "vivaldi"
+      "chromium"
+
+      # Gaming
+      "prismlauncher"
+      "minecraft"
+      "heroic"
+      "steam"
       "itch"
+      "bluestacks"
+
+      # Remote access
+      "anydesk"
+      "teamviewer"
+
+      # Virtualization
+      "virtualbox"
+      # "vmware-fusion"
+
+      # Utilities
+      "easy-move+resize"
+      "keyboard-cleaner"
+      "free-download-manager"
+      "google-drive"
+      "wireshark-app"
+      "zen"
+      "yed"
+
+      # Office
+      "libreoffice"
+
+      # Music
+      "youtube-music"
     ];
+
     masApps = {};
   };
 
