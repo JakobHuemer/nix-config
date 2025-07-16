@@ -239,7 +239,7 @@ in {
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     gc = {
       automatic = true;
-      options = "delete-older-than 10d";
+      options = "delete-older-than 30d";
     };
     optimise.automatic = true;
     registry.nixpkgs.flake = inputs.nixpkgs;
