@@ -50,6 +50,9 @@
 
           pushf = "push --force-with-lease";
           pfwl = "push --force-with-lease";
+
+          cam = "commit -am";
+          ca = "commit -a";
         };
 
         url = {
