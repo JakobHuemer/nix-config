@@ -89,6 +89,7 @@ in {
       pkgs.meson
       pkgs.awscli2
       pkgs.oh-my-posh
+      pkgs.unar
 
       pkgs.tailscale
       # pkgs.tailscaled
@@ -100,6 +101,7 @@ in {
       pkgs.wget
 
       pkgs.jdk21_headless
+      pkgs.nushell
 
       # oxide
       pkgs.ripgrep # better grep

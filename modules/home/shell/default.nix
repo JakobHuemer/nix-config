@@ -8,4 +8,5 @@
   ./zsh.nix
   ./clock-rs.nix
   ./tmux.nix
+  ./nushell.nix
 ]
