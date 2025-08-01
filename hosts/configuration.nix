@@ -52,15 +52,11 @@
       VISUAL = "${vars.editor}";
     };
 
-    # systemPackages = (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; })
-    #   ++ (import ../nixconf/pckgs-all.nix { inherit pkgs; }) ++ (with pkgs;
-    #     [
-    #       nodejs
-    #
-    #     ]);
     systemPackages = with pkgs; [
       zsh
       pinentry-curses
+      ripgrep
+      fh
     ];
   };
 

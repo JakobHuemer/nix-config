@@ -189,7 +189,6 @@ in {
       "trash"
     ];
 
-
     casks = [
       "corelocationcli"
       "github"

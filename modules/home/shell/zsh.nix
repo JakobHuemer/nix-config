@@ -1,5 +1,6 @@
 {
   pkgs,
+  host,
   ...
 }: {
   programs = {
@@ -68,7 +69,7 @@
           src = pkgs.fetchFromGitHub {
             owner = "zap-zsh";
             repo = "sudo";
-            rev = "main";
+            rev = "master";
             hash = "sha256-+yMZO4HRF+dS1xOP/19Fneto8JxdVj5GiX3sXOoRdlM=";
           };
         }
@@ -214,8 +215,14 @@
 
         # autoload -Uz +X compinit && compinit
       '';
-
-      shellAliases = {
+      shellAliases = let
+        nurseCmd =
+          if pkgs.stdenv.isDarwin
+          then "sudo darwin-rebuild switch --flake ${host.flakePath}#${host.hostName}"
+          else if pkgs.stdenv.isLinux
+          then "sudo nixos-rebuild switch --flake ${host.flakePath}#${host.hostName}"
+          else "echo 'Unsupported system'";
+      in {
         "??" = "ghcs";
         "e?" = "ghce";
 
@@ -234,29 +241,6 @@
         cdd = "cd ~/D";
         fk = "fuck";
 
-        # git
-        gs = "git status";
-        gss = "git status --short";
-
-        ga = "git add";
-        "ga." = "git add -A";
-        gap = "git add --patch";
-        gr = "git restore";
-        gc = "git commit";
-
-        gp = "git push";
-        gu = "git pull";
-        gm = "git merge";
-
-        gl = "git log --color --graph --pretty=format:'%C(red)%h%Creset %C(bold blue)<%an> %C(green)%cr %C(auto)%d %n%Creset%s%n'";
-        gw = "git checkout";
-
-        gd = "git diff";
-        gds = "git diff --staged";
-
-        gb = "git branch";
-        gbd = "git branch -r -d";
-
         sudes = "sudo -E -s";
 
         c = "z";
@@ -266,7 +250,11 @@
 
         icat = "kitten icat";
 
-        nurse = "sudo darwin-rebuild switch --flake ~/nix#mbp2p";
+        md = "mullvad";
+        mdrl = "mullvad relay set location";
+        mdl = "mullvad relay set custom-list";
+
+        nurse = nurseCmd;
       };
     };
 

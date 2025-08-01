@@ -13,7 +13,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # make gnupg work with pinentry
-  services.pcscd.enable = true;
+  # services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
     # pinentryFlavor = "curses";
@@ -21,16 +21,24 @@
     enableSSHSupport = true;
   };
 
-
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
   };
 
+  services.udev.packages = [
+    pkgs.yubikey-personalization
+  ];
+
   security.polkit.enable = true;
+  security.pki.certificateFiles = ["${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
 
   networking.networkmanager.enable = true;
-  networking.hostName = "macnix";
+  networking.hostName = "nitro";
 
   programs.zsh.enable = true;
 
@@ -67,25 +75,27 @@
       TERMINAL = "${vars.terminal}";
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
+      SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
     };
 
-    # systemPackages = (import ../nixconf/shell/nvim-pkgs.nix { inherit pkgs; })
-    #   ++ (import ../nixconf/pckgs-all.nix { inherit pkgs; }) ++ (with pkgs;
-    #     [
-    #       nodejs
-    #
-    #     ]);
-    systemPackages = [
-      pkgs.firefox
-      pkgs.grim # screenshots
-      pkgs.slurp # screenshots
-      pkgs.wl-clipboard # obv
-      pkgs.mako # notification system
+    systemPackages = with pkgs; [
+      firefox
+      grim # screenshots
+      slurp # screenshots
+      wl-clipboard # obv
+      mako # notification system
+      pavucontrol
 
-      pkgs.neovim
+      neovim
 
-      pkgs.gnupg
-      pkgs.pinentry-curses
+      gnupg
+      pinentry-curses
+
+      mullvad-vpn
+      mullvad
+
+      cacert
+      openssl
     ];
   };
 
@@ -102,6 +112,8 @@
     openssh = {enable = true;};
 
     gnome.gnome-keyring.enable = true;
+
+    mullvad-vpn.enable = true;
   };
 
   nix = {
@@ -130,8 +142,13 @@
     imports = import ../../modules/home;
 
     sway.enable = true;
+    tofi.enable = true;
     ghostty.enable = true;
     tmux.enable = true;
+
+    useStylix = true;
+
+    zen.enable = true;
 
     git.gpgKey = "C68AA68E0D1846F90E1336278D4386EB3398D4A3";
 

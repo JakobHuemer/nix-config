@@ -12,26 +12,47 @@
   config = lib.mkIf config.sway.enable {
     wayland.windowManager.sway = {
       enable = true;
-      config = rec {
-        terminal = "foot";
-        startup = [{command = "firefox";}];
+      config = {
+        terminal = "ghostty";
+        startup = [];
         focus = {
           followMouse = true;
           mouseWarping = true;
         };
         modifier = "Mod1";
-        menu = "dmenu-wl_run -i";
+        # menu = "dmenu-wl_run -i";
+        menu =
+          "tofi-drun --output \"$(swaymsg -t get_outputs | jq -r '.[] "
+          + "| select(.focused).name')\" | xargs swaymsg exec --";
+
+        defaultWorkspace = "1";
 
         keybindings = let
           modifier = config.wayland.windowManager.sway.config.modifier;
         in
-          lib.mkOptionDefault {"${modifier}+Shift+q" = "kill";};
+          lib.mkOptionDefault {"${modifier}+q" = "kill";};
 
         output = {
-          "Virtual-1" = {
-            resolution = "2560x1600";
-            scale = "1.8";
+          # "Virtual-1" = {
+          #   resolution = "2560x1600";
+          #   scale = "1.8";
+          #   scale_filter = "smart";
+          # };
+          "HDMI-A-1" = {
+            position = "-300 -1440";
+            resolution = "2560x1440";
+            scale = "1";
             scale_filter = "smart";
+            adaptive_sync = "off";
+            allow_tearing = "yes";
+          };
+          "eDP-1" = {
+            position = "0 0";
+            resolution = "1920x1080";
+            scale = "1";
+            scale_filter = "smart";
+            adaptive_sync = "off";
+            allow_tearing = "yes";
           };
         };
 
@@ -39,7 +60,22 @@
           "type:keyboard" = {
             xkb_layout = "de";
             xkb_variant = "nodeadkeys";
-            xkb_options = "lv3:ralt_switch";
+            xkb_options = "caps:escape";
+            repeat_delay = "200";
+            repeat_rate = "32";
+          };
+
+          "type:pointer" = {
+            accel_profile = "flat";
+            pointer_accel = "-0.4";
+          };
+
+          "type:touchpad" = {
+            natural_scroll = "enabled";
+            dwt = "enabled";
+            tap = "enabled";
+            scroll_factor = "0.2";
+            drag_lock = "disabled";
           };
         };
       };
@@ -47,7 +83,15 @@
       extraConfig = "";
     };
 
-    home.packages = [pkgs.ghostty pkgs.dmenu-wayland pkgs.alacritty pkgs.kitty pkgs.foot];
+    home.packages = with pkgs; [
+      ghostty
+      dmenu-wayland
+      alacritty
+      kitty
+      foot
+      dconf
+      jq # for getting focused display
+    ];
 
     home.pointerCursor = {
       name = "Adwaita";
