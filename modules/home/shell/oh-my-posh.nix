@@ -142,11 +142,18 @@
               type = "text";
               style = "plain";
               background = "transparent";
+              foreground = "#82AAFF";
+              template = "{{ if .Env.DISTROBOX_ENTER_PATH }}🐧{{ end }}";
+            }
+            {
+              type = "text";
+              style = "plain";
+              background = "transparent";
               foreground_templates = [
                 "{{ if ne .Code 0 }}red{{ end }}"
                 "magenta"
               ];
-              template = "λ";
+              template = "{{ if .Env.DISTROBOX_ENTER_PATH }}{{ else }}λ{{ end }}";
             }
           ];
         }
@@ -155,7 +162,7 @@
       transient_prompt = {
         background = "transparent";
         foreground = "#ffffff";
-        template = "λ ";
+        template = "{{ if .Env.DISTROBOX_ENTER_PATH }}🐧{{ else }}λ{{ end }} ";
         foreground_templates = [
           "{{ if ne .Code 0 }}red{{ end }}"
           "magenta"

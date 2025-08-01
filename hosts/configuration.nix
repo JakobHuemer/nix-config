@@ -15,14 +15,14 @@
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
+    # pinentryFlavor = "curses";
     enableSSHSupport = true;
   };
 
   users.users.${vars.user} = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = ["wheel" "networkmanager" "video"];
   };
 
   time.timeZone = "Europe/Vienna";
@@ -36,14 +36,18 @@
     keyMap = "de-latin1";
   };
 
-  fonts.packages = with pkgs; [
-    jetbrains-mono
+  fonts.packages = with pkgs;
+    [
+      jetbrains-mono
 
-    noto-fonts
-    noto-fonts-emoji
+      noto-fonts
+      # noto-fonts-emoji
 
-    corefonts # MS
-  ];
+      corefonts # MS
+    ]
+    ++ [
+      inputs.apple-emoji-linux.packages.${system}.default
+    ];
 
   environment = {
     variables = {
@@ -52,24 +56,28 @@
       VISUAL = "${vars.editor}";
     };
 
-    systemPackages = with pkgs; [
-      zsh
-      pinentry-curses
-      ripgrep
-      fh
-    ];
+    systemPackages = with pkgs;
+      [
+        zsh
+        pinentry-curses
+        ripgrep
+        fh
+      ]
+      ++ [
+        inputs.apple-emoji-linux.packages.${system}.default
+      ];
   };
 
-  hardware.pulseaudio.enable = false;
-  services = {
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-    };
-  };
+  # hardware.pulseaudio.enable = false;
+  # services = {
+  #   pipewire = {
+  #     enable = true;
+  #     alsa = {
+  #       enable = true;
+  #       support32Bit = true;
+  #     };
+  #   };
+  # };
 
   nix = {
     settings = {auto-optimise-store = true;};
@@ -96,13 +104,9 @@
   home-manager.users.${vars.user} = {
     imports = import ../modules/home;
 
-    # nixvim.enable = true;
-
     home = {stateVersion = "25.05";};
 
     programs = {home-manager.enable = true;};
-
-    # other homemanager stuff for NixOs
   };
 
   system = {stateVersion = "25.05";};

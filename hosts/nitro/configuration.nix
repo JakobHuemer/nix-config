@@ -12,13 +12,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # make gnupg work with pinentry
-  # services.pcscd.enable = true;
-  programs.gnupg.agent = {
+  virtualisation.podman = {
     enable = true;
-    # pinentryFlavor = "curses";
-    pinentryPackage = pkgs.pinentry-gtk2;
-    enableSSHSupport = true;
+    dockerCompat = true;
   };
 
   programs.sway = {
@@ -44,18 +40,6 @@
 
   programs.light.enable = true;
 
-  users.users.${vars.user} = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = ["wheel" "networkmanager" "video"];
-  };
-
-  time.timeZone = "Europe/Vienna";
-  i18n = {
-    defaultLocale = "en_GB.UTF-8";
-    extraLocaleSettings = {LC_MONETARY = "de_AT.UTF-8";};
-  };
-
   console = {
     font = "Lat2-Terminus16";
     keyMap = "de-latin1";
@@ -68,6 +52,7 @@
     noto-fonts-emoji
 
     corefonts # MS
+    youtube-music
   ];
 
   environment = {
@@ -85,6 +70,7 @@
       wl-clipboard # obv
       mako # notification system
       pavucontrol
+      distrobox
 
       neovim
 
@@ -116,49 +102,21 @@
     mullvad-vpn.enable = true;
   };
 
-  nix = {
-    settings = {auto-optimise-store = true;};
-
-    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "delete-older-than 10d";
-    };
-    registry.nixpkgs.flake = inputs.nixpkgs;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      keep-outputs          = true
-      keep-derivations      = true
-    '';
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
   home-manager.extraSpecialArgs = {inherit inputs system nixpkgs vars host;};
 
   home-manager.users.${vars.user} = {
-    imports = import ../../modules/home;
-
     sway.enable = true;
     tofi.enable = true;
     ghostty.enable = true;
     tmux.enable = true;
+
+    nixcord.enable = true;
 
     useStylix = true;
 
     zen.enable = true;
 
     git.gpgKey = "C68AA68E0D1846F90E1336278D4386EB3398D4A3";
-
-    # nixvim.enable = true;
-
-    home = {stateVersion = "25.05";};
-
-    programs = {home-manager.enable = true;};
-
-    # other homemanager stuff for NixOs
   };
 
   system = {stateVersion = "25.05";};

@@ -216,12 +216,19 @@
         # autoload -Uz +X compinit && compinit
       '';
       shellAliases = let
+        flakepart = "--flake ${host.flakePath}#${host.hostName}";
         nurseCmd =
           if pkgs.stdenv.isDarwin
-          then "sudo darwin-rebuild switch --flake ${host.flakePath}#${host.hostName}"
+          then "sudo darwin-rebuild switch ${flakepart}"
           else if pkgs.stdenv.isLinux
-          then "sudo nixos-rebuild switch --flake ${host.flakePath}#${host.hostName}"
-          else "echo 'Unsupported system'";
+          then "sudo nixos-rebuild switch ${flakepart}"
+          else "echo 'Unsupported system -> not switching'";
+        nurstCmd =
+          if pkgs.stdenv.isDarwin
+          then "sudo darwin-rebuild test ${flakepart}"
+          else if pkgs.stdenv.isLinux
+          then "sudo nixos-rebuild test ${flakepart}"
+          else "echo 'Unsupported system -> not testing'";
       in {
         "??" = "ghcs";
         "e?" = "ghce";
@@ -255,6 +262,7 @@
         mdl = "mullvad relay set custom-list";
 
         nurse = nurseCmd;
+        nurst = nurstCmd;
       };
     };
 

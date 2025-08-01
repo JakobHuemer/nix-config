@@ -12,6 +12,17 @@
   config = lib.mkIf config.nixcord.enable {
     programs.nixcord = {
       enable = true;
+
+      # dorion = {
+      #   enable = true;
+      #   theme = "dark";
+      #   zoom = "0.9";
+      #   blur = "acrylic";
+      #   sysTray = true;
+      #   desktopNotifications = true;
+      #   unreadBadge = true;
+      # };
+
       quickCss = "";
       config = {
         useQuickCss = true;

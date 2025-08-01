@@ -11,7 +11,6 @@ in {
 
   nitro = let
     system = "x86_64-linux";
-    nurse = "sudo nixos-rebuild switch --flake /etc/nixos/nix-config#nitro";
   in
     lib.nixosSystem {
       inherit system;
@@ -25,7 +24,7 @@ in {
 
       modules = [
         ./nitro
-        # ./configuration.nix
+        ./configuration.nix
 
         inputs.home-manager.nixosModules.home-manager
         {

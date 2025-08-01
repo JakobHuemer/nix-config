@@ -23,6 +23,8 @@
 
       image = ../../../assets/img/bg/planet.jpg;
 
+      targets.nixcord.enable = false;
+
       fonts = {
         serif = {
           package = pkgs.dejavu_fonts;
