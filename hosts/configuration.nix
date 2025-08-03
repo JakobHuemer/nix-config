@@ -7,7 +7,7 @@
   host,
   ...
 }: {
-  # imports = import ../modules/nixos;
+  imports = import ../modules/nixos;
 
   programs.zsh.enable = true;
 
