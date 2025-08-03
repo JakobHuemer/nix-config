@@ -73,6 +73,7 @@
       distrobox
 
       neovim
+      vscode
 
       gnupg
       pinentry-curses
@@ -106,6 +107,8 @@
 
   home-manager.users.${vars.user} = {
     sway.enable = true;
+    waybar.enable = true;
+
     tofi.enable = true;
     ghostty.enable = true;
     tmux.enable = true;

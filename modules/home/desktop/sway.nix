@@ -78,6 +78,11 @@
             drag_lock = "disabled";
           };
         };
+        bars = [
+          {
+            command = "waybar";
+          }
+        ];
       };
 
       extraConfig = "";
@@ -91,6 +96,7 @@
       foot
       dconf
       jq # for getting focused display
+      waybar
     ];
 
     home.pointerCursor = {

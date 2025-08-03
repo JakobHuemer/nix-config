@@ -41,7 +41,7 @@
         prompt-color = lib.mkForce "#D0D0F0FF";
         prompt-background = lib.mkForce "#0000";
         selection-background = lib.mkForce "#0000";
-        selection-color = lib.mkForce "#D0D0F0FF";
+        selection-color = lib.mkForce "#8080A0FF";
         default-result-background = lib.mkForce "#0000";
       };
     };
