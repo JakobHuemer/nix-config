@@ -14,6 +14,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  hardware.opengl.enable = true;
+  hardware.nvidia.open = true;
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia.prime = {
+    nvidiaBusId = "PCI:1:0:0";
+    amdgpuBusId = "PCI:5:0:0";
+  };
+
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
@@ -42,26 +51,8 @@
 
   programs.light.enable = true;
 
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "de-latin1";
-  };
-
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-
-    noto-fonts
-    noto-fonts-emoji
-
-    corefonts # MS
-    youtube-music
-  ];
-
   environment = {
     variables = {
-      TERMINAL = "${vars.terminal}";
-      EDITOR = "${vars.editor}";
-      VISUAL = "${vars.editor}";
       SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
     };
 
@@ -73,6 +64,7 @@
       mako # notification system
       pavucontrol
       distrobox
+      prismlauncher
 
       neovim
       vscode
@@ -116,6 +108,8 @@
     tmux.enable = true;
 
     nixcord.enable = true;
+
+    youtube-music.enable = true;
 
     useStylix = true;
 

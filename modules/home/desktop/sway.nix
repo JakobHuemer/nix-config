@@ -10,7 +10,9 @@
   options = {sway.enable = lib.mkEnableOption "enabled sway";};
 
   config = lib.mkIf config.sway.enable {
-    wayland.windowManager.sway = {
+    wayland.windowManager.sway = let
+      current_monitor = "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused).name')";
+    in {
       enable = true;
       config = {
         terminal = "ghostty";
@@ -20,10 +22,10 @@
           mouseWarping = true;
         };
         modifier = "Mod1";
-        # menu = "dmenu-wl_run -i";
-        menu =
-          "tofi-drun --output \"$(swaymsg -t get_outputs | jq -r '.[] "
-          + "| select(.focused).name')\" | xargs swaymsg exec --";
+        menu = "dmenu-wl_run -i --monitor \"${current_monitor}\"";
+        # menu =
+        #   "tofi-drun --output \"$(swaymsg -t get_outputs | jq -r '.[] "
+        #   + "| select(.focused).name')\" | xargs swaymsg exec --";
 
         defaultWorkspace = "1";
 
@@ -39,7 +41,7 @@
           #   scale_filter = "smart";
           # };
           "HDMI-A-1" = {
-            position = "-300 -1440";
+            position = "0 0";
             resolution = "2560x1440";
             scale = "1";
             scale_filter = "smart";
@@ -47,7 +49,7 @@
             allow_tearing = "yes";
           };
           "eDP-1" = {
-            position = "0 0";
+            position = "300 1440";
             resolution = "1920x1080";
             scale = "1";
             scale_filter = "smart";
