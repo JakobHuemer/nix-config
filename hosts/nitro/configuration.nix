@@ -1,10 +1,12 @@
 {
+  lib,
   pkgs,
   inputs,
   vars,
   system,
   nixpkgs,
   host,
+  config,
   ...
 }: {
   # system
@@ -14,13 +16,44 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  hardware.opengl.enable = true;
-  hardware.nvidia.open = true;
-  services.xserver.videoDrivers = ["nvidia"];
+  boot.kernelModules = ["nouveau"];
 
-  hardware.nvidia.prime = {
-    nvidiaBusId = "PCI:1:0:0";
-    amdgpuBusId = "PCI:5:0:0";
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      mesa
+    ];
+  };
+  # services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+
+    open = true;
+
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    prime = {
+      sync.enable = true;
+      nvidiaBusId = "PCI:1:0:0";
+      amdgpuBusId = "PCI:5:0:0";
+    };
+  };
+
+  specialisation = {
+    on-the-go.configuration = {
+      system.nixos.tags = ["on-the-go"];
+      hardware.nvidia = {
+        prime = {
+          sync.enable = lib.mkForce false;
+          offload.enable = lib.mkForce true;
+          offload.enableOffloadCmd = lib.mkdForce true;
+        };
+      };
+    };
   };
 
   virtualisation.podman = {
@@ -80,8 +113,8 @@
     ];
   };
 
-  hardware.pulseaudio.enable = false;
   services = {
+    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       alsa = {
