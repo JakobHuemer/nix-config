@@ -7,7 +7,11 @@
   host,
   ...
 }: {
-  imports = import ../modules/nixos;
+  imports =
+    [
+      inputs.home-manager.nixosModules.home-manager
+    ]
+    ++ (import ../modules/nixos);
 
   programs.zsh.enable = true;
 
@@ -99,14 +103,20 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home-manager.extraSpecialArgs = {inherit inputs system nixpkgs vars host;};
+  home-manager = {
+    extraSpecialArgs = {inherit inputs system vars nixpkgs host;};
 
-  home-manager.users.${vars.user} = {
+    useGlobalPkgs = false; # will not me possible with nixpkgs
+    useUserPackages = true;
+  };
+
+  home-manager.users.${vars.user} = {pkgs, ...}: {
     imports = import ../modules/home;
 
-    home = {stateVersion = "25.05";};
+    nixpkgs.config.allowUnfree = true;
 
     programs = {home-manager.enable = true;};
+    home = {stateVersion = "25.05";};
   };
 
   system = {stateVersion = "25.05";};

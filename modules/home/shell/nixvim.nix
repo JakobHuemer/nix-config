@@ -7,7 +7,7 @@
   inputs,
   ...
 }: {
-  imports = [inputs.nixvim.homeManagerModules.nixvim];
+  imports = [inputs.nixvim.homeModules.nixvim];
 
   options = {nixvim.enable = lib.mkEnableOption "enables nixvim";};
 

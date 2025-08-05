@@ -98,6 +98,7 @@
       pavucontrol
       distrobox
       prismlauncher
+      thunderbird
 
       neovim
       vscode

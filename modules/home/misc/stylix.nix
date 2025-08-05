@@ -25,6 +25,8 @@
 
       targets.nixcord.enable = false;
 
+      targets.zen-browser.enable = false;
+
       fonts = {
         serif = {
           package = pkgs.dejavu_fonts;
