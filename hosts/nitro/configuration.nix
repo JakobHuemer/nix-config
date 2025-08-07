@@ -12,6 +12,7 @@
   # system
 
   steam.enable = true;
+  tuigreet.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -13,15 +13,15 @@
     programs.nixcord = {
       enable = true;
 
-      # dorion = {
-      #   enable = true;
-      #   theme = "dark";
-      #   zoom = "0.9";
-      #   blur = "acrylic";
-      #   sysTray = true;
-      #   desktopNotifications = true;
-      #   unreadBadge = true;
-      # };
+      dorion = {
+        enable = true;
+        theme = "dark";
+        zoom = "0.9";
+        blur = "acrylic";
+        sysTray = true;
+        desktopNotifications = true;
+        unreadBadge = true;
+      };
 
       quickCss = "";
       config = {
