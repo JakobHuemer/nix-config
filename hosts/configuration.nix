@@ -15,6 +15,8 @@
 
   programs.zsh.enable = true;
 
+  services.udisks2.enable = true;
+
   # make gnupg work with pinentry
   services.pcscd.enable = true;
   programs.gnupg.agent = {
@@ -26,7 +28,7 @@
   users.users.${vars.user} = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["wheel" "networkmanager" "video"];
+    extraGroups = ["wheel" "networkmanager" "video" "storage"];
   };
 
   time.timeZone = "Europe/Vienna";
@@ -115,6 +117,14 @@
     imports = import ../modules/home;
 
     nixpkgs.config.allowUnfree = true;
+
+    services.udiskie.enable = true;
+
+    services.udiskie.settings = {
+      automount = true;
+      notify = true;
+      tray = false;
+    };
 
     programs = {home-manager.enable = true;};
     home = {stateVersion = "25.05";};

@@ -33,6 +33,7 @@
     nixfmt-rfc-style
     rustfmt
     alejandra
+    stylua
 
     vscode-langservers-extracted
     vimPlugins.nvim-ts-autotag

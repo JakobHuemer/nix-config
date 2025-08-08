@@ -136,6 +136,7 @@
 
   home-manager.users.${vars.user} = {
     sway.enable = true;
+    mako.enable = true;
     waybar.enable = true;
 
     tofi.enable = true;
