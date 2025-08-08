@@ -26,6 +26,22 @@
         # menu =
         #   "tofi-drun --output \"$(swaymsg -t get_outputs | jq -r '.[] "
         #   + "| select(.focused).name')\" | xargs swaymsg exec --";
+        workspaceAutoBackAndForth = true; # pres $mod + <n> to got there and again to go to previous
+        workspaceOutputAssign = [
+          {
+            output = "HDMI-A-1";
+            workspace = "1";
+          }
+          {
+            output = "eDP-1";
+            workspace = "2";
+          }
+        ];
+
+        gaps = {
+          smartBorders = "no_gaps";
+          smartGaps = true;
+        };
 
         defaultWorkspace = "1";
 
@@ -35,11 +51,6 @@
           lib.mkOptionDefault {"${modifier}+q" = "kill";};
 
         output = {
-          # "Virtual-1" = {
-          #   resolution = "2560x1600";
-          #   scale = "1.8";
-          #   scale_filter = "smart";
-          # };
           "HDMI-A-1" = {
             position = "0 0";
             resolution = "2560x1440";

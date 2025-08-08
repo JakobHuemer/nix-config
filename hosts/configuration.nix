@@ -66,6 +66,7 @@
         pinentry-curses
         ripgrep
         fh
+        nemo
       ]
       ++ [
         inputs.apple-emoji-linux.packages.${system}.default

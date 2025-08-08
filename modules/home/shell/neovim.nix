@@ -32,6 +32,7 @@
     yapf
     nixfmt-rfc-style
     rustfmt
+    alejandra
 
     vscode-langservers-extracted
     vimPlugins.nvim-ts-autotag
