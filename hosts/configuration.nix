@@ -1,9 +1,9 @@
 {
   pkgs,
+  pkgs-stable,
   inputs,
   vars,
   system,
-  nixpkgs,
   host,
   ...
 }: {
@@ -69,6 +69,7 @@
         ripgrep
         fh
         nemo
+        rustup
       ]
       ++ [
         inputs.apple-emoji-linux.packages.${system}.default
@@ -107,7 +108,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs system vars nixpkgs host;};
+    extraSpecialArgs = {inherit inputs system vars pkgs-stable host;};
 
     useGlobalPkgs = false; # will not me possible with nixpkgs
     useUserPackages = true;

@@ -100,6 +100,8 @@
       distrobox
       prismlauncher
       thunderbird
+      whatsie
+      jetbrains-toolbox
 
       neovim
       vscode

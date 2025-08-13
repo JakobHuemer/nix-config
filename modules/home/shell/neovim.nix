@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  pkgs-stable,
   vars,
   ...
 }: {
@@ -21,32 +22,35 @@
   #   ];
   # };
 
-  home.packages = with pkgs; [
-    neovim
+  home.packages = with pkgs;
+    [
+      neovim
 
-    treefmt
-    shfmt
-    rust-analyzer
-    nixd
-    prettierd
-    yapf
-    nixfmt-rfc-style
-    rustfmt
-    alejandra
-    stylua
+      treefmt
+      shfmt
+      nixd
+      prettierd
+      yapf
+      nixfmt-rfc-style
+      rustfmt
+      alejandra
+      stylua
 
-    vscode-langservers-extracted
-    vimPlugins.nvim-ts-autotag
+      vscode-langservers-extracted
+      vimPlugins.nvim-ts-autotag
 
-    # deps for lua installation
-    # probably can be removed when migrating to nix
-    gcc
-    tree-sitter
-    nodejs
-    lua
-    unzip
-    cargo
-    python314
-  ];
+      # deps for lua installation
+      # probably can be removed when migrating to nix
+      gcc
+      tree-sitter
+      nodejs
+      lua
+      unzip
+      cargo
+      python314
+    ]
+    ++ (with pkgs-stable; [
+      rust-analyzer
+    ]);
   # };
 }

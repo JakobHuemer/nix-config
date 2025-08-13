@@ -218,7 +218,7 @@ in {
   };
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs pkgs vars host;};
+    extraSpecialArgs = {inherit inputs pkgs pkgs-stable vars host;};
     backupFileExtension = "nix-backup";
   };
 
