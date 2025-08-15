@@ -118,15 +118,6 @@
   };
 
   services = {
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-    };
-
     openssh = {enable = true;};
 
     gnome.gnome-keyring.enable = true;
