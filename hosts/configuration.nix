@@ -28,6 +28,19 @@
     # };
   };
 
+  security.sudo = {
+    extraConfig = ''
+      Defaults insults
+    '';
+    # until insults are in sudo-rs, will use sudo instead
+    # enable = false;
+    # sudo-rs = {
+    #   enable = true;
+    #   execWheelOnly = true;
+    #   wheelNeedsPassword = true;
+    # };
+  };
+
   # services.pulseaudio.enable = false;
   # services.pulseaudio.support32Bit = true;
 
