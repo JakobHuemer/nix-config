@@ -48,10 +48,10 @@
       unzip
       cargo
       python314
-      # rust-analyzer
+      rust-analyzer
     ]
     ++ (with pkgs-stable; [
-      rust-analyzer
+      # rust-analyzer
     ]);
   # };
 }
