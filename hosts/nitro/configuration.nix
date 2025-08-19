@@ -104,7 +104,7 @@
       jetbrains-toolbox
 
       neovim
-      vscode
+      vscode-fhs
 
       gnupg
       pinentry-curses
