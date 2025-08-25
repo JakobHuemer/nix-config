@@ -15,6 +15,24 @@
 
   programs.zsh.enable = true;
 
+  # printing
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      cups-filters
+      cups-browsed
+      gutenprint
+      canon-cups-ufr2
+      canon-capt
+    ];
+  };
+
   services.udisks2.enable = true;
 
   hardware.bluetooth = {
