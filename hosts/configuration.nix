@@ -144,6 +144,7 @@
         fh
         nemo
         rustup
+        bitwarden-cli
       ]
       ++ [
         inputs.apple-emoji-linux.packages.${system}.default
