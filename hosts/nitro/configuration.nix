@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  pkgs-stable,
   inputs,
   vars,
   system,
@@ -90,31 +91,34 @@
       SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
     };
 
-    systemPackages = with pkgs; [
-      firefox
-      grim # screenshots
-      slurp # screenshots
-      wl-clipboard # obv
-      mako # notification system
-      pavucontrol
-      distrobox
-      prismlauncher
-      thunderbird
-      whatsie
-      jetbrains-toolbox
+    systemPackages = with pkgs;
+      [
+        firefox
+        grim # screenshots
+        slurp # screenshots
+        wl-clipboard # obv
+        mako # notification system
+        pavucontrol
+        distrobox
+        prismlauncher
+        thunderbird
+        jetbrains-toolbox
 
-      neovim
-      vscode-fhs
+        neovim
+        vscode-fhs
 
-      gnupg
-      pinentry-curses
+        gnupg
+        pinentry-curses
 
-      mullvad-vpn
-      mullvad
+        mullvad-vpn
+        mullvad
 
-      cacert
-      openssl
-    ];
+        cacert
+        openssl
+      ]
+      ++ (with pkgs-stable; [
+        whatsie
+      ]);
   };
 
   services = {

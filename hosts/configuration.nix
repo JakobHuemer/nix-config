@@ -116,8 +116,8 @@
     keyMap = "de-latin1";
   };
 
-  fonts.packages = with pkgs;
-    [
+  fonts.packages =
+    with pkgs; [
       jetbrains-mono
 
       noto-fonts
@@ -125,9 +125,10 @@
 
       corefonts # MS
     ]
-    ++ [
-      inputs.apple-emoji-linux.packages.${system}.default
-    ];
+    # ++ [
+    #   inputs.apple-emoji-linux.packages.${system}.default
+    # ]
+    ;
 
   environment = {
     variables = {
@@ -136,8 +137,8 @@
       VISUAL = "${vars.editor}";
     };
 
-    systemPackages = with pkgs;
-      [
+    systemPackages =
+      with pkgs; [
         zsh
         pinentry-curses
         ripgrep
@@ -146,9 +147,10 @@
         rustup
         bitwarden-cli
       ]
-      ++ [
-        inputs.apple-emoji-linux.packages.${system}.default
-      ];
+      # ++ [
+      #   inputs.apple-emoji-linux.packages.${system}.default
+      # ]
+      ;
   };
 
   nix = {
