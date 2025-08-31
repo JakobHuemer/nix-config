@@ -46,6 +46,8 @@
     # };
   };
 
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
   security.sudo = {
     extraConfig = ''
       Defaults insults
