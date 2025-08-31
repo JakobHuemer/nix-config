@@ -187,6 +187,8 @@
 
     services.udiskie.enable = true;
 
+    libre-office.enable = true;
+
     services.udiskie.settings = {
       automount = true;
       notify = true;

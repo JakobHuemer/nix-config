@@ -22,10 +22,10 @@
           mouseWarping = true;
         };
         modifier = "Mod1";
-        menu = "dmenu-wl_run -i --monitor \"${current_monitor}\"";
-        # menu =
-        #   "tofi-drun --output \"$(swaymsg -t get_outputs | jq -r '.[] "
-        #   + "| select(.focused).name')\" | xargs swaymsg exec --";
+        # menu = "dmenu-wl_run -i --monitor \"${current_monitor}\"";
+        menu =
+          "tofi-drun --output \"$(swaymsg -t get_outputs | jq -r '.[] "
+          + "| select(.focused).name')\" | xargs swaymsg exec --";
         workspaceAutoBackAndForth = true; # pres $mod + <n> to got there and again to go to previous
         workspaceOutputAssign = [
           {
