@@ -31,7 +31,6 @@
       };
 
       extraConfig = {
-        help.autocorrect = 1;
         rerere.enabled = true;
         commit.verbose = true;
 
