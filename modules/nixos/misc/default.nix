@@ -1,1 +1,1 @@
-[./tuigreet.nix]
+[./tuigreet.nix ./tailscale.nix]

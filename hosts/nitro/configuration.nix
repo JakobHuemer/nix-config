@@ -14,6 +14,7 @@
 
   steam.enable = true;
   tuigreet.enable = true;
+  tailscale.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
