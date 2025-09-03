@@ -116,6 +116,8 @@
 
         cacert
         openssl
+
+        librespeed-cli
       ]
       ++ (with pkgs-stable; [
         whatsie
