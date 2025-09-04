@@ -180,6 +180,7 @@
       experimental-features = nix-command flakes
       keep-outputs          = true
       keep-derivations      = true
+      extra-platforms       = aarch64-linux arm-linux
     '';
   };
 
