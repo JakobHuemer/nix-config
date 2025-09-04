@@ -15,6 +15,15 @@
 
   programs.zsh.enable = true;
 
+  myfirewall.mullvad_tailscale.enable = true;
+  doh.enable = true;
+
+  # firewall
+
+  networking.nftables = {
+    enable = true;
+  };
+
   # printing
   services.avahi = {
     enable = true;
@@ -148,6 +157,7 @@
         nemo
         rustup
         bitwarden-cli
+        net-tools
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default
