@@ -37,11 +37,6 @@ in {
         inputs.home-manager.darwinModules.home-manager
         # ghostty.packages.aarch64-darwin.default
         # nixcord.homeManagerModules.nixcord
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          nix.enable = true;
-        }
       ];
     };
 }

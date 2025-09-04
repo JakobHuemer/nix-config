@@ -190,6 +190,8 @@ in {
     ];
 
     casks = [
+      "utm"
+      "netdownloadhelpercoapp"
       "corelocationcli"
       "github"
       "soduto"
@@ -220,6 +222,8 @@ in {
   home-manager = {
     extraSpecialArgs = {inherit inputs pkgs pkgs-stable vars host;};
     backupFileExtension = "nix-backup";
+    useGlobalPkgs = true;
+    useUserPackages = true;
   };
 
   home-manager.users.${vars.user} = {
@@ -236,6 +240,7 @@ in {
   };
 
   nix = {
+    enable = true;
     package = pkgs.nix;
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     gc = {
