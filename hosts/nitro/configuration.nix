@@ -21,6 +21,8 @@
 
   boot.kernelModules = ["nouveau"];
 
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [

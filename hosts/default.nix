@@ -31,4 +31,27 @@ in {
         ./configuration.nix
       ];
     };
+
+  pi4 = let
+    system = "aarch64-linux";
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+      config.allowUnsupportedSystem = true;
+    };
+  in
+    lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+	inherit inputs system pkgs-stable vars;
+        host = {
+          hostName = "pi4";
+          flakePath = "/etc/nixos/nix-config";
+        };
+      };
+      modules = [
+        ./pi4
+        # ./configuration.nix
+      ];
+    };
 }
