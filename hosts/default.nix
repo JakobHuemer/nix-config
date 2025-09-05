@@ -44,7 +44,7 @@ in {
     lib.nixosSystem {
       inherit system;
       specialArgs = {
-	inherit inputs system pkgs-stable vars;
+        inherit inputs system pkgs-stable vars;
         host = {
           hostName = "pi4";
           flakePath = "/etc/nixos/nix-config";

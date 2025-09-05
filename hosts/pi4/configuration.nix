@@ -10,10 +10,12 @@
   config,
   ...
 }: {
-  imports = [
-    inputs.nixos-hardware.nixosModules.raspberry-pi-4
-    inputs.home-manager.nixosModules.home-manager
-  ] ++ (import ../../modules/nixos);
+  imports =
+    [
+      inputs.nixos-hardware.nixosModules.raspberry-pi-4
+      inputs.home-manager.nixosModules.home-manager
+    ]
+    ++ (import ../../modules/nixos);
 
   sops.defaultSopsFile = ../../secrets/pi4.yaml;
   sops.age.keyFile = "/etc/sops/age/key.txt";
@@ -32,27 +34,31 @@
     useDHCP = false;
 
     defaultGateway = "192.168.0.11";
-    nameservers = [ "9.9.9.9" "149.112.112.112" ];
-    
+    nameservers = ["9.9.9.9" "149.112.112.112"];
+
     interfaces.eth0 = {
       useDHCP = false;
-      ipv4.addresses = [{
-        address = "192.168.0.42";
-        prefixLength = 24;
-      }];
+      ipv4.addresses = [
+        {
+          address = "192.168.0.42";
+          prefixLength = 24;
+        }
+      ];
     };
-    
+
     interfaces.wlan0 = {
       useDHCP = false;
-      ipv4.addresses = [{
-        address = "192.168.0.43";
-        prefixLength = 24;
-      }];
+      ipv4.addresses = [
+        {
+          address = "192.168.0.43";
+          prefixLength = 24;
+        }
+      ];
     };
-    
+
     wireless = {
       enable = true;
-      interfaces = [ "wlan0" ]; # Manage only wlan0
+      interfaces = ["wlan0"]; # Manage only wlan0
       networks = {
         "Wlan Kremsmuenster" = {
           psk = "ichbinkremsmuensterer";
@@ -113,7 +119,7 @@
   # for zsh for root
   home-manager.users.root = {pkgs, ...}: {
     imports = import ../../modules/home;
-    
+
     nixpkgs.config.allowUnfree = true;
 
     programs = {home-manager.enable = true;};
@@ -122,8 +128,7 @@
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
     tmux.enable = true;
-    
+
     git.gpgKey = "0E86AFCB4CF89B380E9101CB8C765C652BCEE672";
   };
-
 }

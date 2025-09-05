@@ -1,7 +1,8 @@
-{pkgs, config, lib, ...}:
-
 {
-
+  pkgs,
+  vars,
+  ...
+}: {
   # printing
   services.avahi = {
     enable = true;
@@ -32,7 +33,6 @@
     #   };
     # };
   };
-
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -81,19 +81,15 @@
     # ]
     ;
 
-    home-manager.users.${vars.user} = {pkgs, ...}: {
+  home-manager.users.${vars.user} = {pkgs, ...}: {
+    services.udiskie.enable = true;
 
-      services.udiskie.enable = true;
+    libre-office.enable = true;
 
-      libre-office.enable = true;
-
-      services.udiskie.settings = {
-        automount = true;
-        notify = true;
-        tray = false;
-      };
-
-
+    services.udiskie.settings = {
+      automount = true;
+      notify = true;
+      tray = false;
     };
-
+  };
 }

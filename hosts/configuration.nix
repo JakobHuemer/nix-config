@@ -42,7 +42,6 @@
   # services.pulseaudio.enable = false;
   # services.pulseaudio.support32Bit = true;
 
-
   # make gnupg work with pinentry
   services.pcscd.enable = true;
   programs.gnupg.agent = {
