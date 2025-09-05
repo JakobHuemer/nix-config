@@ -18,9 +18,20 @@
     ++ (import ../../modules/nixos);
 
   sops.defaultSopsFile = ../../secrets/pi4.yaml;
-  sops.age.keyFile = "/etc/sops/age/key.txt";
+  sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
-  sops.secrets."wifi_password_home" = {};
+  sops.secrets."wifi_password_home" = {
+    owner = "root";
+    group = "wheel";
+    mode = "0400";
+  };
+
+  sops.templates."wifi-env.conf" = {
+    content = ''
+      psk_home=${config.sops.placeholder.wifi_password_home}
+    '';
+    owner = "root";
+  };
 
   # system
   tailscale.enable = true;
@@ -59,9 +70,10 @@
     wireless = {
       enable = true;
       interfaces = ["wlan0"]; # Manage only wlan0
+      secretsFile = "${config.sops.templates."wifi-env.conf".path}";
       networks = {
         "Wlan Kremsmuenster" = {
-          psk = "ichbinkremsmuensterer";
+          psk = "ext:psk_home";
         };
       };
     };

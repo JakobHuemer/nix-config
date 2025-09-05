@@ -1,5 +1,5 @@
 keys:
-  - &pi4 age1gqa4grn6g0qnr3ljn0cx92g2nsat4l8vawhwtquu9uckz7au2pnsrrs0ga
+  - &pi4 age1tf88myjm03ct730khm392gfhmvr5yjma3qv9lp2stmjc2hrs55eq36t07w
 
 creation_rules:
   - path_regex: secrets/pi4.yaml$
