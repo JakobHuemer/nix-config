@@ -10,51 +10,22 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
+      inputs.sops-nix.nixosModules.sops
     ]
     ++ (import ../modules/nixos);
 
+  # sops.gnupg.home = "/var/lib/sops";
+
   programs.zsh.enable = true;
+
+  # firewall
 
   myfirewall.mullvad_tailscale.enable = true;
   doh.enable = true;
 
-  # firewall
-
   networking.nftables = {
     enable = true;
   };
-
-  # printing
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
-  services.printing = {
-    enable = true;
-    drivers = with pkgs; [
-      cups-filters
-      cups-browsed
-      gutenprint
-      canon-cups-ufr2
-      canon-capt
-    ];
-  };
-
-  services.udisks2.enable = true;
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    # settings = {
-    #   General = {
-    #     Experimental = true;
-    #     Enable = "Source,Sink,Media,Socket";
-    #   };
-    # };
-  };
-
   security.sudo = {
     extraConfig = ''
       Defaults insults
@@ -71,73 +42,43 @@
   # services.pulseaudio.enable = false;
   # services.pulseaudio.support32Bit = true;
 
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-
-    # extraConfig.pipewire."92-low-latency" = {
-    #   "context.properties" = {
-    #     "default.clock.rate" = 48000;
-    #     "default.clock.quantum" = 32;
-    #     "default.clock.min-quantum" = 32;
-    #     "default.clock.max-quantum" = 32;
-    #   };
-    # };
-
-    wireplumber.extraConfig.bluetoothEnhancements = {
-      "monitor.bluez.properties" = {
-        "bluez5.enable-sbc-xq" = true;
-        "bluez5.enable-msbc" = true;
-        "bluez5.enable-hw-volume" = true;
-        "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
-      };
-    };
-  };
-
-  services.blueman.enable = true;
 
   # make gnupg work with pinentry
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    # pinentryFlavor = "curses";
     enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-all;
+  };
+
+  users.users.root = {
+    shell = pkgs.zsh;
   };
 
   users.users.${vars.user} = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["wheel" "networkmanager" "video" "storage"];
+    extraGroups = ["wheel"];
   };
 
-  time.timeZone = "Europe/Vienna";
   i18n = {
     defaultLocale = "en_GB.UTF-8";
-    extraLocaleSettings = {LC_MONETARY = "de_AT.UTF-8";};
+
+    extraLocales = [
+      "en_GB.UTF-8/UTF-8"
+      "de_DE.UTF-8/UTF-8"
+      "de_AT.UTF-8/UTF-8"
+    ];
+
+    extraLocaleSettings = {
+      LC_MONETARY = "de_AT.UTF-8";
+    };
   };
 
   console = {
     font = "Lat2-Terminus16";
     keyMap = "de-latin1";
   };
-
-  fonts.packages =
-    with pkgs; [
-      jetbrains-mono
-
-      noto-fonts
-      # noto-fonts-emoji
-
-      corefonts # MS
-    ]
-    # ++ [
-    #   inputs.apple-emoji-linux.packages.${system}.default
-    # ]
-    ;
 
   environment = {
     variables = {
@@ -149,13 +90,17 @@
     systemPackages =
       with pkgs; [
         zsh
-        pinentry-curses
+        # pinentry-tty
+        pinentry-all
         ripgrep
         fh
         nemo
-        rustup
         bitwarden-cli
         net-tools
+        dig
+        wireshark
+        sops
+        age
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default
@@ -195,16 +140,6 @@
     imports = import ../modules/home;
 
     nixpkgs.config.allowUnfree = true;
-
-    services.udiskie.enable = true;
-
-    libre-office.enable = true;
-
-    services.udiskie.settings = {
-      automount = true;
-      notify = true;
-      tray = false;
-    };
 
     programs = {home-manager.enable = true;};
     home = {stateVersion = "25.05";};

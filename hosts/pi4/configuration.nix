@@ -15,85 +15,51 @@
     inputs.home-manager.nixosModules.home-manager
   ] ++ (import ../../modules/nixos);
 
+  sops.defaultSopsFile = ../../secrets/pi4.yaml;
+  sops.age.keyFile = "/etc/sops/age/key.txt";
+
+  sops.secrets."wifi_password_home" = {};
+
   # system
   tailscale.enable = true;
 
   # Disable X11 and display manager (if present)
   services.xserver.enable = false;
 
-  i18n.defaultLocale = "en_GB.UTF-8";
+  # networking.nameservers = [ "9.9.9.9" "149.112.112.112" ];
 
-  i18n.extraLocales = ["en_GB.UTF-8/UTF-8" "de_DE.UTF-8/UTF-8" "de_AT.UTF-8/UTF-8"];
+  networking = {
+    useDHCP = false;
 
-  i18n.extraLocaleSettings = {
-    LC_ALL = "en_GB.UTF-8";
-  };
-
-
-  networking.nameservers = [ "9.9.9.9" "149.112.112.112" ];
-
-  networking.networkmanager = {
-    enable = true;
-
-
-    ensureProfiles = {
-      profiles = {
-	# Wired connection profile
-	"wired-connection-1" = {
-	  connection = {
-	    id = "Wired connection 1";
-	    uuid = "70ca4781-c4f9-37f2-b617-231a097a94b5";
-	    type = "ethernet";
-	    autoconnect-priority = "-999";
-	    interface-name = "end0";
-	  };
-	  ethernet = {
-	  };
-	  ipv4 = {
-	    method = "manual";
-	    address1 = "192.168.0.42/24,192.168.0.11";
-	    dns = "9.9.9.9;149.112.112.112;";
-	  };
-	  ipv6 = {
-	    addr-gen-mode = "default";
-	    method = "auto";
-	  };
-	  proxy = {
-	  };
-	};
-	
-	# WiFi connection profile
-	"wlan-kremsmuenster" = {
-	  connection = {
-	    id = "Wlan Kremsmuenster";
-	    uuid = "336de64d-9f4d-46f7-b6cf-4c487009d0c6";
-	    type = "wifi";
-	    interface-name = "wlan0";
-	  };
-	  wifi = {
-	    mode = "infrastructure";
-	    ssid = "Wlan Kremsmuenster";
-	  };
-	  wifi-security = {
-	    auth-alg = "open";
-	    key-mgmt = "wpa-psk";
-	    psk = "notmypassword"; # put actual password in secretely
-	  };
-	  ipv4 = {
-	    method = "manual";
-	    address1 = "192.168.0.43/24,192.168.0.11";
-	    dns = "9.9.9.9;149.112.112.112;";
-	  };
-	  ipv6 = {
-	    addr-gen-mode = "default";
-	    method = "auto";
-	  };
-	  proxy = {
-	  };
-	};
+    defaultGateway = "192.168.0.11";
+    nameservers = [ "9.9.9.9" "149.112.112.112" ];
+    
+    interfaces.eth0 = {
+      useDHCP = false;
+      ipv4.addresses = [{
+        address = "192.168.0.42";
+        prefixLength = 24;
+      }];
+    };
+    
+    interfaces.wlan0 = {
+      useDHCP = false;
+      ipv4.addresses = [{
+        address = "192.168.0.43";
+        prefixLength = 24;
+      }];
+    };
+    
+    wireless = {
+      enable = true;
+      interfaces = [ "wlan0" ]; # Manage only wlan0
+      networks = {
+        "Wlan Kremsmuenster" = {
+          psk = "ichbinkremsmuensterer";
+        };
       };
     };
-  }; 
+  };
 
   services.automatic-timezoned.enable = true;
 
@@ -104,6 +70,7 @@
       filter = "*rpi-4-*.dtb";
     };
   };
+
   console.enable = false;
 
   networking.hostName = "${host.hostName}";
@@ -138,33 +105,25 @@
   };
 
   users.users.${vars.user} = {
-    isNormalUser = true;
-    extraGroups = ["wheel"];
-    shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH5xznaVUeu1mED3C2e60W+fbWeGQdeD9m+wz+GTVo0o jakki@nitro"
     ];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # for zsh for root
+  home-manager.users.root = {pkgs, ...}: {
+    imports = import ../../modules/home;
+    
+    nixpkgs.config.allowUnfree = true;
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs system vars pkgs-stable host;};
-
-    useGlobalPkgs = false;
-    useUserPackages = true;
+    programs = {home-manager.enable = true;};
+    home = {stateVersion = "25.05";};
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
-    imports = import ../../modules/home;
-
-    nixpkgs.config.allowUnfree = true;
-
     tmux.enable = true;
-
-    home = {stateVersion = "25.05";};
-    programs = {home-manager.enable = true;};
+    
+    git.gpgKey = "0E86AFCB4CF89B380E9101CB8C765C652BCEE672";
   };
 
-  system = {stateVersion = "25.05";};
 }

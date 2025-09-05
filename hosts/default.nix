@@ -29,6 +29,7 @@ in {
       modules = [
         ./nitro
         ./configuration.nix
+        ./configuration-desktop.nix
       ];
     };
 
@@ -51,7 +52,7 @@ in {
       };
       modules = [
         ./pi4
-        # ./configuration.nix
+        ./configuration.nix
       ];
     };
 }

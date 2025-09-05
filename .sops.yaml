@@ -1,8 +1,8 @@
 keys:
-  - &primary age1m3dg4wez4p27jrd4kecc2nkqg3cq6ysavjr36mkmgdyvazk6sf0q624rga
+  - &pi4 age1gqa4grn6g0qnr3ljn0cx92g2nsat4l8vawhwtquu9uckz7au2pnsrrs0ga
+
 creation_rules:
-  - path_regex: secrets/secrets.yaml$
+  - path_regex: secrets/pi4.yaml$
     key_groups:
       - age:
-        - *primary
-
+        - *pi4

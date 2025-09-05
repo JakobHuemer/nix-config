@@ -14,6 +14,18 @@
           newline = true;
           segments = [
             {
+              type = "root";
+              style = "plain";
+              forgeground = "#ffae42";
+              template = " ";
+            }
+            {
+              type = "session";
+              style = "plain";
+              foreground = "#ffffff";
+              template = "{{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} {{ end }}";
+            }
+            {
               template = "{{ if not .Writable }}🔒{{ end }}{{ .Path }}";
               type = "path";
               style = "plain";
