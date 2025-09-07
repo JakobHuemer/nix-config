@@ -18,7 +18,7 @@
     services.tailscale = {
       enable = true;
 
-      useRoutingFeatures = "client";
+      useRoutingFeatures = lib.mkDefault "client";
     };
 
     # networking.firewall.checkReversePath = "loose";

@@ -9,9 +9,9 @@
   config = let
     hasIPv6 = false;
     StateDirectory = "dnscrypt-proxy";
-    forwarding_rules = pkgs.writeText "forwarding-rules.txt" ''
-      ts.net 100.100.100.100
-    '';
+    # forwarding_rules = pkgs.writeText "forwarding-rules.txt" ''
+    #   ts.net 100.100.100.100
+    # '';
   in
     lib.mkIf config.doh.enable {
       networking.resolvconf.useLocalResolver = true;
@@ -36,7 +36,7 @@
           require_nolog = false;
           require_nofilter = true;
 
-          forwarding_rules = forwarding_rules;
+          # forwarding_rules = forwarding_rules;
 
           # If you want, choose a specific set of servers that come from your sources.
           # Here it's from https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md

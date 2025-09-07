@@ -23,9 +23,6 @@
   myfirewall.mullvad_tailscale.enable = true;
   doh.enable = true;
 
-  networking.nftables = {
-    enable = true;
-  };
   security.sudo = {
     extraConfig = ''
       Defaults insults
@@ -100,6 +97,7 @@
         wireshark
         sops
         age
+        tcpdump
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default

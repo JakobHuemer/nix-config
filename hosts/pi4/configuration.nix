@@ -33,8 +33,16 @@
     owner = "root";
   };
 
+  nftables.enable = true;
+  caddy.enable = true;
+
+  immich.enable = true;
+
+  acme."fistel.dev".enable = true;
+
   # system
   tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "both";
 
   # Disable X11 and display manager (if present)
   services.xserver.enable = false;

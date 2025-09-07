@@ -92,6 +92,7 @@
       locations = "$HOME/.setup";
       terminal = "ghostty";
       editor = "nvim";
+      domainName = "fistel.dev";
     };
   in {
     nixosConfigurations = import ./hosts {

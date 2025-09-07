@@ -1,1 +1,1 @@
-[./mullvad_tailscale.nix]
+[./mullvad_tailscale.nix ./nftables.nix]
