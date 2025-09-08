@@ -37,6 +37,7 @@
   caddy.enable = true;
 
   immich.enable = true;
+  vaultwarden.enable = true;
 
   acme."fistel.dev".enable = true;
 
