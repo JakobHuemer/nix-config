@@ -1,1 +1,1 @@
-[./immich.nix ./caddy.nix ./cert.fistel.dev.nix]
+[./immich.nix ./caddy.nix ./cert.fistel.dev.nix ./vaultwarden.nix]

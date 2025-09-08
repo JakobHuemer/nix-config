@@ -39,6 +39,9 @@
           group = "caddy";
           reloadServices = ["caddy"];
 
+          domain = "*.${vars.domainName}";
+          extraDomainNames = ["${vars.domainName}"];
+
           extraLegoFlags = [
             "--dns.resolvers=1.1.1.1:53"
             "--dns.resolvers=8.8.8.8:53"
@@ -46,7 +49,11 @@
 
           environmentFile = config.sops.templates."cloudflare-creds".path;
 
-          extraDomainNames = ["photos.${vars.domainName}" "immich.${vars.domainName}"];
+          # extraDomainNames = map (str: "${str}.${vars.domainName}") [
+          #   "photos"  # immich
+          #   "immich"  # immich
+          #   "vw"      # vaultwarden
+          # ];
         };
       };
     };

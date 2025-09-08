@@ -15,12 +15,6 @@
         enable = true;
         inherit port;
         host = "127.0.0.1";
-
-        # TODO: Remove this
-        # openFirewall = true;
-
-        settings = {
-        };
       };
 
       services.caddy = lib.mkIf config.services.caddy.enable {
