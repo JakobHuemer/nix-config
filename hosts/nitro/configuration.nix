@@ -106,6 +106,7 @@
         prismlauncher
         thunderbird
         jetbrains-toolbox
+        chatterino7
 
         neovim
         vscode-fhs
