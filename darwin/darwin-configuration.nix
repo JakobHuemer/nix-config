@@ -210,6 +210,8 @@ in {
       # "swift-shift"
       "vlc"
 
+      "hammerspoon"
+
       "visual-studio-code"
       "cursor"
 
@@ -235,6 +237,12 @@ in {
     # vscode.enable = true;
     ghostty.enable = true;
     tmux.enable = true;
+
+    home.file.".hammersoon" = {
+      source = ./../conf/hammerspoon;
+      target = ".hammerspoon";
+      recursive = true;
+    };
 
     home.stateVersion = "25.05";
   };

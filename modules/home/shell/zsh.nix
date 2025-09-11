@@ -263,6 +263,8 @@
 
         nurse = nurseCmd;
         nurst = nurstCmd;
+
+        ssh = "ssh -o EnableEscapeCommandline=yes";
       };
     };
 
