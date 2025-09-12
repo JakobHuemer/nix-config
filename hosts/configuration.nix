@@ -12,7 +12,8 @@
       inputs.home-manager.nixosModules.home-manager
       inputs.sops-nix.nixosModules.sops
     ]
-    ++ (import ../modules/nixos);
+    ++ (import ../modules/nixos)
+    ++ (import ../modules/system);
 
   services.automatic-timezoned.enable = true;
 
@@ -108,7 +109,9 @@
   };
 
   nix = {
-    settings = {auto-optimise-store = true;};
+    settings = {
+      auto-optimise-store = true;
+    };
 
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
@@ -129,7 +132,15 @@
   nixpkgs.config.allowUnfree = true;
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs system vars pkgs-stable host;};
+    extraSpecialArgs = {
+      inherit
+        inputs
+        system
+        vars
+        pkgs-stable
+        host
+        ;
+    };
 
     useGlobalPkgs = false; # will not me possible with nixpkgs
     useUserPackages = true;
@@ -140,9 +151,15 @@
 
     nixpkgs.config.allowUnfree = true;
 
-    programs = {home-manager.enable = true;};
-    home = {stateVersion = "25.05";};
+    programs = {
+      home-manager.enable = true;
+    };
+    home = {
+      stateVersion = "25.05";
+    };
   };
 
-  system = {stateVersion = "25.05";};
+  system = {
+    stateVersion = "25.05";
+  };
 }

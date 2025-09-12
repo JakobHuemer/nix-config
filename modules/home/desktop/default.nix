@@ -1,1 +1,7 @@
-[./hyprland.nix ./sway.nix ./tofi.nix ./waybar.nix ./mako.nix]
+[
+  ./hyprland.nix
+  ./sway.nix
+  ./tofi.nix
+  ./waybar.nix
+  ./mako.nix
+]

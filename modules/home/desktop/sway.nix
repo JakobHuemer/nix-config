@@ -7,7 +7,9 @@
   inputs,
   ...
 }: {
-  options = {sway.enable = lib.mkEnableOption "enabled sway";};
+  options = {
+    sway.enable = lib.mkEnableOption "enabled sway";
+  };
 
   config = lib.mkIf config.sway.enable {
     wayland.windowManager.sway = let

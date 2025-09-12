@@ -144,10 +144,16 @@ in {
       pkgs.cargo
       pkgs.rustup
       (pkgs.rust-bin.stable.latest.default.override {
-        extensions = ["rust-src" "llvm-tools"];
+        extensions = [
+          "rust-src"
+          "llvm-tools"
+        ];
       })
       (pkgs.rust-bin.nightly.latest.default.override {
-        extensions = ["rust-src" "llvm-tools"];
+        extensions = [
+          "rust-src"
+          "llvm-tools"
+        ];
       })
 
       pkgs.openssl
@@ -222,7 +228,15 @@ in {
   };
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs pkgs pkgs-stable vars host;};
+    extraSpecialArgs = {
+      inherit
+        inputs
+        pkgs
+        pkgs-stable
+        vars
+        host
+        ;
+    };
     backupFileExtension = "nix-backup";
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -237,6 +251,8 @@ in {
     # vscode.enable = true;
     ghostty.enable = true;
     tmux.enable = true;
+
+    nixdev.enable = true;
 
     home.file.".hammersoon" = {
       source = ./../conf/hammerspoon;
@@ -285,18 +301,20 @@ in {
       "/usr/bin/hidutil"
       "property"
       "--set"
-      (let
-        # USB HID key codes - https://developer.apple.com/library/archive/technotes/tn2450/_index.html
-        leftCtrl = "0x7000000E0"; # USB HID 0xE0
-        fnGlobe = "0xFF00000003"; # USB HID (0x0003 + 0xFF00000000 - 0x700000000)
-        capsLock = "0x700000039"; # USB HID 0x39
-        escape = "0x700000029"; # USB HID 0x29
-      in
-        "{\"UserKeyMapping\":["
-        + "{\"HIDKeyboardModifierMappingDst\":${fnGlobe},\"HIDKeyboardModifierMappingSrc\":${leftCtrl}},"
-        + "{\"HIDKeyboardModifierMappingDst\":${leftCtrl},\"HIDKeyboardModifierMappingSrc\":${fnGlobe}},"
-        + "{\"HIDKeyboardModifierMappingDst\":${escape},\"HIDKeyboardModifierMappingSrc\":${capsLock}}"
-        + "]}")
+      (
+        let
+          # USB HID key codes - https://developer.apple.com/library/archive/technotes/tn2450/_index.html
+          leftCtrl = "0x7000000E0"; # USB HID 0xE0
+          fnGlobe = "0xFF00000003"; # USB HID (0x0003 + 0xFF00000000 - 0x700000000)
+          capsLock = "0x700000039"; # USB HID 0x39
+          escape = "0x700000029"; # USB HID 0x29
+        in
+          "{\"UserKeyMapping\":["
+          + "{\"HIDKeyboardModifierMappingDst\":${fnGlobe},\"HIDKeyboardModifierMappingSrc\":${leftCtrl}},"
+          + "{\"HIDKeyboardModifierMappingDst\":${leftCtrl},\"HIDKeyboardModifierMappingSrc\":${fnGlobe}},"
+          + "{\"HIDKeyboardModifierMappingDst\":${escape},\"HIDKeyboardModifierMappingSrc\":${capsLock}}"
+          + "]}"
+      )
     ];
     RunAtLoad = true;
   };
@@ -439,7 +457,11 @@ in {
             "60" = {
               enabled = false;
               value = {
-                parameters = [32 49 1048576];
+                parameters = [
+                  32
+                  49
+                  1048576
+                ];
                 type = "standard";
               };
             };
@@ -448,7 +470,11 @@ in {
             "61" = {
               enabled = false;
               value = {
-                parameters = [32 49 1572864];
+                parameters = [
+                  32
+                  49
+                  1572864
+                ];
                 type = "standard";
               };
             };
@@ -456,7 +482,11 @@ in {
             "64" = {
               enabled = false;
               value = {
-                parameters = [32 49 1048576];
+                parameters = [
+                  32
+                  49
+                  1048576
+                ];
                 type = "standard";
               };
             };
@@ -465,7 +495,11 @@ in {
             "65" = {
               enabled = false;
               value = {
-                parameters = [32 49 1179648];
+                parameters = [
+                  32
+                  49
+                  1179648
+                ];
                 type = "standard";
               };
             };

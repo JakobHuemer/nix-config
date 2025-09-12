@@ -9,14 +9,18 @@
 }: {
   imports = [inputs.nixvim.homeModules.nixvim];
 
-  options = {nixvim.enable = lib.mkEnableOption "enables nixvim";};
+  options = {
+    nixvim.enable = lib.mkEnableOption "enables nixvim";
+  };
 
   config = lib.mkIf config.nixvim.enable {
     programs.nixvim = {
       enable = true;
       globals.mapleader = " ";
 
-      clipboard = {register = "unnamedplus";};
+      clipboard = {
+        register = "unnamedplus";
+      };
 
       opts = {
         relativenumber = true;
@@ -76,9 +80,13 @@
           inlayHints = true;
 
           servers = {
-            lua_ls = {enable = true;};
+            lua_ls = {
+              enable = true;
+            };
 
-            html = {enable = true;};
+            html = {
+              enable = true;
+            };
 
             nixd = {
               enable = true;
@@ -87,9 +95,13 @@
                 # flake = "(builtins.getFlake (\"git+file://\" + toString ./. ))";
                 flake = ''(builtins.getFlake "${host.flakePath}")'';
               in {
-                formatting = {command = ["nixfmt"];};
+                formatting = {
+                  command = ["nixfmt"];
+                };
 
-                nixpkgs = {expr = "import ${flake}.inputs.nixpkgs";};
+                nixpkgs = {
+                  expr = "import ${flake}.inputs.nixpkgs";
+                };
 
                 options = {
                   "nixos".expr = "${flake}.nixosConfigurations.nitro.options";
@@ -167,7 +179,9 @@
         };
         web-devicons.enable = true;
 
-        todo-comments = {enable = true;};
+        todo-comments = {
+          enable = true;
+        };
 
         rainbow-delimiters.enable = true;
 
@@ -229,7 +243,11 @@
               enable_close_on_slash = true;
               enable_rename = true;
             };
-            per_filetype = {html = {enable_close = true;};};
+            per_filetype = {
+              html = {
+                enable_close = true;
+              };
+            };
           };
         };
 
@@ -260,13 +278,22 @@
           settings = {
             indent.enable = true;
             auto_install = true;
-            ensure_installed = ["git_config" "gitattributes" "gitcommit" "gitignore"];
+            ensure_installed = [
+              "git_config"
+              "gitattributes"
+              "gitcommit"
+              "gitignore"
+            ];
 
-            highlight = {enable = true;};
+            highlight = {
+              enable = true;
+            };
           };
         };
 
-        autosource = {enable = true;};
+        autosource = {
+          enable = true;
+        };
 
         autoclose = {
           enable = true;
@@ -341,7 +368,11 @@
           settings = {
             max_lines = 2048;
             skip_multiline = false;
-            standard_widths = [2 4 8];
+            standard_widths = [
+              2
+              4
+              8
+            ];
           };
         };
 
@@ -393,7 +424,11 @@
               };
             };
 
-            diff = {view = {style = "sign";};};
+            diff = {
+              view = {
+                style = "sign";
+              };
+            };
 
             surround = {
               mappings = {
@@ -408,14 +443,20 @@
             };
 
             indentscope = {
-              draw = {delay = 50;};
+              draw = {
+                delay = 50;
+              };
 
-              options = {border = "both";};
+              options = {
+                border = "both";
+              };
 
               symbol = "╎";
             };
 
-            fuzzy = {cutoff = 200;};
+            fuzzy = {
+              cutoff = 200;
+            };
           };
         };
 

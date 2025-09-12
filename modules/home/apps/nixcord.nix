@@ -7,7 +7,9 @@
 }: {
   imports = [inputs.nixcord.homeModules.nixcord];
 
-  options = {nixcord.enable = lib.mkEnableOption "enable nixcord";};
+  options = {
+    nixcord.enable = lib.mkEnableOption "enable nixcord";
+  };
 
   config = lib.mkIf config.nixcord.enable {
     programs.nixcord = {

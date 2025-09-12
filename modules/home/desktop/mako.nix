@@ -5,7 +5,9 @@
   lib,
   ...
 }: {
-  options = {mako.enable = lib.mkEnableOption "enable mako";};
+  options = {
+    mako.enable = lib.mkEnableOption "enable mako";
+  };
 
   config = lib.mkIf config.mako.enable {
     services.mako = {

@@ -15,7 +15,12 @@
   nix = {
     linux-builder = {
       enable = true;
-      supportedFeatures = ["kvm" "benchmark" "big-parallel" "nixos-test"];
+      supportedFeatures = [
+        "kvm"
+        "benchmark"
+        "big-parallel"
+        "nixos-test"
+      ];
       maxJobs = 4;
       package = pkgs.darwin.linux-builder;
       ephemeral = true;

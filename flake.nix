@@ -35,7 +35,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvf = {url = "github:notashelf/nvf";};
+    nvf = {
+      url = "github:notashelf/nvf";
+    };
 
     ghostty = {
       url = "github:ghostty-org/ghostty";
@@ -75,6 +77,11 @@
       url = "github:h-banii/youtube-music-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixdev = {
+      url = "github:JakobHuemer/nixdev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -97,17 +104,37 @@
   in {
     nixosConfigurations = import ./hosts {
       inherit (nixpkgs) lib;
-      inherit inputs nixpkgs nixpkgs-stable nixos-hardware vars;
+      inherit
+        inputs
+        nixpkgs
+        nixpkgs-stable
+        nixos-hardware
+        vars
+        ;
     };
 
     darwinConfigurations = import ./darwin {
       inherit (nixpkgs) lib;
-      inherit inputs nixpkgs nixpkgs-stable home-manager darwin vars;
+      inherit
+        inputs
+        nixpkgs
+        nixpkgs-stable
+        home-manager
+        darwin
+        vars
+        ;
     };
 
     homeConfigurations = import ./nix {
       inherit (nixpkgs) lib;
-      inherit inputs nixpkgs nixpkgs-stable home-manager nixgl vars;
+      inherit
+        inputs
+        nixpkgs
+        nixpkgs-stable
+        home-manager
+        nixgl
+        vars
+        ;
     };
   };
 }

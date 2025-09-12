@@ -29,7 +29,16 @@ in {
   in
     darwin.lib.darwinSystem {
       inherit system;
-      specialArgs = {inherit system inputs pkgs pkgs-stable vars host;};
+      specialArgs = {
+        inherit
+          system
+          inputs
+          pkgs
+          pkgs-stable
+          vars
+          host
+          ;
+      };
       modules = [
         ./darwin-configuration.nix
         ./mbp2p.nix

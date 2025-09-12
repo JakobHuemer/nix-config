@@ -11,7 +11,9 @@
     inputs.zen-browser.homeModules.beta
   ];
 
-  options = {zen.enable = lib.mkEnableOption "enables zen-browser";};
+  options = {
+    zen.enable = lib.mkEnableOption "enables zen-browser";
+  };
 
   config = lib.mkIf config.zen.enable {
     programs.zen-browser = {

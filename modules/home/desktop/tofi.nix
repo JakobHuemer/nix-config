@@ -4,7 +4,9 @@
   pkgs,
   ...
 }: {
-  options = {tofi.enable = lib.mkEnableOption "enable tofi";};
+  options = {
+    tofi.enable = lib.mkEnableOption "enable tofi";
+  };
 
   config = lib.mkIf config.tofi.enable {
     programs.tofi = {

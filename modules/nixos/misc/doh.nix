@@ -30,7 +30,7 @@
 
           # Use servers reachable over IPv6 -- Do not enable if you don't have IPv6 connectivity
           ipv6_servers = hasIPv6;
-          block_ipv6 = ! (hasIPv6);
+          block_ipv6 = !(hasIPv6);
 
           require_dnssec = true;
           require_nolog = false;

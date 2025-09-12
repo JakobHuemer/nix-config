@@ -4,7 +4,9 @@
   config,
   ...
 }: {
-  options = {waybar.enable = lib.mkEnableOption "enables waybar";};
+  options = {
+    waybar.enable = lib.mkEnableOption "enables waybar";
+  };
 
   config = lib.mkIf config.waybar.enable {
     programs.waybar = {
@@ -17,7 +19,11 @@
 
           modules-left = ["sway/workspaces"];
           modules-center = ["sway/window"];
-          modules-right = ["mpd" "temperature" "clock"];
+          modules-right = [
+            "mpd"
+            "temperature"
+            "clock"
+          ];
 
           "sway/workspaces" = {
             disable-scroll = true;

@@ -54,7 +54,10 @@
     useDHCP = false;
 
     defaultGateway = "192.168.0.11";
-    nameservers = ["9.9.9.9" "149.112.112.112"];
+    nameservers = [
+      "9.9.9.9"
+      "149.112.112.112"
+    ];
 
     interfaces.eth0 = {
       useDHCP = false;
@@ -141,8 +144,12 @@
 
     nixpkgs.config.allowUnfree = true;
 
-    programs = {home-manager.enable = true;};
-    home = {stateVersion = "25.05";};
+    programs = {
+      home-manager.enable = true;
+    };
+    home = {
+      stateVersion = "25.05";
+    };
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {

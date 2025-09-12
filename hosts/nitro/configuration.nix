@@ -128,14 +128,24 @@
   };
 
   services = {
-    openssh = {enable = true;};
+    openssh = {
+      enable = true;
+    };
 
     gnome.gnome-keyring.enable = true;
 
     mullvad-vpn.enable = true;
   };
 
-  home-manager.extraSpecialArgs = {inherit inputs system nixpkgs vars host;};
+  home-manager.extraSpecialArgs = {
+    inherit
+      inputs
+      system
+      nixpkgs
+      vars
+      host
+      ;
+  };
 
   home-manager.users.${vars.user} = {
     sway.enable = true;
@@ -157,5 +167,7 @@
     git.gpgKey = "C68AA68E0D1846F90E1336278D4386EB3398D4A3";
   };
 
-  system = {stateVersion = "25.05";};
+  system = {
+    stateVersion = "25.05";
+  };
 }
