@@ -14,6 +14,8 @@
     ]
     ++ (import ../modules/nixos);
 
+  services.automatic-timezoned.enable = true;
+
   # sops.gnupg.home = "/var/lib/sops";
 
   programs.zsh.enable = true;
