@@ -25,6 +25,10 @@
         unreadBadge = true;
       };
 
+      userPlugins = {
+        # customSounds = "github:ScattrdBlade/customSounds/c1c249d83336c51f3cece476dc36583d52eb81c9";
+      };
+
       quickCss = "";
       config = {
         useQuickCss = true;

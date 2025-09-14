@@ -12,8 +12,7 @@
       inputs.home-manager.nixosModules.home-manager
       inputs.sops-nix.nixosModules.sops
     ]
-    ++ (import ../modules/nixos)
-    ++ (import ../modules/system);
+    ++ (import ../modules/nixos);
 
   services.automatic-timezoned.enable = true;
 
@@ -101,6 +100,7 @@
         sops
         age
         tcpdump
+        (flameshot.override {enableWlrSupport = true;})
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default
@@ -150,6 +150,8 @@
     imports = import ../modules/home;
 
     nixpkgs.config.allowUnfree = true;
+
+    nixdev.enable = true;
 
     programs = {
       home-manager.enable = true;

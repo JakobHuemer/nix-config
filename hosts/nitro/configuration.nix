@@ -121,6 +121,8 @@
         openssl
 
         librespeed-cli
+
+        gamemode
       ]
       ++ (with pkgs-stable; [
         whatsie
