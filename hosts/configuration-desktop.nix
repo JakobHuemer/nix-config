@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   vars,
   ...
@@ -76,19 +77,17 @@
     ];
   };
 
-  fonts.packages =
-    with pkgs; [
-      jetbrains-mono
+  fonts.packages = with pkgs; [
+    # monospace
+    jetbrains-mono
 
-      noto-fonts
-      # noto-fonts-emoji
+    # normal fonts
+    noto-fonts
+    montserrat
+    # noto-fonts-emoji
 
-      corefonts # MS
-    ]
-    # ++ [
-    #   inputs.apple-emoji-linux.packages.${system}.default
-    # ]
-    ;
+    corefonts # MS
+  ];
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
     services.udiskie.enable = true;
