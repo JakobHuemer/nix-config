@@ -90,6 +90,7 @@ in {
       pkgs.awscli2
       pkgs.oh-my-posh
       pkgs.unar
+      pkgs.kubectl
 
       pkgs.tailscale
       # pkgs.tailscaled

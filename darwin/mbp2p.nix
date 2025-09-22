@@ -127,6 +127,8 @@
 
       # Music
       "youtube-music"
+
+      "maxon"
     ];
 
     masApps = {};
