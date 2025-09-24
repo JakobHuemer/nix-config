@@ -16,7 +16,7 @@
     lib.mkIf config.doh.enable {
       networking.resolvconf.useLocalResolver = true;
 
-      services.dnscrypt-proxy2 = {
+      services.dnscrypt-proxy = {
         enable = true;
         settings = {
           sources.public-resolvers = {

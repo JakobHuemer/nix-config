@@ -30,39 +30,39 @@
 
       plugins = {
         adblocker = {
-          enabled = true;
+          enable = true;
           blocker = "In player";
         };
 
-        blur-nav-bar.enabled = true;
+        blur-nav-bar.enable = true;
 
-        bypass-age-restrictions.enabled = true;
+        bypass-age-restrictions.enable = true;
 
-        captions-selector.enabled = true;
+        captions-selector.enable = true;
 
         crossfade = {
-          enabled = true;
+          enable = true;
         };
 
-        exponential-volume.enabled = true;
+        exponential-volume.enable = true;
 
-        in-app-menu.enabled = false;
+        in-app-menu.enable = false;
 
-        performance-improvement.enabled = true;
+        performance-improvement.enable = true;
 
         precise-volume = {
-          enabled = true;
+          enable = true;
           steps = 2;
         };
 
         synced-lyrics = {
-          enabled = true;
+          enable = true;
         };
 
-        unobtrusive-player.enabled = true;
+        unobtrusive-player.enable = true;
 
         video-toggle = {
-          enabled = true;
+          enable = true;
           align = "middle";
         };
       };

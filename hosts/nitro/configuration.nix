@@ -89,6 +89,10 @@
 
   programs.light.enable = true;
 
+  # gaming
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
+
   environment = {
     variables = {
       SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
@@ -123,6 +127,16 @@
         librespeed-cli
 
         gamemode
+
+        # video download helper
+        vdhcoapp
+
+        (heroic.override {
+          extraPkgs = pkgs: [
+            pkgs.gamescope
+            pkgs.gamemode
+          ];
+        })
       ]
       ++ (with pkgs-stable; [
         whatsie

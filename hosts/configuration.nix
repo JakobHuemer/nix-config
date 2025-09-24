@@ -101,6 +101,8 @@
         age
         tcpdump
         (flameshot.override {enableWlrSupport = true;})
+        vlc
+        qbittorrent-enhanced
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default
