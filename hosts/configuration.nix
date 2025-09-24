@@ -103,6 +103,10 @@
         (flameshot.override {enableWlrSupport = true;})
         vlc
         qbittorrent-enhanced
+
+        typst
+        typstyle
+        typst-live
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default
