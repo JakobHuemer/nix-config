@@ -38,6 +38,36 @@ in {
       ];
     };
 
+  sta01 = let
+    system = "x86_64-linux";
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in
+    lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit
+          inputs
+          system
+          pkgs-stable
+          vars
+          ;
+        host = {
+          hostName = "sta01";
+          flakePath = "/etc/nixos/nix-config";
+        };
+      };
+
+      modules = [
+        ./sta01
+        ./configuration.nix
+        ./configuration-desktop.nix
+      ];
+    };
+
+
   pi4 = let
     system = "aarch64-linux";
     pkgs-stable = import nixpkgs-stable {
