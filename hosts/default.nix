@@ -67,7 +67,6 @@ in {
       ];
     };
 
-
   pi4 = let
     system = "aarch64-linux";
     pkgs-stable = import nixpkgs-stable {

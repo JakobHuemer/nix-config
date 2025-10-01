@@ -10,13 +10,12 @@
   config,
   ...
 }: {
-
   # btrfs scubbing
 
   services.btrfs.autoScrub = {
     enable = true;
     interval = "weekly";
-    fileSystems = [ "/" ];
+    fileSystems = ["/"];
   };
 
   # system
@@ -33,7 +32,7 @@
   # boot.loader.efi.canTouchEfiVariables = true;
   #
   # boot.binfmt.emulatedSystems = ["aarch64-linux"];
-  
+
   boot.loader.limine = {
     enable = true;
   };
