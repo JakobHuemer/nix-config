@@ -21,6 +21,10 @@
 
   # system
 
+  system.activationScripts.gamingDirPerms = ''
+    chown -R jakki:users /gaming
+  '';
+
   steam.enable = true;
   tuigreet.enable = true;
   tailscale.enable = true;
