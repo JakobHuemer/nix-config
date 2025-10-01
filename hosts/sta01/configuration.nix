@@ -152,7 +152,7 @@
 
     zen.enable = true;
 
-    # git.gpgKey = "C68AA68E0D1846F90E1336278D4386EB3398D4A3";
+    git.gpgKey = "DBFA8DCA389649DB6BEE8A009B4F31A8AFE90BEB";
   };
 
   system = {
