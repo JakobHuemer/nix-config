@@ -101,6 +101,7 @@
         chatterino7
         kdiskmark
         keyd
+        lm_sensors
 
         blender
 
