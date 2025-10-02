@@ -9,8 +9,36 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
+    home.file.".config/hypr" = {
+      source = ../../../conf/hypr;
+      recursive = true;
+    };
+    home.packages = with pkgs; [
+      hyprland
+      waybar
+      wl-clipboard
+      ghostty
+      dmenu-wayland
+      alacritty
+      kitty
+      foot
+      dconf
+      jq # for getting focused display
+      waybar
+    ];
+
+    home.pointerCursor = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+      size = 24;
+      x11 = {
+        enable = true;
+        defaultCursor = "Adwaita";
+      };
+    };
+
     wayland.windowManager.hyprland = {
-      enable = true;
+      # enable = true;
       package = pkgs.hyprland;
       xwayland.enable = true;
 

@@ -18,20 +18,37 @@
     fileSystems = ["/"];
   };
 
-  # system
+  # io
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = ["*"];
+        settings = {
+          main = {
+            # important
+            capslock = "esc";
 
-  system.activationScripts.gamingDirPerms = ''
-    chown -R jakki:users /gaming
-  '';
+            # for desktop keyboard and window managers
+            leftmeta = "leftalt";
+            leftalt = "leftmeta";
+          };
+        };
+      };
+    };
+  };
 
   steam.enable = true;
-  tuigreet.enable = true;
+  tuigreet = {
+    enable = true;
+    cmd = "Hyprland";
+  };
   tailscale.enable = true;
 
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
-  #
-  # boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   boot.loader.limine = {
     enable = true;
@@ -82,6 +99,10 @@
         thunderbird
         jetbrains-toolbox
         chatterino7
+        kdiskmark
+        keyd
+
+        blender
 
         neovim
         vscode-fhs
@@ -94,6 +115,7 @@
 
         cacert
         openssl
+        dconf
 
         librespeed-cli
 
@@ -135,7 +157,7 @@
   };
 
   home-manager.users.${vars.user} = {
-    sway.enable = true;
+    hyprland.enable = true;
     mako.enable = true;
     waybar.enable = true;
 

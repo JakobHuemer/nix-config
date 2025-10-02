@@ -5,6 +5,7 @@
   config,
   lib,
   pkgs,
+  vars,
   modulesPath,
   ...
 }: {
@@ -57,6 +58,12 @@
     device = "/dev/disk/by-uuid/0dc03bec-fca6-4176-b230-6ac22bc5aab1";
     fsType = "btrfs";
     options = ["compress=zstd" "subvol=@nix"];
+  };
+
+  fileSystems."/home/${vars.user}/projects" = {
+    device = "/dev/disk/by-uuid/0dc03bec-fca6-4176-b230-6ac22bc5aab1";
+    fsType = "btrfs";
+    options = ["compress=zstd" "subvol=@projects"];
   };
 
   fileSystems."/boot" = {
