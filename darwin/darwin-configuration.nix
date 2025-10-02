@@ -91,6 +91,7 @@ in {
       pkgs.oh-my-posh
       pkgs.unar
       pkgs.kubectl
+      pkgs.qbittorrent-enhanced
 
       pkgs.tailscale
       # pkgs.tailscaled
