@@ -38,6 +38,10 @@
     };
   };
 
+  programs.xwayland = {
+    enable = true;
+  };
+
   steam.enable = true;
   tuigreet = {
     enable = true;
