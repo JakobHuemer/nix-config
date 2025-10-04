@@ -66,6 +66,12 @@
     options = ["compress=zstd" "subvol=@projects"];
   };
 
+  fileSystems."/home/${vars.user}/school" = {
+    device = "/dev/disk/by-uuid/0dc03bec-fca6-4176-b230-6ac22bc5aab1";
+    fsType = "btrfs";
+    options = ["compress=zstd" "subvol=@school"];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/5C68-AEDA";
     fsType = "vfat";
