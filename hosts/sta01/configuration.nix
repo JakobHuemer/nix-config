@@ -63,6 +63,8 @@
     dockerCompat = true;
   };
 
+  virtualisation.vmware.host.enable = true;
+
   services.udev.packages = [
     pkgs.yubikey-personalization
   ];
@@ -115,8 +117,8 @@
         gnupg
         pinentry-curses
 
-        mullvad-vpn
-        mullvad
+        # mullvad-vpn
+        # mullvad
 
         cacert
         openssl
@@ -148,7 +150,10 @@
 
     gnome.gnome-keyring.enable = true;
 
-    mullvad-vpn.enable = true;
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad;
+    };
   };
 
   home-manager.extraSpecialArgs = {

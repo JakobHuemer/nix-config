@@ -108,6 +108,10 @@
     corefonts # MS
   ];
 
+  environment.systemPackages = with pkgs; [
+    gparted
+  ];
+
   home-manager.users.${vars.user} = {pkgs, ...}: {
     services.udiskie.enable = true;
 
