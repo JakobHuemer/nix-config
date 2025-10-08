@@ -38,10 +38,6 @@
     };
   };
 
-  programs.xwayland = {
-    enable = true;
-  };
-
   steam.enable = true;
   tuigreet = {
     enable = true;
@@ -123,10 +119,12 @@
         cacert
         openssl
         dconf
+        btop
 
         librespeed-cli
 
         gamemode
+        xorg.xrdb
 
         # video download helper
         vdhcoapp
@@ -142,6 +140,21 @@
         whatsie
       ]);
   };
+
+  services.xserver.dpi = 108;
+
+  # fonts.fontconfig = {
+  #   hinting = {
+  #     enable = true;
+  #     autohint = false;
+  #     style = "full";
+  #   };
+  #   subpixel = {
+  #     lcdfilter = "default";
+  #     rgba = "rgb";
+  #   };
+  #   antialias = true;
+  # };
 
   services = {
     openssh = {
@@ -182,6 +195,18 @@
     useStylix = true;
 
     zen.enable = true;
+
+    xresources = {
+      extraConfig = ''
+        Xft.dpi: 163
+        Xft.autohint: 0
+        Xft.lcdfilter:  lcddefault
+        Xft.hintstyle:  hintfull
+        Xft.hinting: 1
+        Xft.antialias: 1
+        Xft.rgba: rgb
+      '';
+    };
 
     git.gpgKey = "DBFA8DCA389649DB6BEE8A009B4F31A8AFE90BEB";
   };
