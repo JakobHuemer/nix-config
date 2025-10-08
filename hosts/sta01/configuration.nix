@@ -156,6 +156,8 @@
   #   antialias = true;
   # };
 
+  programs.xwayland.enable = true;
+
   services = {
     openssh = {
       enable = true;
