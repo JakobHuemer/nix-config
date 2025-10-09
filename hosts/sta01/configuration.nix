@@ -181,6 +181,15 @@
       ;
   };
 
+  systemd = {
+    services.xrdp = {
+      serviceConfig = {
+        ExecStart = lib.mkForce "${pkgs.xrdp}/bin/xrdp --nodaemon --config /home/${vars.user}/.Xresources";
+        # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/nixos/modules/services/networking/xrdp.nix#L158
+        # seems the integer port results in ipv6 only
+      };
+    };
+  };
   home-manager.users.${vars.user} = {
     hyprland.enable = true;
     mako.enable = true;
@@ -198,7 +207,14 @@
 
     zen.enable = true;
 
+    # home.activation = {
+    #   extraActivation = ''
+    #     ${pkgs.xorg.xrdb}/bin/xrdb /home/${vars.user}/.Xresources
+    #   '';
+    # };
+
     xresources = {
+      path = "/home/${vars.user}/.Xresources";
       extraConfig = ''
         Xft.dpi: 163
         Xft.autohint: 0
