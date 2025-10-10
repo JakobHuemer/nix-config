@@ -20,6 +20,8 @@
 
   programs.zsh.enable = true;
 
+  services.udisks2.enable = true;
+
   # firewall
 
   myfirewall.mullvad_tailscale.enable = true;
@@ -92,7 +94,7 @@
         pinentry-all
         ripgrep
         fh
-        nemo
+        nemo-with-extensions
         bitwarden-cli
         net-tools
         dig
@@ -103,6 +105,8 @@
         (flameshot.override {enableWlrSupport = true;})
         vlc
         qbittorrent-enhanced
+
+        udiskie
 
         typst
         typstyle
@@ -162,6 +166,19 @@
     home.file.".nix-assets" = {
       source = ../assets;
       recursive = true;
+    };
+
+    services.udiskie = {
+      enable = true;
+      settings = {
+        automount = true;
+        notify = true;
+        tray = true;
+
+        program_options = {
+          file_manager = "${pkgs.nemo-with-extensions}/bin/nemo";
+        };
+      };
     };
 
     programs = {

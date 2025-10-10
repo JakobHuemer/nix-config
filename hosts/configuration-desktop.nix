@@ -22,8 +22,6 @@
     ];
   };
 
-  services.udisks2.enable = true;
-
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -113,14 +111,6 @@
   ];
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
-    services.udiskie.enable = true;
-
     libre-office.enable = true;
-
-    services.udiskie.settings = {
-      automount = true;
-      notify = true;
-      tray = false;
-    };
   };
 }
