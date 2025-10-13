@@ -18,6 +18,13 @@
     fileSystems = ["/"];
   };
 
+  networking.firewall = {
+    enable = true;
+
+    allowedTCPPorts = [25565 24454];
+    allowedUDPPorts = [25565 24454];
+  };
+
   # io
   services.keyd = {
     enable = true;

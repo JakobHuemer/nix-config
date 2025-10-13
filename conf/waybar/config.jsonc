@@ -21,6 +21,7 @@
     "group/group-5"
   ] ,
   "modules-right": [
+    "tray",
     "group/group-4",
     "group/group-3",
     "group/group-2"
