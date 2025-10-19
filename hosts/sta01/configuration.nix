@@ -172,10 +172,10 @@
 
     gnome.gnome-keyring.enable = true;
 
-    mullvad-vpn = {
-      enable = true;
-      package = pkgs.mullvad;
-    };
+    # mullvad-vpn = {
+    #   enable = true;
+    #   package = pkgs.mullvad;
+    # };
   };
 
   home-manager.extraSpecialArgs = {
