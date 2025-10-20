@@ -22,15 +22,16 @@
 
     programs.git = {
       enable = true;
-      userName = "JakobHuemer";
-      userEmail = "j.huemer-fistelberger@htblaleonding.onmicrosoft.com";
 
       signing = lib.mkIf (config.git.gpgKey != null) {
         key = config.git.gpgKey;
         signByDefault = config.git.signByDefault;
       };
 
-      extraConfig = {
+      settings = {
+        user.name = "JakobHuemer";
+        user.email = "j.huemer-fistelberger@htblaleonding.onmicrosoft.com";
+
         rerere.enabled = true;
         commit.verbose = true;
 

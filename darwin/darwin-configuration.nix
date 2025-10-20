@@ -140,7 +140,6 @@ in {
       pkgs.kubectl
 
       pkgs.bun
-      pkgs.nodePackages.rimraf
       # cmake
 
       pkgs.cargo
