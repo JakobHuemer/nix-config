@@ -106,9 +106,16 @@
     corefonts # MS
   ];
 
-  environment.systemPackages = with pkgs; [
-    gparted
-  ];
+  environment = {
+    variables = {
+      NIXOS_OZONE_WL = 1;
+      ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    };
+
+    systemPackages = with pkgs; [
+      gparted
+    ];
+  };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
     libre-office.enable = true;

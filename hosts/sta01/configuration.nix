@@ -12,6 +12,10 @@
 }: {
   # btrfs scubbing
 
+  imports = [
+    inputs.hyprland.nixosModules.default
+  ];
+
   services.btrfs.autoScrub = {
     enable = true;
     interval = "weekly";
@@ -169,6 +173,25 @@
   # };
 
   programs.xwayland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${system}.hyprland;
+    xwayland.enable = true;
+  };
+
+  # xdg.portal = {
+  #   enable = true;
+  #   xdgOpenUsePortal = true;
+  #   config = {
+  #     common.default = ["gtk"];
+  #     hyprland.default = ["gtk" "hyprland"];
+  #   };
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-gtk
+  #     pkgs.xdg-desktop-portal-wlr
+  #     pkgs.xdg-desktop-portal-hyprland
+  #   ];
+  # };
 
   services = {
     openssh = {
