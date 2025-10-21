@@ -106,11 +106,16 @@
         distrobox
         prismlauncher
         thunderbird
-        jetbrains-toolbox
         chatterino7
         kdiskmark
         keyd
         lm_sensors
+
+        # jetbrains
+        jetbrains.webstorm
+        jetbrains.idea-ultimate
+        jetbrains.datagrip
+        jetbrains.rust-rover
 
         blender
 
@@ -121,7 +126,7 @@
         pinentry-curses
 
         # mullvad-vpn
-        # mullvad
+        mullvad
 
         cacert
         openssl

@@ -85,6 +85,7 @@
       TERMINAL = "${vars.terminal}";
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
+      NIXOS_OZONE_WL = 1;
     };
 
     systemPackages =
