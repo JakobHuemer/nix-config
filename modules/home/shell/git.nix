@@ -48,11 +48,13 @@
           one = "log --oneline";
           ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ | tee .gitignore ;}; gi";
 
-          pushf = "push --force-with-lease";
+          # pushf = "push --force-with-lease"; # this is dangerous with autocorrect
           pfwl = "push --force-with-lease";
 
           cam = "commit -am";
           ca = "commit -a";
+
+          fixup = "commit --fixup=HEAD --edit";
         };
 
         url = {

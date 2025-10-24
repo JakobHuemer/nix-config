@@ -65,9 +65,11 @@
     enable = true;
   };
 
+  virtualisation.containers.enable = true;
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
   };
 
   virtualisation.vmware.host.enable = true;
@@ -144,6 +146,10 @@
 
         # video download helper
         vdhcoapp
+
+        podman-tui
+        # docker-compose
+        podman-compose
 
         (heroic.override {
           extraPkgs = pkgs: [
