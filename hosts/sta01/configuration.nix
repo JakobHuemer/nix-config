@@ -116,6 +116,7 @@
         kdiskmark
         keyd
         lm_sensors
+        vdhcoapp
 
         # jetbrains
         jetbrains.webstorm
