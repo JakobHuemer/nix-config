@@ -152,7 +152,9 @@
         podman-tui
         # docker-compose
         podman-compose
-        qemu-utils
+        # qemu-utils
+        qemu_full
+        virtiofsd
 
         (heroic.override {
           extraPkgs = pkgs: [
