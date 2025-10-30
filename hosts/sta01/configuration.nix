@@ -119,10 +119,11 @@
         vdhcoapp
 
         # jetbrains
-        jetbrains.webstorm
-        jetbrains.idea-ultimate
-        jetbrains.datagrip
-        jetbrains.rust-rover
+        jetbrains-toolbox
+        # jetbrains.webstorm
+        # jetbrains.idea-ultimate
+        # jetbrains.datagrip
+        # jetbrains.rust-rover
 
         blender
 
@@ -151,6 +152,7 @@
         podman-tui
         # docker-compose
         podman-compose
+        qemu-utils
 
         (heroic.override {
           extraPkgs = pkgs: [
