@@ -101,7 +101,7 @@
     # normal fonts
     noto-fonts
     montserrat
-    # noto-fonts-emoji
+    # noto-fonts-color-emoji
 
     corefonts # MS
   ];

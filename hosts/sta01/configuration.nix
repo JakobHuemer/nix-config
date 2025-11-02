@@ -117,6 +117,7 @@
         keyd
         lm_sensors
         vdhcoapp
+        trashy
 
         # jetbrains
         jetbrains-toolbox
