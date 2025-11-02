@@ -109,7 +109,7 @@ in {
       pkgs.ripgrep # better grep
       pkgs.ripgrep-all # ripgrep for all files (pdf, zip, etc.)
       pkgs.fd # find alternative
-      pkgs.gitui # lazygit rust port larifary
+      # pkgs.gitui # lazygit rust port larifary # fails to build on darwin
       pkgs.dust # better du
       pkgs.dua # interactive disk usage analyzer
       pkgs.yazi # filemanager with previews
@@ -172,7 +172,6 @@ in {
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
-    noto-fonts-extra
 
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
