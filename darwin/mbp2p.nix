@@ -6,6 +6,7 @@
   vars,
   inputs,
   system,
+  config,
   ...
 }: {
   home-manager.users.${vars.user} = {

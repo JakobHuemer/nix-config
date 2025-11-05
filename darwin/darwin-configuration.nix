@@ -4,6 +4,7 @@
   inputs,
   vars,
   host,
+  config,
   ...
 }: let
   nixbin = "/Users/${vars.user}/.nixbin";

@@ -15,16 +15,6 @@
     programs.nixcord = {
       enable = true;
 
-      dorion = {
-        enable = true;
-        theme = "dark";
-        zoom = "0.9";
-        blur = "acrylic";
-        sysTray = true;
-        desktopNotifications = true;
-        unreadBadge = true;
-      };
-
       userPlugins = {
         # customSounds = "github:ScattrdBlade/customSounds/c1c249d83336c51f3cece476dc36583d52eb81c9";
       };
