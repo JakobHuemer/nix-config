@@ -223,6 +223,8 @@ in {
       "cursor"
 
       "bitwarden"
+
+      "rustdesk"
     ];
 
     masApps = {};
