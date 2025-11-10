@@ -101,73 +101,96 @@
       SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
     };
 
-    systemPackages = with pkgs;
-      [
-        firefox
-        grim # screenshots
-        slurp # screenshots
-        wl-clipboard # obv
-        mako # notification system
-        pavucontrol
-        distrobox
-        prismlauncher
-        thunderbird
-        chatterino7
-        kdiskmark
-        keyd
-        lm_sensors
-        vdhcoapp
-        trashy
-        rustdesk
+    systemPackages = let
+      jetbrainsIDEs = [
+        pkgs.jetbrains.webstorm
+        pkgs.jetbrains.idea-ultimate
+        pkgs.jetbrains.datagrip
+        pkgs.jetbrains.rust-rover
+      ];
+    in
+      with pkgs;
+        [
+          firefox
+          grim # screenshots
+          slurp # screenshots
+          wl-clipboard # obv
+          mako # notification system
+          pavucontrol
+          distrobox
+          prismlauncher
+          thunderbird
+          chatterino7
+          kdiskmark
+          keyd
+          lm_sensors
+          vdhcoapp
+          trashy
+          rustdesk
 
-        # jetbrains
-        # jetbrains-toolbox
-        jetbrains.webstorm
-        jetbrains.idea-ultimate
-        jetbrains.datagrip
-        jetbrains.rust-rover
+          # # jetbrains
+          # # jetbrains-toolbox
+          # jetbrains.webstorm
+          # jetbrains.idea-ultimate
+          # jetbrains.datagrip
+          # jetbrains.rust-rover
+          #
+          # (pkgs.writeShellScriptBin "idea-wayland" ''
+          #   ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate -Dawt.toolkit.name=WLToolkit
+          # '')
 
-        blender
+          blender
 
-        neovim
-        vscode-fhs
+          neovim
+          vscode-fhs
 
-        gnupg
-        pinentry-curses
+          gnupg
+          pinentry-curses
 
-        # mullvad-vpn
-        mullvad
+          # mullvad-vpn
+          mullvad
 
-        cacert
-        openssl
-        dconf
-        btop
+          cacert
+          openssl
+          dconf
+          btop
 
-        librespeed-cli
+          librespeed-cli
 
-        gamemode
-        xorg.xrdb
+          gamemode
+          xorg.xrdb
 
-        # video download helper
-        vdhcoapp
+          # video download helper
+          vdhcoapp
 
-        podman-tui
-        # docker-compose
-        podman-compose
-        # qemu-utils
-        qemu_full
-        virtiofsd
+          podman-tui
+          # docker-compose
+          podman-compose
+          # qemu-utils
+          qemu_full
+          virtiofsd
 
-        (heroic.override {
-          extraPkgs = pkgs: [
-            pkgs.gamescope
-            pkgs.gamemode
-          ];
-        })
-      ]
-      ++ (with pkgs-stable; [
-        whatsie
-      ]);
+          (heroic.override {
+            extraPkgs = pkgs: [
+              pkgs.gamescope
+              pkgs.gamemode
+            ];
+          })
+        ]
+        ++ (with pkgs-stable; [
+          whatsie
+        ])
+        ++ jetbrainsIDEs
+        ++ (pkgs.lib.concatMap (
+            ide: let
+              name = builtins.baseNameOf (builtins.parseDrvName ide.name).name;
+            in [
+              (pkgs.writeShellScriptBin "${name}-wayland" ''
+                ${ide}/bin/${name} -Dawt.toolkit.name=WLToolkit
+              '')
+            ]
+          )
+          jetbrainsIDEs);
   };
 
   services.xserver.dpi = 108;
