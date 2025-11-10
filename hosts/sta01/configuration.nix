@@ -186,7 +186,7 @@
               name = builtins.baseNameOf (builtins.parseDrvName ide.name).name;
             in [
               (pkgs.writeShellScriptBin "${name}-wayland" ''
-                ${ide}/bin/${name} -Dawt.toolkit.name=WLToolkit
+                ${ide}/bin/${name} -Dawt.toolkit.name=WLToolkit "$@"
               '')
             ]
           )
