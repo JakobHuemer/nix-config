@@ -111,6 +111,8 @@
         typst
         typstyle
         typst-live
+
+        github-copilot-cli
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default
