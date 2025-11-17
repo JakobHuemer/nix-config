@@ -166,6 +166,8 @@
         ;
     };
 
+    backupFileExtension = "hm-bkp";
+
     useGlobalPkgs = false; # will not me possible with nixpkgs
     useUserPackages = true;
   };

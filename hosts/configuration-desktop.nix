@@ -119,5 +119,7 @@
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
     libre-office.enable = true;
+
+    nemo.enable = true;
   };
 }

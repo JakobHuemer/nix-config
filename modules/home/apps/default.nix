@@ -4,4 +4,5 @@
   ./zen-browser.nix
   ./youtube-music.nix
   ./libre-office.nix
+  ./nemo.nix
 ]
