@@ -74,6 +74,11 @@
 
   virtualisation.vmware.host.enable = true;
 
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["${vars.user}"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
   services.udev.packages = [
     pkgs.yubikey-personalization
   ];
@@ -277,6 +282,13 @@
     useStylix = true;
 
     zen.enable = true;
+
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
+    };
 
     # home.activation = {
     #   extraActivation = ''
