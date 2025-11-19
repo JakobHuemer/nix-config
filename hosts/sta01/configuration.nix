@@ -172,7 +172,6 @@
           # docker-compose
           podman-compose
           # qemu-utils
-          qemu_full
           virtiofsd
 
           (heroic.override {
@@ -184,6 +183,8 @@
         ]
         ++ (with pkgs-stable; [
           whatsie
+
+          qemu_full # until it unstable is stable again
         ])
         ++ jetbrainsIDEs
         ++ (pkgs.lib.concatMap (
