@@ -27,15 +27,15 @@
       jq # for getting focused display
     ];
 
-    home.pointerCursor = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-      size = 24;
-      x11 = {
-        enable = true;
-        defaultCursor = "Adwaita";
-      };
-    };
+    # home.pointerCursor = {
+    #   name = "Adwaita";
+    #   package = pkgs.adwaita-icon-theme;
+    #   size = 24;
+    #   x11 = {
+    #     enable = true;
+    #     defaultCursor = "Adwaita";
+    #   };
+    # };
 
     wayland.windowManager.hyprland = {
       enable = true;

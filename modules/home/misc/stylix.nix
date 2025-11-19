@@ -48,6 +48,12 @@
           name = "Noto Color Emoji";
         };
       };
+
+      cursor = {
+        name = "Banana";
+        package = pkgs.banana-cursor;
+        size = 24;
+      };
     };
   };
 }
