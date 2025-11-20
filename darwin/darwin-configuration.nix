@@ -52,13 +52,6 @@ in {
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
       SHELL = "${pkgs.zsh}/bin/zsh";
-      CARGO_TARGET_DIR = "/Users/${vars.user}/cargo-target/";
-
-      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-      OPENSSL_DIR = "${pkgs.openssl.dev}";
-      # Optional, might help some builds
-      OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
-      OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
     };
 
     systemPath = [
@@ -100,7 +93,7 @@ in {
       # neovim reqs
       pkgs.luarocks
       pkgs.lua5_1
-      pkgs.julia_19-bin
+      pkgs-stable.julia_19-bin
       pkgs.wget
 
       pkgs.jdk21_headless
