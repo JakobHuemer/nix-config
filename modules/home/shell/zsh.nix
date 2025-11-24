@@ -6,7 +6,7 @@
   programs = {
     zsh = {
       enable = true;
-      enableCompletion = false;
+      enableCompletion = true;
       syntaxHighlighting.enable = true;
 
       autocd = true;
@@ -265,6 +265,8 @@
         nurst = nurstCmd;
 
         ssh = "ssh -o EnableEscapeCommandline=yes";
+
+        kube = "${pkgs.kubectl}/bin/kubectl";
       };
     };
 

@@ -105,6 +105,7 @@
         (flameshot.override {enableWlrSupport = true;})
         vlc
         qbittorrent-enhanced
+        kubectl
 
         udiskie
 
