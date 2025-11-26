@@ -51,6 +51,9 @@
       pkgs.testdisk
       pkgs.act
 
+      pkgs.btop
+      pkgs.minikube
+
       inputs.rustowl-flake.packages.${system}.rustowl
     ];
   };
