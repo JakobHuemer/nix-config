@@ -4,6 +4,7 @@
   config,
   vars,
   lib,
+  system,
   ...
 }: {
   imports = [
@@ -43,9 +44,13 @@
           name = "JetBrains Mono";
         };
 
+        # emoji = {
+        #   package = pkgs.noto-fonts-color-emoji;
+        #   name = "Noto Color Emoji";
+        # };
         emoji = {
-          package = pkgs.noto-fonts-color-emoji;
-          name = "Noto Color Emoji";
+          package = inputs.apple-emoji-linux.packages.${system}.apple-emoji-linux;
+          name = "Apple Color Emoji";
         };
       };
 

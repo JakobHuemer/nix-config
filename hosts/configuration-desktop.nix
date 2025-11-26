@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   vars,
+  system,
   ...
 }: {
   # printing
@@ -101,7 +102,7 @@
     # normal fonts
     noto-fonts
     montserrat
-    # noto-fonts-color-emoji
+    noto-fonts-color-emoji
 
     corefonts # MS
   ];
@@ -114,6 +115,7 @@
 
     systemPackages = with pkgs; [
       gparted
+      font-manager
     ];
   };
 
