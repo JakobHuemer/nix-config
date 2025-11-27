@@ -116,6 +116,8 @@
     systemPackages = with pkgs; [
       gparted
       font-manager
+
+      zed-editor
     ];
   };
 
