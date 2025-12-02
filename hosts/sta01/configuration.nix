@@ -312,8 +312,4 @@
 
     git.gpgKey = "DBFA8DCA389649DB6BEE8A009B4F31A8AFE90BEB";
   };
-
-  system = {
-    stateVersion = "25.05";
-  };
 }

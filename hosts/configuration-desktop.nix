@@ -23,6 +23,11 @@
     ];
   };
 
+  services.qbittorrent = {
+    enable = true;
+    # package = pkgs.qbittorrent-enhanced;
+  };
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -84,6 +89,8 @@
     #   };
     # };
   };
+
+  networking.firewall.backend = "nftables";
 
   services.blueman.enable = true;
 

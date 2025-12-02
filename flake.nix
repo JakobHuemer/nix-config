@@ -22,7 +22,7 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland = {
@@ -37,6 +37,7 @@
 
     nvf = {
       url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ghostty = {
@@ -54,7 +55,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    rustowl-flake.url = "github:nix-community/rustowl-flake";
+    rustowl-flake = {
+      url = "github:nix-community/rustowl-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake/beta";
