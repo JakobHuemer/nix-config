@@ -109,23 +109,25 @@
 
         udiskie
 
+        lsof
+
         typst
         typstyle
         typst-live
 
         github-copilot-cli
 
-        pkgs.ripgrep # better grep
-        pkgs.ripgrep-all # ripgrep for all files (pdf, zip, etc.)
-        pkgs.fd # find alternative
+        ripgrep # better grep
+        ripgrep-all # ripgrep for all files (pdf, zip, etc.)
+        fd # find alternative
         # pkgs.gitui # lazygit rust port larifary # fails to build on darwin
-        pkgs.dust # better du
-        pkgs.dua # interactive disk usage analyzer
-        pkgs.yazi # filemanager with previews
-        pkgs.hyperfine # clever benchmark
-        pkgs.tokei # count code lines quickly
-        pkgs.mprocs # tui to run multiple commands parallel
-        pkgs.presenterm # terminal slideshow presentation tool
+        dust # better du
+        dua # interactive disk usage analyzer
+        yazi # filemanager with previews
+        hyperfine # clever benchmark
+        tokei # count code lines quickly
+        mprocs # tui to run multiple commands parallel
+        presenterm # terminal slideshow presentation tool
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default
