@@ -125,6 +125,9 @@
       font-manager
 
       zed-editor
+
+      minikube
+      docker-machine-kvm2
     ];
   };
 
