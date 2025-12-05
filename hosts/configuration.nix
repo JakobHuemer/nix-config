@@ -110,6 +110,7 @@
         udiskie
 
         lsof
+        file
 
         typst
         typstyle
