@@ -70,6 +70,7 @@
       "numi"
       "obsidian"
       "yaak"
+      "veracrypt"
 
       # Communication
       "discord@canary"
