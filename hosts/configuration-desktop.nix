@@ -25,6 +25,7 @@
 
   services.qbittorrent = {
     enable = true;
+    webuiPort = 4205;
     # package = pkgs.qbittorrent-enhanced;
   };
 
