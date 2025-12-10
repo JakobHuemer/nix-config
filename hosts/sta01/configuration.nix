@@ -133,6 +133,8 @@
           trashy
           rustdesk
 
+          opencode
+
           # # jetbrains
           # # jetbrains-toolbox
           # jetbrains.webstorm

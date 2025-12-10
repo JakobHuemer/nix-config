@@ -86,6 +86,7 @@ in {
       pkgs.unar
       pkgs.kubectl
       pkgs.qbittorrent-enhanced
+      pkgs.opencode
 
       pkgs.tailscale
       # pkgs.tailscaled
