@@ -87,6 +87,7 @@ in {
       pkgs.kubectl
       pkgs.qbittorrent-enhanced
       pkgs.opencode
+      pkgs.zed-editor
 
       pkgs.tailscale
       # pkgs.tailscaled
