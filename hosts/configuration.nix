@@ -24,7 +24,9 @@
 
   # firewall
 
-  myfirewall.mullvad_tailscale.enable = true;
+  # networking.firewall.backend = "nftables";
+  # myfirewall.mullvad_tailscale.enable = true;
+
   doh.enable = true;
 
   security.sudo = {

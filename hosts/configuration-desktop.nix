@@ -91,8 +91,6 @@
     # };
   };
 
-  networking.firewall.backend = "nftables";
-
   services.blueman.enable = true;
 
   users.users.${vars.user} = {
