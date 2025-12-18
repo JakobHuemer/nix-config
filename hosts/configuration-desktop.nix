@@ -127,6 +127,11 @@
 
       minikube
       docker-machine-kvm2
+
+      # browsers
+      ungoogled-chromium
+      brave
+      vivaldi
     ];
   };
 
