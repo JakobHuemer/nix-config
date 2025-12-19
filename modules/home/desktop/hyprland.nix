@@ -41,6 +41,8 @@
       enable = true;
       xwayland.enable = true;
 
+      systemd.enable = true;
+
       extraConfig = builtins.readFile ../../../conf/hypr/hyprland.conf;
 
       # settings = {

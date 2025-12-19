@@ -20,6 +20,8 @@
 
   programs.zsh.enable = true;
 
+  # services.devmon.enable = true;
+  # services.gvfs.enable = true;
   services.udisks2.enable = true;
 
   # firewall
@@ -192,14 +194,18 @@
 
     services.udiskie = {
       enable = true;
+      package = pkgs.udiskie;
+
       settings = {
         automount = true;
         notify = true;
-        tray = true;
+        # tray = true;
 
         program_options = {
           file_manager = "${pkgs.nemo-with-extensions}/bin/nemo";
         };
+
+        icon_names.media = ["media-optical"];
       };
     };
 
