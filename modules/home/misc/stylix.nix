@@ -24,7 +24,7 @@
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       polarity = "dark";
 
-      image = ../../../assets/img/bg/planet.jpg;
+      image = ../../../assets/img/bg/windows_10_lock_mc.jpg;
 
       targets.nixcord.enable = false;
 
