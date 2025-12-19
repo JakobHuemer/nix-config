@@ -9,10 +9,10 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
-    home.file.".config/hypr" = {
-      source = ../../../conf/hypr;
-      recursive = true;
-    };
+    # home.file.".config/hypr" = {
+    #   source = ../../../conf/hypr;
+    #   recursive = true;
+    # };
 
     home.packages = with pkgs; [
       # hyprland
