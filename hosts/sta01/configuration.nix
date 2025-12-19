@@ -184,8 +184,6 @@
           })
         ]
         ++ (with pkgs-stable; [
-          whatsie
-
           qemu_full # until it unstable is stable again
         ])
         ++ jetbrainsIDEs
