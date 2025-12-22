@@ -95,7 +95,7 @@ in {
       # neovim reqs
       pkgs.luarocks
       pkgs.lua5_1
-      pkgs-stable.julia_19-bin
+      pkgs.julia-lts
       pkgs.wget
 
       pkgs.jdk21_headless
