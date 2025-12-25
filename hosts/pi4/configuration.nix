@@ -12,34 +12,36 @@
 }: {
   imports =
     [
-      inputs.nixos-hardware.nixosModules.raspberry-pi-4
+      # inputs.nixos-hardware.nixosModules.raspberry-pi-4
       inputs.home-manager.nixosModules.home-manager
     ]
     ++ (import ../../modules/nixos);
 
+  boot.loader.grub.enable = false;
+
   sops.defaultSopsFile = ../../secrets/pi4.yaml;
   sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
-  sops.secrets."wifi_password_home" = {
-    owner = "root";
-    group = "wheel";
-    mode = "0400";
-  };
+  # sops.secrets."wifi_password_home" = {
+  #   owner = "root";
+  #   group = "wheel";
+  #   mode = "0400";
+  # };
 
-  sops.templates."wifi-env.conf" = {
-    content = ''
-      psk_home=${config.sops.placeholder.wifi_password_home}
-    '';
-    owner = "root";
-  };
+  # sops.templates."wifi-env.conf" = {
+  #   content = ''
+  #     psk_home=${config.sops.placeholder.wifi_password_home}
+  #   '';
+  #   owner = "root";
+  # };
 
-  nftables.enable = true;
-  caddy.enable = true;
+  # nftables.enable = true;
+  # caddy.enable = true;
+  #
+  # immich.enable = true;
+  # vaultwarden.enable = true;
 
-  immich.enable = true;
-  vaultwarden.enable = true;
-
-  acme."fistel.dev".enable = true;
+  # acme."fistel.dev".enable = true;
 
   # system
   tailscale.enable = true;
@@ -50,57 +52,7 @@
 
   # networking.nameservers = [ "9.9.9.9" "149.112.112.112" ];
 
-  networking = {
-    useDHCP = false;
-
-    defaultGateway = "192.168.0.11";
-    nameservers = [
-      "9.9.9.9"
-      "149.112.112.112"
-    ];
-
-    interfaces.eth0 = {
-      useDHCP = false;
-      ipv4.addresses = [
-        {
-          address = "192.168.0.42";
-          prefixLength = 24;
-        }
-      ];
-    };
-
-    interfaces.wlan0 = {
-      useDHCP = false;
-      ipv4.addresses = [
-        {
-          address = "192.168.0.43";
-          prefixLength = 24;
-        }
-      ];
-    };
-
-    wireless = {
-      enable = true;
-      interfaces = ["wlan0"]; # Manage only wlan0
-      secretsFile = "${config.sops.templates."wifi-env.conf".path}";
-      networks = {
-        "Wlan Kremsmuenster" = {
-          psk = "ext:psk_home";
-        };
-      };
-    };
-  };
-
-  hardware = {
-    raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-    deviceTree = {
-      enable = true;
-      filter = "*rpi-4-*.dtb";
-    };
-  };
-
-  console.enable = false;
-
+  networking.networkmanager.enable = true;
   networking.hostName = "${host.hostName}";
 
   programs.zsh.enable = true;
@@ -109,8 +61,8 @@
 
   environment = {
     systemPackages = with pkgs; [
-      libraspberrypi
-      raspberrypi-eeprom
+      # libraspberrypi
+      # raspberrypi-eeprom
 
       neovim
       gnupg
@@ -125,7 +77,6 @@
 
   services.openssh = {
     enable = true;
-    ports = [4204];
     settings = {
       PasswordAuthentication = true;
       PermitRootLogin = "no";
@@ -148,13 +99,13 @@
       home-manager.enable = true;
     };
     home = {
-      stateVersion = "25.05";
+      stateVersion = "25.11";
     };
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
-    tmux.enable = true;
+    # tmux.enable = true;
 
-    git.gpgKey = "0E86AFCB4CF89B380E9101CB8C765C652BCEE672";
+    git.gpgKey = "2F948936806377F59BF2D6D60A92AD5C02F180B9";
   };
 }

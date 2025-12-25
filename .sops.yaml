@@ -1,8 +1,12 @@
 keys:
-  - &pi4 age1tf88myjm03ct730khm392gfhmvr5yjma3qv9lp2stmjc2hrs55eq36t07w
+  - &pi4 age1plqwazvrhxd5528k6uylv8drlkvhzmlw7yynzqra45u5cl4ycqxq7ne3qg
+  - &sta01 age1jwr3j33pzw7mcr4fpdlgt2md2ds7n6mxl0qtt4vs7zamvs7gxpxsff2n37
+  - &mbp2p age1ndwq53fzfnv0zf8we38t4yhcj8s9edusx8cu5dahwu2dclxcjpzqy245ah
 
 creation_rules:
-  - path_regex: secrets/pi4.yaml$
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
         - *pi4
+        - *sta01
+        - *mbp2p
