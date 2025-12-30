@@ -213,7 +213,9 @@
           pfetch
         fi
 
-        # autoload -Uz +X compinit && compinit
+        autoload -Uz edit-command-line
+        zle -N edit-command-line
+        bindkey '^x^e' edit-command-line
       '';
       shellAliases = let
         flakepart = "--flake ${host.flakePath}#${host.hostName}";
