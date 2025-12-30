@@ -213,7 +213,7 @@
           pfetch
         fi
 
-        autoload -Uz edit-command-line
+        autoload -Uz edit-command-line zmv
         zle -N edit-command-line
         bindkey '^x^e' edit-command-line
       '';
