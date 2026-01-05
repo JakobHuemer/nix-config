@@ -2,6 +2,7 @@
   lib,
   config,
   host,
+  vars,
   ...
 }: {
   options.tailscale = {
@@ -20,6 +21,7 @@
 
       extraSetFlags = [
         "--ssh"
+        "--operator=${vars.user}"
       ];
 
       useRoutingFeatures = lib.mkDefault "client";
