@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-darwin-stable.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
+
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
     home-manager = {
@@ -11,9 +16,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    darwin = {
+    nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
     nixgl = {
@@ -81,64 +86,60 @@
       url = "github:h-banii/youtube-music-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixdev = {
-      url = "github:JakobHuemer/nixdev";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    nixos-hardware,
-    home-manager,
-    darwin,
-    nixgl,
-    ...
-  } @ inputs: let
+  outputs = {self, ...} @ inputs: let
     vars = {
       user = "jakki";
       locations = "$HOME/.setup";
       terminal = "ghostty";
       editor = "nvim";
-      domainName = "fistel.dev";
+    };
+
+    inherit (inputs.nixpkgs) lib;
+
+    genSpecialArgs = system:
+      inputs
+      // {
+        inherit vars system;
+
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
+        pkgs-stable = import inputs.nixpkgs-stable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
+        pkgs-master = import inputs.nixpkgs-master {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
+        pkgs-darwin = import inputs.nixpkgs-darwin {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
+        pkgs-darwin-stable = import inputs.nixpkgs-darwin-stable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+
+    args = {
+      inherit
+        inputs
+        lib
+        vars
+        genSpecialArgs
+        ;
     };
   in {
-    nixosConfigurations = import ./hosts {
-      inherit (nixpkgs) lib;
-      inherit
-        inputs
-        nixpkgs
-        nixpkgs-stable
-        nixos-hardware
-        vars
-        ;
-    };
-
-    darwinConfigurations = import ./darwin {
-      inherit (nixpkgs) lib;
-      inherit
-        inputs
-        nixpkgs
-        nixpkgs-stable
-        home-manager
-        darwin
-        vars
-        ;
-    };
-
-    homeConfigurations = import ./nix {
-      inherit (nixpkgs) lib;
-      inherit
-        inputs
-        nixpkgs
-        nixpkgs-stable
-        home-manager
-        nixgl
-        vars
-        ;
-    };
+    nixosConfigurations = import ./nixos args;
+    darwinConfigurations = import ./darwin args;
+    homeConfigurations = import ./nix args;
   };
 }

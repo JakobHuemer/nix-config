@@ -5,7 +5,6 @@
   inputs,
   vars,
   system,
-  nixpkgs,
   host,
   config,
   ...
@@ -245,7 +244,6 @@
     inherit
       inputs
       system
-      nixpkgs
       vars
       host
       ;
