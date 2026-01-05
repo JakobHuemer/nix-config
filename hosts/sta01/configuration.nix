@@ -10,12 +10,11 @@
   config,
   ...
 }: {
-  # btrfs scubbing
-
   imports = [
     inputs.hyprland.nixosModules.default
   ];
 
+  # btrfs scubbing
   services.btrfs.autoScrub = {
     enable = true;
     interval = "weekly";
@@ -50,9 +49,8 @@
   };
 
   steam.enable = true;
-  tuigreet = {
+  greetd = {
     enable = true;
-    cmd = "Hyprland";
   };
   tailscale.enable = true;
 
@@ -214,12 +212,7 @@
   #   antialias = true;
   # };
 
-  programs.xwayland.enable = true;
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${system}.hyprland;
-    xwayland.enable = true;
-  };
+  hyprland.enable = true;
 
   # xdg.portal = {
   #   enable = true;
@@ -268,7 +261,6 @@
     };
   };
   home-manager.users.${vars.user} = {
-    hyprland.enable = true;
     mako.enable = true;
     waybar.enable = true;
 

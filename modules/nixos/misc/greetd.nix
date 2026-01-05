@@ -4,18 +4,15 @@
   lib,
   ...
 }: {
-  options.tuigreet = {
+  options.greetd = {
     enable = lib.mkEnableOption "enbale tuigreet";
-    cmd = lib.mkOption {
-      type = lib.types.str;
-    };
   };
 
-  config = lib.mkIf config.tuigreet.enable {
+  config = lib.mkIf config.greetd.enable {
     services.greetd = {
       enable = true;
       settings.default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd ${config.tuigreet.cmd}";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time";
         user = "greeter";
       };
     };
