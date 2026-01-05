@@ -109,7 +109,7 @@
     systemPackages = let
       jetbrainsIDEs = [
         pkgs.jetbrains.webstorm
-        pkgs.jetbrains.idea-ultimate
+        pkgs.jetbrains.idea-oss
         pkgs.jetbrains.datagrip
         pkgs.jetbrains.rust-rover
       ];
@@ -131,7 +131,6 @@
           lm_sensors
           vdhcoapp
           trashy
-          rustdesk
 
           opencode
 
@@ -185,6 +184,7 @@
         ]
         ++ (with pkgs-stable; [
           qemu_full # until it unstable is stable again
+          rustdesk
         ])
         ++ jetbrainsIDEs
         ++ (pkgs.lib.concatMap (
