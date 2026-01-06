@@ -277,12 +277,17 @@
     zoxide.enable = true;
     fzf.enable = true;
     dircolors.enable = true;
-  };
 
-  programs.gh = {
-    enable = true;
+    gh = {
+      enable = true;
+      extensions = [pkgs.gh-copilot];
+    };
 
-    extensions = [pkgs.gh-copilot];
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
   };
 
   home.packages = with pkgs; [
