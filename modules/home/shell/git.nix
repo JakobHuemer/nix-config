@@ -46,7 +46,9 @@
 
         alias = {
           one = "log --oneline";
-          ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ | tee .gitignore ;}; gi";
+          ignore =
+            "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@"
+            + " | tee .gitignore ;}; gi";
 
           # pushf = "push --force-with-lease"; # this is dangerous with autocorrect
           pfwl = "push --force-with-lease";
@@ -55,6 +57,11 @@
           ca = "commit -a";
 
           fixup = "commit --fixup=HEAD --edit";
+
+          logpretty =
+            "log --color --graph --pretty=format:'%C(red)%h%Creset"
+            + " %C(bold blue)<%an>%Creset [%C(yellow)%G?%Creset]"
+            + " %C(green)%cr%C(auto)%d %n%Creset%s%n'";
         };
 
         url = {
