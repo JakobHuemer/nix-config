@@ -122,6 +122,8 @@
 
         github-copilot-cli
 
+        codeberg-cli
+
         ripgrep # better grep
         ripgrep-all # ripgrep for all files (pdf, zip, etc.)
         fd # find alternative
