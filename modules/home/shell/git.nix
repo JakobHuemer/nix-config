@@ -67,6 +67,8 @@
         url = {
           "git@github.com".insteadOf = "gh";
           "https://github.com/".insteadOf = "ghttp";
+          "git@codeberg.org".insteadOf = "cb";
+          "https://codeberg.com/".insteadOf = "cbhttp";
         };
 
         core = {
