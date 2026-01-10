@@ -250,8 +250,6 @@ in {
     ghostty.enable = true;
     tmux.enable = true;
 
-    nixdev.enable = true;
-
     home.file.".hammersoon" = {
       source = ./../conf/hammerspoon;
       target = ".hammerspoon";

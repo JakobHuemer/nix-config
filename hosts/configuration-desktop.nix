@@ -123,7 +123,7 @@
       gparted
       font-manager
 
-      zed-editor
+      # zed-editor
 
       minikube
       docker-machine-kvm2

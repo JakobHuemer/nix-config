@@ -31,7 +31,7 @@
       nixd
       prettierd
       yapf
-      nixfmt-rfc-style
+      nixfmt
       rustfmt
       alejandra
       stylua

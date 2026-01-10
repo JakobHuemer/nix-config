@@ -187,8 +187,6 @@
 
     nixpkgs.config.allowUnfree = true;
 
-    nixdev.enable = true;
-
     home.file.".nix-assets" = {
       source = ../assets;
       recursive = true;

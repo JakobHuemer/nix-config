@@ -81,11 +81,6 @@
       url = "github:h-banii/youtube-music-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixdev = {
-      url = "github:JakobHuemer/nixdev";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
