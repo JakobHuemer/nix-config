@@ -19,22 +19,19 @@
     };
 
     home-manager.users.${vars.user} = {
-      home.packages =
-        (with pkgs; [
-          # hyprland
-          waybar
-          wl-clipboard
-          ghostty
-          dmenu-wayland
-          alacritty
-          kitty
-          foot
-          dconf
-          jq # for getting focused display
-        ])
-        ++ (with pkgs-stable; [
-          hyprpaper
-        ]);
+      home.packages = with pkgs; [
+        # hyprland
+        waybar
+        wl-clipboard
+        ghostty
+        dmenu-wayland
+        alacritty
+        kitty
+        foot
+        dconf
+        jq # for getting focused display
+        hyprpaper
+      ];
 
       wayland.windowManager.hyprland = {
         enable = true;
