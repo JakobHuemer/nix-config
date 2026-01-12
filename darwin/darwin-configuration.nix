@@ -62,6 +62,7 @@ in {
 
     systemPackages = [
       # util
+      pkgs.codeberg-cli
       pkgs.ffmpeg
       pkgs.gnupg
       pkgs.git
