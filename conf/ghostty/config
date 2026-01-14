@@ -57,5 +57,7 @@ cursor-color = f5e0dc
 selection-background = 353749
 selection-foreground = cdd6f4
 
+# make ghostty not group on linux
+gtk-single-instance = false
 
 # custom-shader = ~/.tweaks/ghostty-shaders/glow-rgbsplit-twitchy.glsl
