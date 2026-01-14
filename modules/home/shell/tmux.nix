@@ -102,20 +102,20 @@
             set -g @sessionx-bin "C-i"
           '';
         }
-        {
-          plugin = tmuxPlugins.mkTmuxPlugin {
-            pluginName = "tmuxifier";
-            version = "tmuxifier-unstable";
-            src = pkgs.fetchFromGitHub {
-              owner = "jimeh";
-              repo = "tmuxifier";
-              rev = "HEAD";
-              sha256 = "sha256-qF4a6+34xqBVKxtOyP2ze9qIvuRIEf1j2oXbd+h3TiM=";
-            };
-
-            rtpFilePath = "tmuxifier.tmux";
-          };
-        }
+        # {
+        #   plugin = tmuxPlugins.mkTmuxPlugin {
+        #     pluginName = "tmuxifier";
+        #     version = "tmuxifier-unstable";
+        #     src = pkgs.fetchFromGitHub {
+        #       owner = "jimeh";
+        #       repo = "tmuxifier";
+        #       rev = "HEAD";
+        #       sha256 = "sha256-qF4a6+34xqBVKxtOyP2ze9qIvuRIEf1j2oXbd+h3TiM=";
+        #     };
+        #
+        #     rtpFilePath = "tmuxifier.tmux";
+        #   };
+        # }
         {
           plugin = tmuxPlugins.mkTmuxPlugin {
             pluginName = "tmux-weather-gps";
