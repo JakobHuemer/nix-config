@@ -127,6 +127,9 @@
 
       minikube
       # docker-machine-kvm2
+      
+      # tailscale ui
+      ktailctl
 
       # browsers
       ungoogled-chromium
