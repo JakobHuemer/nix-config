@@ -25,9 +25,9 @@
         "/gaming".options = ["compress=zstd"];
   };
 
-  # disable 32bit
-  # services.pulseaudio.support32Bit = false;
-  # services.pipewire.alsa.support32Bit = false;
+  services.udev.packages = [
+    pkgs.yubikey-personalization
+  ];
 
   # btrfs scubbing
   services.btrfs.autoScrub = {
@@ -73,6 +73,7 @@
 
   boot.loader.limine = {
     enable = true;
+    maxGenerations = 15;
   };
 
   virtualisation.containers.enable = true;
@@ -88,10 +89,6 @@
   users.groups.libvirtd.members = ["${vars.user}"];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
-
-  services.udev.packages = [
-    pkgs.yubikey-personalization
-  ];
 
   security.polkit.enable = true;
   security.pki.certificateFiles = ["${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
