@@ -6,6 +6,7 @@
   ...
 }: let
   lib = nixpkgs.lib;
+  lib-stable = nixpkgs-stable.lib;
 in {
   # NixOs Laptop Desktop
 
@@ -35,6 +36,34 @@ in {
         ./sta01
         ./configuration.nix
         ./configuration-desktop.nix
+      ];
+    };
+
+
+  nixbook = let
+    system = "aarch64-linux";
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in
+    lib-stable.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit
+          inputs
+          system
+          pkgs-stable
+          vars
+          ;
+        host = {
+          hostName = "nixbook";
+          flakePath = "/etc/nixos/nix-config";
+        };
+      };
+
+      modules = [
+        ./nixbook
       ];
     };
 

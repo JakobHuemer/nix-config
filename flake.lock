@@ -520,6 +520,27 @@
         "type": "github"
       }
     },
+    "home-manager-stable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-stable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767910483,
+        "narHash": "sha256-MOU5YdVu4DVwuT5ztXgQpPuRRBjSjUGIdUzOQr9iQOY=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "82fb7dedaad83e5e279127a38ef410bcfac6d77c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-25.11",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
@@ -1159,6 +1180,7 @@
         "darwin": "darwin",
         "ghostty": "ghostty",
         "home-manager": "home-manager_2",
+        "home-manager-stable": "home-manager-stable",
         "hyprland": "hyprland",
         "nixcord": "nixcord",
         "nixgl": "nixgl",
