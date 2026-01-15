@@ -126,7 +126,7 @@
       # zed-editor
 
       minikube
-      docker-machine-kvm2
+      # docker-machine-kvm2
 
       # browsers
       ungoogled-chromium
@@ -136,7 +136,7 @@
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
-    libre-office.enable = true;
+    # libre-office.enable = true;
 
     services.trayscale = {
       enable = true;

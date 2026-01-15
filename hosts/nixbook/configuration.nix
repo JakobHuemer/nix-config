@@ -1,240 +1,306 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ system, host, vars, config, lib, pkgs, pkgs-stable, inputs, ... }:
-
 {
-
+  lib,
+  pkgs,
+  pkgs-stable,
+  inputs,
+  vars,
+  system,
+  nixpkgs,
+  host,
+  config,
+  ...
+}: {
   imports = [
-      inputs.home-manager-stable.nixosModules.home-manager
-      inputs.sops-nix.nixosModules.sops
-    ]
-    ++ (import ../../modules/nixos);
+    inputs.hyprland.nixosModules.default
+  ];
 
-  fileSystems = {
-	"/".options = ["compress=zstd"];
-	"/home".options = ["compress=zstd"];
-	"/nix".options = ["compress=zstd" "noatime"];
-	"/virt-machines".options = ["compress=zstd"];
-	"/gaming".options = ["compress=zstd"];
-  };
-
-  i18n = {
-    defaultLocale = "en_GB.UTF-8";
-
-    extraLocales = [
-      "en_GB.UTF-8/UTF-8"
-      "en_DE.UTF-8/UTF-8"
-      "en_AT.UTF-8/UTF-8"
-    ];
-
-    extraLocaleSettings = {
-      LC_MONETARY = "de_AT.UTF-8";
-    };
-  };
-
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "de-latin1";
-  };
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
-
-  # hardware.asahi.extractPeripheralFirmware = true;
+  hardware.asahi.extractPeripheralFirmware = true;
   hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
 
-  # networking.hostName = "nixos"; # Define your hostname.
-
-  # Configure network connections interactively with nmcli or nmtui.
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # networking.hostName = "nixbook";
-
-  networking.wireless.iwd = {
-  	enable = true;
-	settings.General.EnableNetworkConfiguration = true;
+  fileSystems = {
+        "/".options = ["compress=zstd"];
+        "/home".options = ["compress=zstd"];
+        "/nix".options = ["compress=zstd" "noatime"];
+        "/virt-machines".options = ["compress=zstd"];
+        "/gaming".options = ["compress=zstd"];
   };
 
-  nix = {
-  	# enable = true;
-  	settings = {
-		extra-substituters = [
-			"https://nixos-apple-silicon.cachix.org"
-		];
-		extra-trusted-public-keys = [
-			"nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
-		];
-	};
-	extraOptions = ''
-		experimental-features = nix-command flakes
-		keep-outputs 	      = true
-		keep-derivations      = true
-	'';
+  # disable 32bit
+  # services.pulseaudio.support32Bit = false;
+  # services.pipewire.alsa.support32Bit = false;
 
-	# registry.nixpkgs.flake = inputs.nixpkgs;
-	
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
-  programs.zsh.enable = true;
-
-
-  environment = {
-    variables = {
-      TERMINAL = "${vars.terminal}";
-      EDITOR = "${vars.editor}";
-      VISUAL = "${vars.editor}";
-
-      SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
-    };
-
-    systemPackages = with pkgs; [
-      zsh
-      pinentry-all
-      fh
-      net-tools
-      dig
-      sops
-      age
-      vlc
-      lsof
-      gparted
-      font-manager
-
-      ungoogled-chromium
-      brave
-      vivaldi
-      firefox
-
-      neovim
-      git
-      gnupg
-      pinentry-curses
-
-      cacert
-      openssl
-      dconf
-      btop
-
-      opencode
-
-      pavucontrol
-    ];
-  };
-
-  hyprland.enable = true;
-
-  services.openssh.enable = true;
-
-  services.gnome.gnome-keyring.enable = true;
-
-  services.blueman.enable = true;
-
-  hardware.bluetooth = {
+  # btrfs scubbing
+  services.btrfs.autoScrub = {
     enable = true;
-    powerOnBoot = true;
+    interval = "weekly";
+    fileSystems = ["/"];
   };
 
+  networking.firewall = {
+    enable = true;
+
+    allowedTCPPorts = [25565 24454];
+    allowedUDPPorts = [25565 24454];
+  };
+
+  # io
   services.keyd = {
     enable = true;
-    keyboards.default = {
-      ids = ["*"];
-      settings.main = {
-        capslock = "esc";
+    keyboards = {
+      default = {
+        ids = ["*"];
+        settings = {
+          main = {
+            # important
+            capslock = "esc";
+
+	    leftcontrol = "fn";
+	    fn = "leftcontrol";
+          };
+        };
       };
     };
   };
 
+  # steam.enable = true;
+  greetd = {
+    enable = true;
+  };
   tailscale.enable = true;
+
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.loader.limine = {
+    enable = true;
+  };
+
+  virtualisation.containers.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
+
+  # virtualisation.vmware.host.enable = true;
+
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["${vars.user}"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   services.udev.packages = [
     pkgs.yubikey-personalization
   ];
 
   security.polkit.enable = true;
-  # security.pk1.certificateFiles = ["${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
-  # security.pam.services = {
-  #   login.uf2Auth = true;
-  #   sudo.uf2Auth = true;
-  # };
-
-  # services.pulseaudio.enable = true;
-
-  # security.rkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
+  security.pki.certificateFiles = ["${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
   };
 
-  users.users.${vars.user} = {
-    extraGroups = [ "wheel" "networkmanager" "video" "storage" ];
-    isNormalUser = true;
-  };
+  networking.networkmanager.enable = true;
+  networking.hostName = "${host.hostName}";
 
-  
-  home-manager.extraSpecialArgs = {
-    inherit inputs system vars pkgs-stable host;
-  };
+  programs.zsh.enable = true;
 
-  home-manager = {
-    useGlobalPkgs = false;
-    useUserPackages = true;
-    backupFileExtension = "hm-bk";
-  };
+  programs.light.enable = true;
 
-  home-manager.users.${vars.user} = {pkgs, ...}: {
-    imports = import ../../modules/home;
+  # gaming
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
 
-    nixpkgs.config.allowUnfree = true;
-
-    # zsh.enable = true;
-
-    home.file.".nix-assets" = {
-      source = ../../assets;
-      recursive = true;
+  environment = {
+    variables = {
+      SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
     };
 
-    services.trayscale.enable = true;
-    nemo.enable = true;
+    systemPackages = let
+      jetbrainsIDEs = [
+        pkgs.jetbrains.webstorm
+        pkgs.jetbrains.idea-oss
+        pkgs.jetbrains.datagrip
+        pkgs.jetbrains.rust-rover
+      ];
+    in
+      with pkgs;
+        [
+          firefox
+          grim # screenshots
+          slurp # screenshots
+          wl-clipboard # obv
+          mako # notification system
+          pavucontrol
+          distrobox
+          prismlauncher
+          thunderbird
+          chatterino7
+          kdiskmark
+          keyd
+          lm_sensors
+          vdhcoapp
+          trashy
 
-    waybar.enable = true;
+          opencode
+
+          # # jetbrains
+          # # jetbrains-toolbox
+          # jetbrains.webstorm
+          # jetbrains.idea-ultimate
+          # jetbrains.datagrip
+          # jetbrains.rust-rover
+          #
+          # (pkgs.writeShellScriptBin "idea-wayland" ''
+          #   ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate -Dawt.toolkit.name=WLToolkit
+          # '')
+
+          blender
+
+          neovim
+          vscode-fhs
+
+          gnupg
+          pinentry-curses
+
+          # mullvad-vpn
+          mullvad
+
+          cacert
+          openssl
+          dconf
+          btop
+
+          librespeed-cli
+
+          gamemode
+          xorg.xrdb
+
+          # video download helper
+          vdhcoapp
+
+          podman-tui
+          # docker-compose
+          podman-compose
+          # qemu-utils
+          virtiofsd
+
+          # (heroic.override {
+          #   extraPkgs = pkgs: [
+          #     pkgs.gamescope
+          #     pkgs.gamemode
+          #   ];
+          # })
+        ]
+        ++ (with pkgs-stable; [
+          qemu_full # until it unstable is stable again
+          rustdesk
+        ])
+        ++ jetbrainsIDEs
+        ++ (pkgs.lib.concatMap (
+            ide: let
+              name = builtins.baseNameOf (builtins.parseDrvName ide.name).name;
+            in [
+              (pkgs.writeShellScriptBin "${name}-wayland" ''
+                ${ide}/bin/${name} -Dawt.toolkit.name=WLToolkit "$@"
+              '')
+            ]
+          )
+          jetbrainsIDEs);
+  };
+
+  # services.xserver.dpi = 108;
+
+  fonts.fontconfig = {
+    hinting = {
+      enable = true;
+      autohint = false;
+      style = "full";
+    };
+    subpixel = {
+      lcdfilter = "default";
+      rgba = "rgb";
+    };
+    antialias = true;
+  };
+
+  hyprland.enable = true;
+
+  # xdg.portal = {
+  #   enable = true;
+  #   xdgOpenUsePortal = true;
+  #   config = {
+  #     common.default = ["gtk"];
+  #     hyprland.default = ["gtk" "hyprland"];
+  #   };
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-gtk
+  #     pkgs.xdg-desktop-portal-wlr
+  #     pkgs.xdg-desktop-portal-hyprland
+  #   ];
+  # };
+
+  services = {
+    openssh = {
+      enable = true;
+    };
+
+    gnome.gnome-keyring.enable = true;
+
+  };
+
+  home-manager.extraSpecialArgs = {
+    inherit
+      inputs
+      system
+      nixpkgs
+      vars
+      host
+      ;
+  };
+
+  home-manager.users.${vars.user} = {
     mako.enable = true;
+    waybar.enable = true;
+
     tofi.enable = true;
     ghostty.enable = true;
     tmux.enable = true;
 
+    # nixcord.enable = true;
+
+    youtube-music.enable = true;
+
     useStylix = true;
 
-    programs.home-manager.enable = true;
+    zen.enable = true;
 
-    home.stateVersion = "25.11";
+    # dconf.settings = {
+    #   "org/virt-manager/virt-manager/connections" = {
+    #     autoconnect = ["qemu:///system"];
+    #     uris = ["qemu:///system"];
+    #   };
+    # };
+
+    # home.activation = {
+    #   extraActivation = ''
+    #     ${pkgs.xorg.xrdb}/bin/xrdb /home/${vars.user}/.Xresources
+    #   '';
+    # };
+
+    # xresources = {
+    #   path = "/home/${vars.user}/.Xresources";
+    #   extraConfig = ''
+    #     Xft.dpi: 163
+    #     Xft.autohint: 0
+    #     Xft.lcdfilter:  lcddefault
+    #     Xft.hintstyle:  hintfull
+    #     Xft.hinting: 1
+    #     Xft.antialias: 1
+    #     Xft.rgba: rgb
+    #   '';
+    # };
+
+    # git.gpgKey = "DBFA8DCA389649DB6BEE8A009B4F31A8AFE90BEB";
   };
-
-  system.stateVersion = "25.11"; # Did you read the comment?
-
 }
-

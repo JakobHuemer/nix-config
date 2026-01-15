@@ -47,7 +47,7 @@ in {
       config.allowUnfree = true;
     };
   in
-    lib-stable.nixosSystem {
+    lib.nixosSystem {
       inherit system;
       specialArgs = {
         inherit
@@ -63,6 +63,8 @@ in {
       };
 
       modules = [
+        ./configuration.nix
+	./configuration-desktop.nix
         ./nixbook
       ];
     };
