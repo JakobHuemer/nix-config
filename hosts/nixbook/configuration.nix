@@ -66,9 +66,31 @@
             # important
             capslock = "esc";
 
-	    leftcontrol = "fn";
+            # this swaps fn and ctrl on the horrible macos keyboard.
+	    # pressing fn (physical lctrl) enables a "control" layer
+	    # where i then can set the media behaviours for f keys.
+	    # pressing controll (physical fn) enables some other "control"
+	    # layer that doesn't seem to trigger media behvaiour on 
+	    # the f keys. this perfectly resembles expected behvaiour
+	    # as if fn and control were physically swapped
+	    leftcontrol = "overload(fn, fn)";
 	    fn = "leftcontrol";
+
           };
+
+          # here i am actually setting the media behaviour when the
+	  # swapped fn (physical controll) is placed
+	  control = {
+	    # fn + FXX to media
+	    f1 = "brightnessdown";
+	    f2 = "brightnessup";
+	    f7 = "previoussong";
+	    f8 = "playpause";
+	    f9 = "nextsong";
+	    f10 = "mute";
+	    f11 = "volumedown";
+	    f12 = "volumeup";
+	  };
         };
       };
     };

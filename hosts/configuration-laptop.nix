@@ -24,9 +24,20 @@
     };
   };
 
-  services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    lidSwitchExternalPower = "subend-then-hibernate";
+  # default audio volume
+  services.pipewire.wireplumber = {
+    enable = true;
+    # extraConfig = {
+    #   "wireplumber.settings" = {
+    #     "device.routes.default-sink-volume" = "0.016";
+    #     "device.routes.default-source-volume" = "0.0086";
+    #   };
+    # };
+  };
+
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend-then-hibernate";
+    HandleLidSwitchExternalPower = "subend-then-hibernate";
   };
 
   systemd.sleep.extraConfig = ''

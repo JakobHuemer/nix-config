@@ -34,6 +34,10 @@
 
         # notification daemon
 	libnotify
+
+        # media key utilities
+	brightnessctl
+	playerctl
       ];
 
       wayland.windowManager.hyprland = {

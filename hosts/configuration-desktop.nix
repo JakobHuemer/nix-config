@@ -5,6 +5,11 @@
   system,
   ...
 }: {
+  # log to startup to tty1 to make tuigreet clean
+  boot.kernelParams = [
+    "console=tty1"
+  ];
+
   # printing
   services.avahi = {
     enable = true;
