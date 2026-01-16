@@ -65,6 +65,7 @@ in {
       modules = [
         ./configuration.nix
 	./configuration-desktop.nix
+	./configuration-laptop.nix
         ./nixbook
       ];
     };
