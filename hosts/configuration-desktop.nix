@@ -111,9 +111,9 @@
     jetbrains-mono
 
     # normal fonts
-    noto-fonts
+    # noto-fonts
     montserrat
-    noto-fonts-color-emoji
+    # noto-fonts-color-emoji
 
     corefonts # MS
 
