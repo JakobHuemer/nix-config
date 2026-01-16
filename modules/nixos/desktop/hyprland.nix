@@ -31,6 +31,9 @@
         dconf
         jq # for getting focused display
         hyprpaper
+
+        # notification daemon
+	libnotify
       ];
 
       wayland.windowManager.hyprland = {
@@ -43,7 +46,10 @@
 
         systemd.enable = false;
 
-        extraConfig = builtins.readFile ../../../conf/hypr/hyprland.conf;
+        extraConfig = (builtins.readFile ../../../conf/hypr/hyprland.conf)
+	              + ''
+		        bind = $mainMod, G, exec, ${../../../conf/hypr/toggle_touchpad.sh} 
+		      '';
 
         # settings = {
         #   "$mod" = "SUPER";
