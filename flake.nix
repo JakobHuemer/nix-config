@@ -17,8 +17,9 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
-    nixos-apple-silicon = {
+    apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {

@@ -66,7 +66,7 @@ in {
         ./configuration-desktop.nix
         ./configuration-laptop.nix
         ./nixbook
-	"${inputs.nixos-apple-silicon}/apple-silicon-support"
+	inputs.apple-silicon.nixosModules.apple-silicon-support
       ];
     };
 
