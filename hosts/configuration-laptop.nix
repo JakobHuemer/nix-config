@@ -37,8 +37,14 @@
   };
 
   services.logind.settings.Login = {
+
+    # lid close
     HandleLidSwitch = "suspend-then-hibernate";
     HandleLidSwitchExternalPower = "subend-then-hibernate";
+
+    # power button
+    HandlePowerKey = "lock";
+    HandlePowerKeyLongPress = "poweroff";
   };
 
   systemd.sleep.extraConfig = ''
