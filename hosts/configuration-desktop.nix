@@ -111,6 +111,7 @@
     noto-fonts-color-emoji
 
     corefonts # MS
+
   ];
 
   environment = {
@@ -135,6 +136,8 @@
       ungoogled-chromium
       brave
       vivaldi
+
+      networkmanagerapplet
     ];
   };
 
