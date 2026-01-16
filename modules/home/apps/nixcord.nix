@@ -1,4 +1,5 @@
 {
+  system,
   config,
   lib,
   pkgs,
@@ -11,7 +12,11 @@
     nixcord.enable = lib.mkEnableOption "enable nixcord";
   };
 
-  config = lib.mkIf config.nixcord.enable {
+  config = if system == "aarch64-linux" then {
+	home.packages = with pkgs; [
+          legcord
+	];
+  } else lib.mkIf config.nixcord.enable {
     programs.nixcord = {
       enable = true;
 

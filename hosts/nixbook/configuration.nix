@@ -269,7 +269,7 @@
     ghostty.enable = true;
     tmux.enable = true;
 
-    # nixcord.enable = true;
+    nixcord.enable = true;
 
     youtube-music.enable = true;
 
