@@ -23,18 +23,20 @@
   hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
 
   # swap
-  swapDevices = [{
-    device = "/dev/disk/by-uuid/63b04acd-93c6-4c41-bcf9-0be16d7c0e32";
-  }];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/63b04acd-93c6-4c41-bcf9-0be16d7c0e32";
+    }
+  ];
 
   boot.resumeDevice = "/dev/disk/by-uuid/63b04acd-93c6-4c41-bcf9-0be16d7c0e32";
 
   fileSystems = {
-        "/".options = ["compress=zstd"];
-        "/home".options = ["compress=zstd"];
-        "/nix".options = ["compress=zstd" "noatime"];
-        "/virt-machines".options = ["compress=zstd"];
-        "/gaming".options = ["compress=zstd"];
+    "/".options = ["compress=zstd"];
+    "/home".options = ["compress=zstd"];
+    "/nix".options = ["compress=zstd" "noatime"];
+    "/virt-machines".options = ["compress=zstd"];
+    "/gaming".options = ["compress=zstd"];
   };
 
   services.udev.packages = [
@@ -67,30 +69,29 @@
             capslock = "esc";
 
             # this swaps fn and ctrl on the horrible macos keyboard.
-	    # pressing fn (physical lctrl) enables a "control" layer
-	    # where i then can set the media behaviours for f keys.
-	    # pressing controll (physical fn) enables some other "control"
-	    # layer that doesn't seem to trigger media behvaiour on 
-	    # the f keys. this perfectly resembles expected behvaiour
-	    # as if fn and control were physically swapped
-	    leftcontrol = "overload(fn, fn)";
-	    fn = "leftcontrol";
-
+            # pressing fn (physical lctrl) enables a "control" layer
+            # where i then can set the media behaviours for f keys.
+            # pressing controll (physical fn) enables some other "control"
+            # layer that doesn't seem to trigger media behvaiour on
+            # the f keys. this perfectly resembles expected behvaiour
+            # as if fn and control were physically swapped
+            leftcontrol = "overload(fn, fn)";
+            fn = "leftcontrol";
           };
 
           # here i am actually setting the media behaviour when the
-	  # swapped fn (physical controll) is placed
-	  control = {
-	    # fn + FXX to media
-	    f1 = "brightnessdown";
-	    f2 = "brightnessup";
-	    f7 = "previoussong";
-	    f8 = "playpause";
-	    f9 = "nextsong";
-	    f10 = "mute";
-	    f11 = "volumedown";
-	    f12 = "volumeup";
-	  };
+          # swapped fn (physical controll) is placed
+          control = {
+            # fn + FXX to media
+            f1 = "brightnessdown";
+            f2 = "brightnessup";
+            f7 = "previoussong";
+            f8 = "playpause";
+            f9 = "nextsong";
+            f10 = "mute";
+            f11 = "volumedown";
+            f12 = "volumeup";
+          };
         };
       };
     };
@@ -277,7 +278,6 @@
     };
 
     gnome.gnome-keyring.enable = true;
-
   };
 
   home-manager.extraSpecialArgs = {

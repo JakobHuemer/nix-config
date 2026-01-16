@@ -32,40 +32,39 @@
         jq # for getting focused display
 
         hyprpaper
-	hypridle
+        hypridle
 
         # notification daemon
-	libnotify
+        libnotify
 
         # media key utilities
-	brightnessctl
-	playerctl
+        brightnessctl
+        playerctl
       ];
 
       services.hypridle = {
         enable = true;
-	settings = {
-	  general = {
-    lock_cmd = "pidof hyprlock || hyprlock";
-    before_sleep_cmd = "loginctl lock-session";
-    after_sleep_cmd = "hyprctl dispatch dpms on";
-    ignore_dbus_inhibit = false;
-    ignore_systemd_inhibit = false;
-	  };
+        settings = {
+          general = {
+            lock_cmd = "pidof hyprlock || hyprlock";
+            before_sleep_cmd = "loginctl lock-session";
+            after_sleep_cmd = "hyprctl dispatch dpms on";
+            ignore_dbus_inhibit = false;
+            ignore_systemd_inhibit = false;
+          };
 
-	  listener = [
-	    {
-	      timeout = 300;
-	      on-timeout = "loginctl lock-session";
-	    }
+          listener = [
             {
-	      timeout = 300;
-	      on-timeout = "hyprctl dispatch dpms off";
-	      on-resume = "hyprctl dispatch dpms on";
-	    }
-	  ];
-
-	};
+              timeout = 300;
+              on-timeout = "loginctl lock-session";
+            }
+            {
+              timeout = 300;
+              on-timeout = "hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on";
+            }
+          ];
+        };
       };
 
       wayland.windowManager.hyprland = {
@@ -78,10 +77,11 @@
 
         systemd.enable = false;
 
-        extraConfig = (builtins.readFile ../../../conf/hypr/hyprland.conf)
-	              + ''
-		        bind = $mainMod, G, exec, ${../../../conf/hypr/toggle_touchpad.sh} 
-		      '';
+        extraConfig =
+          (builtins.readFile ../../../conf/hypr/hyprland.conf)
+          + ''
+            bind = $mainMod, G, exec, ${../../../conf/hypr/toggle_touchpad.sh}
+          '';
 
         # settings = {
         #   "$mod" = "SUPER";

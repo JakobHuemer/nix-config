@@ -39,7 +39,6 @@ in {
       ];
     };
 
-
   nixbook = let
     system = "aarch64-linux";
     pkgs-stable = import nixpkgs-stable {
@@ -64,9 +63,10 @@ in {
 
       modules = [
         ./configuration.nix
-	./configuration-desktop.nix
-	./configuration-laptop.nix
+        ./configuration-desktop.nix
+        ./configuration-laptop.nix
         ./nixbook
+	"${inputs.nixos-apple-silicon}/apple-silicon-support"
       ];
     };
 

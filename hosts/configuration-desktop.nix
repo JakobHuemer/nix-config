@@ -116,7 +116,6 @@
     # noto-fonts-color-emoji
 
     corefonts # MS
-
   ];
 
   environment = {
@@ -133,7 +132,7 @@
 
       minikube
       # docker-machine-kvm2
-      
+
       # tailscale ui
       ktailctl
 

@@ -17,7 +17,7 @@
         default_session = {
           command = "${pkgs.tuigreet}/bin/tuigreet --time --remember-session";
           user = "greeter";
-	};
+        };
       };
     };
   };

@@ -1,9 +1,12 @@
-{inputs, config, pkgs, vars, ...}:
 {
-	imports = [
-		./configuration.nix
-		./hardware-configuration.nix
-		./apple-silicon-support
-	];
+  inputs,
+  config,
+  pkgs,
+  vars,
+  ...
+}: {
+  imports = [
+    ./configuration.nix
+    ./hardware-configuration.nix
+  ];
 }
-
