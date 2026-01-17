@@ -22,36 +22,34 @@
   #   ];
   # };
 
-  home.packages = with pkgs;
-    [
-      neovim
+  home.packages = with pkgs; [
+    neovim
 
-      treefmt
-      shfmt
-      nixd
-      prettierd
-      yapf
-      nixfmt
-      rustfmt
-      alejandra
-      stylua
+    treefmt
+    shfmt
+    nixd
+    prettierd
+    yapf
+    nixfmt
+    rustfmt
+    alejandra
+    stylua
 
-      vscode-langservers-extracted
-      vimPlugins.nvim-ts-autotag
+    vscode-langservers-extracted
+    vimPlugins.nvim-ts-autotag
 
-      # deps for lua installation
-      # probably can be removed when migrating to nix
-      gcc
-      tree-sitter
-      nodejs
-      lua
-      unzip
-      cargo
-      python314
-      rust-analyzer
-    ]
-    ++ (with pkgs-stable; [
-      # rust-analyzer
-    ]);
+    # deps for lua installation
+    # probably can be removed when migrating to nix
+    gcc
+    tree-sitter
+    nodejs
+    lua
+    unzip
+    cargo
+    python314
+    rust-analyzer
+    luajitPackages.luarocks
+    plantuml # for diagram.nvim
+  ];
   # };
 }
