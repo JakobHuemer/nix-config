@@ -50,6 +50,7 @@
     rust-analyzer
     luajitPackages.luarocks
     plantuml # for diagram.nvim
+    llvmPackages_20.clang-tools
   ];
   # };
 }
