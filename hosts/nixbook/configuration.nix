@@ -334,6 +334,6 @@
     #   '';
     # };
 
-    # git.gpgKey = "DBFA8DCA389649DB6BEE8A009B4F31A8AFE90BEB";
+    git.gpgKey = "C8CD2840D9FD4E9B508C628955F07624172E58EB";
   };
 }
