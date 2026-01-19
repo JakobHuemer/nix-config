@@ -22,6 +22,8 @@
   hardware.asahi.extractPeripheralFirmware = true;
   hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
 
+  hardware.graphics.enable = true;
+
   # swap
   swapDevices = [
     {
@@ -223,10 +225,10 @@
           #     pkgs.gamemode
           #   ];
           # })
+	  rustdesk-flutter
         ]
         ++ (with pkgs-stable; [
           qemu_full # until it unstable is stable again
-          rustdesk
         ])
         ++ jetbrainsIDEs
         ++ (pkgs.lib.concatMap (
