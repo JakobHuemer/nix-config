@@ -11,15 +11,36 @@
     restartUnits = ["acme-fistel.dev.service"];
   in
     lib.mkIf config.acme."fistel.dev".enable {
-      sops.secrets."acme/fistel.dev/cf_email" = {
-        inherit restartUnits;
-      };
-      sops.secrets."acme/fistel.dev/cf_dns_api_token" = {
-        restartUnits = restartUnits ++ [ "cloudflare-dyndns" ];
-      };
-      sops.secrets."acme/fistel.dev/cf_zone_api_token" = {
-        inherit restartUnits;
-      };
+
+      sops.secrets = let
+        cloudflareCredsFile = ../../../secrets/cloudflare-creds.yaml;
+        secrets = {
+          "acme/fistel.dev/cf_email" = {
+            inherit restartUnits;
+          };
+          "acme/fistel.dev/cf_dns_api_token" = {
+            restartUnits = restartUnits ++ ["cloudflare-dyndns"];
+          };
+          "acme/fistel.dev/cf_zone_api_token" = {
+              inherit restartUnits;
+          };
+        };
+      in lib.mapAttrs (name: opts: opts // {
+        sopsFile = cloudflareCredsFile;
+      }) secrets;
+
+      # sops.secrets."acme/fistel.dev/cf_email" = {
+      #   inherit restartUnits;
+      #   sopsFile = ../../../secrets/cloudflare-creds.yaml;
+      # };
+      # sops.secrets."acme/fistel.dev/cf_dns_api_token" = {
+      #   restartUnits = restartUnits ++ ["cloudflare-dyndns"];
+      #   sopsFile = ../../../secrets/cloudflare-creds.yaml;
+      # };
+      # sops.secrets."acme/fistel.dev/cf_zone_api_token" = {
+      #   inherit restartUnits;
+      #   sopsFile = ../../../secrets/cloudflare-creds.yaml;
+      # };
 
       sops.templates."cloudflare-creds" = {
         content = ''
@@ -50,13 +71,13 @@
       };
 
       systemd.services."acme-order-renew-example.com" = {
-        after = [ "cloudflare-dyndns.service" ];
-        wants = [ "cloudflare-dyndns.service" ];
+        after = ["cloudflare-dyndns.service"];
+        wants = ["cloudflare-dyndns.service"];
       };
 
       systemd.services."acme-example.com" = {
-        after = [ "cloudflare-dyndns.service" ];
-        wants = [ "cloudflare-dyndns.service" ];
+        after = ["cloudflare-dyndns.service"];
+        wants = ["cloudflare-dyndns.service"];
       };
 
       security.acme = {
@@ -75,9 +96,9 @@
 
           environmentFile = config.sops.templates."cloudflare-creds".path;
 
-          extraDomainNames = map (str: "${str}.${vars.domainName}") [ 
+          extraDomainNames = map (str: "${str}.${vars.domainName}") [
             "*"
-            "*.ts" 
+            "*.ts"
           ];
         };
       };

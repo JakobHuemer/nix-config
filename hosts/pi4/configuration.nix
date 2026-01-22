@@ -9,7 +9,7 @@
   host,
   config,
   ...
-}: let 
+}: let
   kubeMasterIP = "192.168.0.42";
   kubeMasterHostname = "api.kube";
   kubeMasterAPIServerPort = 6443;
@@ -24,14 +24,12 @@ in {
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
 
-  sops.defaultSopsFile = ../../secrets/pi4.yaml;
   sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
   #   owner = "root";
   #   group = "wheel";
   #   mode = "0400";
   # };
-
 
   # nftables.enable = true;
   # caddy.enable = true;
@@ -55,8 +53,8 @@ in {
   networking.extraHosts = "${kubeMasterIP} ${kubeMasterHostname}";
 
   networking.firewall = {
-    allowedTCPPorts = [ 80 443 6443 ];
-    allowedUDPPorts = [ 80 443 6443 ];
+    allowedTCPPorts = [80 443 6443];
+    allowedUDPPorts = [80 443 6443];
 
     trustedInterfaces = [
       "tailscale0"
@@ -91,7 +89,7 @@ in {
 
   services.k3s = {
     enable = true;
-    role = "server";  # or "agent" for worker nodes
+    role = "server"; # or "agent" for worker nodes
     extraFlags = toString [
       # optional: disable traefik if you want to use something else
       # "--disable=traefik"
@@ -114,13 +112,13 @@ in {
   };
 
   systemd.services.k3s-tls-secret = {
-    requires = [ "k3s.service" "acme-fistel.dev.service" ];
-    after = [ "k3s.service" "acme-fistel.dev.service" ];
-    wantedBy = [ "multi-user.target" ];
+    requires = ["k3s.service" "acme-fistel.dev.service"];
+    after = ["k3s.service" "acme-fistel.dev.service"];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      
+
       LoadCredential = [
         "tls.crt:/var/lib/acme/fistel.dev/fullchain.pem"
         "tls.key:/var/lib/acme/fistel.dev/key.pem"

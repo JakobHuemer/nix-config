@@ -18,6 +18,9 @@
 
   programs.zsh.enable = true;
 
+  sops.defaultSopsFile = ../secrets/general.yaml;
+  sops.defaultSopsFormat = "yaml";
+
   # services.devmon.enable = true;
   # services.gvfs.enable = true;
   services.udisks2.enable = true;
