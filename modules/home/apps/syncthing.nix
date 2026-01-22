@@ -9,10 +9,6 @@
 }: {
   config = lib.mkIf config.services.syncthing.enable {
     services.syncthing = {
-      tray = {
-        enable = true;
-      };
-
       settings = let
         homeFolder =
           if lib.hasInfix "darwin" system

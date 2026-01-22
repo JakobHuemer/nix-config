@@ -16,8 +16,6 @@
 
   services.automatic-timezoned.enable = true;
 
-  # sops.gnupg.home = "/var/lib/sops";
-
   programs.zsh.enable = true;
 
   # services.devmon.enable = true;
@@ -191,6 +189,8 @@
       source = ../assets;
       recursive = true;
     };
+
+    services.syncthing.enable = true;
 
     services.udiskie = {
       enable = true;
