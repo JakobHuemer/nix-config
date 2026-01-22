@@ -156,7 +156,7 @@
         pkgs.jetbrains.idea
         pkgs.jetbrains.datagrip
         pkgs.jetbrains.rust-rover
-	pkgs.jetbrains.clion
+        pkgs.jetbrains.clion
       ];
     in
       with pkgs;
@@ -226,7 +226,7 @@
           #     pkgs.gamemode
           #   ];
           # })
-	  rustdesk-flutter
+          rustdesk-flutter
         ]
         ++ (with pkgs-stable; [
           qemu_full # until it unstable is stable again

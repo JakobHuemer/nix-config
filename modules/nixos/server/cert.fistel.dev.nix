@@ -11,7 +11,6 @@
     restartUnits = ["acme-fistel.dev.service"];
   in
     lib.mkIf config.acme."fistel.dev".enable {
-
       sops.secrets = let
         cloudflareCredsFile = ../../../secrets/cloudflare-creds.yaml;
         secrets = {
@@ -22,12 +21,16 @@
             restartUnits = restartUnits ++ ["cloudflare-dyndns"];
           };
           "acme/fistel.dev/cf_zone_api_token" = {
-              inherit restartUnits;
+            inherit restartUnits;
           };
         };
-      in lib.mapAttrs (name: opts: opts // {
-        sopsFile = cloudflareCredsFile;
-      }) secrets;
+      in
+        lib.mapAttrs (name: opts:
+          opts
+          // {
+            sopsFile = cloudflareCredsFile;
+          })
+        secrets;
 
       # sops.secrets."acme/fistel.dev/cf_email" = {
       #   inherit restartUnits;
