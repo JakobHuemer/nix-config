@@ -18,7 +18,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
     apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
+      url = "github:nix-community/nixos-apple-silicon/530aa73aa9a21a078ff861b84767ae1d469715fa";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
