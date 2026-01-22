@@ -19,11 +19,6 @@ in {
     # fzf.enableNushellIntegration = true;  # uncomment if this option exists
   };
 
-  programs.gh = {
-    enable = true;
-    extensions = [pkgs.gh-copilot];
-  };
-
   home.packages = with pkgs; [
     nushell
     pay-respects

@@ -278,11 +278,6 @@
     fzf.enable = true;
     dircolors.enable = true;
 
-    gh = {
-      enable = true;
-      extensions = [pkgs.gh-copilot];
-    };
-
     direnv = {
       enable = true;
       enableZshIntegration = true;

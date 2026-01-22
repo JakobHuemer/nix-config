@@ -24,7 +24,7 @@
 
     home-manager.users.${vars.user} = {
       home.packages = with pkgs; [
-        # hyprland
+        hyprland
         waybar
         wl-clipboard
         ghostty
