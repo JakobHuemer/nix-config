@@ -15,7 +15,7 @@
         inherit restartUnits;
       };
       sops.secrets."acme/fistel.dev/cf_dns_api_token" = {
-        inherit restartUnits;
+        restartUnits = restartUnits ++ [ "cloudflare-dyndns" ];
       };
       sops.secrets."acme/fistel.dev/cf_zone_api_token" = {
         inherit restartUnits;
@@ -29,6 +29,36 @@
         '';
       };
 
+      sops.templates."cloudflare-dyndns" = {
+        content = ''
+          ${config.sops.placeholder."acme/fistel.dev/cf_dns_api_token"}
+        '';
+      };
+
+      services.cloudflare-dyndns = {
+        enable = true;
+        apiTokenFile = config.sops.templates."cloudflare-dyndns".path;
+
+        domains = [
+          "fistel.dev"
+          "*.fistel.dev"
+        ];
+
+        proxied = false;
+        ipv4 = true;
+        ipv6 = false;
+      };
+
+      systemd.services."acme-order-renew-example.com" = {
+        after = [ "cloudflare-dyndns.service" ];
+        wants = [ "cloudflare-dyndns.service" ];
+      };
+
+      systemd.services."acme-example.com" = {
+        after = [ "cloudflare-dyndns.service" ];
+        wants = [ "cloudflare-dyndns.service" ];
+      };
+
       security.acme = {
         acceptTerms = true;
         defaults.email = "jakobhuemer2.0+acme@gmail.com";
@@ -36,11 +66,7 @@
         certs."${vars.domainName}" = {
           dnsProvider = "cloudflare";
 
-          group = "caddy";
-          reloadServices = ["caddy"];
-
           domain = "*.${vars.domainName}";
-          extraDomainNames = ["${vars.domainName}"];
 
           extraLegoFlags = [
             "--dns.resolvers=1.1.1.1:53"
@@ -49,11 +75,10 @@
 
           environmentFile = config.sops.templates."cloudflare-creds".path;
 
-          # extraDomainNames = map (str: "${str}.${vars.domainName}") [
-          #   "photos"  # immich
-          #   "immich"  # immich
-          #   "vw"      # vaultwarden
-          # ];
+          extraDomainNames = map (str: "${str}.${vars.domainName}") [ 
+            "*"
+            "*.ts" 
+          ];
         };
       };
     };
