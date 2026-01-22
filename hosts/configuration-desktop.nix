@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   vars,
+  host,
   system,
   ...
 }: {
@@ -142,11 +143,17 @@
       vivaldi
 
       networkmanagerapplet
+
+      filezilla
     ];
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
     # libre-office.enable = true;
+
+    services.syncthing = {
+      enable = true;
+    };
 
     services.trayscale = {
       enable = true;
