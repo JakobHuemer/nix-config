@@ -56,7 +56,11 @@
             mode = "center";
           };
         in {
-          "any" = base;
+          "any" =
+            base
+            // {
+              offset = 1.0;
+            };
 
           "eDP-1" =
             base
