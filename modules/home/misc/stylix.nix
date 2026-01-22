@@ -16,14 +16,14 @@
   };
 
   config = let
-    bgImages = {
-      nyancat-space-kid-drawn = ../../../assets/img/bg/nyancat-space-kid-drawn.jpg;
-      nyancat-space-drawn = ../../../assets/img/bg/nyancat-space-drawn.jpg;
-      windows-10-lock-mc = ../../../assets/img/bg/windows_10_lock_mc.jpg;
-      planet = ../../../assets/img/bg/planet.jpg;
-      creeper-fancy = ../../../assets/img/bg/creeper-fancy.jpg;
-      creeper = ../../../assets/img/bg/creeper.jpg;
-    };
+    # bgImages = {
+    #   nyancat-space-kid-drawn = ../../../assets/img/bg/nyancat-space-kid-drawn.jpg;
+    #   nyancat-space-drawn = ../../../assets/img/bg/nyancat-space-drawn.jpg;
+    #   windows-10-lock-mc = ../../../assets/img/bg/windows_10_lock_mc.jpg;
+    #   planet = ../../../assets/img/bg/planet.jpg;
+    #   creeper-fancy = ../../../assets/img/bg/creeper-fancy.jpg;
+    #   creeper = ../../../assets/img/bg/creeper.jpg;
+    # };
   in
     lib.mkIf config.useStylix {
       stylix = {
@@ -34,7 +34,8 @@
         base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
         polarity = "dark";
 
-        image = bgImages.nyancat-space-drawn;
+        # disable this in favour of using wpaperd manually
+        # image = bgImages.nyancat-space-drawn;
 
         targets.nixcord.enable = false;
 

@@ -31,7 +31,7 @@
         dconf
         jq # for getting focused display
 
-        hyprpaper
+        # hyprpaper
         hypridle
 
         # notification daemon
@@ -41,6 +41,21 @@
         brightnessctl
         playerctl
       ];
+
+      services.wpaperd = {
+        enable = true;
+
+        settings = {
+          "any" = {
+            path = ../../../assets/img/bg;
+            duration = "2m";
+            sorting = "random";
+            mode = "center";
+            # assign to group 1 so all goup 1 share the same random wallpaper
+            group = 1;
+          };
+        };
+      };
 
       services.hypridle = {
         enable = true;
