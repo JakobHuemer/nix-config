@@ -4,6 +4,8 @@
   lib,
   config,
   vars,
+  system,
+  inputs,
   ...
 }: {
   options = {
@@ -17,6 +19,8 @@
       withUWSM = true;
       xwayland.enable = true;
     };
+
+    security.pam.services.hyprlock = {};
 
     home-manager.users.${vars.user} = {
       home.packages = with pkgs; [
@@ -44,16 +48,26 @@
 
       services.wpaperd = {
         enable = true;
+        package = pkgs.custom.wpaperd;
 
-        settings = {
-          "any" = {
-            path = ../../../assets/img/bg;
-            duration = "2m";
-            sorting = "random";
+        settings = let
+          base = {
+            path = ../../../assets/img/bg/nyancat-space-drawn.jpg;
             mode = "center";
-            # assign to group 1 so all goup 1 share the same random wallpaper
-            group = 1;
           };
+        in {
+          "any" = base;
+
+          "eDP-1" =
+            base
+            // {
+              path = ../../../assets/img/bg;
+              duration = "2m";
+              sorting = "random";
+
+              # assign to group 1 so all goup 1 share the same random wallpaper
+              group = 1;
+            };
         };
       };
 

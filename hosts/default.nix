@@ -3,10 +3,15 @@
   nixpkgs,
   nixpkgs-stable,
   vars,
+  customPkgsOverlay,
   ...
 }: let
   lib = nixpkgs.lib;
   lib-stable = nixpkgs-stable.lib;
+
+  overlays = [
+    customPkgsOverlay
+  ];
 in {
   # NixOs Laptop Desktop
 
@@ -36,6 +41,9 @@ in {
         ./sta01
         ./configuration.nix
         ./configuration-desktop.nix
+        {
+          nixpkgs.overlays = overlays;
+        }
       ];
     };
 
@@ -66,7 +74,10 @@ in {
         ./configuration-desktop.nix
         ./configuration-laptop.nix
         ./nixbook
-	inputs.apple-silicon.nixosModules.apple-silicon-support
+        inputs.apple-silicon.nixosModules.apple-silicon-support
+        {
+          nixpkgs.overlays = overlays;
+        }
       ];
     };
 
@@ -95,6 +106,9 @@ in {
       modules = [
         ./pi4
         ./configuration.nix
+        {
+          nixpkgs.overlays = overlays;
+        }
       ];
     };
 }

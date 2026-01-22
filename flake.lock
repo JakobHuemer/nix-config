@@ -1232,6 +1232,7 @@
         "rustowl-flake": "rustowl-flake",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
+        "wpaperd": "wpaperd",
         "youtube-music": "youtube-music",
         "zen-browser": "zen-browser"
       }
@@ -1266,6 +1267,27 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "4b7472a78857ac789fb26616040f55cfcbd36c6e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_3": {
+      "inputs": {
+        "nixpkgs": [
+          "wpaperd",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729391507,
+        "narHash": "sha256-as0I9xieJUHf7kiK2a9znDsVZQTFWhM1pLivII43Gi0=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "784981a9feeba406de38c1c9a3decf966d853cca",
         "type": "github"
       },
       "original": {
@@ -1458,6 +1480,21 @@
         "type": "github"
       }
     },
+    "systems_7": {
+      "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
     "tinted-foot": {
       "flake": false,
       "locked": {
@@ -1557,6 +1594,28 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "wpaperd": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay_3",
+        "systems": "systems_7"
+      },
+      "locked": {
+        "lastModified": 1767628359,
+        "narHash": "sha256-WByb493PT3RcH9RH/VQTabjQUC1jgXO12ZXMSZgoS0M=",
+        "owner": "danyspin97",
+        "repo": "wpaperd",
+        "rev": "7a0fbc954a3009f522e664ce7a6f261ecbf1b172",
+        "type": "github"
+      },
+      "original": {
+        "owner": "danyspin97",
+        "repo": "wpaperd",
         "type": "github"
       }
     },
