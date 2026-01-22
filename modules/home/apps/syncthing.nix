@@ -33,6 +33,7 @@
             path = "${homeFolder}/schule";
             devices = [
               "nixbook"
+              "pi4"
             ];
           };
         };
