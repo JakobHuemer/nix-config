@@ -34,6 +34,7 @@
     rustfmt
     alejandra
     stylua
+    tinymist
 
     vscode-langservers-extracted
     vimPlugins.nvim-ts-autotag

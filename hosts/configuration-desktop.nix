@@ -145,6 +145,8 @@
       networkmanagerapplet
 
       filezilla
+
+      obsidian
     ];
   };
 
