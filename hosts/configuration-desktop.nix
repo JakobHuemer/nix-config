@@ -11,6 +11,8 @@
     "console=tty1"
   ];
 
+  hardware.graphics.enable = true;
+
   # printing
   services.avahi = {
     enable = true;

@@ -22,8 +22,6 @@
   hardware.asahi.extractPeripheralFirmware = true;
   hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
 
-  hardware.graphics.enable = true;
-
   # swap
   swapDevices = [
     {
