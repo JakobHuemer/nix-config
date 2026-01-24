@@ -184,10 +184,13 @@
           qemu_full # until it unstable is stable again
           rustdesk
         ])
+        ++ [
+          inputs.hytale-launcher.packages.${system}.default
+        ]
         ++ jetbrainsIDEs
         ++ (pkgs.lib.concatMap (
             ide: let
-              name = builtins.baseNameOf (builtins.parseDrvName ide.name).name;
+              name = baseNameOf (builtins.parseDrvName ide.name).name;
             in [
               (pkgs.writeShellScriptBin "${name}-wayland" ''
                 ${ide}/bin/${name} -Dawt.toolkit.name=WLToolkit "$@"
