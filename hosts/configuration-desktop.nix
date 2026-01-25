@@ -156,7 +156,6 @@
     # libre-office.enable = true;
 
     services.trayscale.enable = true;
-    services.syncthing.tray.enable = true;
 
     nemo.enable = true;
   };
