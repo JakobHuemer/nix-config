@@ -94,6 +94,10 @@
 
     systemPackages =
       with pkgs; [
+        jujutsu
+        jjui
+        lazyjj
+
         zsh
         # pinentry-tty
         pinentry-all
