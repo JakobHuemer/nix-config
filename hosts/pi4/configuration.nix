@@ -151,6 +151,7 @@ in {
       kompose
       kubectl
       kubernetes
+      kubernetes-helm
     ];
   };
 
