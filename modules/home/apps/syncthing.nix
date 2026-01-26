@@ -36,6 +36,16 @@
               "mbp2p"
             ];
           };
+          "vwa" = {
+            id = "vorwissenschaftliche-arbeit";
+            path = "${homeFolder}/vwa";
+            devices = [
+              "nixbook"
+              "pi4"
+              "sta01"
+              "mbp2p"
+            ];
+          };
         };
       };
     };
