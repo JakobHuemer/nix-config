@@ -149,6 +149,8 @@
       filezilla
 
       obsidian
+
+      wlr-layout-ui
     ];
   };
 
