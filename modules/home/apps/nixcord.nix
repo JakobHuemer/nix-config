@@ -3,10 +3,9 @@
   lib,
   pkgs,
   inputs,
+  system,
   ...
-}: let
-  system = pkgs.system;
-in {
+}: {
   imports = [inputs.nixcord.homeModules.nixcord];
 
   options = {
