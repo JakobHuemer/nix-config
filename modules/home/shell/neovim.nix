@@ -35,6 +35,7 @@
     alejandra
     stylua
     tinymist
+    xmlformat
 
     vscode-langservers-extracted
     vimPlugins.nvim-ts-autotag
