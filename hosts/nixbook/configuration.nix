@@ -172,7 +172,6 @@
           kdiskmark
           keyd
           lm_sensors
-          vdhcoapp
           trashy
 
           opencode
@@ -208,9 +207,6 @@
 
           gamemode
           xorg.xrdb
-
-          # video download helper
-          vdhcoapp
 
           podman-tui
           # docker-compose
