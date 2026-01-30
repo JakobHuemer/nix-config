@@ -16,7 +16,7 @@
 
   boot.extraModprobeConfig = ''
     options hid_apple fnmode=2
-    options hid_apple iso_layout=0
+    options hid_apple iso_layout=1
   '';
 
   hardware.asahi.extractPeripheralFirmware = true;
