@@ -4,6 +4,7 @@
   inputs,
   vars,
   host,
+  system,
   config,
   ...
 }: let
@@ -233,6 +234,7 @@ in {
         pkgs
         pkgs-stable
         vars
+        system
         host
         ;
     };
