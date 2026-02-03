@@ -119,6 +119,8 @@
     # noto-fonts-color-emoji
 
     corefonts # MS
+
+    atkinson-hyperlegible-next
   ];
 
   environment = {
