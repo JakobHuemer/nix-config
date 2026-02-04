@@ -14,6 +14,26 @@
     inputs.hyprland.nixosModules.default
   ];
 
+  specialisation.amd-gpu-passthrough = {
+    configuration = {
+      boot.extraModprobeConfig = ''
+        softdep amdgpu pre: vfio-pci
+      '';
+
+      boot.initrd.kernelModules = [
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+
+        "amdgpu"
+      ];
+
+      boot.kernelParams = [
+        "vfio-pci.ids=1002:ab30,1002:747e" # amd 7800 XT
+      ];
+    };
+  };
+
   # btrfs scubbing
   services.btrfs.autoScrub = {
     enable = true;
@@ -74,8 +94,16 @@
 
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["${vars.user}"];
-  virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+    };
+  };
 
   services.udev.packages = [
     pkgs.yubikey-personalization
