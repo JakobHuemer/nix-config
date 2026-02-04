@@ -132,7 +132,14 @@
               type = "battery";
               style = "plain";
               foreground = "red";
-              template = "{{ if lt .Percentage 15 }}[󰂃 {{ .Percentage }}%] {{ end }}";
+              foreground_templates = [
+                "{{ if eq \"Charging\" .State.String }}white{{ end }}"
+              ];
+              template = "{{ if lt .Percentage 16 }}[{{ .Icon }} {{ .Percentage }}%] {{ end }}";
+              options = {
+                discharging_icon = "󰂃";
+                charging_icon = "󰂄";
+              };
             }
             {
               type = "status";
