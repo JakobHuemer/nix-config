@@ -125,6 +125,9 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
+  # virtualisation.tpm.enable = true;
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
+
   security.polkit.enable = true;
   security.pki.certificateFiles = ["${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
   security.pam.services = {
