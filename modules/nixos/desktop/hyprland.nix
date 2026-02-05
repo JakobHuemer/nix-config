@@ -114,6 +114,7 @@
           (builtins.readFile ../../../conf/hypr/hyprland.conf)
           + ''
             bind = $mainMod, G, exec, ${../../../conf/hypr/toggle_touchpad.sh}
+            exec = ${../../../conf/hypr/toggle_touchpad.sh} --readonly
           '';
 
         # settings = {
