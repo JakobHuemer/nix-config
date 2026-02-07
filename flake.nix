@@ -112,6 +112,11 @@
       url = "github:JPyke3/hytale-launcher-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    tuigreet-notashelf = {
+      url = "github:NotAShelf/tuigreet";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -137,6 +142,8 @@
         inherit (final) callPackage;
         directory = ./pkgs;
       };
+
+      tuigreet = inputs.tuigreet-notashelf.packages.${prev.hostPlatform.system}.tuigreet;
     };
   in {
     nixosConfigurations = import ./hosts {

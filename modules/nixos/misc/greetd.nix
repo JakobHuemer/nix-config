@@ -15,7 +15,7 @@
         vt = "next";
 
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember-session";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember-session --cmd uwsm start default";
           user = "greeter";
         };
       };
