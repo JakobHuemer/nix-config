@@ -54,6 +54,10 @@
     plantuml # for diagram.nvim
     llvmPackages_20.clang-tools
     gopls
+    vue-language-server
+    eslint_d
+    eslint
+    typescript-language-server
   ];
   # };
 }
