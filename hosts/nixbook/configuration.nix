@@ -209,7 +209,7 @@
           librespeed-cli
 
           gamemode
-          xorg.xrdb
+          xrdb
 
           podman-tui
           # docker-compose

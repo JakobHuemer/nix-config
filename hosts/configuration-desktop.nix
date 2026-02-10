@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   vars,
+  lib,
   host,
   system,
   ...
@@ -10,6 +11,12 @@
   boot.kernelParams = [
     "console=tty1"
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  specialisation.linux-lts = {
+    configuration.boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+  };
 
   hardware.graphics.enable = true;
 
