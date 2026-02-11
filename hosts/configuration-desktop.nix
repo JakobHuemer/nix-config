@@ -160,6 +160,8 @@
       obsidian
 
       wlr-layout-ui
+
+      teamspeak6-client
     ];
   };
 
