@@ -162,6 +162,8 @@
       wlr-layout-ui
 
       teamspeak6-client
+
+      element-desktop
     ];
   };
 
