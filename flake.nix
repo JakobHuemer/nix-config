@@ -19,7 +19,8 @@
 
     apple-silicon = {
       # url = "github:nix-community/nixos-apple-silicon/530aa73aa9a21a078ff861b84767ae1d469715fa";
-      url = "github:nix-community/nixos-apple-silicon";
+      # url = "github:nix-community/nixos-apple-silicon";
+      url = "github:nix-community/nixos-apple-silicon/release-2025-11-18";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -144,7 +145,7 @@
         directory = ./pkgs;
       };
 
-      tuigreet = inputs.tuigreet-notashelf.packages.${prev.hostPlatform.system}.tuigreet;
+      tuigreet = inputs.tuigreet-notashelf.packages.${prev.stdenv.hostPlatform.system}.tuigreet;
     };
   in {
     nixosConfigurations = import ./hosts {

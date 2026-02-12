@@ -12,9 +12,9 @@
     "console=tty1"
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
-  specialisation.linux-lts = {
+  specialisation.linux-lts = lib.mkIf (host != "nixbook") {
     configuration.boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
   };
 
@@ -160,8 +160,6 @@
       obsidian
 
       wlr-layout-ui
-
-      teamspeak6-client
 
       element-desktop
     ];
