@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   vars,
+  lib,
   host,
   system,
   ...

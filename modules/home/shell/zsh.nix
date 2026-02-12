@@ -1,6 +1,7 @@
 {
   pkgs,
   host,
+  lib,
   ...
 }: {
   programs = {
@@ -80,6 +81,15 @@
             repo = "zsh-256color";
             rev = "master";
             hash = "sha256-P/pbpDJmsMSZkNi5GjVTDy7R+OxaIVZhb/bEnYQlaLo=";
+          };
+        }
+        {
+          name = "zsh-cwd";
+          src = pkgs.fetchFromGitHub {
+            owner = "pjvds";
+            repo = "zsh-cwd";
+            rev = "master";
+            hash = "sha256-o8HylC4+LHeCnJhRQtoiBvNUaI3aLyDUyJ++mrE3/jk=";
           };
         }
 
@@ -216,6 +226,8 @@
         autoload -Uz edit-command-line zmv
         zle -N edit-command-line
         bindkey '^x^e' edit-command-line
+
+        cwd # open shell in last known directory
       '';
       shellAliases = let
         flakepart = "--flake ${host.flakePath}#${host.hostName}";

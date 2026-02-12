@@ -56,6 +56,8 @@
           cam = "commit -am";
           ca = "commit -a";
 
+          restw = "restore --worktree --staged";
+
           fixup = "commit --fixup=HEAD --edit";
 
           logpretty =
