@@ -171,6 +171,7 @@
     # libre-office.enable = true;
 
     services.trayscale.enable = true;
+    opencode.enable = true;
 
     nemo.enable = true;
   };
