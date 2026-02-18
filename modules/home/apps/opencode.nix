@@ -23,6 +23,8 @@
 
             models = {
               "qwen3-coder:30b".name = "qwen3-coder:30b";
+              "codellama:7b".name = "codellama:7b";
+              "gpt-oss:20b".name = "gpt-oss:20b";
             };
           };
         };
