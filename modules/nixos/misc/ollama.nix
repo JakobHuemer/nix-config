@@ -11,6 +11,9 @@
       enable = true;
       package = pkgs.ollama-rocm;
 
+      host = "0.0.0.0";
+      port = 11434;
+
       loadModels = [
         "qwen3-coder:30b"
       ];
@@ -31,6 +34,7 @@
     services.open-webui = {
       enable = true;
 
+      host = "0.0.0.0";
       port = 6420;
     };
   };

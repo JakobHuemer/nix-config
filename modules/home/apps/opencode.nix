@@ -15,11 +15,10 @@
 
         provider = {
           ollama = {
-            name = "Ollama (local)";
+            name = "Ollama (sta01)";
             npm = "@ai-sdk/openai-compatible";
             options = {
-              # baseURL = "http://sta01.h.fistel.dev:11434/v1";
-              baseURL = "http://127.0.0.1:11434/v1";
+              baseURL = "http://sta01.h.fistel.dev:11434/v1";
             };
 
             models = {
