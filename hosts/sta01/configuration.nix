@@ -14,6 +14,8 @@
     inputs.hyprland.nixosModules.default
   ];
 
+  ollama.enable = true;
+
   specialisation.gnome-xorg = {
     configuration = {
       # Enable X server + GNOME desktop on Xorg
