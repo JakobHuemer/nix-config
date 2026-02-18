@@ -183,7 +183,6 @@
           trashy
 
           opencode
-          lmstudio
 
           # # jetbrains
           # # jetbrains-toolbox

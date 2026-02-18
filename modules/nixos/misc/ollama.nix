@@ -9,9 +9,22 @@
   config = lib.mkIf config.ollama.enable {
     services.ollama = {
       enable = true;
-      package = pkgs.ollama-rocm;
+      package = (pkgs.ollama-rocm.override {
+        acceleration = "rocm";
+      });
+
+      loadModels = [
+        "qwen3-coder:30b"
+      ];
     };
-    services.nextjs-ollama-llm-ui = {
+
+    # environment.systemPackages = [
+    #   (pkgs.ollama-rocm.override {
+    #     acceleration = "rocm";
+    #   })
+    # ];
+
+    services.open-webui = {
       enable = true;
 
       port = 6420;

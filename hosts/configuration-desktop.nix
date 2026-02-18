@@ -164,6 +164,11 @@
       teamspeak6-client
 
       element-desktop
+
+      claude-code
+      codex
+
+      lmstudio
     ];
   };
 
