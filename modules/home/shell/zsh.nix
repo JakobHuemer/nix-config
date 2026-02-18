@@ -309,6 +309,7 @@
   };
 
   home.packages = with pkgs; [
+    nix-search
     pfetch-rs
     macchina
     # starship

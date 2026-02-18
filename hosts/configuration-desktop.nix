@@ -128,6 +128,8 @@
     corefonts # MS
 
     atkinson-hyperlegible-next
+
+    nvtopPackages.amd
   ];
 
   environment = {
