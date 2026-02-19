@@ -20,6 +20,28 @@
 
   hardware.graphics.enable = true;
 
+  systemd.user.services.open-thunderbird = {
+    description = "Open Thunderbird (UWSM)";
+
+    serviceConfig = {
+      Type = "oneshot";
+
+      # Only run when a UWSM-managed graphical session is active.
+      ExecCondition = "${pkgs.uwsm}/bin/uwsm check is-active";
+
+      # Launch as a proper systemd user unit in UWSM's app slice.
+      ExecStart = "${pkgs.uwsm}/bin/uwsm app -s a -t service -- ${pkgs.thunderbird}/bin/thunderbird";
+    };
+  };
+
+  systemd.user.timers.open-thunderbird = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "Mon..Fri 07:55";
+      Unit = "open-thunderbird.service";
+    };
+  };
+
   # printing
   services.avahi = {
     enable = true;
