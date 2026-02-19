@@ -22,9 +22,27 @@
             };
 
             models = {
-              "qwen3-coder:30b".name = "qwen3-coder:30b";
-              "codellama:7b".name = "codellama:7b";
-              "gpt-oss:20b".name = "gpt-oss:20b";
+              "qwen3-coder:30b" = {
+                name = "qwen3-coder:30b";
+                limit = {
+                  context = 256000;
+                  output = 256000;
+                };
+              };
+              "gpt-oss:20b" = {
+                name = "gpt-oss:20b";
+                limit = {
+                  context = 128000;
+                  output = 128000;
+                };
+              };
+              "glm-4.7-flash:latest" = {
+                name = "glm-4.7-flash:latest";
+                limit = {
+                  context = 189000;
+                  output = 198000;
+                };
+              };
             };
           };
         };
