@@ -14,6 +14,28 @@
 
   hardware.graphics.enable = true;
 
+  systemd.user.services.open-thunderbird = {
+    description = "Open Thunderbird (UWSM)";
+
+    serviceConfig = {
+      Type = "oneshot";
+
+      # Only run when a UWSM-managed graphical session is active.
+      ExecCondition = "${pkgs.uwsm}/bin/uwsm check is-active";
+
+      # Launch as a proper systemd user unit in UWSM's app slice.
+      ExecStart = "${pkgs.uwsm}/bin/uwsm app -s a -t service -- ${pkgs.thunderbird}/bin/thunderbird";
+    };
+  };
+
+  systemd.user.timers.open-thunderbird = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "Mon..Fri 07:55";
+      Unit = "open-thunderbird.service";
+    };
+  };
+
   # printing
   services.avahi = {
     enable = true;
@@ -122,6 +144,8 @@
     corefonts # MS
 
     atkinson-hyperlegible-next
+
+    nvtopPackages.amd
   ];
 
   environment = {
@@ -130,37 +154,46 @@
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
 
-    systemPackages = with pkgs; [
-      gparted
-      font-manager
+    systemPackages = with pkgs;
+      [
+        gparted
+        font-manager
 
-      # zed-editor
+        # zed-editor
 
-      minikube
-      # docker-machine-kvm2
+        minikube
+        # docker-machine-kvm2
 
-      # tailscale ui
-      ktailctl
+        # tailscale ui
+        ktailctl
 
-      # browsers
-      ungoogled-chromium
-      brave
-      vivaldi
+        # browsers
+        ungoogled-chromium
+        brave
+        vivaldi
 
-      networkmanagerapplet
+        networkmanagerapplet
 
-      filezilla
+        filezilla
 
-      obsidian
+        obsidian
 
-      wlr-layout-ui
-    ];
+        wlr-layout-ui
+
+        claude-code
+        codex
+        aider-chat
+      ]
+      ++ pkgs.lib.optionals (pkgs.stdenv.system == "x86_64-linux") (with pkgs; [
+        lmstudio
+      ]);
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
     # libre-office.enable = true;
 
     services.trayscale.enable = true;
+    opencode.enable = true;
 
     nemo.enable = true;
   };

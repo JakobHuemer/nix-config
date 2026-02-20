@@ -62,7 +62,7 @@
           #   name = "Noto Color Emoji";
           # };
           emoji = {
-            package = inputs.apple-emoji-linux.packages.${system}.apple-emoji-linux;
+            package = inputs.apple-emoji-linux.packages.${system}.default;
             name = "Apple Color Emoji";
           };
         };

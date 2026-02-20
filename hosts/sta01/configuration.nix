@@ -14,6 +14,31 @@
     inputs.hyprland.nixosModules.default
   ];
 
+  ollama.enable = true;
+
+  specialisation.gnome-xorg = {
+    configuration = {
+      # Enable X server + GNOME desktop on Xorg
+      services.xserver.enable = true;
+      services.xserver.displayManager.gdm.enable = true;
+      services.xserver.desktopManager.gnome.enable = true;
+
+      # Disable greetd so it doesn't conflict with GDM
+      greetd.enable = lib.mkForce false;
+      services.greetd.enable = lib.mkForce false;
+
+      # Disable Hyprland to avoid portal/session conflicts
+      hyprland.enable = lib.mkForce false;
+      programs.hyprland.enable = lib.mkForce false;
+
+      # Override Wayland env vars so apps use X11 natively
+      environment.variables = {
+        NIXOS_OZONE_WL = lib.mkForce "0";
+        ELECTRON_OZONE_PLATFORM_HINT = lib.mkForce "x11";
+      };
+    };
+  };
+
   specialisation.amd-gpu-passthrough = {
     configuration = {
       boot.extraModprobeConfig = ''
@@ -189,7 +214,7 @@
           librespeed-cli
 
           gamemode
-          xorg.xrdb
+          xrdb
 
           podman-tui
           # docker-compose

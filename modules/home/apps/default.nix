@@ -6,4 +6,5 @@
   ./libre-office.nix
   ./nemo.nix
   ./syncthing.nix
+  ./opencode.nix
 ]

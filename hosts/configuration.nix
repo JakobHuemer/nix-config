@@ -97,6 +97,7 @@
         jujutsu
         jjui
         lazyjj
+        gh
 
         zsh
         # pinentry-tty

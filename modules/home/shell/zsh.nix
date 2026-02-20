@@ -214,7 +214,7 @@
         # evals
 
         _evalcache gh copilot alias -- zsh
-        _evalcache pay-respects zsh --alias --nocnf
+        # _evalcache pay-respects zsh --alias --nocnf
         _evalcache tmuxifier init -
 
         # fetches
@@ -297,8 +297,19 @@
     };
   };
 
+  programs.pay-respects = {
+    enable = true;
+
+    enableZshIntegration = true;
+
+    options = [
+      "--alias"
+      "f"
+    ];
+  };
+
   home.packages = with pkgs; [
-    pay-respects
+    nix-search
     pfetch-rs
     macchina
     # starship
