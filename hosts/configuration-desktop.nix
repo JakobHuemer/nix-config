@@ -191,6 +191,7 @@
 
       claude-code
       codex
+      aider-chat
 
       lmstudio
     ];
