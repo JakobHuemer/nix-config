@@ -21,6 +21,8 @@ window-theme = ghostty
 window-height = 24
 window-width = 90
 
+window-inherit-working-directory = true
+
 quick-terminal-position = center
 quick-terminal-animation-duration = 0
 
