@@ -6,7 +6,32 @@
   config,
   host,
   ...
-}: {
+}: let
+  mkSyncthingFolders = hostName: folders: let
+    # helper: check membership in attrset
+    hasDevice = devices: devices ? "${hostName}";
+    # helper: resolve path for this host
+    resolvePath = folder: let
+      dev = folder.devices."${hostName}" or {};
+    in
+      dev.path or folder.defaultPath;
+    # helper: list of device names (already IDs)
+    deviceList = devices: builtins.attrNames devices;
+    # build folder entries, filtered to only those this host participates in
+    mkFolderEntry = name: folder: {
+      name = name;
+      value = {
+        id = folder.id;
+        path = resolvePath folder;
+        devices = deviceList folder.devices;
+      };
+    };
+    folderNames = builtins.attrNames folders;
+    relevantNames = builtins.filter (n: hasDevice folders.${n}.devices) folderNames;
+    entries = map (n: mkFolderEntry n folders.${n}) relevantNames;
+  in
+    builtins.listToAttrs entries;
+in {
   config = lib.mkIf config.services.syncthing.enable {
     services.syncthing = {
       settings = let
@@ -25,26 +50,51 @@
           "mbp2p".id = "VSEHSRN-GLJKODA-YSHOY3C-Z42LV32-M4UHIRV-64XHYJQ-EUE3FHV-F5INSAH";
         };
 
-        folders = {
-          "schule" = {
+        # folders = {
+        #   "schule" = {
+        #     id = "schule";
+        #     path = "${homeFolder}/schule";
+        #     devices = [
+        #       "nixbook"
+        #       "pi4"
+        #       "sta01"
+        #       "mbp2p"
+        #     ];
+        #   };
+        #   "vwa" = {
+        #     id = "vorwissenschaftliche-arbeit";
+        #     path = "${homeFolder}/vwa";
+        #     devices = [
+        #       "nixbook"
+        #       "pi4"
+        #       "sta01"
+        #       "mbp2p"
+        #     ];
+        #   };
+        # };
+
+        folders = mkSyncthingFolders host.hostName {
+          schule = {
             id = "schule";
-            path = "${homeFolder}/schule";
-            devices = [
-              "nixbook"
-              "pi4"
-              "sta01"
-              "mbp2p"
-            ];
+            defaultPath = "${homeFolder}/schule";
+
+            devices = {
+              nixbook = {};
+              pi4 = {};
+              sta01 = {};
+              mbp2p = {};
+            };
           };
-          "vwa" = {
+
+          vwa = {
             id = "vorwissenschaftliche-arbeit";
-            path = "${homeFolder}/vwa";
-            devices = [
-              "nixbook"
-              "pi4"
-              "sta01"
-              "mbp2p"
-            ];
+            defaultPath = "${homeFolder}/vwa";
+            devices = {
+              nixbook = {};
+              pi4 = {};
+              sta01 = {};
+              mbp2p = {};
+            };
           };
         };
       };
