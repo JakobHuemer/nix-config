@@ -162,6 +162,7 @@
       jetbrainsIDEs = [
         pkgs.jetbrains.webstorm
         pkgs.jetbrains.idea-oss
+        pkgs.jetbrains.idea
         pkgs.jetbrains.datagrip
         pkgs.jetbrains.rust-rover
       ];
