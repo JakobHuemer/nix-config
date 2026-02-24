@@ -35,6 +35,8 @@
         ];
 
         GIT_ADVICE = 0;
+
+        DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/podman/podman.sock";
       };
 
       history = {

@@ -117,6 +117,8 @@
         qbittorrent-enhanced
         kubectl
 
+        lazydocker
+
         udiskie
 
         lsof

@@ -116,6 +116,7 @@
     enable = true;
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
+    dockerSocket.enable = true;
   };
 
   # virtualisation.vmware.host.enable = true;

@@ -93,12 +93,13 @@
                 cache_duration = "30m";
               };
             }
-            {
-              type = "docker";
-              style = "plain";
-              foreground = "#5883f7";
-              template = "{{ if ne .Context \"colima\"}}  {{ .Context }}{{ end }}";
-            }
+            # { removed until I found a nice solution for the podman context
+            #   not to look so horrible
+            #   type = "docker";
+            #   style = "plain";
+            #   foreground = "#5883f7";
+            #   template = "{{ if ne .Context \"colima\"}}  {{ .Context }}{{ end }}";
+            # }
             {
               type = "nix-shell";
               style = "plain";

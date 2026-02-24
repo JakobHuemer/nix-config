@@ -126,6 +126,7 @@ in {
       pkgs.nodejs_22
       pkgs.podman
       pkgs.podman-tui
+      pkgs.lazydocker
       pkgs.docker-compose
       pkgs.jbang
 
