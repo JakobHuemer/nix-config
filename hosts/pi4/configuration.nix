@@ -24,6 +24,18 @@ in {
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
 
+  fileSystems."/srv/cloud01" = {
+    device = "/dev/disk/by-label/cloud01";
+    fsType = "exfat";
+    options = ["x-systemd.automount" "nofail"];
+  };
+
+  fileSystems."/srv/cloud01-bac" = {
+    device = "/dev/disk/by-label/cloud01-bac";
+    fsType = "exfat";
+    options = ["x-systemd.automount" "nofail"];
+  };
+
   sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
   #   owner = "root";
