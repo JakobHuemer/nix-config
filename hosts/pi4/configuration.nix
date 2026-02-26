@@ -31,25 +31,19 @@ in {
   };
 
   fileSystems."/srv/cloud01-bac" = {
-    device = "/dev/disk/by-label/cloud01-bac";
+    device = "/dev/disk/by-label/cloud01-backup";
     fsType = "exfat";
     options = ["x-systemd.automount" "nofail"];
   };
 
   sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
-  #   owner = "root";
-  #   group = "wheel";
-  #   mode = "0400";
+  # services.seafile = {
+  #   # enable = true;
+  #   adminEmail = "jakobhuemer2.0@gmail.com";
+  #   initialAdminPassword = "changeme";
+  #   dataDir = "/srv/cloud01/seafile";
   # };
-
-  # nftables.enable = true;
-  # caddy.enable = true;
-  #
-  # immich.enable = true;
-  # vaultwarden.enable = true;
-
-  acme."fistel.dev".enable = true;
 
   # system
   tailscale.enable = true;
@@ -65,8 +59,8 @@ in {
   networking.extraHosts = "${kubeMasterIP} ${kubeMasterHostname}";
 
   networking.firewall = {
-    allowedTCPPorts = [80 443 6443];
-    allowedUDPPorts = [80 443 6443];
+    allowedTCPPorts = [80 443];
+    allowedUDPPorts = [80 443];
 
     trustedInterfaces = [
       "tailscale0"
@@ -76,74 +70,6 @@ in {
   programs.zsh.enable = true;
 
   security.sudo.wheelNeedsPassword = true;
-
-  # services.kubernetes = {
-  #   roles = ["master" "node"];
-  #   masterAddress = kubeMasterHostname;
-  #   apiserverAddress = "https://${kubeMasterHostname}:${toString kubeMasterAPIServerPort}";
-  #   # easyCerts = true;
-  #
-  #   apiserver = {
-  #     securePort = kubeMasterAPIServerPort;
-  #     advertiseAddress = kubeMasterIP;
-  #   };
-  #
-  #   addons.dns.enable = true;
-  #
-  #   # kubelet.extraOpts = "--fail-swap-on=false";
-  # };
-  #
-  # systemd.services.etcd = {
-  #   environment = {
-  #     ETCD_UNSUPPORTED_ARCH = "arm64";
-  #   };
-  # };
-
-  services.k3s = {
-    enable = true;
-    role = "server"; # or "agent" for worker nodes
-    extraFlags = toString [
-      # optional: disable traefik if you want to use something else
-      # "--disable=traefik"
-    ];
-
-    manifests.traefik-config.content = {
-      apiVersion = "helm.cattle.io/v1";
-      kind = "HelmChartConfig";
-      metadata = {
-        name = "traefik";
-        namespace = "kube-system";
-      };
-      spec.valuesContent = ''
-        tlsStore:
-          default:
-            defaultCertificate:
-              secretName: tls-secret
-      '';
-    };
-  };
-
-  systemd.services.k3s-tls-secret = {
-    requires = ["k3s.service" "acme-fistel.dev.service"];
-    after = ["k3s.service" "acme-fistel.dev.service"];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-
-      LoadCredential = [
-        "tls.crt:/var/lib/acme/fistel.dev/fullchain.pem"
-        "tls.key:/var/lib/acme/fistel.dev/key.pem"
-      ];
-    };
-    script = ''
-      ${pkgs.k3s}/bin/k3s kubectl create secret tls tls-secret \
-        --cert=/var/lib/acme/fistel.dev/fullchain.pem \
-        --key=/var/lib/acme/fistel.dev/key.pem \
-        -n kube-system \
-        --dry-run=client -o yaml | ${pkgs.k3s}/bin/k3s kubectl apply -f -
-    '';
-  };
 
   environment = {
     systemPackages = with pkgs; [
@@ -158,12 +84,6 @@ in {
       openssl
 
       librespeed-cli
-
-      # kubernetes
-      kompose
-      kubectl
-      kubernetes
-      kubernetes-helm
     ];
   };
 
@@ -186,6 +106,7 @@ in {
     imports = import ../../modules/home;
 
     nixpkgs.config.allowUnfree = true;
+    git.gpgKey = "2F948936806377F59BF2D6D60A92AD5C02F180B9";
 
     programs = {
       home-manager.enable = true;
@@ -193,11 +114,5 @@ in {
     home = {
       stateVersion = "25.11";
     };
-  };
-
-  home-manager.users.${vars.user} = {pkgs, ...}: {
-    # tmux.enable = true;
-
-    git.gpgKey = "2F948936806377F59BF2D6D60A92AD5C02F180B9";
   };
 }
