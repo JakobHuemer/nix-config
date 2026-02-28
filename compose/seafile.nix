@@ -8,17 +8,17 @@
   mysql_password = "B&BPa&^MMzYp4m59*6F^Gq9hUXR2Se6P";
   seafile_admin_password = "myadminpassword";
   jwt_secret = "nSoKSQN6tdOaSXmoASu/fEUeP6QMo/L25wkLW6RsRjw=";
-
-  caddyfile = ''
-  '';
 in {
   project.name = "seafile";
+
+  networks.seafile-net.driver = "bridge";
 
   services = {
     seafile-caddy.service = {
       image = "caddy:alpine";
       container_name = "seafile-caddy";
 
+      entrypoint = "/bin/sh -c";
       command = [
         ''
           cat > /etc/caddy/Caddyfile << 'EOF_CADDYFILE'
@@ -40,10 +40,6 @@ in {
             }
 
             reverse_proxy seafile:80
-
-            # handle /notification/* {
-            #   reverse_proxy http://seafile-notification/
-            # }
           }
           EOF_CADDYFILE
 
@@ -94,7 +90,7 @@ in {
     };
 
     seafile-redis.service = {
-      image = "redis:8.4.2-trxie";
+      image = "redis:8.4.2-trixie";
       container_name = "seafile-redis";
       command = [
         "/bin/sh"
