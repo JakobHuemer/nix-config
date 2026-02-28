@@ -38,6 +38,30 @@ in {
 
   sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
+  virtualisation.docker.enable = false;
+  virtualisation.podman = {
+    enable = true;
+    dockerSocket.enable = true;
+  };
+
+  users.extraUsers.${vars.user}.extraGroups = ["podman"];
+
+  virtualisation.arion = {
+    backend = "podman-socket";
+    projects.seafile = {
+      serviceName = "seafile";
+      settings = {
+        imports = [
+          (import ../../compose/seafile.nix {
+            storage = "/srv/cloud01";
+            hostname = "seafile.ts.fistel.dev";
+            port = 8088;
+            port_secure = 4433;
+          })
+        ];
+      };
+    };
+  };
   # services.seafile = {
   #   # enable = true;
   #   adminEmail = "jakobhuemer2.0@gmail.com";
@@ -84,6 +108,9 @@ in {
       openssl
 
       librespeed-cli
+
+      arion
+      docker-client
     ];
   };
 

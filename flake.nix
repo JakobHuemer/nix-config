@@ -118,6 +118,8 @@
       url = "github:NotAShelf/tuigreet";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    arion.url = "github:hercules-ci/arion";
   };
 
   outputs = {

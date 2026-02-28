@@ -129,6 +129,7 @@
         typst-live
 
         github-copilot-cli
+        opencode
 
         codeberg-cli
 

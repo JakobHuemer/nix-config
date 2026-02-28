@@ -106,6 +106,7 @@ in {
       modules = [
         ./pi4
         ./configuration.nix
+        inputs.arion.nixosModules.arion
         {
           nixpkgs.overlays = overlays;
         }
