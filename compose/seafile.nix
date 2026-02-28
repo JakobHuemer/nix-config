@@ -13,6 +13,12 @@ in {
 
   networks.seafile-net.driver = "bridge";
 
+  docker-compose.volumes = {
+    seafile-db-vol = {};
+    seafile-seadoc-vol = {};
+    seafile-vol = {};
+  };
+
   services = {
     seafile-caddy.service = {
       image = "caddy:alpine";
@@ -58,13 +64,15 @@ in {
       container_name = "seafile-db";
 
       environment = {
-        MYSQL_ROOT_PASSWORD = "${mysql_password}";
+        MARIADB_USER = "seafile";
+        MARIADB_PASSWORD = "${mysql_password}";
+        MARIADB_ROOT_PASSWORD = "${mysql_password}";
         MYSQL_LOG_CONSOLE = "true";
         MARIADB_AUTO_UPGRADE = 1;
       };
 
       volumes = [
-        "${storage}/mysql:/var/lib/mysql"
+        "seafile-db-vol:/var/lib/mysql"
       ];
 
       networks = ["seafile-net"];
@@ -110,7 +118,7 @@ in {
       container_name = "seafile";
 
       volumes = [
-        "${storage}/data:/shared"
+        "seafile-vol:/shared"
       ];
 
       environment = {
@@ -118,7 +126,7 @@ in {
         SEAFILE_MYSQL_DB_PORT = "3306";
         SEAFILE_MYSQL_DB_USER = "seafile";
         SEAFILE_MYSQL_DB_PASSWORD = "${mysql_password}";
-        # INIT_SEAFILE_MYSQL_ROOT_PASSWORD = "{INIT_SEAFILE_MYSQL_ROOT_PASSWORD:-}";
+        INIT_SEAFILE_MYSQL_ROOT_PASSWORD = "${mysql_password}";
         SEAFILE_MYSQL_DB_CCNET_DB_NAME = "ccnet_db";
         SEAFILE_MYSQL_DB_SEAFILE_DB_NAME = "seafile_db";
         SEAFILE_MYSQL_DB_SEAHUB_DB_NAME = "seahub_db";
@@ -163,7 +171,7 @@ in {
 
       depends_on = {
         seafile-db.condition = "service_healthy";
-        seafile-redis.condition = "service_healthy";
+        seafile-redis.condition = "service_started";
       };
 
       networks = ["seafile-net"];
@@ -174,7 +182,7 @@ in {
       container_name = "seafile-seadoc";
 
       volumes = [
-        "${storage}/shared"
+        "seafile-seadoc-vol:/shared"
       ];
 
       environment = {
