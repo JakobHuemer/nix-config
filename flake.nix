@@ -100,7 +100,8 @@
     };
 
     apple-emoji-linux = {
-      url = "github:samuelngs/apple-emoji-linux";
+      # locked until https://github.com/samuelngs/apple-emoji-ttf/issues/101 is resolved
+      url = "github:samuelngs/apple-emoji-linux/e56448ab6b556c9a3be63ce0fb1903b70fd87b61";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
