@@ -99,6 +99,8 @@
         lazyjj
         gh
 
+        btop
+
         zsh
         # pinentry-tty
         pinentry-all

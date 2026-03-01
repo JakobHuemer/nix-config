@@ -26,13 +26,13 @@ in {
 
   fileSystems."/srv/cloud01" = {
     device = "/dev/disk/by-label/cloud01";
-    fsType = "exfat";
+    fsType = "ext4";
     options = ["x-systemd.automount" "nofail"];
   };
 
   fileSystems."/srv/cloud01-bac" = {
     device = "/dev/disk/by-label/cloud01-backup";
-    fsType = "exfat";
+    fsType = "ext4";
     options = ["x-systemd.automount" "nofail"];
   };
 
@@ -43,25 +43,39 @@ in {
     enable = true;
     dockerSocket.enable = true;
   };
+  virtualisation.containers.storage.settings = {
+    storage = {
+      driver = "overlay";
+      graphRoot = "/srv/cloud01/podman";
+      runRoot = "/run/containers/storage";
+    };
+  };
 
   users.extraUsers.${vars.user}.extraGroups = ["podman"];
 
-  virtualisation.arion = {
-    backend = "podman-socket";
-    projects.seafile = {
-      serviceName = "seafile";
-      settings = {
-        imports = [
-          (import ../../compose/seafile.nix {
-            storage = "/srv/cloud01";
-            hostname = "seafile.ts.fistel.dev";
-            port = 8088;
-            port_secure = 4433;
-          })
-        ];
-      };
-    };
-  };
+  # services.caddy = {
+  #   enable = true;
+  #
+  #   virtualHosts."seafile.fistel.dev".extraConfig = ''
+  #     reverse_proxy localhost:8088
+  #   '';
+  # };
+
+  # virtualisation.arion = {
+  #   backend = "podman-socket";
+  #   projects.seafile = {
+  #     serviceName = "seafile";
+  #     settings = {
+  #       imports = [
+  #         (import ../../compose/seafile.nix {
+  #           storage = "/srv/cloud01/seafile";
+  #           hostname = "seafile.ts.fistel.dev";
+  #           port = 8088;
+  #         })
+  #       ];
+  #     };
+  #   };
+  # };
   # services.seafile = {
   #   # enable = true;
   #   adminEmail = "jakobhuemer2.0@gmail.com";
