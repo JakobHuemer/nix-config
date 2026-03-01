@@ -11,39 +11,18 @@
     restartUnits = ["acme-fistel.dev.service"];
   in
     lib.mkIf config.acme."fistel.dev".enable {
-      sops.secrets = let
-        cloudflareCredsFile = ../../../secrets/cloudflare-creds.yaml;
-        secrets = {
-          "acme/fistel.dev/cf_email" = {
-            inherit restartUnits;
-          };
-          "acme/fistel.dev/cf_dns_api_token" = {
-            restartUnits = restartUnits ++ ["cloudflare-dyndns"];
-          };
-          "acme/fistel.dev/cf_zone_api_token" = {
-            inherit restartUnits;
-          };
-        };
-      in
-        lib.mapAttrs (name: opts:
-          opts
-          // {
-            sopsFile = cloudflareCredsFile;
-          })
-        secrets;
-
-      # sops.secrets."acme/fistel.dev/cf_email" = {
-      #   inherit restartUnits;
-      #   sopsFile = ../../../secrets/cloudflare-creds.yaml;
-      # };
-      # sops.secrets."acme/fistel.dev/cf_dns_api_token" = {
-      #   restartUnits = restartUnits ++ ["cloudflare-dyndns"];
-      #   sopsFile = ../../../secrets/cloudflare-creds.yaml;
-      # };
-      # sops.secrets."acme/fistel.dev/cf_zone_api_token" = {
-      #   inherit restartUnits;
-      #   sopsFile = ../../../secrets/cloudflare-creds.yaml;
-      # };
+      sops.secrets."acme/fistel.dev/cf_email" = {
+        inherit restartUnits;
+        sopsFile = ../../../secrets/cloudflare-creds.yaml;
+      };
+      sops.secrets."acme/fistel.dev/cf_dns_api_token" = {
+        restartUnits = restartUnits ++ ["cloudflare-dyndns"];
+        sopsFile = ../../../secrets/cloudflare-creds.yaml;
+      };
+      sops.secrets."acme/fistel.dev/cf_zone_api_token" = {
+        inherit restartUnits;
+        sopsFile = ../../../secrets/cloudflare-creds.yaml;
+      };
 
       sops.templates."cloudflare-creds" = {
         content = ''
@@ -87,10 +66,11 @@
         acceptTerms = true;
         defaults.email = "jakobhuemer2.0+acme@gmail.com";
 
-        certs."${vars.domainName}" = {
+        certs."fistel.dev" = {
           dnsProvider = "cloudflare";
+          # webroot = "/var/lib/acme/acme-challenge/";
 
-          domain = "*.${vars.domainName}";
+          domain = "fistel.dev";
 
           extraLegoFlags = [
             "--dns.resolvers=1.1.1.1:53"

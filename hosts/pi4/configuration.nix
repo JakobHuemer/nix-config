@@ -36,6 +36,8 @@ in {
     options = ["x-systemd.automount" "nofail"];
   };
 
+  acme."fistel.dev".enable = true;
+
   sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
   virtualisation.docker.enable = false;
@@ -53,6 +55,35 @@ in {
 
   users.extraUsers.${vars.user}.extraGroups = ["podman"];
 
+  sops.secrets = {
+    "acme/fistel.dev/cf_email" = {
+      sopsFile = ../../secrets/cloudflare-creds.yaml;
+      key = "acme/fistel.dev/cf_email";
+      owner = "root";
+      group = "root";
+      mode = "0400";
+    };
+
+    "acme/fistel.dev/cf_dns_api_token" = {
+      sopsFile = ../../secrets/cloudflare-creds.yaml;
+      key = "acme/fistel.dev/cf_dns_api_token";
+      owner = "root";
+      group = "root";
+      mode = "0400";
+    };
+  };
+
+  sops.templates."caddy.env" = {
+    owner = "root";
+    group = "root";
+    mode = "0400";
+    content = ''
+      CLOUDFLARE_EMAIL=${config.sops.placeholder."acme/fistel.dev/cf_email"}
+      CLOUDFLARE_API_TOKEN=${config.sops.placeholder."acme/fistel.dev/cf_dns_api_token"}
+      ACME_AGREE=true
+    '';
+  };
+
   # services.caddy = {
   #   enable = true;
   #
@@ -60,6 +91,23 @@ in {
   #     reverse_proxy localhost:8088
   #   '';
   # };
+
+  services.caddy = {
+    enable = true;
+    # acmeCA = "https://acme-staging-v02.api.letsencrypt.org/directory";
+
+    virtualHosts."hello.ts.fistel.dev" = {
+      useACMEHost = "fistel.dev";
+      # serverAliases = [
+      #   # "hello.fistel.dev"
+      # ];
+      extraConfig = ''
+        respond "Hello World! this is jakki"
+      '';
+    };
+
+    environmentFile = config.sops.templates."caddy.env".path;
+  };
 
   # virtualisation.arion = {
   #   backend = "podman-socket";
