@@ -2,7 +2,6 @@
   storage,
   hostname,
   port,
-  port_secure,
 }: {pkgs, ...}: let
   redis_password = "hu7@RN1jqwY73M3safTCAPbxS8*hiGyL";
   mysql_password = "B&BPa&^MMzYp4m59*6F^Gq9hUXR2Se6P";
@@ -25,10 +24,13 @@ in {
       container_name = "seafile-caddy";
 
       entrypoint = "/bin/sh -c";
+
+      networks = ["seafile-net"];
+
       command = [
         ''
           cat > /etc/caddy/Caddyfile << 'EOF_CADDYFILE'
-          ${hostname} {
+          :80 {
             @ws {
                 header Connection *Upgrade*
                 header Upgrade websocket
@@ -55,7 +57,6 @@ in {
 
       ports = [
         "${toString port}:80"
-        "${toString port_secure}:443"
       ];
     };
 
@@ -80,10 +81,12 @@ in {
       healthcheck = {
         test = [
           "CMD"
-          "/usr/local/bin/healthcheck.sh"
-          "--connect"
-          "--mariadbupgrade"
-          "--innodb_initialized"
+          "mariadb"
+          "-u"
+          "root"
+          "-p${mysql_password}"
+          "-e"
+          "SELECT 1"
         ];
 
         interval = "20s";
@@ -180,6 +183,8 @@ in {
     seafile-seadoc.service = {
       image = "seafileltd/sdoc-server:2.0-latest";
       container_name = "seafile-seadoc";
+
+      networks = ["seafile-net"];
 
       volumes = [
         "seafile-seadoc-vol:/shared"
