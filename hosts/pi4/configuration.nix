@@ -21,6 +21,9 @@ in {
     ]
     ++ (import ../../modules/nixos);
 
+  gitserver.enable = true;
+  gitserver.homeDir = "/srv/cloud01/git";
+
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
 

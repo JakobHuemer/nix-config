@@ -3,4 +3,5 @@
   ./caddy.nix
   ./cert.fistel.dev.nix
   ./vaultwarden.nix
+  ./git.nix
 ]
