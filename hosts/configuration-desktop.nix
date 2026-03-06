@@ -166,6 +166,8 @@
 
       # zed-editor
 
+      insomnia
+
       minikube
       # docker-machine-kvm2
 
