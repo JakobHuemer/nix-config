@@ -164,6 +164,8 @@
       gparted
       font-manager
 
+      bruno
+
       # zed-editor
 
       insomnia
