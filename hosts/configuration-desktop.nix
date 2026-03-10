@@ -167,8 +167,6 @@
 
         # zed-editor
 
-        insomnia
-
         minikube
         # docker-machine-kvm2
 
@@ -193,6 +191,7 @@
         aider-chat
       ]
       ++ pkgs.lib.optionals (pkgs.stdenv.system == "x86_64-linux") (with pkgs; [
+        insomnia
         lmstudio
       ]);
   };

@@ -19,8 +19,37 @@
     options hid_apple iso_layout=1
   '';
 
-  hardware.asahi.extractPeripheralFirmware = true;
-  hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
+  boot.loader.limine.enable = lib.mkForce false;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = false;
+
+  hardware.asahi.extractPeripheralFirmware = false;
+  # hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
+
+  # sops = {
+  #   secrets."wificreds/htlleonding-wpa/user" = {};
+  #   secrets."wificreds/htlleonding-wpa/password" = {};
+  #
+  #   templates."htlleonding-wpa.8021x" = {
+  #     content = ''
+  #       [Security]
+  #       EAP-Method=PEAP
+  #       EAP-Identity=${config.sops.placeholder."wificreds/htlleonding-wpa/user"}
+  #       EAP-PEAP-Phase2-Method=MSCHAPV2
+  #       EAP-PEAP-Phase2-Identity=${config.sops.placeholder."wificreds/htlleonding-wpa/user"}
+  #       EAP-PEAP-Phase2-Password=${config.sops.placeholder."wificreds/htlleonding-wpa/password"}
+  #
+  #       [Settings]
+  #       AutoConnect=true
+  #     '';
+  #     owner = "jakki";
+  #     mode = "0400";
+  #   };
+  # };
+  #
+  # systemd.tmpfiles.rules = [
+  #   "L /var/lib/iwd/htlleonding-wpa.8021x - - - - /run/secrets-rendered/htlleonding-wpa.8021x"
+  # ];
 
   # swap
   swapDevices = [
@@ -106,10 +135,10 @@
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.loader.limine = {
-    enable = true;
-    maxGenerations = 15;
-  };
+  # boot.loader.limine = {
+  #   enable = true;
+  #   maxGenerations = 15;
+  # };
 
   virtualisation.containers.enable = true;
   virtualisation.podman = {
@@ -150,8 +179,6 @@
   networking.networkmanager.wifi.backend = "iwd";
 
   programs.zsh.enable = true;
-
-  programs.light.enable = true;
 
   # gaming
   programs.gamescope.enable = true;
@@ -205,8 +232,6 @@
           #   ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate -Dawt.toolkit.name=WLToolkit
           # '')
 
-          blender
-
           neovim
           vscode-fhs
 
@@ -239,6 +264,8 @@
           #   ];
           # })
           rustdesk-flutter
+
+          # iwgtk
         ]
         ++ (with pkgs-stable; [
           qemu_full # until it unstable is stable again

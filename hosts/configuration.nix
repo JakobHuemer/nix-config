@@ -20,6 +20,7 @@
 
   sops.defaultSopsFile = ../secrets/general.yaml;
   sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
   # services.devmon.enable = true;
   # services.gvfs.enable = true;
