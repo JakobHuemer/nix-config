@@ -163,6 +163,14 @@
 
         minikube
         # docker-machine-kvm2
+        bruno
+
+        # zed-editor
+
+        insomnia
+
+        minikube
+        # docker-machine-kvm2
 
         # tailscale ui
         ktailctl

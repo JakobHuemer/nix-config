@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   lib,
   config,
   ...
@@ -33,6 +34,8 @@
 
     services.open-webui = {
       enable = true;
+
+      package = pkgs-stable.open-webui;
 
       host = "0.0.0.0";
       port = 6420;
