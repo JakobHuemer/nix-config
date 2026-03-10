@@ -138,6 +138,16 @@
 
   networking.networkmanager.enable = true;
   networking.hostName = "${host.hostName}";
+  networking.wireless.iwd.enable = true;
+  networking.wireless.iwd.settings = {
+    IPv6 = {
+      Enabled = true;
+    };
+    Settings = {
+      AutoConnect = true;
+    };
+  };
+  networking.networkmanager.wifi.backend = "iwd";
 
   programs.zsh.enable = true;
 
@@ -181,6 +191,8 @@
           element-desktop
 
           opencode
+
+          postman
 
           # # jetbrains
           # # jetbrains-toolbox
