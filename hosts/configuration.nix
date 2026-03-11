@@ -11,6 +11,7 @@
     [
       inputs.home-manager.nixosModules.home-manager
       inputs.sops-nix.nixosModules.sops
+      inputs.nix-index-database.nixosModules.default
     ]
     ++ (import ../modules/nixos);
 
@@ -80,6 +81,9 @@
     };
   };
 
+  programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;
+
   console = {
     font = "Lat2-Terminus16";
     keyMap = "de-latin1";
@@ -98,6 +102,7 @@
         jjui
         lazyjj
         gh
+        comma
 
         zsh
         # pinentry-tty
