@@ -222,7 +222,7 @@
           # qemu-utils
           virtiofsd
 
-          (heroic.override {
+          (pkgs-stable.heroic.override {
             extraPkgs = pkgs: [
               pkgs.gamescope
               pkgs.gamemode

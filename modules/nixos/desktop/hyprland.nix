@@ -208,66 +208,6 @@
           ];
 
           label = [
-            {
-              monitor = "";
-              text = "cmd[update:1000] echo \"$(date +'%A, %B %d')\"";
-              color = "rgba(242, 243, 244, 0.75)";
-              font_size = 22;
-              font_family = "JetBrains Mono";
-              position = "0, 300";
-              halign = "center";
-              valign = "center";
-            }
-            {
-              monitor = "";
-              text = "cmd[update:1000] echo \"$(date +'%I:%M:%S')\"";
-              color = "rgba(242, 243, 244, 0.75)";
-              font_size = 95;
-              font_family = "JetBrains Mono Extrabold";
-              position = "0, 200";
-              halign = "center";
-              valign = "center";
-            }
-            {
-              monitor = "";
-              text = "cmd[update:1000] echo \"$(:/home/justin/Documents/Scripts/whatsong.sh)\"";
-              color = "$foreground";
-              font_size = 18;
-              font_family = "Metropolis Light, Font Awesome 6 Free Solid";
-              position = "0, 50";
-              halign = "center";
-              valign = "bottom";
-            }
-            {
-              monitor = "";
-              text = "cmd[update:1000] echo \"$(:/home/justin/Documents/Scripts/whoami.sh)\"";
-              color = "$foreground";
-              font_size = 14;
-              font_family = "JetBrains Mono";
-              position = "0, -10";
-              halign = "center";
-              valign = "top";
-            }
-            {
-              monitor = "";
-              text = "cmd[update:1000] echo \"$(:/home/justin/Documents/Scripts/battery.sh)\"";
-              color = "$foreground";
-              font_size = 24;
-              font_family = "JetBrains Mono";
-              position = "-90, -10";
-              halign = "right";
-              valign = "top";
-            }
-            {
-              monitor = "";
-              text = "cmd[update:1000] echo \"$(:/home/justin/Documents/Scripts/network-status.sh)\"";
-              color = "$foreground";
-              font_size = 24;
-              font_family = "JetBrains Mono";
-              position = "-20, -10";
-              halign = "right";
-              valign = "top";
-            }
           ];
 
           image = [
