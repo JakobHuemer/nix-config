@@ -19,12 +19,17 @@
     options hid_apple iso_layout=1
   '';
 
-  boot.loader.limine.enable = lib.mkForce false;
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.limine.enable = lib.mkForce false;
+  # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
 
-  hardware.asahi.extractPeripheralFirmware = false;
-  # hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
+  boot.loader.limine = {
+    enable = true;
+    maxGenerations = 15;
+  };
+
+  hardware.asahi.extractPeripheralFirmware = true;
+  hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
 
   # sops = {
   #   secrets."wificreds/htlleonding-wpa/user" = {};
@@ -144,14 +149,6 @@
   };
   tailscale.enable = true;
 
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-
-  # boot.loader.limine = {
-  #   enable = true;
-  #   maxGenerations = 15;
-  # };
-
   virtualisation.containers.enable = true;
   virtualisation.podman = {
     enable = true;
@@ -179,16 +176,16 @@
 
   networking.networkmanager.enable = true;
   networking.hostName = "${host.hostName}";
-  networking.wireless.iwd.enable = true;
-  networking.wireless.iwd.settings = {
-    IPv6 = {
-      Enabled = true;
-    };
-    Settings = {
-      AutoConnect = true;
-    };
-  };
-  networking.networkmanager.wifi.backend = "iwd";
+  # networking.wireless.iwd.enable = true;
+  # networking.wireless.iwd.settings = {
+  #   IPv6 = {
+  #     Enabled = true;
+  #   };
+  #   Settings = {
+  #     AutoConnect = true;
+  #   };
+  # };
+  # networking.networkmanager.wifi.backend = "iwd";
 
   programs.zsh.enable = true;
 
