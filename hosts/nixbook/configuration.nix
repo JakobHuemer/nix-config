@@ -91,6 +91,7 @@
     allowedUDPPorts = [25565 24454];
   };
 
+  # this makes
   environment.etc."libinput/local-overrides.quirks".text = ''
     [keyd virtual keyboard]
     MatchUdevType=keyboard
@@ -102,6 +103,8 @@
     MatchName=Apple MTP multi-touch
     AttrKeyboardIntegration=internal
   '';
+
+  # environment.etc."libinput/local-overrides.quirks".source = "${pkgs.libinput}/share/libinput/50-system-apple.quirks";
 
   # io
   services.keyd = {
