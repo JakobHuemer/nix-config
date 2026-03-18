@@ -27,7 +27,7 @@
     apple-silicon = {
       # url = "github:nix-community/nixos-apple-silicon/530aa73aa9a21a078ff861b84767ae1d469715fa";
       url = "github:nix-community/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
@@ -126,11 +126,6 @@
       url = "github:JPyke3/hytale-launcher-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    tuigreet-notashelf = {
-      url = "github:NotAShelf/tuigreet";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -156,8 +151,6 @@
         inherit (final) callPackage;
         directory = ./pkgs;
       };
-
-      tuigreet = inputs.tuigreet-notashelf.packages.${prev.hostPlatform.system}.tuigreet;
     };
   in {
     nixosConfigurations = import ./hosts {

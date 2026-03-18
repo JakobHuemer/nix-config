@@ -13,12 +13,6 @@
     "console=tty1"
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  specialisation.linux-lts = {
-    configuration.boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-  };
-
   hardware.graphics.enable = true;
 
   systemd.user.services.open-thunderbird = {
@@ -161,45 +155,46 @@
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
 
-    systemPackages = with pkgs; [
-      gparted
-      font-manager
+    systemPackages = with pkgs;
+      [
+        gparted
+        font-manager
 
-      bruno
+        # zed-editor
 
-      # zed-editor
+        minikube
+        # docker-machine-kvm2
+        bruno
 
-      insomnia
+        # zed-editor
 
-      minikube
-      # docker-machine-kvm2
+        minikube
+        # docker-machine-kvm2
 
-      # tailscale ui
-      ktailctl
+        # tailscale ui
+        ktailctl
 
-      # browsers
-      ungoogled-chromium
-      brave
-      vivaldi
+        # browsers
+        ungoogled-chromium
+        brave
+        vivaldi
 
-      networkmanagerapplet
+        networkmanagerapplet
 
-      filezilla
+        filezilla
 
-      obsidian
+        obsidian
 
-      wlr-layout-ui
+        wlr-layout-ui
 
-      teamspeak6-client
-
-      element-desktop
-
-      claude-code
-      codex
-      aider-chat
-
-      lmstudio
-    ];
+        claude-code
+        codex
+        aider-chat
+      ]
+      ++ pkgs.lib.optionals (pkgs.stdenv.system == "x86_64-linux") (with pkgs; [
+        insomnia
+        lmstudio
+      ]);
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {

@@ -24,8 +24,6 @@ in {
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
 
-  sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
-
   #   owner = "root";
   #   group = "wheel";
   #   mode = "0400";

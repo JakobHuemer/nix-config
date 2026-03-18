@@ -19,8 +19,42 @@
     options hid_apple iso_layout=1
   '';
 
+  # boot.loader.limine.enable = lib.mkForce false;
+  # boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = false;
+
+  boot.loader.limine = {
+    enable = true;
+    maxGenerations = 15;
+  };
+
   hardware.asahi.extractPeripheralFirmware = true;
   hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
+
+  # sops = {
+  #   secrets."wificreds/htlleonding-wpa/user" = {};
+  #   secrets."wificreds/htlleonding-wpa/password" = {};
+  #
+  #   templates."htlleonding-wpa.8021x" = {
+  #     content = ''
+  #       [Security]
+  #       EAP-Method=PEAP
+  #       EAP-Identity=${config.sops.placeholder."wificreds/htlleonding-wpa/user"}
+  #       EAP-PEAP-Phase2-Method=MSCHAPV2
+  #       EAP-PEAP-Phase2-Identity=${config.sops.placeholder."wificreds/htlleonding-wpa/user"}
+  #       EAP-PEAP-Phase2-Password=${config.sops.placeholder."wificreds/htlleonding-wpa/password"}
+  #
+  #       [Settings]
+  #       AutoConnect=true
+  #     '';
+  #     owner = "jakki";
+  #     mode = "0400";
+  #   };
+  # };
+  #
+  # systemd.tmpfiles.rules = [
+  #   "L /var/lib/iwd/htlleonding-wpa.8021x - - - - /run/secrets-rendered/htlleonding-wpa.8021x"
+  # ];
 
   # swap
   swapDevices = [
@@ -56,6 +90,18 @@
     allowedTCPPorts = [25565 24454];
     allowedUDPPorts = [25565 24454];
   };
+
+  environment.etc."libinput/local-overrides.quirks".text = ''
+    [keyd virtual keyboard]
+    MatchUdevType=keyboard
+    MatchName=keyd virtual keyboard
+    AttrKeyboardIntegration=internal
+
+    [Apple MTP multi-touch]
+    MatchUdevType=touchpad
+    MatchName=Apple MTP multi-touch
+    AttrKeyboardIntegration=internal
+  '';
 
   # io
   services.keyd = {
@@ -103,14 +149,6 @@
   };
   tailscale.enable = true;
 
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.loader.limine = {
-    enable = true;
-    maxGenerations = 15;
-  };
-
   virtualisation.containers.enable = true;
   virtualisation.podman = {
     enable = true;
@@ -138,10 +176,18 @@
 
   networking.networkmanager.enable = true;
   networking.hostName = "${host.hostName}";
+  # networking.wireless.iwd.enable = true;
+  # networking.wireless.iwd.settings = {
+  #   IPv6 = {
+  #     Enabled = true;
+  #   };
+  #   Settings = {
+  #     AutoConnect = true;
+  #   };
+  # };
+  # networking.networkmanager.wifi.backend = "iwd";
 
   programs.zsh.enable = true;
-
-  programs.light.enable = true;
 
   # gaming
   programs.gamescope.enable = true;
@@ -178,8 +224,11 @@
           keyd
           lm_sensors
           trashy
+          element-desktop
 
           opencode
+
+          postman
 
           # # jetbrains
           # # jetbrains-toolbox
@@ -191,8 +240,6 @@
           # (pkgs.writeShellScriptBin "idea-wayland" ''
           #   ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate -Dawt.toolkit.name=WLToolkit
           # '')
-
-          blender
 
           neovim
           vscode-fhs
@@ -211,7 +258,7 @@
           librespeed-cli
 
           gamemode
-          xrdb
+          xorg.xrdb
 
           podman-tui
           # docker-compose
@@ -226,6 +273,8 @@
           #   ];
           # })
           rustdesk-flutter
+
+          # iwgtk
         ]
         ++ (with pkgs-stable; [
           qemu_full # until it unstable is stable again

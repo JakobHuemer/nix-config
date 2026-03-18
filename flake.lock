@@ -53,9 +53,7 @@
     "apple-silicon": {
       "inputs": {
         "flake-compat": "flake-compat_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1773418853,
@@ -1308,6 +1306,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1773734432,
+        "narHash": "sha256-IF5ppUWh6gHGHYDbtVUyhwy/i7D261P7fWD1bPefOsw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cda48547b432e8d3b18b4180ba07473762ec8558",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1773646010,
         "narHash": "sha256-iYrs97hS7p5u4lQzuNWzuALGIOdkPXvjz7bviiBjUu8=",
         "owner": "nixos",
@@ -1322,7 +1336,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1744536153,
         "narHash": "sha256-awS2zRgF4uTwrOKwwiJcByDzDOdo3Q1rPZbiHQg/N38=",
@@ -1476,7 +1490,7 @@
         "nixcord": "nixcord",
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
         "nvf": "nvf",
@@ -1484,7 +1498,6 @@
         "rustowl-flake": "rustowl-flake",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "tuigreet-notashelf": "tuigreet-notashelf",
         "wpaperd": "wpaperd",
         "youtube-music": "youtube-music",
         "zen-browser": "zen-browser"
@@ -1512,7 +1525,7 @@
     },
     "rust-overlay_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1773630837,
@@ -1866,26 +1879,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "tuigreet-notashelf": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1773673855,
-        "narHash": "sha256-pZxUT5nrIiVlvzWqQQIR2L2eclNsC6GFVssK0Mq+B20=",
-        "owner": "NotAShelf",
-        "repo": "tuigreet",
-        "rev": "6899798f7dbf8e5811a3c1437a0da2508a4a7b65",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NotAShelf",
-        "repo": "tuigreet",
         "type": "github"
       }
     },
