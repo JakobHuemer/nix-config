@@ -190,6 +190,7 @@
         claude-code
         codex
         aider-chat
+        gemini-cli
       ]
       ++ pkgs.lib.optionals (pkgs.stdenv.system == "x86_64-linux") (with pkgs; [
         insomnia
