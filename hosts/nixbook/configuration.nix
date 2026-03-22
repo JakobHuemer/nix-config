@@ -227,7 +227,6 @@
           keyd
           lm_sensors
           trashy
-          element-desktop
 
           opencode
 

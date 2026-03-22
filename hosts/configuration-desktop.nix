@@ -191,6 +191,9 @@
         codex
         aider-chat
         gemini-cli
+
+        element-desktop
+        cinny-desktop
       ]
       ++ pkgs.lib.optionals (pkgs.stdenv.system == "x86_64-linux") (with pkgs; [
         insomnia
