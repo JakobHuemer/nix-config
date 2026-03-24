@@ -169,6 +169,13 @@
       options = "--delete-older-than 10d";
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
+    registry.stable = {
+      from = {
+        id = "stable";
+        type = "indirect";
+      };
+      flake = inputs.nixpkgs-stable;
+    };
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs          = true

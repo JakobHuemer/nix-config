@@ -205,6 +205,7 @@
     # libre-office.enable = true;
 
     services.trayscale.enable = true;
+    services.trayscale.package = pkgs-stable.trayscale;
     opencode.enable = true;
 
     nemo.enable = true;

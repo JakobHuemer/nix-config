@@ -33,11 +33,8 @@
     enable = true;
     settings = {
       battery = {
-        governor = "powersave";
+        governor = "schedutil";
         turbo = "never";
-
-        scaling_min_freq = 900000;
-        scaling_max_freq = 2000000;
       };
       charger = {
         governor = "performance";
@@ -67,5 +64,4 @@
     HandlePowerKey = "lock";
     HandlePowerKeyLongPress = "poweroff";
   };
-
 }
