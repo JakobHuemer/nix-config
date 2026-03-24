@@ -19,6 +19,10 @@
     options hid_apple iso_layout=1
   '';
 
+  boot.kernelParams = [
+    "brcmfmac.feature_disable=0x82000"
+  ];
+
   # boot.loader.limine.enable = lib.mkForce false;
   # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
