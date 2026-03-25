@@ -23,6 +23,9 @@
     "brcmfmac.feature_disable=0x82000"
   ];
 
+  networking.networkmanager.wifi.scanRandMacAddress = false;
+  networking.networkmanager.wifi.macAddress = "preserve";
+
   # boot.loader.limine.enable = lib.mkForce false;
   # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
