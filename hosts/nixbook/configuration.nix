@@ -19,9 +19,12 @@
     options hid_apple iso_layout=1
   '';
 
-  boot.kernelParams = [
-    "brcmfmac.feature_disable=0x82000"
-  ];
+  # boot.kernelParams = [
+  #   "brcmfmac.feature_disable=0x82000"
+  # ];
+
+  # networking.networkmanager.wifi.scanRandMacAddress = false;
+  # networking.networkmanager.wifi.macAddress = "preserve";
 
   networking.networkmanager.wifi.scanRandMacAddress = false;
   networking.networkmanager.wifi.macAddress = "preserve";
@@ -196,6 +199,15 @@
   #   };
   # };
   # networking.networkmanager.wifi.backend = "iwd";
+
+  system.activationScripts = {
+    rfkillUnblockWlan = {
+      text = ''
+        rfkill unblock wlan
+      '';
+      deps = [];
+    };
+  };
 
   programs.zsh.enable = true;
 
