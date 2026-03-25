@@ -233,7 +233,7 @@
           else if pkgs.stdenv.isLinux
           then "sudo nixos-rebuild test ${flakepart}"
           else "echo 'Unsupported system -> not testing'";
-        nursbackCmd = "sudo nixos-rebuild --rollback ${flakepart}";
+        nursbackCmd = "sudo nixos-rebuild switch --rollback ${flakepart}";
       in {
         "??" = "ghcs";
         "e?" = "ghce";
