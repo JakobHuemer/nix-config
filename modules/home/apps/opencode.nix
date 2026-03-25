@@ -13,6 +13,10 @@
       settings = {
         autoupdate = true;
 
+        plugin = [
+          "opencode-gemini-auth@latest"
+        ];
+
         # provider = {
         #   ollama = {
         #     name = "Ollama (sta01)";
