@@ -109,6 +109,22 @@ in {
       '';
     };
 
+    virtualHosts."sh.fistel.dev" = {
+      useACMEHost = "fistel.dev";
+      extraConfig = ''
+        root * ${../../server/static/sh}
+        file_server
+      '';
+    };
+
+    virtualHosts."sh.ts.fistel.dev" = {
+      useACMEHost = "fistel.dev";
+      extraConfig = ''
+        root * ${../../server/static/sh}
+        file_server
+      '';
+    };
+
     environmentFile = config.sops.templates."caddy.env".path;
   };
 
