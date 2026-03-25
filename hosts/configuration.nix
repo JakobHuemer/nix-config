@@ -104,6 +104,7 @@
         lazyjj
         gh
         comma
+        worktrunk
 
         zsh
         # pinentry-tty
