@@ -104,7 +104,6 @@
         lazyjj
         gh
         comma
-        worktrunk
 
         zsh
         # pinentry-tty
@@ -205,7 +204,11 @@
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
-    imports = import ../modules/home;
+    imports =
+      import ../modules/home
+      ++ [
+        inputs.worktrunk.homeModules.default
+      ];
 
     nixpkgs.config.allowUnfree = true;
 
@@ -235,6 +238,11 @@
 
     programs = {
       home-manager.enable = true;
+      worktrunk = {
+        enable = true;
+
+        enableZshIntegration = true;
+      };
     };
     home = {
       stateVersion = "25.11";
