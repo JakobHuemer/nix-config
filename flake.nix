@@ -117,6 +117,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    worktrunk = {
+      url = "github:max-sixty/worktrunk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     youtube-music = {
       url = "github:h-banii/youtube-music-nix";
       inputs.nixpkgs.follows = "nixpkgs";
