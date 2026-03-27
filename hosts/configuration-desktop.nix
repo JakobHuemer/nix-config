@@ -208,6 +208,27 @@
     services.trayscale.package = pkgs-stable.trayscale;
     opencode.enable = true;
 
+    mako.enable = true;
+
+    tofi.enable = true;
+    ghostty.enable = true;
+    tmux.enable = true;
+
+    nixcord.enable = true;
+
+    youtube-music.enable = true;
+
+    useStylix = true;
+
+    zen.enable = true;
+
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
+    };
+
     nemo.enable = true;
   };
 }

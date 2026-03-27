@@ -363,47 +363,6 @@
   };
 
   home-manager.users.${vars.user} = {
-    mako.enable = true;
-    waybar.enable = true;
-
-    tofi.enable = true;
-    ghostty.enable = true;
-    tmux.enable = true;
-
-    nixcord.enable = true;
-
-    youtube-music.enable = true;
-
-    useStylix = true;
-
-    zen.enable = true;
-
-    # dconf.settings = {
-    #   "org/virt-manager/virt-manager/connections" = {
-    #     autoconnect = ["qemu:///system"];
-    #     uris = ["qemu:///system"];
-    #   };
-    # };
-
-    # home.activation = {
-    #   extraActivation = ''
-    #     ${pkgs.xorg.xrdb}/bin/xrdb /home/${vars.user}/.Xresources
-    #   '';
-    # };
-
-    # xresources = {
-    #   path = "/home/${vars.user}/.Xresources";
-    #   extraConfig = ''
-    #     Xft.dpi: 163
-    #     Xft.autohint: 0
-    #     Xft.lcdfilter:  lcddefault
-    #     Xft.hintstyle:  hintfull
-    #     Xft.hinting: 1
-    #     Xft.antialias: 1
-    #     Xft.rgba: rgb
-    #   '';
-    # };
-
     git.gpgKey = "C8CD2840D9FD4E9B508C628955F07624172E58EB";
   };
 }

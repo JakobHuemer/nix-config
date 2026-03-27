@@ -3,6 +3,7 @@
   system,
   pkgs-stable,
   host,
+  vars,
   ...
 }: {
   powerManagement = {
@@ -39,10 +40,13 @@
   services.logind.settings.Login = {
     # lid close
     HandleLidSwitch = "suspend-then-hibernate";
-    HandleLidSwitchExternalPower = "subend-then-hibernate";
+    HandleLidSwitchExternalPower = "suspend-then-hibernate";
 
     # power button
     HandlePowerKey = "lock";
     HandlePowerKeyLongPress = "poweroff";
+  };
+
+  home-manager.users.${vars.user} = {pkgs, ...}: {
   };
 }
