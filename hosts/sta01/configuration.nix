@@ -242,8 +242,6 @@
   #   antialias = true;
   # };
 
-  hyprland.enable = true;
-
   # xdg.portal = {
   #   enable = true;
   #   xdgOpenUsePortal = true;

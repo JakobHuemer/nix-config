@@ -15,6 +15,9 @@
 
   hardware.graphics.enable = true;
 
+  hyprland.enable = true;
+  # noctalia.enable = true;
+
   systemd.user.services.open-thunderbird = {
     description = "Open Thunderbird (UWSM)";
 
