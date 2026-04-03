@@ -11,11 +11,14 @@
 
   config = lib.mkIf config.noctalia.enable {
     hardware.bluetooth.enable = true;
-    # services.tuned.enable = true;
+    services.tuned.enable = true;
+    # services.power-profiles-daemon.enable = true;
+    services.auto-cpufreq.enable = lib.mkForce false;
     services.upower.enable = true;
 
     environment.systemPackages = with pkgs; [
       inputs.noctalia.packages.${system}.default
+      lm_sensors
     ];
 
     home-manager.users.${vars.user} = {...}: {
