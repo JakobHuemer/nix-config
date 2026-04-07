@@ -158,8 +158,8 @@
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
 
-    systemPackages = with pkgs;
-      [
+    systemPackages =
+      (with pkgs; [
         gparted
         font-manager
 
@@ -197,7 +197,7 @@
 
         element-desktop
         cinny-desktop
-      ]
+      ])
       ++ pkgs.lib.optionals (pkgs.stdenv.system == "x86_64-linux") (with pkgs; [
         insomnia
         lmstudio
