@@ -247,8 +247,6 @@
           lm_sensors
           trashy
 
-          opencode
-
           postman
 
           # # jetbrains

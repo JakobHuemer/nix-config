@@ -159,8 +159,6 @@
           lm_sensors
           trashy
 
-          opencode
-
           # # jetbrains
           # # jetbrains-toolbox
           # jetbrains.webstorm

@@ -88,7 +88,6 @@ in {
       pkgs.unar
       pkgs.kubectl
       pkgs.qbittorrent-enhanced
-      pkgs.opencode
       pkgs.zed-editor
 
       pkgs.tailscale
@@ -253,6 +252,8 @@ in {
     # vscode.enable = true;
     ghostty.enable = true;
     tmux.enable = true;
+
+    opencode.enable = true;
 
     home.file.".hammersoon" = {
       source = ./../conf/hammerspoon;

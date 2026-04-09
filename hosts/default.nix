@@ -11,6 +11,7 @@
 
   overlays = [
     customPkgsOverlay
+    inputs.opencode.overlays.default
   ];
 in {
   # NixOs Laptop Desktop

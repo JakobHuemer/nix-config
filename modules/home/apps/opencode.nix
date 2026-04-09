@@ -2,6 +2,8 @@
   pkgs,
   lib,
   config,
+  system,
+  inputs,
   ...
 }: {
   options.opencode.enable = lib.mkEnableOption "enable opencode";
@@ -9,6 +11,10 @@
   config = lib.mkIf config.opencode.enable {
     programs.opencode = {
       enable = true;
+
+      package = inputs.opencode.packages.${system}.opencode;
+
+      tui.theme = "catppuccin";
 
       settings = {
         autoupdate = true;
