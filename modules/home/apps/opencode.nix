@@ -23,39 +23,33 @@
           "opencode-gemini-auth@latest"
         ];
 
-        # provider = {
-        #   ollama = {
-        #     name = "Ollama (sta01)";
-        #     npm = "@ai-sdk/openai-compatible";
-        #     options = {
-        #       baseURL = "http://sta01.h.fistel.dev:11434/v1";
-        #     };
-        #
-        #     models = {
-        #       "qwen3-coder:30b" = {
-        #         name = "qwen3-coder:30b";
-        #         limit = {
-        #           context = 256000;
-        #           output = 256000;
-        #         };
-        #       };
-        #       "gpt-oss:20b" = {
-        #         name = "gpt-oss:20b";
-        #         limit = {
-        #           context = 128000;
-        #           output = 128000;
-        #         };
-        #       };
-        #       "glm-4.7-flash:latest" = {
-        #         name = "glm-4.7-flash:latest";
-        #         limit = {
-        #           context = 189000;
-        #           output = 198000;
-        #         };
-        #       };
-        #     };
-        #   };
-        # };
+        provider = {
+          ollama = {
+            name = "Ollama (sta01)";
+            npm = "@ai-sdk/openai-compatible";
+            options = {
+              baseURL = "http://sta01.h.fistel.dev:11434/v1";
+            };
+
+            models = {
+              "gemma4-26b-16GB-VRAM" = {
+                name = "Gemma 4 26b 16GB VRAM";
+                limit = {
+                  context = 65536;
+                  output = 8192;
+                };
+              };
+
+              "gemma4:e4b" = {
+                name = "Gemma 4 e4B";
+                limit = {
+                  context = 131072;
+                  output = 16384;
+                };
+              };
+            };
+          };
+        };
       };
     };
   };
