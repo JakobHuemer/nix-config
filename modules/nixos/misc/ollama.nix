@@ -1,8 +1,9 @@
 {
   pkgs,
-  pkgs-stable,
   lib,
   config,
+  vars,
+  host,
   ...
 }: {
   options.ollama.enable = lib.mkEnableOption "enable ollama";
@@ -17,12 +18,18 @@
 
       loadModels = [
         "qwen3-coder:30b"
+        "VladimirGav/gemma4-26b-16GB-VRAM"
+        "gemma4:e4b"
       ];
 
       environmentVariables = {
-        OLLAMA_FLASH_ATTENTION = "0";
-        HIP_VISIBLE_DEVICES = "0";
-        OLLAMA_CONTEXT_LENGTH = "65536";
+        # OLLAMA_FLASH_ATTENTION = "0";
+        # HIP_VISIBLE_DEVICES = "0";
+        OLLAMA_CONTEXT_LENGTH = "131072"; # 128K
+        HSA_OVERRIDE_GFX_VERSION =
+          if host.hostName == "sta01"
+          then "11.0.1"
+          else null;
       };
     };
 
