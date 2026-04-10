@@ -12,7 +12,8 @@
     programs.opencode = {
       enable = true;
 
-      package = inputs.opencode.packages.${system}.opencode;
+      # package = inputs.opencode.packages.${system}.opencode;
+      package = pkgs.opencode;
 
       tui.theme = "catppuccin";
 
