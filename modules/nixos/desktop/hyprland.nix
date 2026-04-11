@@ -208,29 +208,6 @@
 
           label = [
           ];
-
-          image = [
-            {
-              monitor = "";
-              path = "/home/justin/Pictures/profile_pictures/justin_square.png";
-              size = 100;
-              border_size = 2;
-              border_color = "$foreground";
-              position = "0, -100";
-              halign = "center";
-              valign = "center";
-            }
-            {
-              monitor = "";
-              path = "/home/justin/Pictures/profile_pictures/hypr.png";
-              size = 75;
-              border_size = 2;
-              border_color = "$foreground";
-              position = "-50, 50";
-              halign = "right";
-              valign = "bottom";
-            }
-          ];
         };
       };
     };
