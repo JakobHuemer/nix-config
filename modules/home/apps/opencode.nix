@@ -9,11 +9,22 @@
   options.opencode.enable = lib.mkEnableOption "enable opencode";
 
   config = lib.mkIf config.opencode.enable {
+    home.file.".config/opencode/skills/caveman/SKILL.md" = let
+      src = pkgs.fetchFromGitHub {
+        owner = "JuliusBrussee";
+        repo = "caveman";
+        rev = "main";
+        hash = "sha256-EAlKoqJuTMib+gcLscMtpS8Zzq/D/LmIRoG3g/XKThc=";
+      };
+    in {
+      enable = true;
+      source = src + "/skills/caveman/SKILL.md";
+    };
+
     programs.opencode = {
       enable = true;
 
-      # package = inputs.opencode.packages.${system}.opencode;
-      package = pkgs.opencode;
+      package = inputs.opencode.packages.${system}.opencode;
 
       tui.theme = "catppuccin";
 
