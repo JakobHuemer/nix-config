@@ -205,7 +205,7 @@
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
-    # libre-office.enable = true;
+    libre-office.enable = true;
 
     services.trayscale.enable = true;
     services.trayscale.package = pkgs-stable.trayscale;
