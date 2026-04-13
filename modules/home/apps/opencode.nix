@@ -9,16 +9,17 @@
   options.opencode.enable = lib.mkEnableOption "enable opencode";
 
   config = lib.mkIf config.opencode.enable {
-    home.file.".config/opencode/skills/caveman/SKILL.md" = let
+    home.file.".config/opencode/skills/" = let
       src = pkgs.fetchFromGitHub {
         owner = "JuliusBrussee";
         repo = "caveman";
-        rev = "main";
-        hash = "sha256-EAlKoqJuTMib+gcLscMtpS8Zzq/D/LmIRoG3g/XKThc=";
+        rev = "v1.5.1";
+        hash = "sha256-gDPgQx1TIhGrJ2EVvEoDY+4MXdlI79zdcx6pL5nMEG4=";
       };
     in {
       enable = true;
-      source = src + "/skills/caveman/SKILL.md";
+      source = src + "/skills/";
+      recursive = true;
     };
 
     programs.opencode = {
