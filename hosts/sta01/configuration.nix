@@ -55,7 +55,7 @@
     enable = true;
     keyboards = {
       default = {
-        ids = ["*"];
+        ids = ["*" "-4c4b:4643"];
         settings = {
           main = {
             # important

@@ -51,6 +51,7 @@
   "group/group-4": {
     "orientation": "horizontal",
     "modules": [
+      "hyprland/language",
       "bluetooth",
       "battery",
       "network",
@@ -126,6 +127,12 @@
     "persistent_workspaces": {
       "[]": 3
     }
+  },
+  "hyprland/language": {
+    "format": " {}",
+    "format-en": "GB",
+    "format-de": "DE",
+    "on-click": "hyprctl switchxkblayout all next"
   },
   "hyprland/window": {
     "format": "{}",
