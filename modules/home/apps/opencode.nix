@@ -22,6 +22,8 @@
       recursive = true;
     };
 
+    home.file.".config/opencode/AGENTS.md".source = ../../../conf/opencode/AGENTS.md;
+
     programs.opencode = {
       enable = true;
 
