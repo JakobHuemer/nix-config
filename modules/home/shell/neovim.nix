@@ -22,6 +22,17 @@
   #   ];
   # };
 
+  programs.neovim = {
+    extraPackages = with pkgs; [
+      tree-sitter-grammars.tree-sitter-rust
+      tree-sitter-grammars.tree-sitter-java
+      tree-sitter-grammars.tree-sitter-vue
+      tree-sitter-grammars.tree-sitter-typescript
+      tree-sitter-grammars.tree-sitter-javascript
+      tree-sitter-grammars.tree-sitter-nix
+    ];
+  };
+
   home.packages = with pkgs; [
     neovim
 

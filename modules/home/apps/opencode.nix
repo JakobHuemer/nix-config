@@ -29,8 +29,6 @@
 
       package = inputs.opencode.packages.${system}.opencode;
 
-      tui.theme = "catppuccin";
-
       settings = {
         autoupdate = true;
 
