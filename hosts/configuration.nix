@@ -105,6 +105,7 @@
         gh
         comma
         pi-coding-agent
+        graphite-cli
 
         zsh
         # pinentry-tty
