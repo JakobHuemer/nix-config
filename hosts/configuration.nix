@@ -104,6 +104,7 @@
         lazyjj
         gh
         comma
+        pi-coding-agent
 
         zsh
         # pinentry-tty
