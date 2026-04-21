@@ -133,6 +133,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    papertimed = {
+      url = "github:jakobhuemer/papertimed";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     youtube-music = {
       url = "github:h-banii/youtube-music-nix";
       inputs.nixpkgs.follows = "nixpkgs";

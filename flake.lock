@@ -517,6 +517,24 @@
     },
     "flake-parts_6": {
       "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_4"
+      },
+      "locked": {
+        "lastModified": 1775087534,
+        "narHash": "sha256-91qqW8lhL7TLwgQWijoGBbiD4t7/q75KTi8NxjVmSmA=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "3107b77cd68437b9a76194f0f7f9c55f2329ca5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_7": {
+      "inputs": {
         "nixpkgs-lib": [
           "stylix",
           "nixpkgs"
@@ -1344,6 +1362,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-lib_4": {
+      "locked": {
+        "lastModified": 1774748309,
+        "narHash": "sha256-+U7gF3qxzwD5TZuANzZPeJTZRHS29OFQgkQ2kiTJBIQ=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "333c4e0545a6da976206c74db8773a1645b5870a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1776434932,
@@ -1593,6 +1626,28 @@
         "type": "github"
       }
     },
+    "papertimed": {
+      "inputs": {
+        "flake-parts": "flake-parts_5",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1776762160,
+        "narHash": "sha256-lSjg9D3NzSpge9pSADfSt3MjdCoYqHrlCvCbOXHrvbU=",
+        "owner": "jakobhuemer",
+        "repo": "papertimed",
+        "rev": "f4c1e3b1786b7e9bfe09373fb2800d15feaf528b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jakobhuemer",
+        "repo": "papertimed",
+        "type": "github"
+      }
+    },
     "plugin-loader-src": {
       "flake": false,
       "locked": {
@@ -1654,7 +1709,8 @@
         "noctalia": "noctalia",
         "nvf": "nvf",
         "opencode": "opencode",
-        "rust-overlay": "rust-overlay",
+        "papertimed": "papertimed",
+        "rust-overlay": "rust-overlay_2",
         "rustowl-flake": "rustowl-flake",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
@@ -1684,6 +1740,27 @@
     "rust-overlay": {
       "inputs": {
         "nixpkgs": [
+          "papertimed",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776222810,
+        "narHash": "sha256-5TD8MYqLMcJi9yV/9jq2dVUPtnu/lKZPD61esQCgvqs=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "4d6fee71fea68418a48992409b47f1183d0dd111",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
           "nixpkgs"
         ]
       },
@@ -1701,7 +1778,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_2": {
+    "rust-overlay_3": {
       "inputs": {
         "nixpkgs": "nixpkgs_5"
       },
@@ -1719,7 +1796,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_3": {
+    "rust-overlay_4": {
       "inputs": {
         "nixpkgs": [
           "worktrunk",
@@ -1740,7 +1817,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_4": {
+    "rust-overlay_5": {
       "inputs": {
         "nixpkgs": [
           "wpaperd",
@@ -1779,12 +1856,12 @@
     },
     "rustowl-flake": {
       "inputs": {
-        "flake-parts": "flake-parts_5",
+        "flake-parts": "flake-parts_6",
         "git-hooks": "git-hooks_2",
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_2",
+        "rust-overlay": "rust-overlay_3",
         "rustowl": "rustowl"
       },
       "locked": {
@@ -1828,7 +1905,7 @@
         "base16-helix": "base16-helix",
         "base16-vim": "base16-vim",
         "firefox-gnome-theme": "firefox-gnome-theme",
-        "flake-parts": "flake-parts_6",
+        "flake-parts": "flake-parts_7",
         "gnome-shell": "gnome-shell",
         "nixpkgs": [
           "nixpkgs"
@@ -2122,7 +2199,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_3"
+        "rust-overlay": "rust-overlay_4"
       },
       "locked": {
         "lastModified": 1776714572,
@@ -2143,7 +2220,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_4",
+        "rust-overlay": "rust-overlay_5",
         "systems": "systems_9"
       },
       "locked": {
