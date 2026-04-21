@@ -211,6 +211,7 @@
       import ../modules/home
       ++ [
         inputs.worktrunk.homeModules.default
+        inputs.papertimed.homeModules.default
       ];
 
     nixpkgs.config.allowUnfree = true;

@@ -134,7 +134,8 @@
     };
 
     papertimed = {
-      url = "github:jakobhuemer/papertimed";
+      # url = "github:jakobhuemer/papertimed";
+      url = "path:/home/jakki/projects/papertimed";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
