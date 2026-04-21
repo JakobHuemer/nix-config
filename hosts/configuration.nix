@@ -106,7 +106,6 @@
         comma
         pi-coding-agent
         graphite-cli
-        papertimed
 
         zsh
         # pinentry-tty

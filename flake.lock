@@ -1635,14 +1635,17 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1776777214,
-        "narHash": "sha256-WEsLCjlFe2LDxAiLjhmnvTRxNS8bAg2J8jf4FrMzh/Y=",
-        "path": "/home/jakki/projects/papertimed",
-        "type": "path"
+        "lastModified": 1776780943,
+        "narHash": "sha256-ULYRoKFX5ekr2YjRj+G/7A+6f+LczXbJUFTk/PgEMSs=",
+        "owner": "jakobhuemer",
+        "repo": "papertimed",
+        "rev": "7abfed002e2408e8813984e9b438ba0a29caf9a1",
+        "type": "github"
       },
       "original": {
-        "path": "/home/jakki/projects/papertimed",
-        "type": "path"
+        "owner": "jakobhuemer",
+        "repo": "papertimed",
+        "type": "github"
       }
     },
     "plugin-loader-src": {
