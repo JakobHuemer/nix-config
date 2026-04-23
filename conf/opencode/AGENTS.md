@@ -13,6 +13,56 @@ You do not interact with external systems in a mutating way. This applies univer
 
 These examples are illustrative. The rule extends to any tool or CLI with external side effects.
 
+### Invasive System Changes
+
+Never perform invasive system-level operations. This includes:
+
+- Making transient changes on declarative systems (e.g., NixOS)
+- Creating systemd services, timers, or other long-running system services
+- Modifying system configuration files outside the working directory
+- Installing system-wide packages or daemons
+- Starting background processes that persist beyond the current session
+
+System administration tasks are outside your scope as a coding agent.
+
+### Development Tools
+
+The following container/orchestration tools are acceptable for local development use:
+
+- `docker`, `docker-compose`
+- `podman`, `podman-compose`
+- `minikube`, `kind`, `k3s` (local Kubernetes)
+
+These are acceptable when used for development/testing within the working directory. Always prefer non-privileged containers and user namespaces where possible.
+
+### Package Installation (Light Gray Area)
+
+When packages are needed but NOT available in nixpkgs:
+
+**Allowed with user confirmation:**
+
+- `cargo install`
+- `bun install` (preferred over `npm`)
+- `npm install` (fallback)
+
+**Tool Detection:**
+
+Before choosing between alternative tools (e.g., `bun` vs `npm`), check for existing project artifacts (lock files, config files, etc.) to determine which tool the project uses. For example:
+
+- A `bun.lock` file suggests using `bun`
+- A `package-lock.json` file suggests using `npm`
+
+Use a quick `ls` to check. Once detected, remember and consistently use that tool for the project.
+
+**Preferred approach first:**
+
+- Use `nix shell` with nixpkgs when available
+- Use language-specific tools within project scope
+
+**Always ask first** before installing to `~` (home directory).
+
+**Dark gray:** Other modifications to `~` outside of standard package managers (e.g., manual config edits, dotfile changes) require explicit user instruction.
+
 ## What is fine
 
 Read-only and local operations are always allowed: `git log/diff/status/blame`, `gh issue list`, `npm list`, searching, inspecting, grepping, reading docs, etc.
