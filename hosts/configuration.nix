@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   pkgs-stable,
   inputs,
@@ -14,6 +15,14 @@
       inputs.nix-index-database.nixosModules.default
     ]
     ++ (import ../modules/nixos);
+
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+
+  specialisation.kernel-latest = {
+    configuration = {
+      boot.kernelPackages = pkgs.linuxPackages_latest;
+    };
+  };
 
   services.automatic-timezoned.enable = true;
 
