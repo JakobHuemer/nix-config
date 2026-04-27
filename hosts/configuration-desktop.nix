@@ -197,6 +197,8 @@
 
         element-desktop
         cinny-desktop
+
+        cheese
       ])
       ++ pkgs.lib.optionals (pkgs.stdenv.system == "x86_64-linux") (with pkgs; [
         insomnia
