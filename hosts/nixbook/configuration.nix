@@ -19,6 +19,35 @@
     options hid_apple iso_layout=1
   '';
 
+  specialisation.kernel-latest = lib.mkForce {};
+  # fixes temporarly
+  /* 
+  warning: the following units failed: systemd-sysctl.service
+  × systemd-sysctl.service - Apply Kernel Variables
+       Loaded: loaded (/etc/systemd/system/systemd-sysctl.service; enabled; preset: ignored)
+      Drop-In: /nix/store/lhhc3s6yqbmdbig9ffhrzpfq8ii76n0x-system-units/systemd-sysctl.service.d
+               └─overrides.conf
+       Active: failed (Result: exit-code) since Mon 2026-04-27 12:15:13 CEST; 340ms ago
+     Duration: 5.040s
+   Invocation: 7e4b7f175eb741de8ed2e00036350416
+         Docs: man:systemd-sysctl.service(8)
+               man:sysctl.d(5)
+      Process: 60598 ExecStart=/nix/store/084z7x42nynj9znvqp3c38viqkqvkppx-systemd-260.1/lib/systemd/systemd-sysctl (code=exited, status=1/FAILURE)
+     Main PID: 60598 (code=exited, status=1/FAILURE)
+           IP: 0B in, 0B out
+           IO: 0B read, 0B written
+     Mem peak: 3M
+          CPU: 7ms
+
+  Apr 27 12:15:13 nixbook systemd[1]: Starting Apply Kernel Variables...
+  Apr 27 12:15:13 nixbook systemd-sysctl[60598]: Couldn't write '32' to 'vm/mmap_rnd_bits': Invalid argument
+  Apr 27 12:15:13 nixbook systemd[1]: systemd-sysctl.service: Main process exited, code=exited, status=1/FAILURE
+  Apr 27 12:15:13 nixbook systemd[1]: systemd-sysctl.service: Failed with result 'exit-code'.
+  Apr 27 12:15:13 nixbook systemd[1]: Failed to start Apply Kernel Variables.
+  Command 'systemd-run -E LOCALE_ARCHIVE -E NIXOS_INSTALL_BOOTLOADER -E NIXOS_NO_CHECK --collect --no-ask-password --pipe --quiet --service-type=exec --unit=nixos-rebuild-switch-to-configuration /nix/store/s83p85v92vj3l7pyiwkxmhzix552m30r-nixos-system-nixbook-26.05.20260422.0726a0e/bin/switch-to-configuration test' returned non-zero exit status 4.
+  */
+  boot.kernel.sysctl."vm.mmap_rnd_bits" = lib.mkForce 31;
+
   # boot.kernelParams = [
   #   "brcmfmac.feature_disable=0x82000"
   # ];
