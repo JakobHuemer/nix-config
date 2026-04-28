@@ -63,14 +63,63 @@ Use a quick `ls` to check. Once detected, remember and consistently use that too
 
 **Dark gray:** Other modifications to `~` outside of standard package managers (e.g., manual config edits, dotfile changes) require explicit user instruction.
 
-## What is fine
+### What is fine
 
 Read-only and local operations are always allowed: `git log/diff/status/blame`, `gh issue list`, `npm list`, searching, inspecting, grepping, reading docs, etc.
 
-## Exception
+### Exception
 
 If I explicitly instruct you to perform a mutating external action in a given message, you may do so for that action only.
 
-## Do not ask
+### Do not ask
 
 Never proactively ask whether I want you to commit, publish, open an issue, or interact with any external system. Simply do not offer it.
+
+
+
+
+
+## GitHub Issues
+
+### Format
+
+Issues follow a simple two-section structure:
+
+**\#\# [Title]**
+**Type:** Task | Bug | Feature
+
+**\#\#\# Background** (or **Problem** for bugs/regressions, synonyms — pick what fits)
+Explain the current situation and why it matters. One paragraph is usually enough for small tasks.
+Larger issues can use 2–4 paragraphs or `###` subheadings when the context genuinely needs it.
+The goal is for another developer to immediately understand the starting point without needing prior context.
+
+**\#\#\# Goal** (or **Fix** for bugs)
+Describe what the end state looks like. One focused paragraph is the default.
+Leave implementation details open — describe *what*, not *how*.
+The goal itself is the definition of done.
+
+**\#\#\# Out of Scope** *(optional)*
+Only include when something is so obviously adjacent that a developer would naturally reach for it.
+Do not list things that would never be assumed.
+
+### Principles
+
+- Match description depth to task complexity — short tasks deserve short issues, don't pad
+- Never include code snippets or specific file paths in the issue body
+- No acceptance criteria — the goal is the DOD
+- Leave room for the implementer's judgment; issues are a starting point, not a spec
+
+### Example
+
+> **Migrate async data fetching to Pinia Colada**
+> **Type:** Task
+>
+> **\#\#\# Background**
+> Async data fetching is currently handled via plain Pinia stores that manually manage loading
+> state, call the Apollo client, and fill local refs. This leads to duplicated boilerplate,
+> no request deduplication, and inconsistent loading/error handling across components.
+>
+> **\#\#\# Goal**
+> Replace async Pinia stores with Pinia Colada using a `queries/` folder structure.
+> Reads use `useQuery` / `defineQuery`, writes use named mutation composables that own
+> their cache invalidation.
