@@ -64,7 +64,7 @@
 
   boot.loader.limine = {
     enable = true;
-    maxGenerations = 15;
+    maxGenerations = 5;
   };
 
   hardware.asahi.extractPeripheralFirmware = true;
