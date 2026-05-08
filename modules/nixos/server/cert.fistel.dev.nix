@@ -44,7 +44,7 @@
 
         domains = [
           "fistel.dev"
-          "*.fistel.dev"
+          # "*.fistel.dev"
         ];
 
         proxied = false;
