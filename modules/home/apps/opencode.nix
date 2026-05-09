@@ -9,18 +9,18 @@
   options.opencode.enable = lib.mkEnableOption "enable opencode";
 
   config = lib.mkIf config.opencode.enable {
-    home.file.".config/opencode/skills/" = let
-      src = pkgs.fetchFromGitHub {
-        owner = "JuliusBrussee";
-        repo = "caveman";
-        rev = "v1.5.1";
-        hash = "sha256-gDPgQx1TIhGrJ2EVvEoDY+4MXdlI79zdcx6pL5nMEG4=";
-      };
-    in {
-      enable = true;
-      source = src + "/skills/";
-      recursive = true;
-    };
+    # home.file.".config/opencode/skills/" = let
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "JuliusBrussee";
+    #     repo = "caveman";
+    #     rev = "v1.5.1";
+    #     hash = "sha256-gDPgQx1TIhGrJ2EVvEoDY+4MXdlI79zdcx6pL5nMEG4=";
+    #   };
+    # in {
+    #   enable = true;
+    #   source = src + "/skills/";
+    #   recursive = true;
+    # };
 
     home.file.".config/opencode/AGENTS.md".source = ../../../conf/opencode/AGENTS.md;
 

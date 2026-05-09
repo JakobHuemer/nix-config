@@ -67,12 +67,12 @@
           "eDP-1" =
             base
             // {
-              path = ../../../assets/img/bg;
-              duration = "2m";
-              sorting = "random";
+              path = ../../../assets/img/bg/moon-and-earth-from-orion.jpg;
+              # duration = "2m";
+              # sorting = "random";
 
               # assign to group 1 so all goup 1 share the same random wallpaper
-              group = 1;
+              # group = 1;
             };
         };
       };
