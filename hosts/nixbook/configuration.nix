@@ -21,7 +21,7 @@
 
   specialisation.kernel-latest = lib.mkForce {};
   # fixes temporarly
-  /* 
+  /*
   warning: the following units failed: systemd-sysctl.service
   × systemd-sysctl.service - Apply Kernel Variables
        Loaded: loaded (/etc/systemd/system/systemd-sysctl.service; enabled; preset: ignored)
@@ -261,6 +261,9 @@
     in
       with pkgs;
         [
+          timewall
+          awww
+
           firefox
           grim # screenshots
           slurp # screenshots
@@ -402,6 +405,34 @@
     useStylix = true;
 
     zen.enable = true;
+
+    services.wpaperd.enable = lib.mkForce false;
+
+    services.timewall = {
+      enable = true;
+      wallpaperPath = pkgs.fetchurl {
+        url = "https://static.fistel.dev/nix-assets/Block.heic";
+        sha256 = "sha256-Gt0SYxq0dsc3NCyHQUkdTtrVibiuIFYx1zCjr1FcnZA=";
+      };
+      config = {
+        setter = {
+          command = [
+            "awww"
+            "img"
+            "--outputs"
+            "eDP-1"
+            "--transition-type"
+            "fade"
+            "--transition-duration"
+            "2"
+            "%f"
+          ];
+          overlap = 200; # slightly longer than transition duration in ms
+
+          quiet = false;
+        };
+      };
+    };
 
     # dconf.settings = {
     #   "org/virt-manager/virt-manager/connections" = {

@@ -32,6 +32,17 @@
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
+  services.geoclue2.appConfig.timewall = {
+    isAllowed = true;
+    isSystem = false;
+  };
+
+  # sops.secrets.nix_netrc = {
+  #   path = "/etc/nix/netrc";
+  #   owner = "root";
+  #   mode = "0400";
+  # };
+  #
   # services.devmon.enable = true;
   # services.gvfs.enable = true;
   services.udisks2.enable = true;
@@ -193,6 +204,10 @@
       keep-derivations      = true
       extra-platforms       = aarch64-linux arm-linux
     '';
+
+    # extraConfig = ''
+    #   netrc-file = /etc/nix/netrc
+    # '';
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -220,6 +235,7 @@
       ++ [
         inputs.worktrunk.homeModules.default
         inputs.papertimed.homeModules.default
+        inputs.timewall.homeManagerModules.default
       ];
 
     nixpkgs.config.allowUnfree = true;

@@ -13,6 +13,7 @@
     customPkgsOverlay
     inputs.opencode.overlays.default
     inputs.papertimed.overlays.default
+    inputs.timewall.overlays.default
   ];
 in {
   # NixOs Laptop Desktop
