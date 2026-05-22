@@ -1714,6 +1714,7 @@
         "rustowl-flake": "rustowl-flake",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
+        "timewall": "timewall",
         "worktrunk": "worktrunk",
         "wpaperd": "wpaperd",
         "youtube-music": "youtube-music",
@@ -1799,6 +1800,27 @@
     "rust-overlay_4": {
       "inputs": {
         "nixpkgs": [
+          "timewall",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770260791,
+        "narHash": "sha256-ADTBfENFjRVDQMcCycyX/pAy6NFI/Ct6Mrar3gsmXI0=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "42ec85352e419e601775c57256a52f6d48a39906",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_5": {
+      "inputs": {
+        "nixpkgs": [
           "worktrunk",
           "nixpkgs"
         ]
@@ -1817,7 +1839,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_5": {
+    "rust-overlay_6": {
       "inputs": {
         "nixpkgs": [
           "wpaperd",
@@ -2067,6 +2089,27 @@
         "type": "github"
       }
     },
+    "timewall": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay_4"
+      },
+      "locked": {
+        "lastModified": 1777636997,
+        "narHash": "sha256-gcnP3ONGzVUvMSkDe8cDZ8jrPV/HX26VZWDmPj3zJUA=",
+        "owner": "bcyran",
+        "repo": "timewall",
+        "rev": "3491e6bb0587797a1f35a555befb7e7cbc03381f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bcyran",
+        "repo": "timewall",
+        "type": "github"
+      }
+    },
     "tinted-kitty": {
       "flake": false,
       "locked": {
@@ -2199,7 +2242,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_4"
+        "rust-overlay": "rust-overlay_5"
       },
       "locked": {
         "lastModified": 1779463007,
@@ -2220,7 +2263,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_5",
+        "rust-overlay": "rust-overlay_6",
         "systems": "systems_9"
       },
       "locked": {
