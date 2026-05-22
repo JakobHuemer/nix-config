@@ -192,7 +192,6 @@
 
         claude-code
         codex
-        aider-chat
         gemini-cli
 
         element-desktop
