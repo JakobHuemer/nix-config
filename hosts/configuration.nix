@@ -271,6 +271,8 @@
 
         enableZshIntegration = true;
       };
+
+      bun.enable = true; # managed by shell module
     };
     home = {
       stateVersion = "25.11";

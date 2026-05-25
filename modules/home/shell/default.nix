@@ -9,4 +9,5 @@
   ./clock-rs.nix
   ./tmux.nix
   ./nushell.nix
+  ./bun.nix
 ]
