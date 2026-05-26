@@ -34,6 +34,7 @@
 
         plugin = [
           "opencode-gemini-auth@latest"
+          "@khalilgharbaoui/opencode-claude-code-plugin"
         ];
 
         provider = {
