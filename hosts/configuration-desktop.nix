@@ -193,6 +193,7 @@
         claude-code
         codex
         gemini-cli
+        antigravity-fhs
 
         element-desktop
         cinny-desktop
