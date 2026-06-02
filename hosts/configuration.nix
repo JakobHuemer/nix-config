@@ -110,6 +110,13 @@
     keyMap = "de-latin1";
   };
 
+  programs.npm = {
+    enable = true;
+    npmrc = ''
+      prefix = ''${HOME}/.npm
+    '';
+  };
+
   environment = {
     variables = {
       TERMINAL = "${vars.terminal}";

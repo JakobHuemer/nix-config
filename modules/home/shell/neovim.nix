@@ -55,7 +55,7 @@
     # probably can be removed when migrating to nix
     gcc
     tree-sitter
-    nodejs
+    # nodejs
     lua
     unzip
     cargo

@@ -31,9 +31,12 @@
           "$HOME/go/bin"
           "$HOME/.local/bin"
           "$HOME/.cargo/bin"
-          "$HOME/.cache/.bun/bin:$PATH"
+          "$HOME/.cache/.bun/bin"
+          "$HOME/.npm/bin"
           "$PATH"
         ];
+
+        NODE_PATH = "$HOME/.npm-packages/lib/node_modules";
 
         GIT_ADVICE = 0;
 
