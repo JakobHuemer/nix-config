@@ -14,6 +14,7 @@
     inputs.opencode.overlays.default
     inputs.papertimed.overlays.default
     inputs.timewall.overlays.default
+    inputs.nixos-aarch64-widevine.overlays.default
   ];
 in {
   # NixOs Laptop Desktop

@@ -249,6 +249,10 @@
       SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
     };
 
+    sessionVariables = {
+      MOZ_GMP_PATH = ["${pkgs.widevine-cdm-lacros}/gmp-widevinecdm/system-installed"];
+    };
+
     systemPackages = let
       jetbrainsIDEs = [
         pkgs.jetbrains.webstorm

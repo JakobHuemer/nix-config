@@ -30,6 +30,8 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-aarch64-widevine.url = "github:epetousis/nixos-aarch64-widevine";
+
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
