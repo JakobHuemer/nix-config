@@ -134,6 +134,8 @@
         pi-coding-agent
         graphite-cli
 
+        node-gyp
+
         zsh
         # pinentry-tty
         pinentry-all
