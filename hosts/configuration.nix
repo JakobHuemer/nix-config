@@ -17,6 +17,13 @@
     ++ (import ../modules/nixos);
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+  boot.supportedFilesystems = ["nfs"];
+
+  fileSystems."/srv/nfs" = {
+    device = "pi5-01.h.fistel.dev:/srv/nfs";
+    fsType = "nfs";
+    options = ["nfsvers=4.2" "x-systemd.automount" "noauto"];
+  };
 
   specialisation.kernel-latest = {
     configuration = {
