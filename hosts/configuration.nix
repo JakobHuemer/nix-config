@@ -59,7 +59,15 @@
   # networking.firewall.backend = "nftables";
   # myfirewall.mullvad_tailscale.enable = true;
 
-  doh.enable = true;
+  networking = {
+    nameservers = ["100.109.186.71" "192.168.0.31" "9.9.9.9" "1.1.1.1"];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+    networkmanager.dns = "none";
+
+    resolvconf.extraOptions = [
+      "timeout:1"
+    ];
+  };
 
   security.sudo = {
     extraConfig = ''

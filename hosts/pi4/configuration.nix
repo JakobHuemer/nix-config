@@ -44,8 +44,6 @@ in {
   # Disable X11 and display manager (if present)
   services.xserver.enable = false;
 
-  # networking.nameservers = [ "9.9.9.9" "149.112.112.112" ];
-
   networking.networkmanager.enable = true;
   networking.hostName = "${host.hostName}";
   networking.extraHosts = "${kubeMasterIP} ${kubeMasterHostname}";

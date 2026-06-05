@@ -22,6 +22,7 @@
       extraSetFlags = [
         "--ssh"
         "--operator=${vars.user}"
+        "--accept-dns=false"
       ];
 
       useRoutingFeatures = lib.mkDefault "client";
