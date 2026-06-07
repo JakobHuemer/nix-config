@@ -60,7 +60,7 @@
   # myfirewall.mullvad_tailscale.enable = true;
 
   networking = {
-    nameservers = ["100.109.186.71" "192.168.0.31" "9.9.9.9" "1.1.1.1"];
+    nameservers = [/*"100.109.186.71" "192.168.0.31"*/ "9.9.9.9" "1.1.1.1"];
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
 
