@@ -253,6 +253,11 @@
       MOZ_GMP_PATH = ["${pkgs.widevine-cdm-lacros}/gmp-widevinecdm/system-installed"];
     };
 
+    extraInit = ''
+      ln -sfn ${pkgs.widevine-cdm}/WidevineCdm \
+        /home/${vars.user}/.config/BraveSoftware/Brave-Browser/WidevineCdm/current
+    '';
+
     systemPackages = let
       jetbrainsIDEs = [
         pkgs.jetbrains.webstorm
@@ -411,6 +416,15 @@
     zen.enable = true;
 
     services.wpaperd.enable = lib.mkForce false;
+
+    home.file.".config/BraveSoftware/Brave-Browser/WidevineCdm/latest-component-updated-widevine-cdm" = {
+      enable = true;
+      text = ''
+        {
+          "Path": "${pkgs.widevine-cdm}/WidevineCdm"
+        }
+      '';
+    };
 
     services.timewall = {
       enable = true;

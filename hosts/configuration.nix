@@ -260,6 +260,7 @@
         inputs.worktrunk.homeModules.default
         inputs.papertimed.homeModules.default
         inputs.timewall.homeManagerModules.default
+        inputs.lan-mouse.homeManagerModules.default
       ];
 
     nixpkgs.config.allowUnfree = true;
@@ -286,6 +287,10 @@
 
         icon_names.media = ["media-optical"];
       };
+    };
+
+    programs.lan-mouse = {
+      enable = true;
     };
 
     programs = {
