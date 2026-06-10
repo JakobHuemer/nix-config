@@ -18,7 +18,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
     nix-index-database = {
@@ -87,7 +87,7 @@
     };
 
     nixcord = {
-      url = "github:kaylorben/nixcord/35c173408a25cae1c5af23b9d4fd80a181a395d4";
+      url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

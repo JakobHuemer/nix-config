@@ -257,11 +257,6 @@
             frameless = true;
 
             plugins = {
-              chatInputButtonAPI.enable = true;
-              commandsAPI.enable = true;
-              memberListDecoratorsAPI.enable = true;
-              messageAccessoriesAPI.enable = true;
-
               accountPanelServerProfile = {
                 enable = true;
                 prioritizeServerProfile = true;
@@ -276,7 +271,7 @@
                 closeOthers = true;
                 forceOpen = false;
                 keepIcons = false;
-                showFolderIcon = "always";
+                showFolderIcon = 1;
               };
 
               betterGifAltText.enable = true;
@@ -289,13 +284,12 @@
 
               noF1.enable = true;
 
-              onePingPerDM.enable = true;
+              onePingPerDm.enable = true;
 
               oneko.enable = true;
 
               permissionsViewer = {
                 enable = true;
-                defaultPermissionsDropdownState = false;
               };
 
               roleColorEverywhere.enable = true;
@@ -315,8 +309,6 @@
               translate = {
                 enable = true;
                 autoTranslate = false;
-
-                showChatBarButton = true;
               };
 
               typingIndicator = {
@@ -337,7 +329,7 @@
 
               volumeBooster.enable = true;
 
-              reviewDB = {
+              reviewDb = {
                 enable = true;
                 hideTimestamps = false;
               };
@@ -348,7 +340,7 @@
 
               callTimer.enable = true;
 
-              clearURLs.enable = true;
+              clearUrls.enable = true;
 
               # TODO: customRPC
 
@@ -392,14 +384,6 @@
                 ignoreBots = true;
               };
 
-              moreCommands.enable = true;
-
-              moreUserTags = {
-                enable = true;
-
-                # TODO: edit texts for different people etc.
-              };
-
               newGuildSettings = {
                 enable = true;
 
@@ -407,7 +391,7 @@
                 # 1 all
                 # 2 only@Mentions
                 # 3 nothing
-                messages = "only@Mentions";
+                messages = 2;
 
                 everyone = true;
                 role = false;
@@ -418,9 +402,9 @@
 
               openInApp.enable = true;
 
-              pinDMs = {
+              pinDms = {
                 enable = true;
-                pinOrder = "custom";
+                pinOrder = 1;
               };
 
               platformIndicators.enable = true;
@@ -429,7 +413,7 @@
                 enable = true;
                 customEngineName = "DuckDuckGo";
 
-                customEngineURL = "https://duckduckgo.com/";
+                customEngineUrl = "https://duckduckgo.com/";
               };
 
               # shikiCodeblocks = {

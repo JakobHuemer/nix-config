@@ -15,6 +15,7 @@
     inputs.papertimed.overlays.default
     inputs.timewall.overlays.default
     inputs.nixos-aarch64-widevine.overlays.default
+    inputs.affinity-nix.overlays.default
   ];
 in {
   # NixOs Laptop Desktop

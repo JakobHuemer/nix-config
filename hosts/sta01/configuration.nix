@@ -197,6 +197,8 @@
           # qemu-utils
           virtiofsd
 
+          affinity-v3
+
           (pkgs-stable.heroic.override {
             extraPkgs = pkgs: [
               pkgs.gamescope
@@ -210,7 +212,6 @@
         ])
         ++ [
           inputs.hytale-launcher.packages.${system}.default
-          inputs.affinity-nix.packages.${system}.v3
         ]
         ++ jetbrainsIDEs
         ++ (pkgs.lib.concatMap (

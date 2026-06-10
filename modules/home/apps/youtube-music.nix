@@ -12,10 +12,12 @@
   options.youtube-music.enable = lib.mkEnableOption "enable youtube music";
 
   config = lib.mkIf config.youtube-music.enable {
-    programs.youtube-music = {
+    programs.pear-desktop = {
       enable = true;
 
       options = {
+        likeButtons = "";
+
         tray = true;
 
         language = "en";
