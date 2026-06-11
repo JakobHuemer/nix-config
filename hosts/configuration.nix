@@ -64,9 +64,9 @@
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
 
-    resolvconf.extraOptions = [
-      "timeout:1"
-    ];
+    # resolvconf.extraOptions = [
+    #   "timeout:1"
+    # ];
   };
 
   security.sudo = {
