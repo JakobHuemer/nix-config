@@ -163,6 +163,7 @@
         gparted
         font-manager
 
+        inkscape
         # zed-editor
 
         minikube
