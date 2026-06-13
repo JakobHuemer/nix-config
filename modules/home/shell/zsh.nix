@@ -209,7 +209,7 @@
 
         # evals
 
-        _evalcache gh copilot alias -- zsh
+        # _evalcache gh copilot alias -- zsh
         # _evalcache pay-respects zsh --alias --nocnf
         _evalcache tmuxifier init -
 
