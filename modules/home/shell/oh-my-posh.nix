@@ -51,6 +51,7 @@
                 {{ " " }}{{ .HEAD -}}
                 {{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}
                 {{- if or .Working.Changed .Staging.Changed }} [
+                  {{- if gt .Working.Added 0 }}+{{ .Working.Added }}{{ end }}
                   {{- if gt .Working.Untracked 0 }}?{{ .Working.Untracked }}{{ end }}
                   {{- if gt .Working.Modified 0 }}~{{ .Working.Modified }}{{ end }}
                   {{- if gt .Working.Deleted 0 }}-{{ .Working.Deleted }}{{ end }}
