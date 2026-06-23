@@ -19,6 +19,8 @@
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
   boot.supportedFilesystems = ["nfs"];
 
+  time.timeZone = "Europe/Vienna";
+
   fileSystems."/srv/nfs" = {
     device = "pi5-01.h.fistel.dev:/srv/nfs";
     fsType = "nfs";
@@ -30,8 +32,6 @@
       boot.kernelPackages = pkgs.linuxPackages_latest;
     };
   };
-
-  services.automatic-timezoned.enable = true;
 
   programs.zsh.enable = true;
 
