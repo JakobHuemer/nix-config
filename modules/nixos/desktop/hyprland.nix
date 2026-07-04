@@ -192,7 +192,7 @@
               vibrancy_darkness = 0.2;
             }
             {
-              monitor = "HDMI-A-1";
+              monitor = "DP-2";
               path = "${../../../assets/img/bg/funny-cat.png}";
               blur_passes = 2;
               contrast = 1;

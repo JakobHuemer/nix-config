@@ -43,7 +43,7 @@
       wallpapers = [
         {
           filename = ../../../assets/img/bg/those-who-dont.jpg;
-          monitors = ["HDMI-A-1" "DP-1"];
+          monitors = ["DP-2" "DP-1"];
           schedules = ["school"];
         }
         {

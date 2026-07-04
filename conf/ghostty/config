@@ -25,9 +25,13 @@ window-inherit-working-directory = true
 
 quick-terminal-position = center
 quick-terminal-animation-duration = 0
+gtk-quick-terminal-layer = top
+quick-terminal-screen = mouse
+quick-terminal-autohide = true
+quick-terminal-keyboard-interactivity = exclusive
 
 shell-integration = zsh
-shell-integration-features = sudo
+shell-integration-features = sudo,cursor,ssh-env,ssh-terminfo
 
 # macos-titlebar-style = hidden
 macos-option-as-alt = left
@@ -62,5 +66,9 @@ selection-foreground = cdd6f4
 
 # make ghostty not group on linux
 gtk-single-instance = false
+
+## keybinds
+
+keybind = global:super+shift+enter=toggle_quick_terminal
 
 # custom-shader = ~/.tweaks/ghostty-shaders/glow-rgbsplit-twitchy.glsl

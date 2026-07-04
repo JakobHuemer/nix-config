@@ -31,7 +31,7 @@
         workspaceAutoBackAndForth = true; # pres $mod + <n> to got there and again to go to previous
         workspaceOutputAssign = [
           {
-            output = "HDMI-A-1";
+            output = "DP-2";
             workspace = "1";
           }
           {
@@ -53,7 +53,7 @@
           lib.mkOptionDefault {"${modifier}+q" = "kill";};
 
         output = {
-          "HDMI-A-1" = {
+          "DP-1" = {
             position = "0 0";
             resolution = "2560x1440";
             scale = "1";

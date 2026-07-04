@@ -152,7 +152,7 @@
 
                 FixYoutubeEmbeds.enabled = true;
 
-                FriendsSince.enabled = true;
+                # FriendsSince.enabled = true;
 
                 FullSearchContext.enabled = true;
 
@@ -359,7 +359,7 @@
 
               fixYoutubeEmbeds.enable = true;
 
-              friendsSince.enable = true;
+              # friendsSince.enable = true;
 
               fullSearchContext.enable = true;
 
