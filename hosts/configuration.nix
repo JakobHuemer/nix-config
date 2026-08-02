@@ -21,11 +21,13 @@
 
   time.timeZone = "Europe/Vienna";
 
-  fileSystems."/srv/nfs" = {
-    device = "pi5-01.h.fistel.dev:/srv/nfs";
-    fsType = "nfs";
-    options = ["nfsvers=4.2" "x-systemd.automount" "noauto"];
-  };
+
+  # crazy issues hahahahahahahahaha
+  # fileSystems."/srv/nfs" = {
+  #   device = "pi5-01.h.fistel.dev:/srv/nfs";
+  #   fsType = "nfs";
+  #   options = ["nfsvers=4.2" "x-systemd.automount" "noauto"];
+  # };
 
   specialisation.kernel-latest = {
     configuration = {
