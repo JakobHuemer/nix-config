@@ -74,9 +74,8 @@
     };
 
     hyprland = {
-      # url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=eb0480ba0d0870ab5d8a876f01c6ab033a4b35f4";
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=271b0d1eb4fc4899c8607c5e9d4eacbfb0282a62";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lan-mouse.url = "github:feschber/lan-mouse";

@@ -191,7 +191,7 @@
 
         wlr-layout-ui
 
-        claude-code
+        pkgs-stable.claude-code
         codex
         gemini-cli
         inputs.antigravity-nix.packages.${system}.google-antigravity-cli
