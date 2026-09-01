@@ -212,6 +212,10 @@
 
     services.trayscale.enable = true;
     services.trayscale.package = pkgs-stable.trayscale;
+    home.packages = [pkgs-stable.trayscale];
+    systemd.user.services.trayscale.Service.Restart = "always";
+    systemd.user.services.trayscale.Service.RestartSec = 2;
+
     opencode.enable = true;
 
     nemo.enable = true;
