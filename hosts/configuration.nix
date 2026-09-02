@@ -266,6 +266,7 @@
       ];
 
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.overlays = [(import ../overlays/qt6ct.nix)];
 
     home.file.".nix-assets" = {
       source = ../assets;

@@ -159,6 +159,9 @@
           lm_sensors
           trashy
 
+          obs-studio
+          qt6.qtwayland
+
           # # jetbrains
           # # jetbrains-toolbox
           # jetbrains.webstorm
