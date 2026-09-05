@@ -163,6 +163,18 @@
         gparted
         font-manager
 
+        (pkgs.mpv.override {
+          mpv-unwrapped = pkgs.mpv-unwrapped.override {
+            libbluray = pkgs.libbluray.override {
+              withAACS = true;
+              withBDplus = true;
+              withJava = true;
+            };
+          };
+        })
+        libaacs
+        libbdplus
+
         inkscape
         # zed-editor
 
