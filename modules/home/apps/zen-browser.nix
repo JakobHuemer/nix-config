@@ -18,6 +18,7 @@
   config = lib.mkIf config.zen.enable {
     programs.zen-browser = {
       enable = true;
+      setAsDefaultBrowser = true;
 
       profiles."default" = {
         id = 0;
@@ -42,10 +43,10 @@
       #     };
       #   };
     };
-    # home.packages = [
-    #   (
-    #     inputs.zen-browser.packages."${system}".default
-    #   )
-    # ];
+    home.packages = [
+      (
+        inputs.zen-browser.packages."${system}".twilight
+      )
+    ];
   };
 }
