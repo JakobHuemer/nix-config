@@ -6,6 +6,7 @@
   vars,
   system,
   host,
+  config,
   ...
 }: {
   imports =
@@ -21,7 +22,6 @@
 
   time.timeZone = "Europe/Vienna";
 
-
   # crazy issues hahahahahahahahaha
   # fileSystems."/srv/nfs" = {
   #   device = "pi5-01.h.fistel.dev:/srv/nfs";
@@ -35,8 +35,6 @@
     };
   };
 
-  programs.zsh.enable = true;
-
   sops.defaultSopsFile = ../secrets/general.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
@@ -46,11 +44,15 @@
     isSystem = false;
   };
 
-  # sops.secrets.nix_netrc = {
-  #   path = "/etc/nix/netrc";
-  #   owner = "root";
-  #   mode = "0400";
-  # };
+  sops.secrets.consul_http_token = {
+    owner = vars.user;
+    mode = "0400";
+  };
+
+  sops.secrets.nomad_token = {
+    owner = vars.user;
+    mode = "0400";
+  };
   #
   # services.devmon.enable = true;
   # services.gvfs.enable = true;
@@ -62,7 +64,13 @@
   # myfirewall.mullvad_tailscale.enable = true;
 
   networking = {
-    nameservers = [/*"100.109.186.71" "192.168.0.31"*/ "9.9.9.9" "1.1.1.1"];
+    nameservers = [
+      /*
+      "100.109.186.71" "192.168.0.31"
+      */
+      "9.9.9.9"
+      "1.1.1.1"
+    ];
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
 
@@ -150,6 +158,9 @@
         comma
         pi-coding-agent
         graphite-cli
+
+        nomad
+        consul
 
         node-gyp
 
@@ -272,6 +283,9 @@
       source = ../assets;
       recursive = true;
     };
+
+    zsh.consul_http_token_path = config.sops.secrets.consul_http_token.path;
+    zsh.nomad_token_path = config.sops.secrets.nomad_token.path;
 
     services.syncthing.enable = true;
 
