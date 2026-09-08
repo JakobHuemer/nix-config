@@ -53,7 +53,8 @@
 
           DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/podman/podman.sock";
 
-          NOMAD_ADDR = "https://pi5-01.h.fistel.dev";
+          CONSUL_HTTP_ADDR = "https://consul.ts.fistel.dev";
+          NOMAD_ADDR = "https://nomad.ts.fistel.dev";
         };
 
         history = {
