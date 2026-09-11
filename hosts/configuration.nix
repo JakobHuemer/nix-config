@@ -270,7 +270,6 @@
     imports =
       import ../modules/home
       ++ [
-        inputs.worktrunk.homeModules.default
         inputs.papertimed.homeModules.default
         inputs.timewall.homeManagerModules.default
         inputs.lan-mouse.homeManagerModules.default
@@ -312,12 +311,7 @@
 
     programs = {
       home-manager.enable = true;
-      worktrunk = {
-        enable = true;
-
-        enableZshIntegration = true;
-      };
-
+      worktrunk.enable = true;
       bun.enable = true; # managed by shell module
     };
     home = {

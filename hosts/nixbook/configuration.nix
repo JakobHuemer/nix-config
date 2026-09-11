@@ -19,6 +19,8 @@
     options hid_apple iso_layout=1
   '';
 
+  hardware.asahi.enable = true;
+
   specialisation.kernel-latest = lib.mkForce {};
   # fixes temporarly
   /*
@@ -261,7 +263,7 @@
     systemPackages = let
       jetbrainsIDEs = [
         pkgs.jetbrains.webstorm
-        pkgs.jetbrains.idea-oss
+        # pkgs.jetbrains.idea-oss
         pkgs.jetbrains.idea
         pkgs.jetbrains.datagrip
         pkgs.jetbrains.rust-rover
@@ -332,7 +334,6 @@
           #     pkgs.gamemode
           #   ];
           # })
-          rustdesk-flutter
 
           # iwgtk
         ]

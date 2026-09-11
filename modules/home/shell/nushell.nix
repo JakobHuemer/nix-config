@@ -2,12 +2,7 @@
   pkgs,
   config,
   ...
-}: let
-  configDir =
-    if pkgs.stdenv.isDarwin && !config.xdg.enable
-    then "Library/Application Support/nushell"
-    else "${config.xdg.configHome}/nushell";
-in {
+}: {
   programs = {
     nushell = {
       enable = true;

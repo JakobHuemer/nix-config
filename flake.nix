@@ -144,11 +144,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    worktrunk = {
-      url = "github:max-sixty/worktrunk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     papertimed = {
       url = "github:jakobhuemer/papertimed";
       # url = "path:/home/jakki/projects/papertimed";
