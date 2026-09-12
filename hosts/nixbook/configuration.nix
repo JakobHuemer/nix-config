@@ -405,7 +405,7 @@
     waybar.enable = true;
 
     tofi.enable = true;
-    ghostty.enable = true;
+    programs.ghostty.enable = true;
     tmux.enable = true;
 
     nixcord.enable = true;

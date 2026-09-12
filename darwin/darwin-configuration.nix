@@ -250,7 +250,7 @@ in {
     # nixvim.enable = true;
     nixcord.enable = true;
     # vscode.enable = true;
-    ghostty.enable = true;
+    programs.ghostty.enable = true;
     tmux.enable = true;
 
     opencode.enable = true;
