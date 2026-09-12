@@ -223,6 +223,8 @@
     libre-office.enable = true;
 
     services.trayscale.enable = true;
+    services.jellyfin-mpv-shim.enable = true;
+
     home.packages = [pkgs.trayscale];
     systemd.user.services.trayscale.Service.Restart = "always";
     systemd.user.services.trayscale.Service.RestartSec = 2;
