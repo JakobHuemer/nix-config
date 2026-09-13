@@ -163,15 +163,6 @@
         gparted
         font-manager
 
-        (pkgs.mpv.override {
-          mpv-unwrapped = pkgs.mpv-unwrapped.override {
-            libbluray = pkgs.libbluray.override {
-              withAACS = true;
-              withBDplus = true;
-              withJava = true;
-            };
-          };
-        })
         libaacs
         libbdplus
 
@@ -228,6 +219,25 @@
     home.packages = [pkgs.trayscale];
     systemd.user.services.trayscale.Service.Restart = "always";
     systemd.user.services.trayscale.Service.RestartSec = 2;
+
+    programs.mpv = {
+      enable = true;
+      package = pkgs.mpv.override {
+        mpv-unwrapped = pkgs.mpv-unwrapped.override {
+          libbluray = pkgs.libbluray.override {
+            withAACS = true;
+            withBDplus = true;
+            withJava = true;
+          };
+        };
+      };
+
+      config = {
+        alang = "eng";
+        slang = "eng";
+        subs-with-matching-audio = "yes";
+      };
+    };
 
     opencode.enable = true;
 
