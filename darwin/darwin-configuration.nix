@@ -248,7 +248,7 @@ in {
 
     # disable nixvim for a temporal lua configuration
     # nixvim.enable = true;
-    nixcord.enable = true;
+    programs.vesktop.nixcord.enable = true;
     # vscode.enable = true;
     programs.ghostty.enable = true;
     tmux.enable = true;

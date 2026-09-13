@@ -408,7 +408,7 @@
     programs.ghostty.enable = true;
     tmux.enable = true;
 
-    nixcord.enable = true;
+    programs.vesktop.enable = true;
 
     youtube-music.enable = true;
 
