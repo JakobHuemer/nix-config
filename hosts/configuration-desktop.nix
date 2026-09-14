@@ -203,6 +203,8 @@
         cinny-desktop
 
         cheese
+
+        fastmail-desktop
       ])
       ++ pkgs.lib.optionals (pkgs.stdenv.system == "x86_64-linux") (with pkgs; [
         insomnia
