@@ -39,6 +39,7 @@
     treefmt
     shfmt
     nixd
+    lua-language-server
     prettierd
     yapf
     nixfmt
