@@ -117,6 +117,8 @@
       wayland.windowManager.hyprland = {
         enable = true;
 
+        configType = "lua";
+
         package = null;
         portalPackage = null;
 
@@ -124,32 +126,19 @@
 
         systemd.enable = false;
 
-        extraConfig =
-          (builtins.readFile ../../../conf/hypr/hyprland.conf)
-          + ''
-            bind = $mainMod, G, exec, ${../../../conf/hypr/toggle_touchpad.sh}
-            exec = ${../../../conf/hypr/toggle_touchpad.sh} --readonly
-          '';
+        extraLuaFiles = {
+          main = ../../../conf/hypr/hyprland.lua;
 
-        # settings = {
-        #   "$mod" = "SUPER";
-        #   bind =
-        #     [
-        #       "$mod, F, exec, firefox"
-        #     ]
-        #     ++ (builtins.concatLists (
-        #       builtins.genList (
-        #         i:
-        #         let
-        #           ws = i + 1;
-        #         in
-        #         [
-        #           "$mod, code:1${toString i}, workspace, ${toString ws}"
-        #           "$mod SHIFT, code:1${toString i}, movetoworkspace ${toString ws}"
-        #         ]
-        #       ) 9
-        #     ));
-        # };
+          hyprland_config = {
+            content = ../../../conf/hypr/hyprland_config.lua;
+            autoLoad = false;
+          };
+
+          toggle_touchpad = {
+            content = ../../../conf/hypr/toggle_touchpad.lua;
+            autoLoad = false;
+          };
+        };
       };
 
       programs.hyprlock = {
