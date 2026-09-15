@@ -145,6 +145,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wluma = {
+      url = "github:max-baz/wluma";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     youtube-music = {
       url = "github:h-banii/youtube-music-nix";
       inputs.nixpkgs.follows = "nixpkgs";

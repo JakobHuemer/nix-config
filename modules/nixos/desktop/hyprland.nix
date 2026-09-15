@@ -30,6 +30,9 @@
 
     security.pam.services.hyprlock = {};
 
+    # for wluma
+    services.upower.enable = true;
+
     home-manager.users.${vars.user} = {
       home.packages = with pkgs; [
         waybar
@@ -109,6 +112,7 @@
 
       # ambient light sensor -> screen brightness
       services.wluma.enable = true;
+      services.wluma.package = inputs.wluma.defaultPackage.${system};
 
       wayland.windowManager.hyprland = {
         enable = true;
