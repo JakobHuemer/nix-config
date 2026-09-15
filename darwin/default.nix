@@ -44,8 +44,6 @@ in {
         ./mbp2p.nix
         # ....
         inputs.home-manager.darwinModules.home-manager
-        # ghostty.packages.aarch64-darwin.default
-        # nixcord.homeManagerModules.nixcord
       ];
     };
 }

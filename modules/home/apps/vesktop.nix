@@ -6,8 +6,6 @@
   system,
   ...
 }: {
-  imports = [inputs.nixcord.homeModules.nixcord];
-
   config = lib.mkIf config.programs.vesktop.enable {
     programs.vesktop = {
       vencord = {

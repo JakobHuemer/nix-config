@@ -37,8 +37,6 @@
         # disable this in favour of using wpaperd manually
         # image = bgImages.nyancat-space-drawn;
 
-        # targets.nixcord.enable = false;
-
         targets.zen-browser.enable = false;
 
         fonts = {

@@ -107,6 +107,9 @@
         };
       };
 
+      # ambient light sensor -> screen brightness
+      services.wluma.enable = true;
+
       wayland.windowManager.hyprland = {
         enable = true;
 

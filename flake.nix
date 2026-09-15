@@ -85,11 +85,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     opencode = {
       url = "github:anomalyco/opencode/27190635ea0497766a16ebddab8c4ca0b31f94a7";
       # url = "github:anomalyco/opencode";

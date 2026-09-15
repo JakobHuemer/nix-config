@@ -427,31 +427,32 @@
       '';
     };
 
-    services.timewall = {
-      enable = true;
-      wallpaperPath = pkgs.fetchurl {
-        url = "https://static.fistel.dev/nix-assets/Block.heic";
-        sha256 = "sha256-Gt0SYxq0dsc3NCyHQUkdTtrVibiuIFYx1zCjr1FcnZA=";
-      };
-      config = {
-        setter = {
-          command = [
-            "awww"
-            "img"
-            "--outputs"
-            "eDP-1"
-            "--transition-type"
-            "fade"
-            "--transition-duration"
-            "2"
-            "%f"
-          ];
-          overlap = 200; # slightly longer than transition duration in ms
-
-          quiet = false;
-        };
-      };
-    };
+    # retire for now as moon and earth is really cool looking
+    # services.timewall = {
+    #   enable = true;
+    #   wallpaperPath = pkgs.fetchurl {
+    #     url = "https://static.fistel.dev/nix-assets/Block.heic";
+    #     sha256 = "sha256-Gt0SYxq0dsc3NCyHQUkdTtrVibiuIFYx1zCjr1FcnZA=";
+    #   };
+    #   config = {
+    #     setter = {
+    #       command = [
+    #         "awww"
+    #         "img"
+    #         "--outputs"
+    #         "eDP-1"
+    #         "--transition-type"
+    #         "fade"
+    #         "--transition-duration"
+    #         "2"
+    #         "%f"
+    #       ];
+    #       overlap = 200; # slightly longer than transition duration in ms
+    #
+    #       quiet = false;
+    #     };
+    #   };
+    # };
 
     # dconf.settings = {
     #   "org/virt-manager/virt-manager/connections" = {
