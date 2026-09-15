@@ -8,7 +8,7 @@
 
   config = lib.mkIf config.libre-office.enable {
     home.packages = with pkgs; [
-      libreoffice-fresh
+      libreoffice-stable
       hunspell
       hunspellDicts.en_GB-large
       hunspellDicts.de_AT

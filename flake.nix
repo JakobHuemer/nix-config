@@ -145,6 +145,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # only necessary because v5 hasn't landed in nixpkgs unstable yet.
+    # This flake is the cause for the massice trace print at build time.
+    # maybe remove this when v5 is in nixpkgs-unstable.
     wluma = {
       url = "github:max-baz/wluma";
       inputs.nixpkgs.follows = "nixpkgs";

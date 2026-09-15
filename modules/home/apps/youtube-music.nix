@@ -31,7 +31,7 @@
       };
 
       plugins = {
-        adblocker = {
+        do-not-track = {
           enable = true;
           blocker = "In player";
         };

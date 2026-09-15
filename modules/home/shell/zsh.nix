@@ -250,15 +250,15 @@
         shellAliases = let
           flakepart = "--flake ${host.flakePath}#${host.hostName}";
           nurseCmd =
-            if pkgs.stdenv.isDarwin
+            if pkgs.stdenv.hostPlatform.isDarwin
             then "sudo darwin-rebuild switch ${flakepart}"
-            else if pkgs.stdenv.isLinux
+            else if pkgs.stdenv.hostPlatform.isLinux
             then "sudo nixos-rebuild switch ${flakepart}"
             else "echo 'Unsupported system -> not switching'";
           nurstCmd =
-            if pkgs.stdenv.isDarwin
+            if pkgs.stdenv.hostPlatform.isDarwin
             then "sudo darwin-rebuild test ${flakepart}"
-            else if pkgs.stdenv.isLinux
+            else if pkgs.stdenv.hostPlatform.isLinux
             then "sudo nixos-rebuild test ${flakepart}"
             else "echo 'Unsupported system -> not testing'";
           nursbackCmd = "sudo nixos-rebuild switch --rollback ${flakepart}";

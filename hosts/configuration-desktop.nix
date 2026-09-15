@@ -196,7 +196,6 @@
 
         pkgs-stable.claude-code
         codex
-        gemini-cli
         inputs.antigravity-nix.packages.${system}.google-antigravity-cli
 
         element-desktop
@@ -206,7 +205,9 @@
 
         fastmail-desktop
       ])
-      ++ pkgs.lib.optionals (pkgs.stdenv.system == "x86_64-linux") (with pkgs; [
+      ++ pkgs.lib.optionals
+      (pkgs.stdenv.hostPlatform.system == "x86_64-linux")
+      (with pkgs; [
         insomnia
         lmstudio
       ]);
