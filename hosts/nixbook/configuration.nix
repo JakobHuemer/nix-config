@@ -25,6 +25,12 @@
   #   "brcmfmac.feature_disable=0x82000"
   # ];
 
+  # makes charging stop at 80 percent and will switch to AC.
+  # Automatically, if battery reaches 75 it will charge again.
+  systemd.tmpfiles.rules = [
+    "w /sys/class/power_supply/macsmc-battery/charge_control_end_threshold - - - - 80"
+  ];
+
   # networking.networkmanager.wifi.scanRandMacAddress = false;
   # networking.networkmanager.wifi.macAddress = "preserve";
 
