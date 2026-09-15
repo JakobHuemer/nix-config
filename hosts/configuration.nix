@@ -29,8 +29,8 @@
   #   options = ["nfsvers=4.2" "x-systemd.automount" "noauto"];
   # };
 
-  specialisation.kernel-latest = {
-    configuration = {
+  specialisation = lib.mkIf (!(config.hardware.asahi.enable or false)) {
+    kernel-latest.configuration = {
       boot.kernelPackages = pkgs.linuxPackages_latest;
     };
   };
