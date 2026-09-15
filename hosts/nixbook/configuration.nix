@@ -387,8 +387,6 @@
 
     zen.enable = true;
 
-    services.wpaperd.enable = lib.mkForce false;
-
     home.file.".config/BraveSoftware/Brave-Browser/WidevineCdm/latest-component-updated-widevine-cdm" = {
       enable = true;
       text = ''
