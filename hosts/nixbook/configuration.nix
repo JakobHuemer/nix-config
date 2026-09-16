@@ -319,7 +319,6 @@
 
           librespeed-cli
 
-          gamemode
           xrdb
 
           podman-tui
@@ -328,12 +327,9 @@
           # qemu-utils
           virtiofsd
 
-          # (heroic.override {
-          #   extraPkgs = pkgs: [
-          #     pkgs.gamescope
-          #     pkgs.gamemode
-          #   ];
-          # })
+          # gaming
+          gamemode
+          legendary-gl
 
           # iwgtk
         ]
