@@ -133,6 +133,7 @@
       "networkmanager"
       "video"
       "storage"
+      "kvm"
     ];
   };
 

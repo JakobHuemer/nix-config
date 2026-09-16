@@ -12,6 +12,7 @@
 }: {
   imports = [
     inputs.hyprland.nixosModules.default
+    inputs.steam-asahi.nixosModules.default
   ];
 
   boot.extraModprobeConfig = ''
@@ -21,9 +22,22 @@
 
   hardware.asahi.enable = true;
 
-  # boot.kernelParams = [
+  boot.kernelParams = [
   #   "brcmfmac.feature_disable=0x82000"
-  # ];
+
+    # steam asahi
+    "zswap.enabled=1"
+    "zswap.compressor=zstd"
+    "zswap.zpool=zsmalloc"
+    "zswap.max_pool_percent=20"
+  ];
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 100;
+    "vm.page-cluster" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.max_map_count" = 1048576;
+  };
 
   # makes charging stop at 80 percent and will switch to AC.
   # Automatically, if battery reaches 75 it will charge again.
@@ -79,6 +93,10 @@
     {
       device = "/dev/disk/by-uuid/63b04acd-93c6-4c41-bcf9-0be16d7c0e32";
     }
+    {
+      device = "/var/lib/swapfile";
+      size = 12 * 1024;
+    }
   ];
 
   boot.resumeDevice = "/dev/disk/by-uuid/63b04acd-93c6-4c41-bcf9-0be16d7c0e32";
@@ -89,6 +107,11 @@
     "/nix".options = ["compress=zstd" "noatime"];
     "/virt-machines".options = ["compress=zstd"];
     "/gaming".options = ["compress=zstd"];
+  };
+
+  programs.steam-asahi = {
+    enable = true;
+    memoryMiB = 12288;
   };
 
   services.udev.packages = [
@@ -392,6 +415,17 @@
     useStylix = true;
 
     zen.enable = true;
+
+    home.file.".config/fex-emu/Config.json" = {
+      enable = true;
+      text = ''
+        {
+          "Config": {
+            "RootFS": "Fedora_44.ero"
+          }
+        }
+      '';
+    };
 
     home.file.".config/BraveSoftware/Brave-Browser/WidevineCdm/latest-component-updated-widevine-cdm" = {
       enable = true;
