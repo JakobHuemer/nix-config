@@ -54,26 +54,22 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("dbus-update-activation-environment --systemd --all")
 end)
 
-hl.device({
-    name = "jakkis-corne",
-    kb_layout = "gb",
-    kb_variant = "",
-    kb_options = "",
-})
+-- gb kb layout force for custom keybs
+local gb_force_devices = {
+    "jakkis-corne",
+    "jakkis-corne-consumer-control",
+    "jakkis-corne-system-control",
+    "jakkis-corne-keyboard",
+}
 
-hl.device({
-    name = "jakkis-corne-consumer-control",
-    kb_layout = "gb",
-    kb_variant = "",
-    kb_options = "",
-})
-
-hl.device({
-    name = "jakkis-corne-system-control",
-    kb_layout = "gb",
-    kb_variant = "",
-    kb_options = "",
-})
+for _, device in ipairs(gb_force_devices) do
+    hl.device({
+        name = device,
+        kb_layout = "gb",
+        kb_variant = "",
+        kb_options = "",
+    })
+end
 
 hl.gesture({
     fingers = 3,
