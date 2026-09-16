@@ -72,6 +72,12 @@
               offset = 1.0;
             };
 
+          "DP-1" =
+            base
+            // {
+              path = ../../../assets/img/keyboard-layout.png;
+            };
+
           "eDP-1" =
             base
             // {
