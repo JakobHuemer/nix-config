@@ -40,6 +40,8 @@
     };
   };
 
+  services.flatpak.enable = true;
+
   # printing
   services.avahi = {
     enable = true;
@@ -161,6 +163,8 @@
 
     systemPackages =
       (with pkgs; [
+        flatpak
+
         gparted
         font-manager
 
