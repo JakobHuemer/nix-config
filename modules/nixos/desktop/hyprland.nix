@@ -56,6 +56,10 @@
         playerctl
       ];
 
+      services.hyprpolkitagent = {
+        enable = true;
+      };
+
       services.wpaperd = {
         enable = true;
         package = pkgs.custom.wpaperd;
