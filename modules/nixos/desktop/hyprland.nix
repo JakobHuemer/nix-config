@@ -34,6 +34,10 @@
     services.upower.enable = true;
 
     home-manager.users.${vars.user} = {
+      imports = [
+        inputs.wayland-pipewire-idle-inhibit.homeModules.default
+      ];
+
       home.packages = with pkgs; [
         waybar
         wl-clipboard
@@ -58,6 +62,11 @@
 
       services.hyprpolkitagent = {
         enable = true;
+      };
+
+      services.wayland-pipewire-idle-inhibit = {
+        enable = true;
+        systemdTarget = "hyprland-session.target";
       };
 
       services.wpaperd = {
