@@ -23,7 +23,7 @@
   hardware.asahi.enable = true;
 
   boot.kernelParams = [
-  #   "brcmfmac.feature_disable=0x82000"
+    #   "brcmfmac.feature_disable=0x82000"
 
     # steam asahi
     "zswap.enabled=1"
@@ -188,6 +188,7 @@
   };
 
   # steam.enable = true;
+  android-studio.enable = true;
   greetd = {
     enable = true;
   };

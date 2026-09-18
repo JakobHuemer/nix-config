@@ -1,1 +1,4 @@
-[./steam.nix]
+[
+  ./steam.nix
+  ./android-studio.nix
+]
