@@ -130,8 +130,8 @@
       };
 
       # ambient light sensor -> screen brightness
-      services.wluma.enable = true;
-      services.wluma.package = inputs.wluma.defaultPackage.${system};
+      # services.wluma.enable = true;
+      # services.wluma.package = inputs.wluma.defaultPackage.${system};
 
       wayland.windowManager.hyprland = {
         enable = true;
