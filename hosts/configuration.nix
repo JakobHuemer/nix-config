@@ -29,6 +29,9 @@
   #   options = ["nfsvers=4.2" "x-systemd.automount" "noauto"];
   # };
 
+  # makes dynamically linked libs work but still not trash the system
+  programs.nix-ld.enable = true;
+
   specialisation = lib.mkIf (!(config.hardware.asahi.enable or false)) {
     kernel-latest.configuration = {
       boot.kernelPackages = pkgs.linuxPackages_latest;

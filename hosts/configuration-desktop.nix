@@ -159,7 +159,12 @@
     variables = {
       NIXOS_OZONE_WL = 1;
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+      DOTNET_ROOT = "${pkgs.dotnet-sdk_11}/share/dotnet";
     };
+
+    sessionVariables.PATH = [
+      "$HOME/.dotnet/tools"
+    ];
 
     systemPackages =
       (with pkgs; [
@@ -208,16 +213,20 @@
         cheese
 
         fastmail-desktop
-
-        dotnet-sdk_11
-        godot-mono
-        godot-mcp
       ])
       ++ pkgs.lib.optionals
       (pkgs.stdenv.hostPlatform.system == "x86_64-linux")
       (with pkgs; [
         insomnia
         lmstudio
+      ])
+      ++ pkgs.lib.optionals
+      (host.hostName == "nixbook")
+      (with pkgs; [
+        dotnet-sdk_11
+        godot-mono
+        netcoredbg
+        godot-mcp
       ]);
   };
 
