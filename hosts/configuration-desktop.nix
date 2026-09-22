@@ -209,7 +209,8 @@
 
         fastmail-desktop
 
-        godot
+        dotnet-sdk_11
+        godot-mono
         godot-mcp
       ])
       ++ pkgs.lib.optionals
