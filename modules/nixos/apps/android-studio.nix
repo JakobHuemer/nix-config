@@ -8,9 +8,8 @@
   ideaVersion = "2026.1.4";
   buildToolsVersion = "37.0.0";
 
-  # Google ships no aarch64-linux build-tools/platform-tools. These are built from AOSP source:
   # https://github.com/HomuHomu833/android-sdk-custom
-  nativeSdk = pkgs.stdenv.mkDerivation {
+  sdk = pkgs.stdenv.mkDerivation {
     pname = "android-sdk-aarch64-linux-gnu";
     version = buildToolsVersion;
     src = pkgs.fetchurl {
@@ -27,30 +26,22 @@
   };
 
   platforms = (pkgs.androidenv.override {licenseAccepted = true;}).composeAndroidPackages {
-    platformVersions = ["36" "37"];
+    platformVersions = ["29" "34" "36" "37.0"];
     buildToolsVersions = [];
     includeEmulator = false;
   };
-
-  sdk = pkgs.runCommand "android-sdk" {} ''
-    mkdir -p $out
-    cp -r ${nativeSdk}/. $out/
-    chmod -R u+w $out
-    ln -s ${platforms.androidsdk}/libexec/android-sdk/platforms $out/platforms
-  '';
 
   studioSrc = pkgs.fetchurl {
     url = "https://redirector.gvt1.com/edgedl/android/studio/ide-zips/${studioVersion}/android-studio-quail4-linux.tar.gz";
     hash = "sha256-S+JACD31raKQl12H1g/CEqPTjU8lihJQmJiFqdvHmYA=";
   };
 
-  # Donor for the aarch64 JBR and IntelliJ native libraries; must match Studio's IntelliJ platform build.
+  # Donor for the aarch64 JBR and native libraries; must match Studio's IntelliJ platform build.
   ideaSrc = pkgs.fetchurl {
     url = "https://download.jetbrains.com/idea/idea-${ideaVersion}-aarch64.tar.gz";
     hash = "sha256-MDZFuLrUxcCIc0Zhi4QhgKPeU7Pgs9oJ/FxQH1n3gBM=";
   };
 
-  # aarch64 layoutlib (Compose/XML preview), built from AOSP android17-release:
   # https://github.com/DesktopECHO/android-studio-aarch64-install/blob/main/BUILDING_LAYOUTLIB.md
   layoutlibRev = "2a002dfa063242f8fae089e370eafe9ff01c6297";
   layoutlibJni = pkgs.fetchurl {
@@ -153,18 +144,33 @@
     startupWMClass = "jetbrains-studio";
   };
 
-  # AGP 9 fetches an x86_64 aapt2 from Maven; the property points it at the native one.
-  studio = pkgs.runCommand "android-studio-${studioVersion}" {} ''
-    mkdir -p $out/bin $out/share/pixmaps
-    cat > $out/bin/android-studio <<EOF
-    #!${pkgs.runtimeShell}
-    export ANDROID_HOME="\''${ANDROID_HOME-${sdk}}"
-    export ANDROID_SDK_ROOT="\$ANDROID_HOME"
+  sdkHome = "$HOME/Android/Sdk";
+
+  # AGP 9 pulls an x86_64 aapt2 from Maven unless overridden.
+  studio = pkgs.writeShellScriptBin "android-studio" ''
+    export ANDROID_HOME="${sdkHome}"
+    export ANDROID_SDK_ROOT="$ANDROID_HOME"
+
+    mkdir -p "$ANDROID_HOME"
+    for package in build-tools platform-tools licenses; do
+      [ -e "$ANDROID_HOME/$package" ] && continue
+      cp -rL ${sdk}/$package "$ANDROID_HOME/$package"
+      chmod -R u+w "$ANDROID_HOME/$package"
+    done
+
+    if [ ! -e "$ANDROID_HOME/platforms" ]; then
+      cp -rL ${platforms.androidsdk}/libexec/android-sdk/platforms "$ANDROID_HOME/platforms"
+      chmod -R u+w "$ANDROID_HOME/platforms"
+    fi
+
     exec ${pkgs.coreutils}/bin/env \
-      "ORG_GRADLE_PROJECT_android.aapt2FromMavenOverride=\$ANDROID_HOME/build-tools/${buildToolsVersion}/aapt2" \
-      ${lib.getExe fhsEnv} ${studioUnwrapped}/bin/studio.sh "\$@"
-    EOF
-    chmod +x $out/bin/android-studio
+      "ORG_GRADLE_PROJECT_android.aapt2FromMavenOverride=$ANDROID_HOME/build-tools/${buildToolsVersion}/aapt2" \
+      ${lib.getExe fhsEnv} ${studioUnwrapped}/bin/studio.sh "$@"
+  '';
+
+  studioWithIcons = pkgs.runCommand "android-studio-${studioVersion}" {} ''
+    mkdir -p $out/share/pixmaps
+    cp -r ${studio}/bin $out/bin
     ln -s ${studioUnwrapped}/bin/studio.png $out/share/pixmaps/android-studio.png
     ln -s ${desktopItem}/share/applications $out/share/applications
   '';
@@ -173,7 +179,7 @@ in {
 
   config = lib.mkIf config.android-studio.enable {
     # USB adb works without programs.adb/adbusers on nixbook; add them only if a device reports "no permissions".
-    environment.systemPackages = [studio];
-    environment.sessionVariables.ANDROID_HOME = "${sdk}";
+    environment.systemPackages = [studioWithIcons];
+    environment.sessionVariables.ANDROID_HOME = sdkHome;
   };
 }
