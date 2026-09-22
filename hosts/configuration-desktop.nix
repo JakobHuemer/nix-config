@@ -174,7 +174,6 @@
         inkscape
         # zed-editor
 
-        minikube
         # docker-machine-kvm2
         bruno
 
@@ -209,6 +208,9 @@
         cheese
 
         fastmail-desktop
+
+        godot
+        godot-mcp
       ])
       ++ pkgs.lib.optionals
       (pkgs.stdenv.hostPlatform.system == "x86_64-linux")
