@@ -399,6 +399,18 @@
   };
 
   home-manager.users.${vars.user} = {
+    imports = [
+      inputs.win11-nixos-apple-silicon.homeModules.default
+    ];
+
+    programs.win11-nixos-apple-silicon = {
+      enable = true;
+
+      memory = 1024 * 16;
+
+      diskSize = 1024 * 100;
+    };
+
     mako.enable = true;
     waybar.enable = true;
 

@@ -1641,6 +1641,7 @@
         "stylix": "stylix",
         "timewall": "timewall",
         "wayland-pipewire-idle-inhibit": "wayland-pipewire-idle-inhibit",
+        "win11-nixos-apple-silicon": "win11-nixos-apple-silicon",
         "wluma": "wluma",
         "wpaperd": "wpaperd",
         "youtube-music": "youtube-music",
@@ -2203,6 +2204,26 @@
       "original": {
         "owner": "rafaelrc7",
         "repo": "wayland-pipewire-idle-inhibit",
+        "type": "github"
+      }
+    },
+    "win11-nixos-apple-silicon": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790124969,
+        "narHash": "sha256-saK8dWMFEWb7xpWMqoKZxh9mmakOZSNsEgNc2RyG/BU=",
+        "owner": "JakobHuemer",
+        "repo": "win11-nixos-apple-silicon",
+        "rev": "8b6cb24ab9e0c959cb5c35eb67b27bb41dcbb217",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JakobHuemer",
+        "repo": "win11-nixos-apple-silicon",
         "type": "github"
       }
     },

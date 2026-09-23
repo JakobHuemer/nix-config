@@ -163,6 +163,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    win11-nixos-apple-silicon = {
+      url = "github:JakobHuemer/win11-nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     youtube-music = {
       url = "github:h-banii/youtube-music-nix";
       inputs.nixpkgs.follows = "nixpkgs";
