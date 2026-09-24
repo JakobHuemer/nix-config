@@ -408,6 +408,9 @@
 
       memory = 1024 * 16;
 
+      virtio-iso-path = "/home/jakki/Downloads/virtio-win-0.1.302.iso";
+      win11-iso-path = "/home/jakki/Downloads/win11.iso";
+
       diskSize = 1024 * 100;
     };
 
