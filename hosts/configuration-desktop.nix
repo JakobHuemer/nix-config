@@ -234,7 +234,19 @@
     libre-office.enable = true;
 
     services.trayscale.enable = true;
-    services.jellyfin-mpv-shim.enable = true;
+    services.jellyfin-mpv-shim = {
+      enable = true;
+
+      # mpvConfig = {
+      #   demuxer-max-bytes = "2GiB";
+      #   demuxer-max-back-bytes = "512MiB";
+      # };
+    };
+
+    xdg.configFile."jellyfin-mpv-shim/mpv.conf".text = ''
+      demuxer-max-bytes=2GiB
+      demuxer-max-back-bytes=512MiB
+    '';
 
     home.packages = [pkgs.trayscale];
     systemd.user.services.trayscale.Service.Restart = "always";
