@@ -154,6 +154,8 @@
 
     systemPackages =
       with pkgs; [
+        inotify-tools
+
         jujutsu
         jjui
         lazyjj

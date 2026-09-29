@@ -440,15 +440,6 @@
       '';
     };
 
-    home.file.".config/BraveSoftware/Brave-Browser/WidevineCdm/latest-component-updated-widevine-cdm" = {
-      enable = true;
-      text = ''
-        {
-          "Path": "${pkgs.widevine-cdm}/WidevineCdm"
-        }
-      '';
-    };
-
     # retire for now as moon and earth is really cool looking
     # services.timewall = {
     #   enable = true;
