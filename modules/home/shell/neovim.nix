@@ -49,6 +49,8 @@
     tinymist
     xmlformat
 
+    imagemagick
+
     vscode-langservers-extracted
     vimPlugins.nvim-ts-autotag
 
