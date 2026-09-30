@@ -237,6 +237,9 @@
     services.jellyfin-mpv-shim = {
       enable = true;
 
+      settings = {
+        start_minimized = true;
+      };
       # mpvConfig = {
       #   demuxer-max-bytes = "2GiB";
       #   demuxer-max-back-bytes = "512MiB";
