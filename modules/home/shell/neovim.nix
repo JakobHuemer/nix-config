@@ -66,7 +66,7 @@
     plantuml # for diagram.nvim
     llvmPackages_20.clang-tools
     gopls
-    vue-language-server
+    pkgs-stable.vue-language-server
     typescript-language-server
     typescript
   ];
