@@ -60,6 +60,8 @@ local gb_force_devices = {
     "jakkis-corne-consumer-control",
     "jakkis-corne-system-control",
     "jakkis-corne-keyboard",
+    "jakkis-go60",
+    "go60-keyboard",
 }
 
 for _, device in ipairs(gb_force_devices) do
