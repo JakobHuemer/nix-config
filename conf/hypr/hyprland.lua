@@ -120,11 +120,21 @@ hl.bind(MAINMOD .. " + CTRL + J", hl.dsp.window.move({ direction = "down" }))
 hl.bind(MAINMOD .. " + CTRL + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind(MAINMOD .. " + CTRL + L", hl.dsp.window.move({ direction = "right" }))
 
+hl.bind(MAINMOD .. " + CTRL + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(MAINMOD .. " + CTRL + down", hl.dsp.window.move({ direction = "down" }))
+hl.bind(MAINMOD .. " + CTRL + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(MAINMOD .. " + CTRL + right", hl.dsp.window.move({ direction = "right" }))
+
 -- resize active
 hl.bind(MAINMOD .. " + SHIFT + H", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true })
 hl.bind(MAINMOD .. " + SHIFT + J", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
 hl.bind(MAINMOD .. " + SHIFT + K", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
 hl.bind(MAINMOD .. " + SHIFT + L", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
+
+hl.bind(MAINMOD .. " + SHIFT + left", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true })
+hl.bind(MAINMOD .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
+hl.bind(MAINMOD .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
+hl.bind(MAINMOD .. " + SHIFT + right", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
 
 -- Switch workspaces with mainmod + [0-9]
 -- Move active window to a workspace with mainmod + SHIFT + [0-9]
