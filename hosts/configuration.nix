@@ -185,7 +185,7 @@
         (flameshot.override {enableWlrSupport = true;})
         vlc
         qbittorrent-enhanced
-        kubectl
+        (lib.hiPrio kubectl)
 
         lazydocker
 
