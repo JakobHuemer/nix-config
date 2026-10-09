@@ -90,10 +90,12 @@
         vscode-extensions.tamasfe.even-better-toml
         # vscode-extensions.equinusocio.vsc-material-theme-icons
         vscode-extensions.catppuccin.catppuccin-vsc-icons
-        vscode-extensions.ms-python.python
 
         vscode-extensions.github.copilot
         vscode-extensions.github.copilot-chat
+
+        vscode-extensions.ms-toolsai.jupyter
+        vscode-extensions.ms-python.python
       ];
     };
   };
