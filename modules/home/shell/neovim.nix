@@ -69,7 +69,7 @@
     llvmPackages_20.clang-tools
     gopls
     pkgs-stable.vue-language-server
-    typescript-language-server
+    pkgs-stable.typescript-language-server
     typescript
   ];
   # };
