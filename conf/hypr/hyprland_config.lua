@@ -69,7 +69,7 @@ hl.config({
 
     input = {
         kb_layout = "de,gb",
-        kb_variant = "nodeadkeys,",
+        kb_variant = "nodeadkeys,extd",
         kb_options = "grp:win_space_toggle",
 
         numlock_by_default = true,

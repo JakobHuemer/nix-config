@@ -68,7 +68,7 @@ for _, device in ipairs(gb_force_devices) do
     hl.device({
         name = device,
         kb_layout = "gb",
-        kb_variant = "",
+        kb_variant = "extd",
         kb_options = "",
     })
 end
