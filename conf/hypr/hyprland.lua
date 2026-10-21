@@ -46,6 +46,7 @@ hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("GTK_IM_MODULE", "simple")
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("uwsm app -- waybar")
