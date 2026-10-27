@@ -63,6 +63,15 @@
   hardware.asahi.extractPeripheralFirmware = true;
   hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
 
+  services.pipewire.wireplumber.extraConfig."99-asahi-mic" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [{"device.name" = "alsa_card.platform-audio.2.auto";}];
+        actions.update-props."session.dont-restore-off-profile" = true;
+      }
+    ];
+  };
+
   # sops = {
   #   secrets."wificreds/htlleonding-wpa/user" = {};
   #   secrets."wificreds/htlleonding-wpa/password" = {};
