@@ -31,7 +31,7 @@
         sessionVariables = {
           EDITOR = "nvim";
           ZSH_EVALCACHE_DISABLE = "false";
-          ZSH_EVALCACHE_DIR = "$HOME/.zsh-evalcache";
+          ZSH_SMARTCACHE_DIR = "$HOME/.zsh-smartcache";
 
           # Localizations
           LC_ALL = "en_GB.UTF-8";
@@ -72,17 +72,18 @@
             src = pkgs.fetchFromGitHub {
               owner = "hlissner";
               repo = "zsh-autopair";
-              rev = "v1.0";
+              rev = "master";
               hash = "sha256-wd/6x2p5QOSFqWYgQ1BTYBUGNR06Pr2viGjV/JqoG8A=";
             };
           }
           {
-            name = "evalcache";
+            name = "smartcache";
+            file = "zsh-smartcache.plugin.zsh";
             src = pkgs.fetchFromGitHub {
-              owner = "mroth";
-              repo = "evalcache";
-              rev = "v1.0.2";
-              hash = "sha256-qzpnGTrLnq5mNaLlsjSA6VESA88XBdN3Ku/YIgLCb28=";
+              owner = "quarticcat";
+              repo = "zsh-smartcache";
+              rev = "main";
+              hash = "sha256-VFrMpSm66b8Uyyr2QDN6gvFVB9caN9TC1rNC8dMoWCo=";
             };
           }
           {
@@ -223,9 +224,7 @@
 
           # evals
 
-          # _evalcache gh copilot alias -- zsh
-          # _evalcache pay-respects zsh --alias --nocnf
-          _evalcache tmuxifier init -
+          smartcache eval tmuxifier init -
 
           # fetches
 
