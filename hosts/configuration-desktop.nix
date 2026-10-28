@@ -40,6 +40,18 @@
     };
   };
 
+  services.earlyoom = {
+    enable = true;
+    freeMemKillThreshold = 8;
+    freeMemThreshold = 20;
+    enableNotifications = true;
+  };
+
+  services.sysstat = {
+    enable = true;
+    collect-frequency = "*:*:0/20";
+  };
+
   services.flatpak.enable = true;
 
   # printing
