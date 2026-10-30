@@ -200,7 +200,7 @@
 
         github-copilot-cli
 
-        codeberg-cli
+        forgejo-cli
 
         ripgrep # better grep
         ripgrep-all # ripgrep for all files (pdf, zip, etc.)
@@ -223,6 +223,7 @@
   nix = {
     settings = {
       auto-optimise-store = true;
+      trusted-users = [ "root" "@wheel" ];
     };
 
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];

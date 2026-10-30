@@ -93,8 +93,6 @@
     dockerSocket.enable = true;
   };
 
-  virtualisation.vmware.host.enable = true;
-
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["${vars.user}"];
   virtualisation.spiceUSBRedirection.enable = true;
