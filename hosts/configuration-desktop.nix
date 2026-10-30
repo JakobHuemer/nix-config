@@ -239,7 +239,16 @@
         godot-mono
         netcoredbg
         godot-mcp
-      ]);
+      ])
+      ++ [
+        (pkgs.buildDotnetGlobalTool {
+          pname = "easydotnet";
+          version = "3.4.26";
+          executables = ["dotnet-easydotnet"];
+          nugetHash = "sha256-Sn4zzJ4nWkkp5o/aJ9HV8m+JW4DWx09/MsNEbWU1qYU=";
+          dotnet-runtime = pkgs.dotnetCorePackages.sdk_11_0;
+        })
+      ];
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
