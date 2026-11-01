@@ -88,7 +88,7 @@
           "DP-1" =
             base
             // {
-              path = ../../../assets/img/keyboard-layout.png;
+              path = ../../../assets/img/bg/nyancat-space-kid-drawn.jpg;
             };
 
           "eDP-1" =

@@ -223,7 +223,7 @@
   nix = {
     settings = {
       auto-optimise-store = true;
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = ["root" "@wheel"];
     };
 
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
