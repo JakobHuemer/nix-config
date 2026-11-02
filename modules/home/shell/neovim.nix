@@ -71,6 +71,9 @@
     pkgs-stable.vue-language-server
     pkgs-stable.typescript-language-server
     typescript
+
+    mermaid-cli
+    d2
   ];
   # };
 }
