@@ -258,6 +258,10 @@
   home-manager.users.${vars.user} = {pkgs, ...}: {
     libre-office.enable = true;
 
+    # godot export templates
+
+    home.file.".local/share/godot/export_templates".source = "${pkgs.godotPackages_4_7.export-templates-mono-bin}/share/godot/export_templates";
+
     services.trayscale.enable = true;
     services.jellyfin-mpv-shim = {
       enable = true;
