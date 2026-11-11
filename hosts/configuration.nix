@@ -212,7 +212,7 @@
         hyperfine # clever benchmark
         tokei # count code lines quickly
         mprocs # tui to run multiple commands parallel
-        presenterm # terminal slideshow presentation tool
+        pkgs-stable.presenterm # terminal slideshow presentation tool
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default

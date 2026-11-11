@@ -204,7 +204,6 @@
 
         # browsers
         ungoogled-chromium
-        brave
         vivaldi
 
         networkmanagerapplet
@@ -216,7 +215,7 @@
         wlr-layout-ui
 
         pkgs-stable.claude-code
-        codex
+        pkgs-stable.codex
         inputs.antigravity-nix.packages.${system}.google-antigravity-cli
 
         element-desktop
