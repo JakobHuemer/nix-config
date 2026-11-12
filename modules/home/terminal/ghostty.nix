@@ -85,7 +85,6 @@
 
         # make ghostty not group on linux
         gtk-single-instance = false;
-
       };
     };
   };

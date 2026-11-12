@@ -5,6 +5,7 @@ local menu = "dmenu-wl_run -i --monitor \"$(hyprctl monitors -j | jq -r '.[] "
     .. "| select(.focused == true) | .name')\""
 
 local MAINMOD = "SUPER"
+_G.host = (io.popen("hostname"):read("*a") or ""):gsub("%s+", "")
 
 require("hyprland_config")
 
@@ -25,9 +26,7 @@ hl.monitor({
     supports_hdr = -1,
 })
 
-local host = (io.popen("hostname"):read("*a") or ""):gsub("%s+", "")
-
-if host == "nixbook" then
+if _G.host == "nixbook" then
     hl.monitor({
         output = "eDP-1",
         mode = "3024x1890@120",
@@ -35,13 +34,14 @@ if host == "nixbook" then
         scale = 1.5,
         supports_hdr = -1,
     })
-elseif host == "frame1301" then
+elseif _G.host == "frame1301" then
     hl.monitor({
         output = "eDP-1",
         mode = "2880x1920@120",
         position = "0x0",
-        scale = 1.48,
+        scale = 1.5,
         supports_hdr = -1,
+        vrr = 1,
     })
 end
 

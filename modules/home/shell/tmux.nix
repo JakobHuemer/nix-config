@@ -102,7 +102,7 @@
             set -g @sessionx-bin "C-i"
           '';
         }
-	# TODO: replace HEAD with ummutable references or tags
+        # TODO: replace HEAD with ummutable references or tags
         {
           plugin = tmuxPlugins.mkTmuxPlugin {
             pluginName = "tmuxifier";

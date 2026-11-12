@@ -67,6 +67,11 @@ hl.config({
         disable_splash_rendering = true,
     },
 
+    -- debug = {
+    --     overlay = true,
+    --     damage_blink = false,
+    -- },
+
     input = {
         kb_layout = "de,gb",
         kb_variant = "nodeadkeys,extd",

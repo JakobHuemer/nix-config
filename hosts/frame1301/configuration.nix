@@ -16,8 +16,6 @@
 
   # fingerprint
   services.fprintd.enable = true;
-  services.fprintd.tod.enable = true;
-  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
 
   swapDevices = [
     {
@@ -101,6 +99,7 @@
   security.pki.certificateFiles = ["${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
   security.pam.services = {
     login.u2fAuth = true;
+    login.fprintAuth = false;
     sudo.u2fAuth = true;
     sudo.fprintAuth = true;
   };
