@@ -102,6 +102,7 @@
             set -g @sessionx-bin "C-i"
           '';
         }
+	# TODO: replace HEAD with ummutable references or tags
         {
           plugin = tmuxPlugins.mkTmuxPlugin {
             pluginName = "tmuxifier";
@@ -110,7 +111,7 @@
               owner = "jimeh";
               repo = "tmuxifier";
               rev = "HEAD";
-              sha256 = "sha256-NqV3ilr8L3i61VpLE0UnKhCPQRD/3M3FYZCPfWRACPs=";
+              sha256 = "sha256-PYvV97GZdJMbBS+X1LaKZ5KHTT16xzRNZcfxbuJAqLs=";
             };
 
             rtpFilePath = "tmuxifier.tmux";
@@ -142,7 +143,7 @@
               owner = "aserowy";
               repo = "tmux.nvim";
               rev = "HEAD";
-              sha256 = "sha256-/XIjqQr9loWVTXZDaZx2bSQgco46z7yam50dCnM5p1U=";
+              sha256 = "sha256-jXnVB1cd0QjcUHA61c8DFSll1sIaYFLRDAHONa9L9EE=";
             };
 
             rtpFilePath = "tmux.nvim.tmux";

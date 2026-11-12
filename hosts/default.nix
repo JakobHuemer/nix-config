@@ -20,6 +20,40 @@
   ];
 in {
   # NixOs Laptop Desktop
+  
+  frame1301 = let
+    system = "x86_64-linux";
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in
+    lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit
+          inputs
+          system
+          pkgs-stable
+          vars
+          ;
+        host = {
+          hostName = "frame1301";
+          flakePath = "/etc/nixos/nix-config";
+        };
+      };
+
+      modules = [
+        ./frame1301
+        ./configuration.nix
+        ./configuration-desktop.nix
+        ./configuration-laptop.nix
+	inputs.nixos-hardware.nixosModules.framework-intel-core-ultra-series3
+        {
+          nixpkgs.overlays = overlays;
+        }
+      ];
+    };
 
   sta01 = let
     system = "x86_64-linux";

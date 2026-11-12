@@ -36,12 +36,12 @@
 
         window-inherit-working-directory = "true";
 
-        quick-terminal-position = "center";
-        quick-terminal-animation-duration = 0;
-        gtk-quick-terminal-layer = "top";
-        quick-terminal-screen = "mouse";
-        quick-terminal-autohide = true;
-        quick-terminal-keyboard-interactivity = "exclusive";
+        # quick-terminal-position = "center";
+        # quick-terminal-animation-duration = 0;
+        # gtk-quick-terminal-layer = "top";
+        # quick-terminal-screen = "mouse";
+        # quick-terminal-autohide = true;
+        # quick-terminal-keyboard-interactivity = "exclusive";
 
         shell-integration = "zsh";
         shell-integration-features = "sudo,cursor,ssh-env,ssh-terminfo";
