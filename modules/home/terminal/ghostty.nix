@@ -86,11 +86,6 @@
         # make ghostty not group on linux
         gtk-single-instance = false;
 
-        # keybinds
-
-        keybind = [
-          "global:super+shift+enter=toggle_quick_terminal"
-        ];
       };
     };
   };

@@ -14,17 +14,20 @@
     inputs.hyprland.nixosModules.default
   ];
 
+  # fingerprint
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
 
   swapDevices = [
-  	{
-	device = "/swap/swapfile";
-	size = 16*1024;
-	}
+    {
+      device = "/swap/swapfile";
+      size = 16 * 1024;
+    }
   ];
 
   # tpm setup
   boot.initrd.systemd.tpm2.enable = true;
-
 
   # btrfs scubbing
   services.btrfs.autoScrub = {
@@ -99,6 +102,7 @@
   security.pam.services = {
     login.u2fAuth = true;
     sudo.u2fAuth = true;
+    sudo.fprintAuth = true;
   };
 
   networking.networkmanager.enable = true;

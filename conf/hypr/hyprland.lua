@@ -25,13 +25,25 @@ hl.monitor({
     supports_hdr = -1,
 })
 
-hl.monitor({
-    output = "eDP-1",
-    mode = "3024x1890@120",
-    position = "0x0",
-    scale = 1.5,
-    supports_hdr = -1,
-})
+local host = (io.popen("hostname"):read("*a") or ""):gsub("%s+", "")
+
+if host == "nixbook" then
+    hl.monitor({
+        output = "eDP-1",
+        mode = "3024x1890@120",
+        position = "0x0",
+        scale = 1.5,
+        supports_hdr = -1,
+    })
+elseif host == "frame1301" then
+    hl.monitor({
+        output = "eDP-1",
+        mode = "2880x1920@120",
+        position = "0x0",
+        scale = 1.48,
+        supports_hdr = -1,
+    })
+end
 
 hl.workspace_rule({
     workspace = "1",
@@ -88,6 +100,12 @@ hl.gesture({
 hl.device({
     name = "apple-mtp-multi-touch",
     sensitivity = -0.2,
+})
+
+hl.device({
+    name = "pixa3854:00-093a:1343-touchpad",
+    sensitivity = -0.12,
+    scroll_factor = 0.2,
 })
 
 require("toggle_touchpad")
