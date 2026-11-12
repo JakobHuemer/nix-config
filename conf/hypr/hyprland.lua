@@ -196,19 +196,33 @@ hl.bind(
     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
     { locked = true, repeating = true }
 )
+
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
-hl.bind(
-    "SHIFT + XF86MonBrightnessUp",
-    hl.dsp.exec_cmd("brightnessctl -d kbd_backlight set -e4 5%+"),
-    { locked = true, repeating = true }
-)
-hl.bind(
-    "SHIFT + XF86MonBrightnessDown",
-    hl.dsp.exec_cmd("brightnessctl -d kbd_backlight -e4 set 5%-"),
-    { locked = true, repeating = true }
-)
 
+if _G.host == "frame1301" then
+    hl.bind(
+        "SHIFT + XF86MonBrightnessUp",
+        hl.dsp.exec_cmd("brightnessctl -d framework_laptop::kbd_backlight set -e3 5+"),
+        { locked = true, repeating = true }
+    )
+    hl.bind(
+        "SHIFT + XF86MonBrightnessDown",
+        hl.dsp.exec_cmd("brightnessctl -d framework_laptop::kbd_backlight set -e3 5-"),
+        { locked = true, repeating = true }
+    )
+else
+    hl.bind(
+        "SHIFT + XF86MonBrightnessUp",
+        hl.dsp.exec_cmd("brightnessctl -d kbd_backlight set -e4 5%+"),
+        { locked = true, repeating = true }
+    )
+    hl.bind(
+        "SHIFT + XF86MonBrightnessDown",
+        hl.dsp.exec_cmd("brightnessctl -d kbd_backlight -e4 set 5%-"),
+        { locked = true, repeating = true }
+    )
+end
 -- Requires playerctl
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
