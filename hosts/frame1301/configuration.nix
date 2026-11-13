@@ -97,7 +97,11 @@
     enable = true;
   };
 
-  virtualisation.containers.enable = true;
+  virtualisation.containers = {
+    enable = true;
+    registries.settings.unqualified-search-registries = ["quay.io" "docker.io"];
+  };
+
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;

@@ -51,6 +51,7 @@
   "group/group-4": {
     "orientation": "horizontal",
     "modules": [
+      "custom/power_profile",
       "hyprland/language",
       "bluetooth",
       "battery",
@@ -355,11 +356,19 @@
   "custom/separator": {
     "format": "|",
     "tooltip": false,
-   },
-  
+  },
+
+  "custom/power_profile": {
+    "exec": "powerprofilesctl get",
+    "interval": 60,
+    "on-click": "powerprofilesctl set balanced",
+    "on-click-right": "powerprofilesctl set performance",
+    "on-click-middle": "powerprofilesctl set power-saver"
+  },
+
   // Experimental module for music player of playerctl
   // this module; Next, Pause, Previous 
-  
+
   "network#speed": {
     "interval": 1,
     "format": "{ifname}%%",
