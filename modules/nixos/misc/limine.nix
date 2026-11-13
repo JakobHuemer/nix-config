@@ -22,13 +22,13 @@
           branding = null;
         };
 
-        wallpapers = [
-          ../../../assets/img/mc_scenerySunset.jpg
-        ];
-        wallpaperStyle = "centered";
+        # wallpapers = [
+        #   ../../../assets/img/mc_scenerySunset.jpg
+        # ];
+        # wallpaperStyle = "centered";
 
         graphicalTerminal = {
-          palette = "1e1e2e;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4";
+          # palette = "1e1e2e;f38ba8;a6e3a1;f9e2af;89b4fa;f5c2e7;94e2d5;cdd6f4";
           # background = "1e1e2e";
           # foreground = "cdd6f4";
         };

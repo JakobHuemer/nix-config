@@ -18,6 +18,42 @@
   hyprland.enable = true;
   # noctalia.enable = true;
 
+  custom = {
+    virtualisation.enable = true;
+    stylix.enable = true;
+  };
+
+  virtualisation.containers = {
+    enable = true;
+    registries.settings.unqualified-search-registries = ["quay.io" "docker.io"];
+  };
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+    dockerSocket.enable = true;
+  };
+
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = ["*" "-4c4b:4643" "-1d50:615e" "-16c0:27db"];
+        settings = {
+          main = {
+            # important
+            capslock = "esc";
+
+            # for desktop keyboard and window managers
+            leftmeta = "leftalt";
+            leftalt = "leftmeta";
+          };
+        };
+      };
+    };
+  };
+
   systemd.user.services.open-thunderbird = {
     description = "Open Thunderbird (UWSM)";
 
@@ -180,6 +216,29 @@
 
     systemPackages =
       (with pkgs; [
+        kdiskmark
+        obs-studio
+
+        postman
+
+        pinentry-curses
+
+        chatterino7
+        xrdb
+        firefox
+        wl-clipboard
+        mako
+        pavucontrol
+        distrobox
+        thunderbird
+
+        keyd
+
+        trashy
+        qt6.qtwayland
+
+        pinentry-curses
+
         bitwarden-desktop
 
         flatpak
@@ -232,36 +291,45 @@
       (with pkgs; [
         insomnia
         lmstudio
-      ])
-      ++ pkgs.lib.optionals
-      (host.hostName == "nixbook")
-      (
-        (with pkgs; [
-          dotnet-sdk_11
-          (godot-mono.overrideAttrs {
-            dotnet-sdk = pkgs.dotnetCorePackages.sdk_10_0-source;
-          })
-          netcoredbg
-          godot-mcp
-        ])
-        ++ [
-          (pkgs.buildDotnetGlobalTool {
-            pname = "easydotnet";
-            version = "3.4.26";
-            executables = ["dotnet-easydotnet"];
-            nugetHash = "sha256-Sn4zzJ4nWkkp5o/aJ9HV8m+JW4DWx09/MsNEbWU1qYU=";
-            dotnet-runtime = pkgs.dotnetCorePackages.sdk_11_0;
-          })
-        ]
-      );
+      ]);
+  };
+
+  services.xserver.dpi = 108;
+
+  services.udev.packages = [
+    pkgs.yubikey-personalization
+  ];
+
+  security.polkit.enable = true;
+  security.pki.certificateFiles = ["${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
     libre-office.enable = true;
 
-    # godot export templates
+    programs.godot-mono.enable = true;
 
-    home.file.".local/share/godot/export_templates".source = "${pkgs.godotPackages_4_7.export-templates-mono-bin}/share/godot/export_templates";
+    custom = {
+      jetbrains.enable = true;
+      vscode.enable = true;
+      # stylix.enable = true;
+    };
+
+    zen.enable = true;
+
+    mako.enable = true;
+    waybar.enable = true;
+
+    tofi.enable = true;
+    programs.ghostty.enable = true;
+    tmux.enable = true;
+
+    programs.vesktop.enable = true;
+
+    youtube-music.enable = true;
 
     services.trayscale.enable = true;
     services.jellyfin-mpv-shim = {

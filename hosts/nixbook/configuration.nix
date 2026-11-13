@@ -70,18 +70,12 @@
     "w /sys/class/power_supply/macsmc-battery/charge_control_end_threshold - - - - 80"
   ];
 
-  # networking.networkmanager.wifi.scanRandMacAddress = false;
-  # networking.networkmanager.wifi.macAddress = "preserve";
-
   networking.networkmanager.wifi.scanRandMacAddress = false;
   networking.networkmanager.wifi.macAddress = "preserve";
 
-  # boot.loader.limine.enable = lib.mkForce false;
-  # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
 
   boot.loader.limine = {
-    enable = true;
     maxGenerations = 5;
   };
 
@@ -96,31 +90,6 @@
       }
     ];
   };
-
-  # sops = {
-  #   secrets."wificreds/htlleonding-wpa/user" = {};
-  #   secrets."wificreds/htlleonding-wpa/password" = {};
-  #
-  #   templates."htlleonding-wpa.8021x" = {
-  #     content = ''
-  #       [Security]
-  #       EAP-Method=PEAP
-  #       EAP-Identity=${config.sops.placeholder."wificreds/htlleonding-wpa/user"}
-  #       EAP-PEAP-Phase2-Method=MSCHAPV2
-  #       EAP-PEAP-Phase2-Identity=${config.sops.placeholder."wificreds/htlleonding-wpa/user"}
-  #       EAP-PEAP-Phase2-Password=${config.sops.placeholder."wificreds/htlleonding-wpa/password"}
-  #
-  #       [Settings]
-  #       AutoConnect=true
-  #     '';
-  #     owner = "jakki";
-  #     mode = "0400";
-  #   };
-  # };
-  #
-  # systemd.tmpfiles.rules = [
-  #   "L /var/lib/iwd/htlleonding-wpa.8021x - - - - /run/secrets-rendered/htlleonding-wpa.8021x"
-  # ];
 
   # swap
   swapDevices = [
@@ -150,20 +119,6 @@
     pkgs.yubikey-personalization
   ];
 
-  # btrfs scubbing
-  services.btrfs.autoScrub = {
-    enable = true;
-    interval = "weekly";
-    fileSystems = ["/"];
-  };
-
-  networking.firewall = {
-    enable = true;
-
-    allowedTCPPorts = [25565 24454];
-    allowedUDPPorts = [25565 24454];
-  };
-
   # this makes
   environment.etc."libinput/local-overrides.quirks".text = ''
     [keyd virtual keyboard]
@@ -177,90 +132,49 @@
     AttrKeyboardIntegration=internal
   '';
 
-  # environment.etc."libinput/local-overrides.quirks".source = "${pkgs.libinput}/share/libinput/50-system-apple.quirks";
-
-  # io
   services.keyd = {
     enable = true;
-    keyboards = {
-      default = {
-        ids = ["*" "-4c4b:4643" "-1d50:615e" "-16c0:27db"];
-        settings = {
-          main = {
-            # important
-            capslock = "esc";
+    keyboards.default.settings = lib.mkForce {
+      main = {
+        # important
+        capslock = "esc";
 
-            # this swaps fn and ctrl on the horrible macos keyboard.
-            # pressing fn (physical lctrl) enables a "control" layer
-            # where i then can set the media behaviours for f keys.
-            # pressing controll (physical fn) enables some other "control"
-            # layer that doesn't seem to trigger media behvaiour on
-            # the f keys. this perfectly resembles expected behvaiour
-            # as if fn and control were physically swapped
-            leftcontrol = "overload(fn, fn)";
-            fn = "leftcontrol";
-          };
+        # this swaps fn and ctrl on the horrible macos keyboard.
+        # pressing fn (physical lctrl) enables a "control" layer
+        # where i then can set the media behaviours for f keys.
+        # pressing controll (physical fn) enables some other "control"
+        # layer that doesn't seem to trigger media behvaiour on
+        # the f keys. this perfectly resembles expected behvaiour
+        # as if fn and control were physically swapped
+        leftcontrol = "overload(fn, fn)";
+        fn = "leftcontrol";
+      };
 
-          # here i am actually setting the media behaviour when the
-          # swapped fn (physical controll) is placed
-          control = {
-            # fn + FXX to media
-            f1 = "brightnessdown";
-            f2 = "brightnessup";
-            f7 = "previoussong";
-            f8 = "playpause";
-            f9 = "nextsong";
-            f10 = "mute";
-            f11 = "volumedown";
-            f12 = "volumeup";
-          };
-        };
+      # here i am actually setting the media behaviour when the
+      # swapped fn (physical controll) is placed
+      control = {
+        # fn + FXX to media
+        f1 = "brightnessdown";
+        f2 = "brightnessup";
+        f7 = "previoussong";
+        f8 = "playpause";
+        f9 = "nextsong";
+        f10 = "mute";
+        f11 = "volumedown";
+        f12 = "volumeup";
       };
     };
   };
 
   # steam.enable = true;
   android-studio.enable = true;
-  greetd = {
-    enable = true;
-  };
-  tailscale.enable = true;
-
-  virtualisation.containers.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
-    dockerSocket.enable = true;
-  };
 
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["${vars.user}"];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
-  # virtualisation.tpm.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
-
-  security.polkit.enable = true;
-  security.pki.certificateFiles = ["${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
-  security.pam.services = {
-    login.u2fAuth = true;
-    sudo.u2fAuth = true;
-  };
-
-  networking.networkmanager.enable = true;
-  networking.hostName = "${host.hostName}";
-  # networking.wireless.iwd.enable = true;
-  # networking.wireless.iwd.settings = {
-  #   IPv6 = {
-  #     Enabled = true;
-  #   };
-  #   Settings = {
-  #     AutoConnect = true;
-  #   };
-  # };
-  # networking.networkmanager.wifi.backend = "iwd";
 
   system.activationScripts = {
     rfkillUnblockWlan = {
@@ -271,17 +185,10 @@
     };
   };
 
-  programs.zsh.enable = true;
-
-  # gaming
   programs.gamescope.enable = true;
   programs.gamemode.enable = true;
 
   environment = {
-    variables = {
-      SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
-    };
-
     sessionVariables = {
       MOZ_GMP_PATH = ["${pkgs.widevine-cdm-lacros}/gmp-widevinecdm/system-installed"];
     };
@@ -291,97 +198,16 @@
         /home/${vars.user}/.config/BraveSoftware/Brave-Browser/WidevineCdm/current
     '';
 
-    systemPackages = let
-      jetbrainsIDEs = [
-        pkgs.jetbrains.webstorm
-        # pkgs.jetbrains.idea-oss
-        pkgs.jetbrains.rider
-        pkgs.jetbrains.idea
-        pkgs.jetbrains.datagrip
-        pkgs.jetbrains.rust-rover
-        pkgs.jetbrains.clion
-      ];
-    in
-      with pkgs;
-        [
-          timewall
-          awww
+    systemPackages = with pkgs; [
+      timewall
+      awww
 
-          firefox
-          grim # screenshots
-          slurp # screenshots
-          wl-clipboard # obv
-          mako # notification system
-          pavucontrol
-          distrobox
-          prismlauncher
-          thunderbird
-          chatterino7
-          kdiskmark
-          keyd
-          lm_sensors
-          trashy
+      prismlauncher
 
-          postman
-
-          # # jetbrains
-          # # jetbrains-toolbox
-          # jetbrains.webstorm
-          # jetbrains.idea-ultimate
-          # jetbrains.datagrip
-          # jetbrains.rust-rover
-          #
-          # (pkgs.writeShellScriptBin "idea-wayland" ''
-          #   ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate -Dawt.toolkit.name=WLToolkit
-          # '')
-
-          neovim
-          vscode-fhs
-
-          gnupg
-          pinentry-curses
-
-          # mullvad-vpn
-          mullvad
-
-          cacert
-          openssl
-          dconf
-          btop
-
-          librespeed-cli
-
-          xrdb
-
-          podman-tui
-          # docker-compose
-          podman-compose
-          # qemu-utils
-          virtiofsd
-
-          # gaming
-          gamemode
-          legendary-gl
-
-          # iwgtk
-        ]
-        ++ (with pkgs-stable; [
-          qemu_full # until it unstable is stable again
-        ])
-        ++ jetbrainsIDEs
-        ++ (pkgs.lib.concatMap (
-            ide: let
-              name = builtins.baseNameOf (builtins.parseDrvName ide.name).name;
-            in [
-              (pkgs.writeShellScriptBin "${name}-wayland" ''
-                ${ide}/bin/${name} -Dawt.toolkit.name=WLToolkit "$@"
-              '')
-            ]
-          )
-          jetbrainsIDEs);
+      # mullvad-vpn
+      legendary-gl
+    ];
   };
-
-  # services.xserver.dpi = 108;
 
   fonts.fontconfig = {
     hinting = {
@@ -394,38 +220,6 @@
       rgba = "rgb";
     };
     antialias = true;
-  };
-
-  # xdg.portal = {
-  #   enable = true;
-  #   xdgOpenUsePortal = true;
-  #   config = {
-  #     common.default = ["gtk"];
-  #     hyprland.default = ["gtk" "hyprland"];
-  #   };
-  #   extraPortals = [
-  #     pkgs.xdg-desktop-portal-gtk
-  #     pkgs.xdg-desktop-portal-wlr
-  #     pkgs.xdg-desktop-portal-hyprland
-  #   ];
-  # };
-
-  services = {
-    openssh = {
-      enable = true;
-    };
-
-    gnome.gnome-keyring.enable = true;
-  };
-
-  home-manager.extraSpecialArgs = {
-    inherit
-      inputs
-      system
-      nixpkgs
-      vars
-      host
-      ;
   };
 
   home-manager.users.${vars.user} = {
@@ -444,21 +238,6 @@
       diskSize = 1024 * 100;
     };
 
-    mako.enable = true;
-    waybar.enable = true;
-
-    tofi.enable = true;
-    programs.ghostty.enable = true;
-    tmux.enable = true;
-
-    programs.vesktop.enable = true;
-
-    youtube-music.enable = true;
-
-    useStylix = true;
-
-    zen.enable = true;
-
     home.file.".config/fex-emu/Config.json" = {
       enable = true;
       text = ''
@@ -470,59 +249,10 @@
       '';
     };
 
-    # retire for now as moon and earth is really cool looking
-    # services.timewall = {
-    #   enable = true;
-    #   wallpaperPath = pkgs.fetchurl {
-    #     url = "https://static.fistel.dev/nix-assets/Block.heic";
-    #     sha256 = "sha256-Gt0SYxq0dsc3NCyHQUkdTtrVibiuIFYx1zCjr1FcnZA=";
-    #   };
-    #   config = {
-    #     setter = {
-    #       command = [
-    #         "awww"
-    #         "img"
-    #         "--outputs"
-    #         "eDP-1"
-    #         "--transition-type"
-    #         "fade"
-    #         "--transition-duration"
-    #         "2"
-    #         "%f"
-    #       ];
-    #       overlap = 200; # slightly longer than transition duration in ms
-    #
-    #       quiet = false;
-    #     };
-    #   };
-    # };
-
-    # dconf.settings = {
-    #   "org/virt-manager/virt-manager/connections" = {
-    #     autoconnect = ["qemu:///system"];
-    #     uris = ["qemu:///system"];
-    #   };
-    # };
-
-    # home.activation = {
-    #   extraActivation = ''
-    #     ${pkgs.xorg.xrdb}/bin/xrdb /home/${vars.user}/.Xresources
-    #   '';
-    # };
-
-    # xresources = {
-    #   path = "/home/${vars.user}/.Xresources";
-    #   extraConfig = ''
-    #     Xft.dpi: 163
-    #     Xft.autohint: 0
-    #     Xft.lcdfilter:  lcddefault
-    #     Xft.hintstyle:  hintfull
-    #     Xft.hinting: 1
-    #     Xft.antialias: 1
-    #     Xft.rgba: rgb
-    #   '';
-    # };
-
     git.gpgKey = "C8CD2840D9FD4E9B508C628955F07624172E58EB";
+
+    home.stateVersion = "25.11";
   };
+
+  system.stateVersion = "25.11";
 }

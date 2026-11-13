@@ -42,4 +42,10 @@ in {
   systemd.sleep.settings.Sleep = lib.mkIf doSuspend {
     HibernateDelaySec = "20m";
   };
+
+  environment = {
+    systemPackages = with pkgs; [
+      lm_sensors
+    ];
+  };
 }

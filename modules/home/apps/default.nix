@@ -7,4 +7,6 @@
   ./nemo.nix
   ./syncthing.nix
   ./opencode.nix
+  ./godot-mono.nix
+  ./jetbrains.nix
 ]

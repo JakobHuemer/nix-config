@@ -18,19 +18,14 @@
     ]
     ++ (import ../modules/nixos);
 
+  # important
+
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
   boot.supportedFilesystems = ["nfs"];
 
   time.timeZone = "Europe/Vienna";
 
   system.configurationRevision = self.rev or self.dirtyRev;
-
-  # crazy issues hahahahahahahahaha
-  # fileSystems."/srv/nfs" = {
-  #   device = "pi5-01.h.fistel.dev:/srv/nfs";
-  #   fsType = "nfs";
-  #   options = ["nfsvers=4.2" "x-systemd.automount" "noauto"];
-  # };
 
   # makes dynamically linked libs work but still not trash the system
   programs.nix-ld.enable = true;
@@ -49,6 +44,35 @@
     isAllowed = true;
     isSystem = false;
   };
+
+  # btrfs scubbing
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+    fileSystems = ["/"];
+  };
+
+  networking.firewall = {
+    enable = true;
+
+    allowedTCPPorts = [25565 24454];
+    allowedUDPPorts = [25565 24454];
+  };
+
+  greetd = {
+    enable = true;
+  };
+
+  tailscale.enable = true;
+
+  boot.loader.limine = {
+    enable = true;
+  };
+
+  networking.networkmanager.enable = true;
+  networking.hostName = "${host.hostName}";
+
+  programs.zsh.enable = true;
 
   sops.secrets.consul_http_token = {
     owner = vars.user;
@@ -150,6 +174,7 @@
 
   environment = {
     variables = {
+      SSL_CERT_FILE = "/etc/ssl/certs/ca-bundle.crt";
       TERMINAL = "${vars.terminal}";
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
@@ -157,7 +182,18 @@
 
     systemPackages =
       with pkgs; [
+        mullvad
+        cacert
+        openssl
+        dconf
+        btop
+        gnupg
         inotify-tools
+
+        gnome-keyring
+
+        podman-compose
+        virtiofsd
 
         jujutsu
         jjui
@@ -256,8 +292,6 @@
     # '';
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   home-manager = {
     extraSpecialArgs = {
       inherit
@@ -271,7 +305,7 @@
 
     backupFileExtension = "hm-bkp";
 
-    useGlobalPkgs = false; # will not me possible with nixpkgs
+    useGlobalPkgs = true;
     useUserPackages = true;
   };
 
@@ -283,9 +317,6 @@
         inputs.timewall.homeManagerModules.default
         inputs.lan-mouse.homeManagerModules.default
       ];
-
-    nixpkgs.config.allowUnfree = true;
-    nixpkgs.overlays = [(import ../overlays/qt6ct.nix)];
 
     home.file.".nix-assets" = {
       source = ../assets;
@@ -314,21 +345,23 @@
       };
     };
 
-    programs.lan-mouse = {
-      enable = true;
-    };
-
     programs = {
       home-manager.enable = true;
       worktrunk.enable = true;
       bun.enable = true; # managed by shell module
     };
-    home = {
-      stateVersion = "25.11";
-    };
-  };
 
-  system = {
-    stateVersion = "25.11";
+    xresources = {
+      path = "/home/${vars.user}/.Xresources";
+      extraConfig = ''
+        Xft.dpi: 163
+        Xft.autohint: 0
+        Xft.lcdfilter:  lcddefault
+        Xft.hintstyle:  hintfull
+        Xft.hinting: 1
+        Xft.antialias: 1
+        Xft.rgba: rgb
+      '';
+    };
   };
 }

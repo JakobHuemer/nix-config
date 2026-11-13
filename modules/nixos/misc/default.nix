@@ -4,4 +4,6 @@
   ./doh.nix
   ./limine.nix
   ./ollama.nix
+  ./virtualisation.nix
+  ./stylix.nix
 ]

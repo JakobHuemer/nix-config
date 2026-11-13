@@ -5,10 +5,10 @@
   inputs,
   ...
 }: {
-  imports = [inputs.nvf.homeManagerModules.nvf];
+  imports = [inputs.nvf.homeModules.nvf];
 
   options = {
-    nvf.enable = lib.mkEnableOption "enable nvf";
+    nvf.enable = lib.mkEnableOption "nvf";
   };
 
   config = lib.mkIf config.nvf.enable {
