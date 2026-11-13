@@ -7,6 +7,7 @@
   system,
   host,
   config,
+  self,
   ...
 }: {
   imports =
@@ -21,6 +22,8 @@
   boot.supportedFilesystems = ["nfs"];
 
   time.timeZone = "Europe/Vienna";
+
+  system.configurationRevision = self.rev or self.dirtyRev;
 
   # crazy issues hahahahahahahahaha
   # fileSystems."/srv/nfs" = {

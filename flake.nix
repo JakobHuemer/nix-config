@@ -206,6 +206,7 @@
     nixosConfigurations = import ./hosts {
       inherit (nixpkgs) lib;
       inherit
+        self
         inputs
         nixpkgs
         nixpkgs-stable

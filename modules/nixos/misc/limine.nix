@@ -5,11 +5,14 @@
   ...
 }: {
   config = lib.mkIf config.boot.loader.limine.enable {
+    environment.systemPackages = with pkgs; [
+      sbctl
+    ];
+
     boot.loader.limine = {
-      # TODO: sometime
-      # secureBoot = {
-      #   enable = true;
-      # };
+      secureBoot = {
+        enable = true;
+      };
 
       style = {
         interface = {

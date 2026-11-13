@@ -43,6 +43,12 @@
     options = ["subvol=@swap"];
   };
 
+  fileSystems."/shared" = {
+    device = "/dev/mapper/cryptroot";
+    fsType = "btrfs";
+    options = ["subvol=@shared"];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/3FBC-A87F";
     fsType = "vfat";

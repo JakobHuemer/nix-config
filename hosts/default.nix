@@ -4,6 +4,7 @@
   nixpkgs-stable,
   vars,
   customPkgsOverlay,
+  self,
   ...
 }: let
   lib = nixpkgs.lib;
@@ -32,6 +33,7 @@ in {
       inherit system;
       specialArgs = {
         inherit
+          self
           inputs
           system
           pkgs-stable
@@ -66,6 +68,7 @@ in {
       inherit system;
       specialArgs = {
         inherit
+          self
           inputs
           system
           pkgs-stable
@@ -98,6 +101,7 @@ in {
       inherit system;
       specialArgs = {
         inherit
+          self
           inputs
           system
           pkgs-stable

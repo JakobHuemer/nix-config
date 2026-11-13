@@ -20,7 +20,7 @@
   swapDevices = [
     {
       device = "/swap/swapfile";
-      size = 16 * 1024;
+      size = 36 * 1024;
     }
   ];
 
@@ -316,5 +316,11 @@
     };
 
     git.gpgKey = "DBFA8DCA389649DB6BEE8A009B4F31A8AFE90BEB";
+
+    home.stateVersion = lib.mkForce "26.05";
+  };
+
+  system = {
+    stateVersion = lib.mkForce "26.05";
   };
 }
