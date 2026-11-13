@@ -180,6 +180,8 @@
 
     systemPackages =
       (with pkgs; [
+        bitwarden-desktop
+
         flatpak
 
         gparted
