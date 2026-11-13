@@ -43,6 +43,14 @@
     }
   ];
 
+  boot = {
+    kernelParams = [
+      "resume_offset=28668091"
+    ];
+
+    resumeDevice = "/dev/disk/by-uuid/df894974-92ce-4bcf-97be-2cc41fdfceed";
+  };
+
   # tpm setup
   boot.initrd.systemd.tpm2.enable = true;
 
