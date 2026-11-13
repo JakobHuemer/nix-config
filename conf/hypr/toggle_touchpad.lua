@@ -1,5 +1,7 @@
 local STATE = (os.getenv("HOME") .. "/.local/state/hypr-touchpad")
-local TOUCHPAD = "apple-mtp-multi-touch"
+local TOUCHPAD = _G.host == "nixbook" and "apple-mtp-multi-touch"
+    or _G.host == "frame1301" and "pixa3854:00-093a:1343-touchpad"
+    or ""
 
 local function is_enabled()
     local f = io.open(STATE, "r")

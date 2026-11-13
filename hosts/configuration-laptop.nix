@@ -35,14 +35,11 @@ in {
   services.logind.settings.Login.HandlePowerKey = "lock";
   services.logind.settings.Login.IdleActionSec = "10m";
 
-  boot.kernelParams = ["mem_sleep_default=deep"];
-
   services.logind.settings.Login.HandleLidSwitch = lib.mkIf doSuspend "suspend-then-hibernate";
   services.logind.settings.Login.HandlePowerKeyLongPress = lib.mkIf doSuspend "hibernate";
   services.logind.settings.Login.IdleAction = lib.mkIf doSuspend "suspend-then-hibernate";
 
   systemd.sleep.settings.Sleep = lib.mkIf doSuspend {
     HibernateDelaySec = "20m";
-    SuspendState = "mem";
   };
 }
