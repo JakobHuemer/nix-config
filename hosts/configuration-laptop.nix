@@ -32,7 +32,7 @@ in {
   };
 
   services.power-profiles-daemon.enable = true;
-  services.logind.settings.Login.HandlePowerKey = "logout";
+  services.logind.settings.Login.HandlePowerKey = "lock";
   services.logind.settings.Login.IdleActionSec = "10m";
 
   boot.kernelParams = ["mem_sleep_default=deep"];
