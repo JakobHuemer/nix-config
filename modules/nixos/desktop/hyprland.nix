@@ -198,7 +198,7 @@
 
           background = pkgs.lib.mkForce [
             {
-              monitor = "DP-1";
+              monitor = "";
               path = "${../../../assets/img/bg/funny-cat.png}";
               blur_passes = 2;
               contrast = 1;
@@ -206,27 +206,6 @@
               vibrancy = 0.2;
               vibrancy_darkness = 0.2;
             }
-            {
-              monitor = "DP-2";
-              path = "${../../../assets/img/bg/funny-cat.png}";
-              blur_passes = 2;
-              contrast = 1;
-              brightness = 0.5;
-              vibrancy = 0.2;
-              vibrancy_darkness = 0.2;
-            }
-            {
-              monitor = "eDP-1";
-              path = "${../../../assets/img/bg/funny-cat.png}";
-              blur_passes = 2;
-              contrast = 1;
-              brightness = 0.5;
-              vibrancy = 0.2;
-              vibrancy_darkness = 0.2;
-            }
-          ];
-
-          label = [
           ];
         };
       };
