@@ -133,8 +133,6 @@
     }
   ];
 
-  boot.resumeDevice = "/dev/disk/by-uuid/63b04acd-93c6-4c41-bcf9-0be16d7c0e32";
-
   fileSystems = {
     "/".options = ["compress=zstd"];
     "/home".options = ["compress=zstd"];

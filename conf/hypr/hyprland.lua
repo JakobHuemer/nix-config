@@ -58,6 +58,7 @@ hl.workspace_rule({
 })
 
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("GDK_SCALE", 1.5)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
