@@ -7,7 +7,6 @@
   system,
   nixpkgs,
   host,
-  config,
   ...
 }: {
   imports = [
@@ -16,6 +15,26 @@
 
   # fingerprint
   services.fprintd.enable = true;
+
+  fileSystems."/" = {
+    options = ["compress=zstd"];
+  };
+
+  fileSystems."/home" = {
+    options = ["compress=zstd"];
+  };
+
+  fileSystems."/shared" = {
+    options = ["compress=zstd"];
+  };
+
+  fileSystems."/nix" = {
+    options = ["compress=zstd" "noatime"];
+  };
+
+  fileSystems."/swap" = {
+    options = ["noatime"];
+  };
 
   swapDevices = [
     {
