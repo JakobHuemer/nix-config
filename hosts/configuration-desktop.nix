@@ -305,6 +305,9 @@
   security.pam.services = {
     login.u2fAuth = true;
     sudo.u2fAuth = true;
+
+    login.fprintAuth = false;
+    sudo.fprintAuth = true;
   };
 
   home-manager.users.${vars.user} = {pkgs, ...}: {
