@@ -48,7 +48,14 @@ in {
         extraFlags = ["--no-default-folder"];
 
         devices = {
-          "server".id = "P4NMIXM-PAKBF6V-WESAV34-4D5MGEV-HUKDFZ4-6GXLYJV-Q6F4HDS-NMJMUQZ";
+          "server" = {
+            id = "P4NMIXM-PAKBF6V-WESAV34-4D5MGEV-HUKDFZ4-6GXLYJV-Q6F4HDS-NMJMUQZ";
+            addresses = [
+              "tcp://192.168.0.20:22000"
+              "tcp://pi5-01.h.fistel.dev:22000"
+              "dynamic"
+            ];
+          };
           "nixbook".id = "G57PZ76-IT5IMMC-C3KQEN3-EH5X2JE-SKAUU7M-C7CHEWG-U2IVIDO-A3CUXAG";
           "sta01".id = "BV2BYWN-KFLGCYV-THMUZ34-DNYOSJ6-6MQLCQ3-N6LR4HH-2QJDI5S-LR6KJAB";
           "mbp2p".id = "VSEHSRN-GLJKODA-YSHOY3C-Z42LV32-M4UHIRV-64XHYJQ-EUE3FHV-F5INSAH";
