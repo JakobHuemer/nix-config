@@ -208,6 +208,8 @@
       NIXOS_OZONE_WL = 1;
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
       DOTNET_ROOT = "${pkgs.dotnet-sdk_11}/share/dotnet";
+
+      SECURE_KEY_CONTAINER_BACKEND = "mlock";
     };
 
     sessionVariables.PATH = [
@@ -216,75 +218,48 @@
 
     systemPackages =
       (with pkgs; [
-        kdiskmark
-        obs-studio
-
-        postman
-
-        pinentry-curses
-
-        chatterino7
-        xrdb
-        firefox
-        wl-clipboard
-        mako
-        pavucontrol
-        distrobox
-        thunderbird
-
-        keyd
-
-        trashy
-        qt6.qtwayland
-
-        pinentry-curses
-
+        # keep-sorted start
         bitwarden-desktop
-
-        flatpak
-
-        gparted
-        font-manager
-
-        libaacs
-        libbdplus
-
-        inkscape
-        # zed-editor
-
         # docker-machine-kvm2
         bruno
-
-        # zed-editor
-
-        minikube
-        # docker-machine-kvm2
-
+        chatterino7
+        cheese
+        cinny-desktop
+        distrobox
+        element-desktop
+        fastmail-desktop
+        filezilla
+        firefox
+        flatpak
+        font-manager
+        gparted
+        inkscape
+        inputs.antigravity-nix.packages.${system}.google-antigravity-cli
+        kdiskmark
+        keyd
         # tailscale ui
         ktailctl
-
-        # browsers
-        ungoogled-chromium
-        vivaldi
-
+        libaacs
+        libbdplus
+        mako
+        minikube
         networkmanagerapplet
-
-        filezilla
-
+        obs-studio
         obsidian
-
-        wlr-layout-ui
-
+        pavucontrol
+        pinentry-curses
         pkgs-stable.claude-code
         pkgs-stable.codex
-        inputs.antigravity-nix.packages.${system}.google-antigravity-cli
-
-        element-desktop
-        cinny-desktop
-
-        cheese
-
-        fastmail-desktop
+        postman
+        qt6.qtwayland
+        thunderbird
+        trashy
+        ungoogled-chromium
+        vivaldi
+        wl-clipboard
+        wlr-layout-ui
+        xrdb
+        # keep-sorted end
       ])
       ++ pkgs.lib.optionals
       (pkgs.stdenv.hostPlatform.system == "x86_64-linux")

@@ -2,3 +2,7 @@
 command = "alejandra"
 includes = [ "*.nix" ]
 priority = 0
+
+[formatter.keep-sorted]
+command = "keep-sorted"
+includes = [ "*.nix" ]

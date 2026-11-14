@@ -182,76 +182,66 @@
 
     systemPackages =
       with pkgs; [
-        mullvad
-        cacert
-        openssl
-        dconf
-        btop
-        gnupg
-        inotify-tools
-
-        gnome-keyring
-
-        podman-compose
-        virtiofsd
-
-        jujutsu
-        jjui
-        lazyjj
-        gh
-        comma
-        pi-coding-agent
-        graphite-cli
-
-        nomad
-        consul
-
-        node-gyp
-
-        zsh
-        # pinentry-tty
-        pinentry-all
-        ripgrep
-        fh
-        nemo-with-extensions
-        bitwarden-cli
-        net-tools
-        dig
-        wireshark
-        sops
-        age
-        tcpdump
+        # keep-sorted start
         (flameshot.override {enableWlrSupport = true;})
-        vlc
-        qbittorrent-enhanced
         (lib.hiPrio kubectl)
-
-        lazydocker
-
-        udiskie
-
-        lsof
-        file
-
-        typst
-        typstyle
-        typst-live
-
-        github-copilot-cli
-
-        forgejo-cli
-
-        ripgrep # better grep
-        ripgrep-all # ripgrep for all files (pdf, zip, etc.)
-        fd # find alternative
+        age
+        bitwarden-cli
+        btop
+        cacert
+        comma
+        consul
+        dconf
+        dig
+        dua # interactive disk usage analyzer
         # pkgs.gitui # lazygit rust port larifary # fails to build on darwin
         dust # better du
-        dua # interactive disk usage analyzer
-        yazi # filemanager with previews
+        fd # find alternative
+        fh
+        file
+        forgejo-cli
+        gh
+        github-copilot-cli
+        gnome-keyring
+        gnupg
+        graphite-cli
         hyperfine # clever benchmark
-        tokei # count code lines quickly
+        inotify-tools
+        jjui
+        jujutsu
+        keep-sorted
+        lazydocker
+        lazyjj
+        lsof
         mprocs # tui to run multiple commands parallel
+        mullvad
+        nemo-with-extensions
+        net-tools
+        node-gyp
+        nomad
+        openssl
+        pi-coding-agent
+        # pinentry-tty
+        pinentry-all
         pkgs-stable.presenterm # terminal slideshow presentation tool
+        podman-compose
+        qbittorrent-enhanced
+        ripgrep
+        ripgrep # better grep
+        ripgrep-all # ripgrep for all files (pdf, zip, etc.)
+        sops
+        tcpdump
+        tokei # count code lines quickly
+        typst
+        typst-live
+        typstyle
+        udiskie
+        virtiofsd
+        vlc
+        wireshark
+        yazi # filemanager with previews
+        zsh
+        # keep-sorted end
       ]
       # ++ [
       #   inputs.apple-emoji-linux.packages.${system}.default

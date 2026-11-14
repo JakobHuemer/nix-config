@@ -19,9 +19,7 @@
 
   environment = {
     systemPackages = with pkgs;
-      [
-      ]
-      ++ (with pkgs-stable; [
+      (with pkgs-stable; [
         rustdesk
       ])
       ++ [
