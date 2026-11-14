@@ -6,4 +6,5 @@
   ./ollama.nix
   ./virtualisation.nix
   ./stylix.nix
+  ./espanso.nix
 ]

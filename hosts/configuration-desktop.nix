@@ -21,6 +21,7 @@
   custom = {
     virtualisation.enable = true;
     stylix.enable = true;
+    espanso.enable = true;
   };
 
   virtualisation.containers = {
@@ -184,6 +185,7 @@
       "video"
       "storage"
       "kvm"
+      "input"
     ];
   };
 

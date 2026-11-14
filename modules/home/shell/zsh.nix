@@ -29,7 +29,7 @@
         };
 
         sessionVariables = {
-          EDITOR = "nvim";
+          EDITOR = "${pkgs.neovim}/bin/nvim";
           ZSH_EVALCACHE_DISABLE = "false";
           ZSH_SMARTCACHE_DIR = "$HOME/.zsh-smartcache";
 
