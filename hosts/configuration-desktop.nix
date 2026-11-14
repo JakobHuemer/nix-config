@@ -233,7 +233,6 @@
         flatpak
         font-manager
         gparted
-        inkscape
         inputs.antigravity-nix.packages.${system}.google-antigravity-cli
         kdiskmark
         keyd
