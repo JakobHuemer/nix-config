@@ -51,6 +51,12 @@ in {
       };
     };
 
+    icons = {
+      enable = true;
+      dark = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
     cursor = {
       name = "Banana";
       package = pkgs.banana-cursor;

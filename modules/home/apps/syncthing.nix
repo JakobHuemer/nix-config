@@ -45,9 +45,9 @@ in {
 
         devices = {
           "nixbook".id = "G57PZ76-IT5IMMC-C3KQEN3-EH5X2JE-SKAUU7M-C7CHEWG-U2IVIDO-A3CUXAG";
-          "pi4".id = "ZFDPFSJ-VLG6YDV-DH76C72-4NG7WDX-RFRO3Y4-6NTRGTP-NAEDUKW-IAOFEAS";
           "sta01".id = "BV2BYWN-KFLGCYV-THMUZ34-DNYOSJ6-6MQLCQ3-N6LR4HH-2QJDI5S-LR6KJAB";
           "mbp2p".id = "VSEHSRN-GLJKODA-YSHOY3C-Z42LV32-M4UHIRV-64XHYJQ-EUE3FHV-F5INSAH";
+          "frame1301".id = "G3PBSFL-ADLXPJU-OVSCVVT-3RFK4N4-JIEEXXP-LCS6TDB-RNHULPL-3ZLNPAA";
         };
 
         # folders = {
@@ -80,9 +80,22 @@ in {
 
             devices = {
               nixbook = {};
-              pi4 = {};
               sta01 = {};
               mbp2p = {};
+              frame1301 = {
+                path = "${homeFolder}/school";
+              };
+            };
+          };
+
+          ssh-keys = {
+            id = "ssh-config";
+            defaultPath = "${homeFolder}/.ssh";
+
+            devices = {
+              nixbook = {};
+              sta01 = {};
+              frame1301 = {};
             };
           };
 
@@ -91,9 +104,9 @@ in {
             defaultPath = "${homeFolder}/vwa";
             devices = {
               nixbook = {};
-              pi4 = {};
               sta01 = {};
               mbp2p = {};
+              frame1301 = {};
             };
           };
         };
