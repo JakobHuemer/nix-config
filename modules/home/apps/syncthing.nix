@@ -89,7 +89,7 @@ in {
           };
 
           ssh-keys = {
-            id = "ssh-config";
+            id = "ssh-keys";
             defaultPath = "${homeFolder}/.ssh";
 
             devices = {
