@@ -7,6 +7,10 @@
   host,
   ...
 }: let
+  allwaysSyncDevices = [
+    "server"
+  ];
+
   mkSyncthingFolders = hostName: folders: let
     # helper: check membership in attrset
     hasDevice = devices: devices ? "${hostName}";
@@ -23,7 +27,7 @@
       value = {
         id = folder.id;
         path = resolvePath folder;
-        devices = deviceList folder.devices;
+        devices = (deviceList folder.devices) ++ allwaysSyncDevices;
       };
     };
     folderNames = builtins.attrNames folders;
@@ -44,6 +48,7 @@ in {
         extraFlags = ["--no-default-folder"];
 
         devices = {
+          "server".id = "P4NMIXM-PAKBF6V-WESAV34-4D5MGEV-HUKDFZ4-6GXLYJV-Q6F4HDS-NMJMUQZ";
           "nixbook".id = "G57PZ76-IT5IMMC-C3KQEN3-EH5X2JE-SKAUU7M-C7CHEWG-U2IVIDO-A3CUXAG";
           "sta01".id = "BV2BYWN-KFLGCYV-THMUZ34-DNYOSJ6-6MQLCQ3-N6LR4HH-2QJDI5S-LR6KJAB";
           "mbp2p".id = "VSEHSRN-GLJKODA-YSHOY3C-Z42LV32-M4UHIRV-64XHYJQ-EUE3FHV-F5INSAH";
