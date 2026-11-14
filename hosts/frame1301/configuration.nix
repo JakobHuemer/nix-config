@@ -38,6 +38,10 @@
     resumeDevice = "/dev/disk/by-uuid/df894974-92ce-4bcf-97be-2cc41fdfceed";
   };
 
+  systemd.tmpfiles.rules = [
+    "w /sys/devices/system/cpu/intel_pstate/hwp_dynamic_boost - - - - 1"
+  ];
+
   # tpm setup
   boot.initrd.systemd.tpm2.enable = true;
 
