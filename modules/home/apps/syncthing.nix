@@ -92,6 +92,11 @@ in {
             id = "ssh-keys";
             defaultPath = "${homeFolder}/.ssh";
 
+            ignorePatterns = [
+              "known_hosts"
+              "known_hosts.old"
+            ];
+
             devices = {
               nixbook = {};
               sta01 = {};
