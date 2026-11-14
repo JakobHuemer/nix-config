@@ -3,6 +3,7 @@
   system,
   pkgs-stable,
   lib,
+  vars,
   host,
   config,
   ...
@@ -29,6 +30,26 @@ in {
         "bluetooth.autoswitch" = true;
       };
     };
+  };
+
+  systemd.user.services."battery-low" = {
+    script = ''
+      out=`${pkgs.acpi}/bin/acpi -b`
+      battery_level=`echo "''${out}" | ${pkgs.gnugrep}/bin/grep -P -o "[0-9]+(?=%)"`
+      if [[ ''${battery_level} -lt 16 && "''${out}" == *"Discharging"* ]]; then
+        ${pkgs.libnotify}/bin/notify-send -u critical \
+          -i battery-caution \
+          -a "Battery" \
+          -t 0 \
+          -h string:x-canonical-private-synchronous:battery \
+          "Battery low (''${battery_level}%)" \
+          "Connect a charger"
+        fi
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    startAt = "*:0/1";
   };
 
   services.power-profiles-daemon.enable = true;
