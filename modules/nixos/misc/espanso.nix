@@ -38,6 +38,16 @@
               trigger = ":espanso";
               replace = "Hi there!";
             }
+            {
+              trigger = "dont";
+              replace = "don't";
+              right_word = true;
+            }
+            {
+              trigger = "doesnt";
+              replace = "doesn't";
+              right_word = true;
+            }
           ];
         };
       };
