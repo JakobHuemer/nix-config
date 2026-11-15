@@ -73,12 +73,14 @@
         bgFlight15ShipCatch = ../../../assets/img/bg/flight15_ship_catch_horizontal.webp;
         bgFlight15BoosterExplosion = ../../../assets/img/bg/flight15_booster_explosion.webp;
         bgFlight15StackLiftoff = ../../../assets/img/bg/flight15_stack_liftoff.webp;
+        bgFLight15SpaceXLiftoff = ../../../assets/img/bg/flight15_full_stack_liftoff.jpg;
+        bgFLight15SpaceXShipCatch = ../../../assets/img/bg/flight15_spacex_ship_catch.jpg;
+        bgFlight15SpaceXBoosterLiftoff = ../../../assets/img/bg/flight15_booster_liftof.jpg;
 
         bgNyanCatSpaceKidDrawn = ../../../assets/img/bg/nyancat-space-kid-drawn.jpg;
         bgNyanCatSpace = ../../../assets/img/bg/nyancat-space-drawn.jpg;
       in {
         enable = true;
-        package = pkgs.custom.wpaperd;
 
         settings = let
           base = {
@@ -111,8 +113,16 @@
                   path = bgFlight15ShipCatch;
                 }
                 {
-                  name = "stackliftoff.webp";
-                  path = bgFlight15StackLiftoff;
+                  name = "booster-liftoff.jpg";
+                  path = bgFlight15SpaceXBoosterLiftoff;
+                }
+                {
+                  name = "liftoff.jpg";
+                  path = bgFLight15SpaceXLiftoff;
+                }
+                {
+                  name = "shupcatchspacex.jpg";
+                  path = bgFLight15SpaceXShipCatch;
                 }
               ];
               duration = "2m";

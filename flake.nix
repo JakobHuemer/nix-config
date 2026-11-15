@@ -49,11 +49,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wpaperd = {
-      url = "github:danyspin97/wpaperd"; # is actually 1.2.2 but cli reports 1.2.1
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
