@@ -69,7 +69,14 @@
         systemdTarget = "hyprland-session.target";
       };
 
-      services.wpaperd = {
+      services.wpaperd = let
+        bgFlight15ShipCatch = ../../../assets/img/bg/flight15_ship_catch_horizontal.webp;
+        bgFlight15BoosterExplosion = ../../../assets/img/bg/flight15_booster_explosion.webp;
+        bgFlight15StackLiftoff = ../../../assets/img/bg/flight15_stack_liftoff.webp;
+
+        bgNyanCatSpaceKidDrawn = ../../../assets/img/bg/nyancat-space-kid-drawn.jpg;
+        bgNyanCatSpace = ../../../assets/img/bg/nyancat-space-drawn.jpg;
+      in {
         enable = true;
         package = pkgs.custom.wpaperd;
 
@@ -94,12 +101,25 @@
           "eDP-1" =
             base
             // {
-              path = ../../../assets/img/bg/flight15_ship_catch_horizontal.webp;
-              # duration = "2m";
-              # sorting = "random";
+              path = pkgs.linkFarm "wallpapers" [
+                {
+                  name = "epxlosion.webp";
+                  path = bgFlight15BoosterExplosion;
+                }
+                {
+                  name = "shipcatch.webp";
+                  path = bgFlight15ShipCatch;
+                }
+                {
+                  name = "stackliftoff.webp";
+                  path = bgFlight15StackLiftoff;
+                }
+              ];
+              duration = "2m";
+              sorting = "random";
 
               # assign to group 1 so all goup 1 share the same random wallpaper
-              # group = 1;
+              group = 1;
             };
         };
       };
