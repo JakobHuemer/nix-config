@@ -94,7 +94,7 @@
           "eDP-1" =
             base
             // {
-              path = ../../../assets/img/bg/moon-and-earth-from-orion.jpg;
+              path = ../../../assets/img/bg/flight15_ship_catch_horizontal.webp;
               # duration = "2m";
               # sorting = "random";
 
