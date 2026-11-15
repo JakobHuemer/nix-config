@@ -48,6 +48,21 @@
               replace = "doesn't";
               right_word = true;
             }
+            {
+              trigger = "youre";
+              replace = "you're";
+              right_workd = true;
+            }
+            {
+              trigger = "youll";
+              replace = "you'll";
+              right_word = true;
+            }
+            {
+              trigger = "commt";
+              replace = "commit";
+              word = true;
+            }
           ];
         };
       };
