@@ -56,8 +56,6 @@
       "bluetooth",
       "battery",
       "network",
-      "custom/power",
-      "custom/wallpaper",
     ],
   },
   "group/group-5": {
@@ -69,8 +67,9 @@
   "group/group-6": {
     "orientation": "horizontal",
     "modules": [
-      "custom/pacman",
-      "custom/pkg-aur",
+      "custom/wp-prev",
+      "custom/wp-toggle",
+      "custom/wp-next",
     ],
   },
   "group/group-8": {
@@ -162,7 +161,7 @@
   "temperature": {
     "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "format-critical": "{temperatureC}°C {icon}",
+    "format-critical": "{temperatureC}°C {icon} ",
     "critical-threshold": 80,
     "interval": 2,
     "format": " {temperatureC:>2}°C",
@@ -192,7 +191,7 @@
   },
 
   "bluetooth": {
-    "format": "{icon}",
+    "format": "{icon} ",
     "format-icons": ["󰂯", "󰤾", "󰥀", "󰥄", "󰥈"],
 
     "tooltip-format-off": "Bluetooth is off",
@@ -207,23 +206,12 @@
     "on-click": "blueman-manager"
   },
 
-  // "network": {
-    // "interval": 3,
-    // "format-wifi": "  {bandwidthTotalBytes:>2}",
-    // "format-ethernet": "{ipaddr}/{cidr} ",
-    // "tooltip-format-wifi": " {ipaddr} ({signalStrength}%)",
-    // "tooltip-format": "{ifname} via {gwaddr} ",
-    // "format-linked": "{ifname} (No IP) ",
-    // "format-disconnected": "󰀦 Disconnected",
-    // "format-alt": "{ifname}: {ipaddr}/{cidr}",
-  // },
-
   "network": {
         "interval": 3,
-        "format-wifi": "{icon}", 
+        "format-wifi": "{icon} ", 
         "format-ethernet": "󰌗 {ipaddr}", 
         "format-linked": "󰌙 {ifname} (Sin IP)", 
-        "format-disconnected": "󰖪", 
+        "format-disconnected": "󰖪 ", 
         "format-alt": "󰛳 {ifname}", 
         "tooltip-format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes}", 
         "tooltip-format-ethernet": "󰌗 {ifname} | IP: {ipaddr}/{cidr} | GW: {gwaddr}", 
@@ -239,8 +227,8 @@
 
   "pulseaudio": {
     "format": "{icon} {volume}%", //{format_source}",
-    "format-bluetooth": "{icon} {volume}% 󰂯", //{format_source}",
-    "format-bluetooth-muted": "󰖁 {icon} 󰂯", //{format_source}",
+    "format-bluetooth": "{icon} {volume}% 󰂯 ", //{format_source}",
+    "format-bluetooth-muted": "󰖁 {icon} 󰂯 ", //{format_source}",
     "format-muted": "󰖁 {volume}%",
     "format-source": " {volume}%",
     "format-source-muted": "",
@@ -259,25 +247,42 @@
   "wireplumber": {
     "format": "{icon} {volume:>3}%",
     "format-muted": "󰖁 {volume:>3}%",
-    "format-bluetooth": "{icon} {volume:>2}% 󰂯", //{format_source}",
-    "format-bluetooth-muted": "󰖁 {icon} 󰂯", //{format_source}",
+    "format-bluetooth": "{icon} {volume:>2}% 󰂯 ", //{format_source}",
+    "format-bluetooth-muted": "󰖁 {icon} 󰂯 ", //{format_source}",
     "format-icons": ["", "", ""],
   },
 
   "idle_inhibitor": {
-    "format": "{icon}",
+    "format": "{icon} ",
     "format-icons": {
       "activated": "󰈈",
       "deactivated": "󰈉",
     },
   },
 
-  "custom/pkg-aur": {
-    "exec": "yay -Qua | wc -l",
-    "interval": 1800,
-    "format": "󰏔 {}",
-    "tooltip": true,
-    "tooltip-format": "AUR packages"
+  "custom/wp-prev": {
+    "format": "\uf04a ",
+    "on-click": "wpaperctl previous-wallpaper",
+    "tooltip": false
+  },
+
+  "custom/wp-toggle": {
+    "exec": "wpaperctl get-status | sed -E 's/.*(running|paused).*/{\"alt\":\"\\1\"}/'",
+    "return-type": "json",
+    "format": "{icon} ",
+    "format-icons": {
+      "running": "\uf04c",
+      "paused": "\uf04b"
+    },
+    "interval": 5,
+    "on-click": "wpaperctl toggle-pause-wallpaper",
+    "tooltip": false
+  },
+
+  "custom/wp-next": {
+    "format": "\uf04e ",
+    "on-click": "wpaperctl next-wallpaper",
+    "tooltip": false
   },
 
   "custom/notification": {
@@ -299,7 +304,7 @@
   "keyboard-state": {
     "numlock": false,
     "capslock": true,
-    "format": "{icon}",
+    "format": "{icon} ",
     "format-icons": {
       "locked": " On",
       "unlocked": " Off",
@@ -307,7 +312,7 @@
   },
 
   "wlr/taskbar": {
-    "format": "{icon}",
+    "format": "{icon} ",
     "icon-size": 18,
     "tooltip-format": "{title}",
     "on-click": "activate",
@@ -321,8 +326,8 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}",
-    "format-full": "{icon}",
+    "format": "{icon} ",
+    "format-full": "{icon} ",
     "format-plugged": " {capacity}% <span font='Font Awesome 5 Free'>\uf0e7</span> ",
     "format-alt": "{icon} {capacity}%",
     "tooltip-format": "{capacity}%, about {time} left",
