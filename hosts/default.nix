@@ -18,7 +18,6 @@
   overlays = [
     customPkgsOverlay
     (import ../overlays/qt6ct.nix)
-    inputs.opencode.overlays.default
     inputs.papertimed.overlays.default
     inputs.timewall.overlays.default
     inputs.affinity-nix.overlays.default

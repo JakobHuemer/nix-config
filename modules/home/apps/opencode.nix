@@ -14,8 +14,6 @@
     programs.opencode = {
       enable = true;
 
-      package = inputs.opencode.packages.${system}.opencode;
-
       settings = {
         autoupdate = true;
 

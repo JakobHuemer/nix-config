@@ -46,7 +46,7 @@
   boot.initrd.systemd.tpm2.enable = true;
 
   home-manager.users.${vars.user} = {
-    opencode.enable = lib.mkForce false;
+    # opencode.enable = lib.mkForce false;
 
     git.gpgKey = "DBFA8DCA389649DB6BEE8A009B4F31A8AFE90BEB";
 

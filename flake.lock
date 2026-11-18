@@ -1524,27 +1524,6 @@
         "type": "github"
       }
     },
-    "opencode": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792785451,
-        "narHash": "sha256-iqP0vJBgQp49V/AJKOO8DLcj5gRXGDBjQo8wS/Gx6Hk=",
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "rev": "09e6ddf630b5f2466addf6044b79a60bd48bac03",
-        "type": "github"
-      },
-      "original": {
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "rev": "09e6ddf630b5f2466addf6044b79a60bd48bac03",
-        "type": "github"
-      }
-    },
     "papertimed": {
       "inputs": {
         "flake-parts": "flake-parts_3",
@@ -1628,7 +1607,6 @@
         "nixvim": "nixvim",
         "noctalia": "noctalia",
         "nvf": "nvf",
-        "opencode": "opencode",
         "papertimed": "papertimed",
         "rust-overlay": "rust-overlay_3",
         "rustowl-flake": "rustowl-flake",
