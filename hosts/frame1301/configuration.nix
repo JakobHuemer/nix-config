@@ -50,10 +50,10 @@
 
     git.gpgKey = "DBFA8DCA389649DB6BEE8A009B4F31A8AFE90BEB";
 
-    home.stateVersion = "26.05";
+    home.stateVersion = "26.11";
   };
 
   system = {
-    stateVersion = "26.05";
+    stateVersion = "26.11";
   };
 }
