@@ -19,13 +19,24 @@
       zsh = {
         enable = true;
         enableCompletion = true;
-        syntaxHighlighting.enable = true;
+        # syntaxHighlighting.enable = true;
+
+        completionInit = ''
+          autoload -Uz compinit
+          _zcd=(''${ZDOTDIR:-$HOME}/.zcompdump(Nmh-24))
+          if (( $#_zcd )); then
+            compinit -C
+          else
+            compinit
+          fi
+          unset _zcd
+        '';
 
         autocd = true;
 
         autosuggestion = {
           enable = true;
-          strategy = ["history"];
+          strategy = ["history" "completion"];
         };
 
         sessionVariables = {
@@ -67,6 +78,11 @@
         };
 
         plugins = [
+          {
+            name = "fast-syntax-highlighting";
+            file = "share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh";
+            src = pkgs.zsh-fast-syntax-highlighting;
+          }
           {
             name = "zsh-autopair";
             src = pkgs.fetchFromGitHub {
@@ -142,94 +158,23 @@
           ZSH_AUTOSUGGEST_USE_ASYNC="true"
           CASE_SENSITIVE="false"
 
-          HISTSIZE=10000
-          SAVEHIST=10000
-
-          GITHUB_COPILOT_CLI_INITIALIZED=false
-
           zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
           zstyle ':completion:*' menu select
 
-          ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-          ZSH_AUTOSUGGEST_USE_ASYNC=true
-
-          # Copilot
-          qq() {
-              initialize_github_copilot_cli
-              eval "?? $@"
-          }
-
-          git-q() {
-              initialize_github_copilot_cli
-              eval "git? $@"
-          }
-
-          gh-q() {
-              initialize_github_copilot_cli
-              eval "gh? $@"
-          }
-
-          initialize_github_copilot_cli() {
-              if [ "$GITHUB_COPILOT_CLI_INITIALIZED" = false ]; then
-                  eval "$(github-copilot-cli alias -- "$0")"
-                  GITHUB_COPILOT_CLI_INITIALIZED=true
-              fi
-          }
-
           timezsh() {
               shell=''${1-$SHELL}
-              for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+              for i in $(seq 1 10); do time $shell -i -c exit; done
           }
 
-          # # transient prompt - - - -
-          #
-          # zle-line-init() {
-          #   emulate -L zsh
-          #
-          #   [[ $CONTEXT == start ]] || return 0
-          #
-          #   while true; do
-          #     zle .recursive-edit
-          #     local -i ret=$?
-          #     [[ $ret == 0 && $KEYS == $'\4' ]] || break
-          #     [[ -o ignore_eof ]] || exit 0
-          #   done
-          #
-          #   local saved_prompt=$PROMPT
-          #   local saved_rprompt=$RPROMPT
-          #
-          #   # Set prompt value from character module
-          #   PROMPT=$(starship module character)
-          #   # PROMPT=$(get-transient-prompt)
-          #   RPROMPT=""
-          #   zle .reset-prompt
-          #   PROMPT=$saved_prompt
-          #   RPROMPT=$saved_rprompt
-          #
-          #   if (( ret )); then
-          #     zle .send-break
-          #   else
-          #     zle .accept-line
-          #   fi
-          #   return ret
-          # }
-          #
-          # get-transient-prompt() {
-          #   echo -en "\e[1;35m$USER $(starship module character)\e[0m"
-          # }
-          #
-          # zle -N zle-line-init
-          #
-          # transient prompt - - - -
-
-          # evals
-
           smartcache eval tmuxifier init -
+          smartcache eval direnv hook zsh
+          smartcache eval pay-respects zsh --alias f
 
           # fetches
 
           if [[ -z "$TMUX" && -z $SSH_CONNECTION ]]; then
             pfetch
+            print
           fi
 
           if [[ -r "${config.zsh.consul_http_token_path}" ]]; then
@@ -262,9 +207,6 @@
             else "echo 'Unsupported system -> not testing'";
           nursbackCmd = "sudo nixos-rebuild switch --rollback ${flakepart}";
         in {
-          "??" = "ghcs";
-          "e?" = "ghce";
-
           # obv
           nivm = "nvim";
           vim = "nvim";
@@ -284,7 +226,7 @@
 
           c = "z";
           cat = "bat";
-          ls = "eza $1 --color=auto --icons=auto";
+          ls = "eza --color=auto --icons=auto";
           l = "ls -lah";
 
           icat = "kitten icat";
@@ -311,7 +253,7 @@
 
       direnv = {
         enable = true;
-        enableZshIntegration = true;
+        enableZshIntegration = false;
         nix-direnv.enable = true;
       };
     };
@@ -319,7 +261,7 @@
     programs.pay-respects = {
       enable = true;
 
-      enableZshIntegration = true;
+      enableZshIntegration = false;
 
       options = [
         "--alias"
