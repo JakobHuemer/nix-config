@@ -84,7 +84,7 @@
         selection-foreground = "cdd6f4";
 
         # make ghostty not group on linux
-        gtk-single-instance = false;
+        gtk-single-instance = true;
       };
     };
   };

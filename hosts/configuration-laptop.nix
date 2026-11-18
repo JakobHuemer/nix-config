@@ -12,6 +12,15 @@
 in {
   powerManagement = {
     enable = true;
+
+    powerDownCommands = ''
+      ${pkgs.systemd}/bin/systemctl stop bluetooth.service
+      ${pkgs.kmod}/bin/modprobe -r btintel_pcie btintel || true
+    '';
+    resumeCommands = ''
+      ${pkgs.kmod}/bin/modprobe btintel_pcie || true
+      ${pkgs.systemd}/bin/systemctl start bluetooth.service
+    '';
   };
 
   boot.zswap = {
