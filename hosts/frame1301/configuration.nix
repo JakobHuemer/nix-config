@@ -45,6 +45,8 @@
   # tpm setup
   boot.initrd.systemd.tpm2.enable = true;
 
+  android-studio.enable = true;
+
   home-manager.users.${vars.user} = {
     # opencode.enable = lib.mkForce false;
 
