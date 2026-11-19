@@ -9,22 +9,33 @@ _G.host = (io.popen("hostname"):read("*a") or ""):gsub("%s+", "")
 
 require("hyprland_config")
 
+-- default
 hl.monitor({
-    output = "DP-2",
-    mode = "2560x1440@144",
-    position = "2560x0",
+    output = "",
+    mode = "preferred",
+    position = "auto",
     scale = 1,
-    supports_hdr = -1,
+    mirror = "eDP-1",
 })
 
-hl.monitor({
-    output = "DP-1",
-    mode = "3840x2160@160",
-    position = "0x0",
-    scale = 1.5,
-    bitdepth = 10,
-    supports_hdr = -1,
-})
+if _G.host == "sta01" then
+    hl.monitor({
+        output = "DP-2",
+        mode = "2560x1440@144",
+        position = "2560x0",
+        scale = 1,
+        supports_hdr = -1,
+    })
+
+    hl.monitor({
+        output = "DP-1",
+        mode = "3840x2160@160",
+        position = "0x0",
+        scale = 1.5,
+        bitdepth = 10,
+        supports_hdr = -1,
+    })
+end
 
 if _G.host == "nixbook" then
     hl.monitor({
