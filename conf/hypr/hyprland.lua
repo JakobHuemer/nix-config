@@ -18,6 +18,20 @@ hl.monitor({
     mirror = "eDP-1",
 })
 
+if _G.host == "nixbook" or _G.host == "frame1301" then
+    hl.on("monitor.added", function(mon)
+        if mon.name ~= "eDP-1" then
+            hl.config({ debug = { damage_tracking = 0 } })
+        end
+    end)
+
+    hl.on("monitor.removed", function(mon)
+        if mon.name ~= "eDP-1" then
+            hl.config({ debug = { damage_tracking = 2 } })
+        end
+    end)
+end
+
 if _G.host == "sta01" then
     hl.monitor({
         output = "DP-2",
