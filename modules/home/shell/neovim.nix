@@ -48,6 +48,7 @@
     stylua
     tinymist
     xmlformat
+    buf
 
     imagemagick
 
