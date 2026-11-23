@@ -235,11 +235,11 @@
         font-manager
         gparted
         inputs.antigravity-nix.packages.${system}.google-antigravity-cli
-        pipewire.jack
         kdiskmark
         keyd
         # tailscale ui
         ktailctl
+        ladybird
         libaacs
         libbdplus
         mako
@@ -249,6 +249,7 @@
         obsidian
         pavucontrol
         pinentry-curses
+        pipewire.jack
         pkgs-stable.claude-code
         pkgs-stable.codex
         postman
