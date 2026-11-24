@@ -226,6 +226,7 @@
         chatterino7
         cheese
         cinny-desktop
+        claude-code
         distrobox
         element-desktop
         fastmail-desktop
@@ -250,7 +251,6 @@
         pavucontrol
         pinentry-curses
         pipewire.jack
-        pkgs-stable.claude-code
         pkgs-stable.codex
         postman
         qt6.qtwayland
