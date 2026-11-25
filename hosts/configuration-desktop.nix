@@ -327,6 +327,7 @@
     xdg.configFile."jellyfin-mpv-shim/mpv.conf".text = ''
       demuxer-max-bytes=2GiB
       demuxer-max-back-bytes=512MiB
+      mpv_ext=true
     '';
 
     home.packages = [pkgs.trayscale];
