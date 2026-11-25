@@ -13,6 +13,8 @@
     inputs.hyprland.nixosModules.default
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   services.fprintd.enable = true;
 
   fileSystems = {

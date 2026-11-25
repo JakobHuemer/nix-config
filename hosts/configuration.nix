@@ -30,11 +30,16 @@
   # makes dynamically linked libs work but still not trash the system
   programs.nix-ld.enable = true;
 
-  specialisation = lib.mkIf (!(config.hardware.asahi.enable or false)) {
-    kernel-latest.configuration = {
-      boot.kernelPackages = pkgs.linuxPackages_latest;
+  specialisation =
+    lib.mkIf (!(
+      config.hardware.asahi.enable or  
+      config.boot.kernelPackages != pkgs.linuxPackages_latest or
+      false
+    )) {
+      kernel-latest.configuration = {
+        boot.kernelPackages = pkgs.linuxPackages_latest;
+      };
     };
-  };
 
   sops.defaultSopsFile = ../secrets/general.yaml;
   sops.defaultSopsFormat = "yaml";
