@@ -49,6 +49,10 @@
 
   android-studio.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    davinci-resolve
+  ];
+
   home-manager.users.${vars.user} = {
     # opencode.enable = lib.mkForce false;
 
